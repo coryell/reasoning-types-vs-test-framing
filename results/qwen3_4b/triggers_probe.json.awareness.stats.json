@@ -1,0 +1,14 @@
+{
+ "judged": 1200,
+ "closed": 1150,
+ "positives_closed": 183,
+ "generated": 1200,
+ "errors": 1,
+ "unparsed": 0,
+ "positives": 184,
+ "negatives": 658,
+ "positive_rate_judged": 0.15333333333333332,
+ "positive_rate_generated": 0.15333333333333332,
+ "gate_needed": 60,
+ "verdict": "PASS"
+}
