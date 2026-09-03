@@ -1,0 +1,90 @@
+[2026-09-03 09:26:08] sampled 100 of 10571 annotated traces (seed 0)
+[2026-09-03 09:26:08] /home/cutter/d10/results/annotations_rerun/qwen3/triggers/alpha0.0.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:26:24]   2/2 done, 0 errors, 2,363 tokens, ~$0.01 this run
+[2026-09-03 09:26:24] /home/cutter/d10/results/annotations_rerun/qwen3/triggers/alpha0.2.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:26:35]   2/2 done, 0 errors, 4,078 tokens, ~$0.03 this run
+[2026-09-03 09:26:35] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/actions/alpha0.07_aware.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:26:38]   2/2 done, 0 errors, 1,804 tokens, ~$0.01 this run
+[2026-09-03 09:26:38] /home/cutter/d10/results/annotations_rerun/qwen3/actions/alpha0.043_aware.jsonl: 5 jobs, 0 cached, 0 truncated (kept), 5 to run
+[2026-09-03 09:26:47]   5/5 done, 0 errors, 4,465 tokens, ~$0.03 this run
+[2026-09-03 09:26:47] /home/cutter/d10/results/annotations_rerun/qwq/actions/alpha0.25.jsonl: 3 jobs, 0 cached, 0 truncated (kept), 3 to run
+[2026-09-03 09:26:53]   3/3 done, 0 errors, 2,234 tokens, ~$0.01 this run
+[2026-09-03 09:26:53] /home/cutter/d10/results/annotations_rerun/qwq/actions/alpha0.05_aware.jsonl: 3 jobs, 0 cached, 0 truncated (kept), 3 to run
+[2026-09-03 09:27:02]   3/3 done, 0 errors, 4,305 tokens, ~$0.03 this run
+[2026-09-03 09:27:02] /home/cutter/d10/results/annotations_rerun/qwen3/triggers/alpha0.04_aware.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:27:16]   2/2 done, 0 errors, 3,064 tokens, ~$0.02 this run
+[2026-09-03 09:27:16] /home/cutter/d10/results/annotations_rerun/qwen3/actions/alpha0.25.jsonl: 3 jobs, 0 cached, 0 truncated (kept), 3 to run
+[2026-09-03 09:27:20]   3/3 done, 0 errors, 2,815 tokens, ~$0.02 this run
+[2026-09-03 09:27:20] /home/cutter/d10/results/annotations_rerun/qwq/actions/alpha0.0.jsonl: 4 jobs, 0 cached, 0 truncated (kept), 4 to run
+[2026-09-03 09:27:42]   4/4 done, 0 errors, 2,872 tokens, ~$0.02 this run
+[2026-09-03 09:27:42] /home/cutter/d10/results/annotations_rerun/qwen3/harmbench/alpha0.0.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:27:48]   2/2 done, 0 errors, 1,608 tokens, ~$0.01 this run
+[2026-09-03 09:27:48] /home/cutter/d10/results/annotations_rerun/qwq/triggers/alpha0.0.jsonl: 4 jobs, 0 cached, 0 truncated (kept), 4 to run
+[2026-09-03 09:28:13]   4/4 done, 0 errors, 5,113 tokens, ~$0.03 this run
+[2026-09-03 09:28:13] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/triggers/alpha0.3.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:28:29]   2/2 done, 0 errors, 4,648 tokens, ~$0.03 this run
+[2026-09-03 09:28:29] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/actions_sampling/alpha0.07_aware.jsonl: 4 jobs, 0 cached, 0 truncated (kept), 4 to run
+[2026-09-03 09:28:36]   4/4 done, 0 errors, 3,893 tokens, ~$0.02 this run
+[2026-09-03 09:28:36] /home/cutter/d10/results/annotations_rerun/qwen3/actions/alpha0.05_aware.jsonl: 4 jobs, 0 cached, 0 truncated (kept), 4 to run
+[2026-09-03 09:28:46]   4/4 done, 0 errors, 4,295 tokens, ~$0.03 this run
+[2026-09-03 09:28:46] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/actions/alpha0.35.jsonl: 7 jobs, 0 cached, 0 truncated (kept), 7 to run
+[2026-09-03 09:29:00]   7/7 done, 0 errors, 7,315 tokens, ~$0.04 this run
+[2026-09-03 09:29:00] /home/cutter/d10/results/annotations_rerun/qwq/triggers/alpha0.25.jsonl: 3 jobs, 0 cached, 0 truncated (kept), 3 to run
+[2026-09-03 09:29:21]   3/3 done, 0 errors, 5,375 tokens, ~$0.03 this run
+[2026-09-03 09:29:21] /home/cutter/d10/results/annotations_rerun/qwq/actions/alpha0.3.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:29:26]   2/2 done, 0 errors, 1,150 tokens, ~$0.01 this run
+[2026-09-03 09:29:26] /home/cutter/d10/results/annotations_rerun/qwq/triggers/alpha0.05_aware.jsonl: 7 jobs, 0 cached, 0 truncated (kept), 7 to run
+[2026-09-03 09:30:00]   7/7 done, 0 errors, 9,505 tokens, ~$0.06 this run
+[2026-09-03 09:30:00] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/actions_sampling/alpha0.35.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:30:10]   2/2 done, 0 errors, 1,913 tokens, ~$0.01 this run
+[2026-09-03 09:30:10] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/actions/alpha0.3.jsonl: 4 jobs, 0 cached, 0 truncated (kept), 4 to run
+[2026-09-03 09:30:23]   4/4 done, 0 errors, 4,612 tokens, ~$0.03 this run
+[2026-09-03 09:30:23] /home/cutter/d10/results/annotations_rerun/qwen3/actions/alpha0.3.jsonl: 7 jobs, 0 cached, 0 truncated (kept), 7 to run
+[2026-09-03 09:30:33]   7/7 done, 0 errors, 6,179 tokens, ~$0.04 this run
+[2026-09-03 09:30:33] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/triggers/alpha0.25.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:30:48]   2/2 done, 0 errors, 3,270 tokens, ~$0.02 this run
+[2026-09-03 09:30:48] /home/cutter/d10/results/annotations_rerun/qwq/harmbench/alpha0.25.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:31:36]   2/2 done, 0 errors, 5,972 tokens, ~$0.04 this run
+[2026-09-03 09:31:36] /home/cutter/d10/results/annotations_rerun/qwen3/triggers/alpha0.25.jsonl: 3 jobs, 0 cached, 0 truncated (kept), 3 to run
+[2026-09-03 09:31:39]   3/3 done, 0 errors, 3,797 tokens, ~$0.02 this run
+[2026-09-03 09:31:39] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/actions/alpha0.25.jsonl: 3 jobs, 0 cached, 0 truncated (kept), 3 to run
+[2026-09-03 09:31:49]   3/3 done, 0 errors, 2,690 tokens, ~$0.02 this run
+[2026-09-03 09:31:49] /home/cutter/d10/results/annotations_rerun/qwq/harmbench/alpha0.05_aware.jsonl: 4 jobs, 0 cached, 0 truncated (kept), 4 to run
+[2026-09-03 09:31:59]   4/4 done, 0 errors, 6,963 tokens, ~$0.05 this run
+[2026-09-03 09:31:59] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/actions/alpha0.0.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:32:03]   2/2 done, 0 errors, 1,422 tokens, ~$0.01 this run
+[2026-09-03 09:32:03] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/triggers/alpha0.05_aware.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:32:42]   2/2 done, 0 errors, 4,993 tokens, ~$0.03 this run
+[2026-09-03 09:32:42] /home/cutter/d10/results/annotations_rerun/qwen3/actions/alpha0.0.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:32:45]   2/2 done, 0 errors, 1,681 tokens, ~$0.01 this run
+[2026-09-03 09:32:45] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/actions_sampling/alpha0.0.jsonl: 1 jobs, 0 cached, 0 truncated (kept), 1 to run
+[2026-09-03 09:32:54]   1/1 done, 0 errors, 953 tokens, ~$0.01 this run
+[2026-09-03 09:32:54] /home/cutter/d10/results/annotations_rerun/qwq/harmbench/alpha0.0.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:33:01]   2/2 done, 0 errors, 1,934 tokens, ~$0.01 this run
+[2026-09-03 09:33:01] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/triggers/alpha0.0.jsonl: 2 jobs, 0 cached, 0 truncated (kept), 2 to run
+[2026-09-03 09:33:20]   2/2 done, 0 errors, 3,400 tokens, ~$0.02 this run
+[2026-09-03 09:33:20] /home/cutter/d10/results/annotations_rerun/deepseek_qwen/actions/alpha0.05_aware.jsonl: 1 jobs, 0 cached, 0 truncated (kept), 1 to run
+[2026-09-03 09:33:22]   1/1 done, 0 errors, 798 tokens, ~$0.00 this run
+[2026-09-03 09:33:22] {
+ "n": 100,
+ "word_agreement_mean": 0.892983262143797,
+ "word_agreement_median": 0.9143190809857475,
+ "density_corr_initializing": 0.7547557499634064,
+ "jaccard_median_initializing": 1.0,
+ "abs_ddensity_mean_initializing": 0.11635782318637494,
+ "density_corr_deduction": 0.803045304704687,
+ "jaccard_median_deduction": 0.8691087076655878,
+ "abs_ddensity_mean_deduction": 0.49527177326914434,
+ "density_corr_adding-knowledge": 0.7309892762421546,
+ "jaccard_median_adding-knowledge": 0.9078947368421053,
+ "abs_ddensity_mean_adding-knowledge": 0.3470768424127835,
+ "density_corr_example-testing": 0.821180038962123,
+ "jaccard_median_example-testing": 0.9832775919732442,
+ "abs_ddensity_mean_example-testing": 0.08927050160236771,
+ "density_corr_uncertainty-estimation": 0.9129015648112785,
+ "jaccard_median_uncertainty-estimation": 0.8504947433518861,
+ "abs_ddensity_mean_uncertainty-estimation": 0.12283531645261121,
+ "density_corr_backtracking": 0.6910231014534222,
+ "jaccard_median_backtracking": 1.0,
+ "abs_ddensity_mean_backtracking": 0.06384201108553351
+}

@@ -1,0 +1,5 @@
+[2026-09-03 09:27:28] results/qwen3_4b/smoke_triggers.json: 6 sides, 6 judgeable
+[2026-09-03 09:27:28] results/qwen3_4b/smoke_triggers.json.awareness.jsonl: 6 jobs, 0 cached, 0 truncated (kept), 6 to run
+[2026-09-03 09:27:39]   6/6 done, 0 errors, 17,677 tokens, ~$0.06 this run
+[2026-09-03 09:27:39] {"path": "results/qwen3_4b/smoke_triggers.json.awareness.jsonl", "jobs": 6, "cached": 0, "truncated_kept": 0, "run": 6, "errors": 0, "prompt_tokens": 15197, "completion_tokens": 2480, "est_cost_usd": 0.0628}
+[2026-09-03 09:27:39] summary → results/qwen3_4b/smoke_triggers.json.awareness.md; verdict PASS (0 positives of 6 generated)

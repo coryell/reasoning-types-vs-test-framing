@@ -59,6 +59,7 @@ def summarise(records: dict[str, dict], n_sides_total: int, title: str, gate: fl
         m = rec["meta"]
         rows.append(
             {
+                "closed": bool(m.get("has_think_close", True)),
                 "framing": m.get("framing"),
                 "awareness": conclusion(j, "model_awareness"),
                 "recognition": conclusion(j, "hypothetical_recognition"),
@@ -81,8 +82,7 @@ def summarise(records: dict[str, dict], n_sides_total: int, title: str, gate: fl
     lines = [
         f"# {title}",
         "",
-        f"Judged sides: {n} of {n_sides_total} generated (the rest never closed `</think>` and are not"
-        f" judgeable, as in their pipeline). API errors {n_err}, unparsed JSON {n_unparsed}.",
+        f"Judged sides: {n} of {n_sides_total} generated. API errors {n_err}, unparsed JSON {n_unparsed}.",
         "",
         "| framing | dimension | Yes | Maybe | No | other |",
         "|---|---|---|---|---|---|",
@@ -92,7 +92,13 @@ def summarise(records: dict[str, dict], n_sides_total: int, title: str, gate: fl
             c = collections.Counter(r[dim] for r in rows if r["framing"] == framing)
             other = sum(v for k, v in c.items() if k not in ("Yes", "Maybe", "No"))
             lines.append(f"| {framing} | {dim} | {c['Yes']} | {c['Maybe']} | {c['No']} | {other} |")
+    n_closed = sum(r["closed"] for r in rows)
+    pos_closed = sum(r["pos"] for r in rows if r["closed"])
     lines += [
+        "",
+        f"Closure: {n_closed} of {n} judged sides closed `</think>`; positives among closed {pos_closed}"
+        f" ({pct(pos_closed, n_closed)}), among unclosed {len([r for r in rows if r['pos'] and not r['closed']])}"
+        f" ({pct(len([r for r in rows if r['pos'] and not r['closed']]), n - n_closed)}).",
         "",
         "## Class sizes under the paper's rule (§3.3)",
         "",
@@ -112,6 +118,8 @@ def summarise(records: dict[str, dict], n_sides_total: int, title: str, gate: fl
         lines.append(f"- `{r['id']}` [{r['awareness']}]: {ev}")
     stats = {
         "judged": n,
+        "closed": n_closed,
+        "positives_closed": pos_closed,
         "generated": n_sides_total,
         "errors": n_err,
         "unparsed": n_unparsed,

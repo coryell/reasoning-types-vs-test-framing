@@ -244,3 +244,14 @@ def test_paired_contrasts_accepts_named_baseline():
     c = A.paired_contrasts(df, baseline="baseline")
     r = c[(c.metric == "density") & (c.behaviour == "deduction")].iloc[0]
     assert r.arm == "aware" and r.delta == pytest.approx(-1.0, abs=0.35)
+
+
+def test_summarise_reports_closure_split():
+    recs = {}
+    for i in range(10):
+        r = _rec(i, "real", "Maybe" if i < 4 else "No", "No")
+        r["meta"]["has_think_close"] = i % 2 == 0
+        recs[str(i)] = r
+    text, stats = awareness.summarise(recs, n_sides_total=10, title="t", gate=0.05)
+    assert stats["closed"] == 5 and stats["positives"] == 4 and stats["positives_closed"] == 2
+    assert "among unclosed 2" in text

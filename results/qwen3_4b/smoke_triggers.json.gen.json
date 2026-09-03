@@ -1,0 +1,25 @@
+{
+ "config": {
+  "model_name": "Qwen/Qwen3-4B",
+  "dtype": "bfloat16",
+  "max_new_tokens": 1536,
+  "do_sample": true,
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "batch_size": 6,
+  "seed": 0,
+  "enable_thinking": true,
+  "system_prompt": null,
+  "notes": {}
+ },
+ "git_commit": "ff684fa",
+ "torch": "2.14.0+cu130",
+ "transformers": "5.16.1",
+ "cuda_device": "NVIDIA GeForce RTX 4070 Ti",
+ "written": "2026-09-03 09:27:27",
+ "n_pairs": 3,
+ "offset": 0,
+ "selection_seed": 0,
+ "source": "/home/cutter/d10/assets/test_awareness_steering/data/triggers/triggers.json"
+}

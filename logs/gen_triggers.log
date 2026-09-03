@@ -1,0 +1,13 @@
+[2026-09-03 09:25:37] triggers: 2587 pairs on disk; selected 3 (seed 0, offset 0)
+[2026-09-03 09:25:37] loading Qwen/Qwen3-4B
+[2026-09-03 09:25:49] generating 6 sides, max_new_tokens=1536, batch=6, sample=True
+[2026-09-03 09:27:27]   gen 6/6  1.6 min  eta 0.0 min  unfinished so far 2
+[2026-09-03 09:27:27] done: 6 sides, 2 hit max_new_tokens, 6 closed </think>
+[2026-09-03 09:27:27] wrote results/qwen3_4b/smoke_triggers.json and results/qwen3_4b/smoke_triggers.json.gen.json
+[2026-09-03 09:27:44] triggers: 2587 pairs on disk; selected 200 (seed 0, offset 0)
+[2026-09-03 09:27:44] loading Qwen/Qwen3-4B
+[2026-09-03 09:27:59] generating 400 sides, max_new_tokens=1536, batch=6, sample=True
+[2026-09-03 09:29:37]   gen 6/400  1.6 min  eta 106.9 min  unfinished so far 4
+[2026-09-03 09:31:12]   gen 12/400  3.2 min  eta 103.8 min  unfinished so far 8
+[2026-09-03 09:32:47]   gen 18/400  4.8 min  eta 101.8 min  unfinished so far 10
+[2026-09-03 09:34:23]   gen 24/400  6.4 min  eta 100.2 min  unfinished so far 11

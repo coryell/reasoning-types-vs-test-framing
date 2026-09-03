@@ -6,7 +6,13 @@ batch script fills it) and summarise under the paper's class rule.
         --model-name qwen3_4b --family triggers_gate --provider openai
 
 Writes ``<out>.jsonl`` (judge records), ``<summary>.md`` and ``<summary>.stats.json`` (the gate
-verdict, positives, rates). Sides without ``</think>`` are skipped as in their pipeline.
+verdict, positives, rates).
+
+Sides that never closed ``</think>`` (the generation hit ``max_new_tokens``) are judged too by
+default, with the whole text as the reasoning and an empty answer — a deviation from their pipeline,
+which drops them. Awareness verbalization appears early in a trace, so a truncated trace still
+carries it; the ``task_performance`` dimension is meaningless for these and is not used. The summary
+reports positives among closed and unclosed sides separately. ``--closed-only`` restores their rule.
 """
 
 from __future__ import annotations
@@ -53,6 +59,7 @@ def main() -> None:
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--log", type=Path, default=REPO / "logs" / "judge_awareness.log")
     ap.add_argument("--summary-only", action="store_true")
+    ap.add_argument("--closed-only", action="store_true", help="their rule: skip sides without </think>")
     args = ap.parse_args()
     log = make_logger(args.log)
     out = args.out or args.input.with_suffix(args.input.suffix + ".awareness.jsonl")
@@ -60,13 +67,13 @@ def main() -> None:
 
     template = load_abdelnabi_template()
     all_traces = load_generations(args.input, args.model_name, args.family, args.arm, args.alpha, args.aware)
-    traces = [t for t in all_traces if t.has_think_close]
+    traces = [t for t in all_traces if t.has_think_close or not args.closed_only]
     if args.limit:
         traces = traces[: args.limit]
-    log(f"{args.input}: {len(all_traces)} sides, {len(traces)} judgeable")
+    log(f"{args.input}: {len(all_traces)} sides, {len(traces)} to judge ({sum(t.has_think_close for t in traces)} closed)")
     jobs = []
     for t in traces:
-        reasoning, answer = abdelnabi_split(t.raw)
+        reasoning, answer = abdelnabi_split(t.raw) if t.has_think_close else (t.raw, "")
         jobs.append(Job(id=t.id, prompt=abdelnabi_judge_prompt(template, task=t.task, reasoning=reasoning, answer=answer), meta=t.meta(), json_mode=True))
     if not args.summary_only:
         judge = Judge(concurrency=args.concurrency, max_tokens=2048, rpm=args.rpm or None, provider=args.provider)
