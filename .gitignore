@@ -1,0 +1,17 @@
+# environment
+.venv/
+__pycache__/
+*.pyc
+
+# upstream clones — commits recorded in CLAUDE.md; re-clone to reproduce
+assets/
+
+# large binary artifacts — regenerated from scripts + logs
+*.npy
+*.pt
+*.pth
+*.safetensors
+*.bin
+
+# install noise
+logs/setup.log
