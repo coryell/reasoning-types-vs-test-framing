@@ -177,3 +177,17 @@ def test_rpm_limiter_spaces_requests(monkeypatch):
         j.complete(J.Job(id="a", prompt="p"))
     assert len(j.client.calls) == 4
     assert sum(slept) >= 60.0 and clock["t"] >= 1060.0
+
+
+def test_provider_spelling_and_record(monkeypatch):
+    monkeypatch.setenv("OPENAI_API_KEY", "x")
+    monkeypatch.setenv("OPENROUTER_API_KEY", "y")
+    j = make_judge([("ok", "stop")], provider="openai")
+    r = j.complete(J.Job(id="a", prompt="p"))
+    assert j.client.calls[0]["model"] == "gpt-4o-2024-08-06"  # no 'openai/' prefix for api.openai.com
+    assert r.judge_model == J.JUDGE_MODEL and r.provider == "openai"
+    j2 = make_judge([("ok", "stop")])
+    j2.complete(J.Job(id="a", prompt="p"))
+    assert j2.client.calls[0]["model"] == "openai/gpt-4o-2024-08-06" and j2.provider == "openrouter"
+    with pytest.raises(ValueError):
+        J.Judge(client=object(), provider="azure")
