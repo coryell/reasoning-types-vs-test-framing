@@ -41,7 +41,15 @@ OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 #: Pinned snapshot. Matches Abdelnabi & Salem's labeller in model (their ``judgeIt_batch.py`` default
 #: is ``gpt-4o``, Azure-hosted, snapshot unrecorded) and Venhoff et al.'s stated annotator (GPT-4o).
+#: The same snapshot is reachable through two providers; the record's ``served_model`` shows which
+#: id was used and ``provider`` which endpoint.
 JUDGE_MODEL = "openai/gpt-4o-2024-08-06"
+
+#: provider → (base_url or None for api.openai.com, env var with the key, how to spell the model id)
+PROVIDERS = {
+    "openrouter": (OPENROUTER_BASE_URL, "OPENROUTER_API_KEY", lambda m: m),
+    "openai": (None, "OPENAI_API_KEY", lambda m: m.removeprefix("openai/")),
+}
 
 #: gpt-4o's output ceiling. Venhoff's ``chat()`` asks for 28,000 and never truncates; an annotation is
 #: ~2 completion tokens per reasoning word, so 16,384 covers traces of ~8,000 words. The longest shipped
@@ -84,6 +92,7 @@ class Result:
     max_tokens: int
     ts: float
     meta: dict
+    provider: str = "openrouter"
 
     @property
     def ok(self) -> bool:
@@ -113,7 +122,14 @@ class Judge:
         seed: int = 0,
         client: object | None = None,
         rpm: int | None = None,
+        provider: str = "openrouter",
     ):
+        if provider not in PROVIDERS:
+            raise ValueError(f"unknown provider {provider!r}; choose from {sorted(PROVIDERS)}")
+        base_url, key_var, spell = PROVIDERS[provider]
+        self.provider = provider
+        #: ``model`` is always the canonical ``openai/...`` id; ``api_model`` is what the provider wants.
+        self.api_model = spell(model)
         self.model = model
         self.temperature = temperature
         self.max_tokens = max_tokens
@@ -129,8 +145,8 @@ class Judge:
         # max_retries=0: we do our own retries so that attempts are counted and logged.
         # ``client`` is injectable for tests.
         self.client = client or OpenAI(
-            base_url=OPENROUTER_BASE_URL,
-            api_key=require("OPENROUTER_API_KEY"),
+            base_url=base_url,
+            api_key=require(key_var),
             timeout=timeout,
             max_retries=0,
         )
@@ -166,6 +182,7 @@ class Judge:
             max_tokens=self.max_tokens,
             ts=time.time(),
             meta=job.meta,
+            provider=self.provider,
         )
 
     def complete(self, job: Job) -> Result:
@@ -177,7 +194,7 @@ class Judge:
             retry = False
             try:
                 kwargs: dict = dict(
-                    model=self.model,
+                    model=self.api_model,
                     messages=[{"role": "user", "content": job.prompt}],
                     temperature=self.temperature,
                     max_tokens=self.max_tokens,
