@@ -66,7 +66,8 @@ def main() -> None:
     ap.add_argument("--models", nargs="+", default=list(MODELS), choices=list(MODELS))
     ap.add_argument("--families", nargs="+", default=list(FAMILIES), choices=list(FAMILIES))
     ap.add_argument("--limit", type=int, default=None, help="max traces per arm (smoke tests)")
-    ap.add_argument("--concurrency", type=int, default=8)
+    ap.add_argument("--concurrency", type=int, default=4)
+    ap.add_argument("--rpm", type=int, default=20, help="client-side requests-per-minute ceiling (0 = none)")
     ap.add_argument("--max-tokens", type=int, default=DEFAULT_MAX_TOKENS)
     ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
     ap.add_argument("--log", type=Path, default=DEFAULT_LOG)
@@ -77,7 +78,7 @@ def main() -> None:
     log = make_logger(args.log)
     log(f"start: models={args.models} families={args.families} limit={args.limit} dry_run={args.dry_run}")
 
-    judge = None if args.dry_run else Judge(concurrency=args.concurrency, max_tokens=args.max_tokens)
+    judge = None if args.dry_run else Judge(concurrency=args.concurrency, max_tokens=args.max_tokens, rpm=args.rpm or None)
     summaries = []
     total_jobs = 0
     est_tokens = 0

@@ -159,3 +159,21 @@ def test_truncated_records_are_kept_unless_retry_requested(tmp_path):
     assert (s["truncated_kept"], s["run"]) == (1, 0)
     s = J.run_jobs(make_judge([("full", "stop")]), [job], out, log=lambda m: None, retry_truncated=True)
     assert s["run"] == 1 and J.record_ok(J.load_results(out)["a"])
+
+
+def test_rpm_limiter_spaces_requests(monkeypatch):
+    # 3 rpm: the 4th request in a burst must wait until the first is 60 s old
+    clock = {"t": 1000.0}
+    monkeypatch.setattr(J.time, "monotonic", lambda: clock["t"])
+    slept = []
+
+    def fake_sleep(s):
+        slept.append(s)
+        clock["t"] += s
+
+    monkeypatch.setattr(J.time, "sleep", fake_sleep)
+    j = make_judge([("ok", "stop")] * 4, rpm=3)
+    for _ in range(4):
+        j.complete(J.Job(id="a", prompt="p"))
+    assert len(j.client.calls) == 4
+    assert sum(slept) >= 60.0 and clock["t"] >= 1060.0

@@ -7,3 +7,8 @@
 [2026-09-02 23:34:14] start: models=['deepseek_qwen', 'qwen3', 'qwq'] families=['actions'] limit=None dry_run=False
 [2026-09-02 23:34:14] /home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.0.jsonl: 298 jobs, 20 cached, 0 truncated (kept), 278 to run
 [2026-09-02 23:36:10]   50/278 done, 0 errors, 49,120 tokens, ~$0.30 this run
+[2026-09-02 23:37:02] run_tier1 start
+[2026-09-02 23:37:02] ==> 1/5 actions, all models
+[2026-09-02 23:37:03] start: models=['deepseek_qwen', 'qwen3', 'qwq'] families=['actions'] limit=None dry_run=False
+[2026-09-02 23:37:03] /home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.0.jsonl: 298 jobs, 81 cached, 0 truncated (kept), 217 to run
+[2026-09-02 23:39:33]   50/217 done, 0 errors, 44,640 tokens, ~$0.27 this run

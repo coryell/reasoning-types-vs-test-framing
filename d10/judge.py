@@ -16,6 +16,7 @@ is recorded with an ``error`` and redone on the next run.
 
 from __future__ import annotations
 
+import collections
 import hashlib
 import json
 import random
@@ -111,6 +112,7 @@ class Judge:
         timeout: float = 300.0,
         seed: int = 0,
         client: object | None = None,
+        rpm: int | None = None,
     ):
         self.model = model
         self.temperature = temperature
@@ -118,6 +120,12 @@ class Judge:
         self.concurrency = concurrency
         self.max_attempts = max_attempts
         self.seed = seed
+        #: Requests-per-minute ceiling enforced client-side over a sliding 60 s window, across all
+        #: threads. OpenRouter limits new accounts to 20 rpm per model; without this, every call
+        #: hits 429 and spends most of its time in backoff.
+        self.rpm = rpm
+        self._rpm_lock = threading.Lock()
+        self._sent: collections.deque[float] = collections.deque()
         # max_retries=0: we do our own retries so that attempts are counted and logged.
         # ``client`` is injectable for tests.
         self.client = client or OpenAI(
@@ -126,6 +134,21 @@ class Judge:
             timeout=timeout,
             max_retries=0,
         )
+
+    def _throttle(self) -> None:
+        """Block until sending another request keeps us under ``rpm`` in the trailing minute."""
+        if not self.rpm:
+            return
+        while True:
+            with self._rpm_lock:
+                now = time.monotonic()
+                while self._sent and now - self._sent[0] >= 60.0:
+                    self._sent.popleft()
+                if len(self._sent) < self.rpm:
+                    self._sent.append(now)
+                    return
+                wait = 60.0 - (now - self._sent[0]) + 0.05
+            time.sleep(wait)
 
     def _result(self, job: Job, *, text, finish_reason, usage, served_model, error, attempts, retry_errors=()) -> Result:
         return Result(
@@ -162,6 +185,7 @@ class Judge:
                 )
                 if job.json_mode:
                     kwargs["response_format"] = {"type": "json_object"}
+                self._throttle()
                 r = self.client.chat.completions.create(**kwargs)
                 if not r.choices:
                     # OpenRouter can return 200 with an empty choices list and an error body.

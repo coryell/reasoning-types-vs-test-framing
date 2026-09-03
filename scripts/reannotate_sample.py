@@ -114,7 +114,8 @@ def main() -> None:
     ap.add_argument("--log", type=Path, default=DEFAULT_LOG)
     ap.add_argument("--n", type=int, default=100)
     ap.add_argument("--seed", type=int, default=0)
-    ap.add_argument("--concurrency", type=int, default=8)
+    ap.add_argument("--concurrency", type=int, default=4)
+    ap.add_argument("--rpm", type=int, default=20, help="client-side requests-per-minute ceiling (0 = none)")
     ap.add_argument("--compare-only", action="store_true")
     args = ap.parse_args()
     log = make_logger(args.log)
@@ -134,7 +135,7 @@ def main() -> None:
         by_path.setdefault(path, []).append((job, rec))
 
     rows = []
-    judge = None if args.compare_only else Judge(concurrency=args.concurrency)
+    judge = None if args.compare_only else Judge(concurrency=args.concurrency, rpm=args.rpm or None)
     for path, items in by_path.items():
         rerun_path = args.rerun_dir / path.relative_to(args.annotations)
         if not args.compare_only:

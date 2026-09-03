@@ -142,7 +142,8 @@ def main() -> None:
     ap.add_argument("--summary", type=Path, default=DEFAULT_SUMMARY)
     ap.add_argument("--log", type=Path, default=DEFAULT_LOG)
     ap.add_argument("--limit", type=int, default=None, help="max traces (smoke tests)")
-    ap.add_argument("--concurrency", type=int, default=8)
+    ap.add_argument("--concurrency", type=int, default=4)
+    ap.add_argument("--rpm", type=int, default=20, help="client-side requests-per-minute ceiling (0 = none)")
     ap.add_argument("--summary-only", action="store_true", help="rebuild the summary from cached results")
     args = ap.parse_args()
     log = make_logger(args.log)
@@ -165,7 +166,7 @@ def main() -> None:
             )
         )
     if not args.summary_only:
-        judge = Judge(concurrency=args.concurrency, max_tokens=2048)
+        judge = Judge(concurrency=args.concurrency, max_tokens=2048, rpm=args.rpm or None)
         s = run_jobs(judge, jobs, args.out, log=log)
         log(json.dumps(s))
     records = load_results(args.out)

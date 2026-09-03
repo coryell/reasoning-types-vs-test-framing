@@ -18,22 +18,22 @@ run() {
 }
 
 step "1/5 actions, all models"
-run uv run python scripts/annotate_shipped.py --families actions --concurrency 12
+run uv run python scripts/annotate_shipped.py --families actions --concurrency 4
 
 step "2/5 M0 gate: judge the 1.5B pilot traces"
-run uv run python scripts/judge_pilot.py --concurrency 12
+run uv run python scripts/judge_pilot.py --concurrency 4
 
 step "3/5 actions_sampling (Distill-Qwen noise floor)"
-run uv run python scripts/annotate_shipped.py --families actions_sampling --concurrency 12
+run uv run python scripts/annotate_shipped.py --families actions_sampling --concurrency 4
 
 step "4/5 triggers, QwQ first"
-run uv run python scripts/annotate_shipped.py --models qwq --families triggers --concurrency 12
-run uv run python scripts/annotate_shipped.py --models qwen3 deepseek_qwen --families triggers --concurrency 12
+run uv run python scripts/annotate_shipped.py --models qwq --families triggers --concurrency 4
+run uv run python scripts/annotate_shipped.py --models qwen3 deepseek_qwen --families triggers --concurrency 4
 
 step "5/5 harmbench"
-run uv run python scripts/annotate_shipped.py --families harmbench --concurrency 12
+run uv run python scripts/annotate_shipped.py --families harmbench --concurrency 4
 
 step "retry pass (errors only; successes and truncations are cached)"
-run uv run python scripts/annotate_shipped.py --concurrency 8
+run uv run python scripts/annotate_shipped.py --concurrency 4
 
 echo "[$(date '+%F %T')] run_tier1 done" | tee -a "$LOG"
