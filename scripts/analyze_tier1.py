@@ -68,6 +68,7 @@ def main() -> None:
     noise.to_csv(args.out / "noise_floor.csv", index=False)
     proxy = A.proxy_vs_judge(df)
     proxy.to_csv(args.out / "proxy_vs_judge.csv", index=False)
+    A.testlex_share(df).to_csv(args.out / "testlex_share.csv", index=False)
 
     for fam in sorted(df.family.unique()):
         A.fig_dose(means, "density", fam, args.out / f"fig_dose_density_{fam}.png", f"Dose–response, {fam}")

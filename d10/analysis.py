@@ -29,6 +29,7 @@ METRIC_COLUMNS = (
     ["words", "n_spans", "n_spans_counted", "n_spans_unknown_label", "n_spans_not_found_exact",
      "n_spans_found_norm_only", "n_spans_not_found", "labeled_words", "labeled_fraction", "repetition_4gram"]
     + [f"{m}_{b}" for m in ("n", "w", "density", "coverage", "any") for b in LABELS]
+    + [f"{m}_{b}_{s}" for m, s in (("n", "testlex"), ("density", "testlex"), ("density", "nontest")) for b in LABELS]
     + [f"lex_{k}_{s}" for k in ("wait", "hmm", "backtrack_lex", "uncertainty_lex") for s in ("n", "per100w")]
 )
 
@@ -93,6 +94,15 @@ def load_traces(ann_dir: Path, models: list[str] | None, families: list[str] | N
                 "error": rec.get("error"),
                 "served_model": rec.get("served_model"),
             }
+            # Validation set for the test-language pattern: the shipped judge's awareness evidence quotes
+            # on traces it judged aware. Recall = caught / total, reported in the summary.
+            ev = []
+            j = m.get("judge") or {}
+            aw = j.get("steered_model_awareness") if isinstance(j, dict) else None
+            if isinstance(aw, dict) and aw.get("conclusion") in ("Yes", "Maybe"):
+                ev = [q for q in (aw.get("evidence") or []) if isinstance(q, str) and len(q.split()) >= 3]
+            row["aw_evidence_n"] = len(ev)
+            row["aw_evidence_caught"] = sum(parse.is_test_span(q) for q in ev)
             ok = False
             if usable:
                 spans = parse.parse_annotation(rec["text"], m["reasoning"])
@@ -209,7 +219,11 @@ def paired_contrasts(df: pd.DataFrame) -> pd.DataFrame:
     """Each non-baseline arm vs alpha0.0 within (model, family, framing), paired by item index."""
     rows = []
     ok = df[df.ok]
-    cols = [f"{m}_{b}" for m in ("density", "coverage", "any") for b in LABELS] + ["words", "n_spans_counted"]
+    cols = (
+        [f"{m}_{b}" for m in ("density", "coverage", "any") for b in LABELS]
+        + [f"density_{b}_{s}" for s in ("testlex", "nontest") for b in LABELS]
+        + ["words", "n_spans_counted"]
+    )
     for keys, sub in ok.groupby(GROUP, sort=True):
         base = sub[sub.arm == BASELINE].set_index("index")
         if base.empty:
@@ -220,10 +234,21 @@ def paired_contrasts(df: pd.DataFrame) -> pd.DataFrame:
             if len(common) < MIN_N:
                 continue
             for col in cols:
+                if col not in arm_df or col not in base:
+                    print(f"paired_contrasts: column {col} missing for {keys}/{arm}; skipping")
+                    continue
                 d = arm_df.loc[common, col].to_numpy(dtype=float) - base.loc[common, col].to_numpy(dtype=float)
                 lo, hi = boot_ci(d)
                 t_p, w_p = paired_tests(d)
-                metric, _, behaviour = col.partition("_") if col not in ("words", "n_spans_counted") else (col, "", "")
+                if col in ("words", "n_spans_counted"):
+                    metric, behaviour = col, ""
+                elif col.endswith("_testlex") or col.endswith("_nontest"):
+                    # density_<behaviour>_testlex → metric "density_testlex", behaviour <behaviour>
+                    head, _, suffix = col.rpartition("_")
+                    metric, _, behaviour = head.partition("_")
+                    metric = f"{metric}_{suffix}"
+                else:
+                    metric, _, behaviour = col.partition("_")
                 rows.append(
                     {
                         **dict(zip(GROUP, keys)),
@@ -427,6 +452,29 @@ def noise_floor(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def testlex_share(df: pd.DataFrame) -> pd.DataFrame:
+    """Per arm (and, where the shipped judge exists, per judged awareness class): the share of each
+    behaviour's spans that contain self-referential test language."""
+    rows = []
+    ok = df[df.ok].copy()
+    ok["aware_class"] = np.where(ok.aware_judged.isna(), "n/a", np.where(ok.aware_judged.isin(["Yes", "Maybe"]), "yes_or_maybe", "no"))
+    for keys, sub in ok.groupby(ARM + ["aware_class"], sort=True):
+        if len(sub) < MIN_N:
+            continue
+        for b in LABELS:
+            n = float(sub[f"n_{b}"].sum())
+            t = float(sub[f"n_{b}_testlex"].sum())
+            rows.append({**dict(zip(ARM + ["aware_class"], keys)), "n_traces": len(sub), "behaviour": b, "spans": int(n), "testlex_spans": int(t), "testlex_share": t / n if n else math.nan})
+    return pd.DataFrame(rows)
+
+
+def lexicon_recall(df: pd.DataFrame) -> dict:
+    """Recall of the test-language pattern against the shipped judge's awareness evidence quotes."""
+    n = int(df["aw_evidence_n"].fillna(0).sum()) if "aw_evidence_n" in df else 0
+    c = int(df["aw_evidence_caught"].fillna(0).sum()) if "aw_evidence_caught" in df else 0
+    return {"evidence_quotes": n, "caught": c, "recall": c / n if n else math.nan}
+
+
 def proxy_vs_judge(df: pd.DataFrame) -> pd.DataFrame:
     pairs = [
         ("lex_wait_per100w", "density_backtracking"),
@@ -612,6 +660,29 @@ def write_summary(out: Path, df, cov, means, contrasts, sym, two, by_class, verb
                     keep.append(s.loc[s.signed_alpha.abs().idxmax()])
         keep = pd.DataFrame(keep)
         parts.append(md_table(keep, ["model", "family", "framing", "behaviour", "arm", "n_pairs", "base_mean", "arm_mean", "delta", "ci_lo", "ci_hi", "p_paired_t", "p_wilcoxon"]))
+    parts.append("\n## Decomposition (exploratory): Δ density of spans WITH self-referential test language vs WITHOUT (largest |α| per side)\n")
+    rc = lexicon_recall(df)
+    parts.append(
+        "A span 'with test language' matches `parse.TEST_LEXICON` — the model reasoning about itself "
+        "being tested ('testing me', 'this is probably a test', 'see how I handle'). **This split was "
+        "designed after reading aware-arm spans and is not part of the frozen §2.2 metric set.** "
+        f"Recall of the pattern against the shipped judge's own awareness evidence quotes on "
+        f"aware-judged traces: {rc['caught']} of {rc['evidence_quotes']} = "
+        f"{fmt(rc['recall'])}. Per-arm shares of each behaviour's spans that carry test language, "
+        "split by the judged awareness class where available, are in `testlex_share.csv`.\n"
+    )
+    if not contrasts.empty:
+        dd = contrasts[contrasts.metric.isin(["density_testlex", "density_nontest"])].copy()
+        keep = []
+        for keys, sub in dd.groupby(GROUP + ["behaviour", "metric"]):
+            for sign in (1, -1):
+                s = sub[np.sign(sub.signed_alpha) == sign]
+                if not s.empty:
+                    keep.append(s.loc[s.signed_alpha.abs().idxmax()])
+        keep = pd.DataFrame(keep)
+        if not keep.empty:
+            keep = keep[keep.behaviour.isin(["uncertainty-estimation", "backtracking", "deduction"])]
+            parts.append(md_table(keep, ["model", "family", "framing", "behaviour", "metric", "arm", "n_pairs", "base_mean", "arm_mean", "delta", "ci_lo", "ci_hi"]))
     parts.append("\n## Sign symmetry (Δ at largest aware α vs Δ at largest unaware α)\n")
     parts.append(md_table(sym, ["model", "family", "framing", "behaviour", "d_aware", "aware_ci", "d_unaware", "unaware_ci", "opposite_sign", "aware_ci_excludes_0", "unaware_ci_excludes_0"]))
     parts.append("\n## Compliance flips vs baseline (actions), McNemar exact\n")

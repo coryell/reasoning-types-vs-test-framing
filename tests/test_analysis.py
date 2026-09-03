@@ -52,6 +52,10 @@ def _rows(model, family, framing, arm, signed_alpha, n, rng, executed=None, awar
             r[f"density_{b}"] = base
             r[f"coverage_{b}"] = 1 / len(LABELS)
             r[f"any_{b}"] = 1
+            r[f"n_{b}"] = 6
+            r[f"n_{b}_testlex"] = 0
+            r[f"density_{b}_testlex"] = 0.0
+            r[f"density_{b}_nontest"] = base
         for k in ("wait", "hmm", "backtrack_lex", "uncertainty_lex"):
             r[f"lex_{k}_n"] = 1
             r[f"lex_{k}_per100w"] = r["density_backtracking"] * 0.5 + 0.1 * rng.standard_normal()
@@ -226,3 +230,34 @@ def test_flips_two_by_two_uses_all_known_execution_but_deltas_use_ok_only():
     r = two.iloc[0]
     assert (r.n_pairs, r.lost, r.gained) == (20, 10, 0)  # all 20 items count in the 2x2
     assert set(by_class.flip_class) == {"same"} and by_class.n.iloc[0] == 10  # lost items were judge failures
+
+
+def test_paired_contrasts_include_testlex_decomposition():
+    rng = np.random.default_rng(6)
+    rows = _rows("m", "actions", "real", "alpha0.0", 0.0, 20, rng, executed=[True] * 20)
+    rows += _rows("m", "actions", "real", "alpha0.05_aware", 0.05, 20, rng, executed=[True] * 20, shift={"uncertainty-estimation": 1.0})
+    d2 = pd.DataFrame(rows)
+    # in the aware arm, put 0.6 of each uncertainty span-density into the test-language bucket
+    aw = d2.arm == "alpha0.05_aware"
+    d2.loc[aw, "density_uncertainty-estimation_testlex"] = 0.6
+    d2.loc[aw, "density_uncertainty-estimation_nontest"] = d2.loc[aw, "density_uncertainty-estimation"] - 0.6
+    c = A.paired_contrasts(d2)
+    assert {"density_testlex", "density_nontest"} <= set(c.metric)
+    pick = lambda metric: c[(c.metric == metric) & (c.behaviour == "uncertainty-estimation") & (c.arm == "alpha0.05_aware")].iloc[0]  # noqa: E731
+    assert pick("density_testlex").delta == pytest.approx(0.6)
+    assert pick("density_testlex").delta + pick("density_nontest").delta == pytest.approx(pick("density").delta)
+    assert pick("density_nontest").delta == pytest.approx(0.4, abs=0.35)
+
+
+def test_testlex_share_and_recall():
+    rng = np.random.default_rng(7)
+    rows = _rows("qwq", "triggers", "hypothetical", "alpha0.0", 0.0, 20, rng, aware_judged=["Yes"] * 10 + ["No"] * 10)
+    d = pd.DataFrame(rows)
+    d["n_uncertainty-estimation_testlex"] = [3] * 10 + [0] * 10
+    d["n_uncertainty-estimation"] = 6
+    d["aw_evidence_n"] = [2] * 10 + [0] * 10
+    d["aw_evidence_caught"] = [1] * 10 + [0] * 10
+    s = A.testlex_share(d)
+    u = s[s.behaviour == "uncertainty-estimation"].set_index("aware_class")
+    assert u.loc["yes_or_maybe", "testlex_share"] == pytest.approx(0.5) and u.loc["no", "testlex_share"] == 0.0
+    assert A.lexicon_recall(d) == {"evidence_quotes": 20, "caught": 10, "recall": 0.5}

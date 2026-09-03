@@ -1,0 +1,17 @@
+[2026-09-03 03:55:33] pilot: 636 sides with </think> (of 800 generated)
+[2026-09-03 03:55:34] /home/cutter/d10/results/pilot_1p5b/awareness_judgments.jsonl: 636 jobs, 0 cached, 0 truncated (kept), 636 to run
+[2026-09-03 03:57:55]   50/636 done, 0 errors, 119,639 tokens, ~$0.45 this run
+[2026-09-03 04:00:46]   100/636 done, 0 errors, 241,190 tokens, ~$0.91 this run
+[2026-09-03 04:03:03]   150/636 done, 0 errors, 360,793 tokens, ~$1.36 this run
+[2026-09-03 04:05:54]   200/636 done, 0 errors, 483,643 tokens, ~$1.83 this run
+[2026-09-03 04:08:09]   250/636 done, 0 errors, 604,536 tokens, ~$2.29 this run
+[2026-09-03 04:11:00]   300/636 done, 0 errors, 725,308 tokens, ~$2.75 this run
+[2026-09-03 04:13:15]   350/636 done, 0 errors, 846,606 tokens, ~$3.21 this run
+[2026-09-03 04:16:04]   400/636 done, 0 errors, 967,180 tokens, ~$3.66 this run
+[2026-09-03 04:18:23]   450/636 done, 0 errors, 1,088,216 tokens, ~$4.12 this run
+[2026-09-03 04:21:10]   500/636 done, 0 errors, 1,209,328 tokens, ~$4.58 this run
+[2026-09-03 04:23:30]   550/636 done, 1 errors, 1,333,130 tokens, ~$5.06 this run
+[2026-09-03 04:26:15]   600/636 done, 1 errors, 1,453,646 tokens, ~$5.51 this run
+[2026-09-03 04:28:12]   636/636 done, 1 errors, 1,541,636 tokens, ~$5.85 this run
+[2026-09-03 04:28:12] {"path": "/home/cutter/d10/results/pilot_1p5b/awareness_judgments.jsonl", "jobs": 636, "cached": 0, "truncated_kept": 0, "run": 636, "errors": 1, "prompt_tokens": 1275805, "completion_tokens": 265831, "est_cost_usd": 5.8478}
+[2026-09-03 04:28:12] summary written to /home/cutter/d10/results/pilot_1p5b/awareness_summary.md
