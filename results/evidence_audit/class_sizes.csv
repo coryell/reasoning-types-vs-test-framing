@@ -1,0 +1,4 @@
+model,sides,aware_yes,aware_maybe,recog_yes,recog_maybe,pos_paper,pos_code,neg
+deepseek_qwen,5142,32,291,275,705,323,1002,4140
+qwen3,5158,12,551,383,1110,563,1579,3579
+qwq,5172,22,720,741,1248,742,2067,3105
