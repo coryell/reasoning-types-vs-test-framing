@@ -1,0 +1,44 @@
+[2026-09-02 23:01:23] start: models=['deepseek_qwen', 'qwen3', 'qwq'] families=['actions', 'actions_sampling', 'triggers', 'harmbench'] limit=None dry_run=True
+[2026-09-02 23:01:23] deepseek_qwen/actions/alpha0.0: 298 jobs, 73,908 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/actions/alpha0.05_aware: 298 jobs, 78,232 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/actions/alpha0.07_aware: 298 jobs, 82,918 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/actions/alpha0.25: 298 jobs, 74,373 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/actions/alpha0.3: 298 jobs, 74,375 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/actions/alpha0.35: 298 jobs, 73,574 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/actions_sampling/alpha0.0: 298 jobs, 74,838 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/actions_sampling/alpha0.07_aware: 298 jobs, 79,795 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/actions_sampling/alpha0.35: 176 jobs, 44,536 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/triggers/alpha0.0: 213 jobs, 115,949 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/triggers/alpha0.05_aware: 213 jobs, 119,370 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/triggers/alpha0.25: 213 jobs, 115,887 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/triggers/alpha0.3: 213 jobs, 122,319 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/harmbench/alpha0.0: 99 jobs, 68,931 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/harmbench/alpha0.05_aware: 99 jobs, 65,290 reasoning words
+[2026-09-02 23:01:23] deepseek_qwen/harmbench/alpha0.25: 99 jobs, 65,899 reasoning words
+[2026-09-02 23:01:24] qwen3/actions/alpha0.0: 298 jobs, 72,738 reasoning words
+[2026-09-02 23:01:24] qwen3/actions/alpha0.043_aware: 298 jobs, 85,541 reasoning words
+[2026-09-02 23:01:24] qwen3/actions/alpha0.053_aware: 298 jobs, 144,012 reasoning words
+[2026-09-02 23:01:24] qwen3/actions/alpha0.05_aware: 298 jobs, 107,233 reasoning words
+[2026-09-02 23:01:24] qwen3/actions/alpha0.25: 298 jobs, 80,622 reasoning words
+[2026-09-02 23:01:24] qwen3/actions/alpha0.3: 298 jobs, 94,984 reasoning words
+[2026-09-02 23:01:24] qwen3/actions/alpha0.32: 298 jobs, 93,435 reasoning words
+[2026-09-02 23:01:24] qwen3/actions_sampling: no files, skipping
+[2026-09-02 23:01:24] qwen3/triggers/alpha0.0: 373 jobs, 161,879 reasoning words
+[2026-09-02 23:01:24] qwen3/triggers/alpha0.04_aware: 373 jobs, 174,139 reasoning words
+[2026-09-02 23:01:24] qwen3/triggers/alpha0.2: 373 jobs, 173,684 reasoning words
+[2026-09-02 23:01:24] qwen3/triggers/alpha0.25: 373 jobs, 176,616 reasoning words
+[2026-09-02 23:01:24] qwen3/harmbench/alpha0.0: 102 jobs, 36,405 reasoning words
+[2026-09-02 23:01:24] qwen3/harmbench/alpha0.043_aware: 99 jobs, 35,613 reasoning words
+[2026-09-02 23:01:24] qwen3/harmbench/alpha0.25: 137 jobs, 55,209 reasoning words
+[2026-09-02 23:01:24] qwq/actions/alpha0.0: 298 jobs, 73,920 reasoning words
+[2026-09-02 23:01:24] qwq/actions/alpha0.05_aware: 298 jobs, 79,146 reasoning words
+[2026-09-02 23:01:24] qwq/actions/alpha0.25: 298 jobs, 71,823 reasoning words
+[2026-09-02 23:01:24] qwq/actions/alpha0.3: 298 jobs, 71,052 reasoning words
+[2026-09-02 23:01:24] qwq/actions_sampling: no files, skipping
+[2026-09-02 23:01:24] qwq/triggers/alpha0.0: 493 jobs, 201,707 reasoning words
+[2026-09-02 23:01:24] qwq/triggers/alpha0.05_aware: 493 jobs, 202,844 reasoning words
+[2026-09-02 23:01:24] qwq/triggers/alpha0.25: 493 jobs, 208,160 reasoning words
+[2026-09-02 23:01:24] qwq/harmbench/alpha0.0: 101 jobs, 69,251 reasoning words
+[2026-09-02 23:01:24] qwq/harmbench/alpha0.05_aware: 101 jobs, 74,262 reasoning words
+[2026-09-02 23:01:24] qwq/harmbench/alpha0.25: 101 jobs, 72,800 reasoning words
+[2026-09-02 23:01:24] dry run: 10,599 jobs, ~13,490,109 tokens, ~$84

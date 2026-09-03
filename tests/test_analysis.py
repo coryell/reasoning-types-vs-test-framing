@@ -1,0 +1,194 @@
+"""Synthetic-data tests for d10.analysis: the numbers must come out as constructed."""
+
+import math
+
+import numpy as np
+import pandas as pd
+import pytest
+
+from d10 import analysis as A
+from d10.parse import LABELS
+
+
+def _rows(model, family, framing, arm, signed_alpha, n, rng, executed=None, aware_judged=None, shift=None, judge_fail_idx=()):
+    rows = []
+    for i in range(n):
+        r = {
+            "id": f"{model}/{family}/{arm}/{i}/{framing}",
+            "model": model,
+            "family": family,
+            "arm": arm,
+            "alpha": abs(signed_alpha),
+            "aware": signed_alpha > 0,
+            "signed_alpha": signed_alpha,
+            "index": i,
+            "framing": framing,
+            "has_think_close": True,
+            "executed": None if executed is None else bool(executed[i]),
+            "aware_judged": None if aware_judged is None else aware_judged[i],
+            "recog_judged": None,
+            "task_judged": None,
+            "annotated": True,
+            "ok": i not in judge_fail_idx,
+            "judge_fail": i in judge_fail_idx,
+            "error": None,
+            "finish_reason": "stop",
+            "served_model": "test",
+            "words": 200,
+            "n_spans": 12,
+            "n_spans_counted": 12,
+            "n_spans_unknown_label": 0,
+            "n_spans_not_found_exact": 0,
+            "n_spans_found_norm_only": 0,
+            "n_spans_not_found": 0,
+            "labeled_words": 180,
+            "labeled_fraction": 0.9,
+            "repetition_4gram": 0.01,
+            "unknown_labels": "",
+        }
+        for b in LABELS:
+            base = 2.0 + 0.3 * rng.standard_normal()
+            base += (shift or {}).get(b, 0.0)
+            r[f"density_{b}"] = base
+            r[f"coverage_{b}"] = 1 / len(LABELS)
+            r[f"any_{b}"] = 1
+        for k in ("wait", "hmm", "backtrack_lex", "uncertainty_lex"):
+            r[f"lex_{k}_n"] = 1
+            r[f"lex_{k}_per100w"] = r["density_backtracking"] * 0.5 + 0.1 * rng.standard_normal()
+        rows.append(r)
+    return rows
+
+
+@pytest.fixture
+def df():
+    rng = np.random.default_rng(1)
+    n = 20
+    base_exec = [True] * 10 + [False] * 10
+    # aware arm: lose 3 of the first 10, gain 5 of the last 10; backtracking density +1, uncertainty -1
+    aware_exec = [True] * 7 + [False] * 3 + [True] * 5 + [False] * 5
+    rows = []
+    rows += _rows("m", "actions", "real", "alpha0.0", 0.0, n, rng, executed=base_exec)
+    rows += _rows("m", "actions", "real", "alpha0.05_aware", 0.05, n, rng, executed=aware_exec, shift={"backtracking": 1.0, "uncertainty-estimation": -1.0})
+    rows += _rows("m", "actions", "real", "alpha0.25", -0.25, n, rng, executed=base_exec, shift={"backtracking": -1.0, "uncertainty-estimation": 1.0})
+    rows += _rows("m", "triggers", "hypothetical", "alpha0.0", 0.0, n, rng, aware_judged=["Yes"] * 8 + ["No"] * 12)
+    return pd.DataFrame(rows)
+
+
+def test_mcnemar_exact():
+    assert math.isnan(A.mcnemar_exact(0, 0))
+    assert A.mcnemar_exact(3, 5) == pytest.approx(0.7265625)
+    assert A.mcnemar_exact(0, 10) == pytest.approx(2 * 0.5**10)
+    assert A.mcnemar_exact(10, 0) == A.mcnemar_exact(0, 10)
+
+
+def test_boot_ci_basic():
+    assert A.boot_ci([3.0, 3.0, 3.0]) == (3.0, 3.0)
+    lo, hi = A.boot_ci(np.arange(100, dtype=float))
+    assert lo < 49.5 < hi
+    assert all(math.isnan(v) for v in A.boot_ci([1.0]))
+    assert all(math.isnan(v) for v in A.boot_ci([np.nan, np.nan]))
+
+
+def test_paired_contrasts_recover_constructed_shift(df):
+    c = A.paired_contrasts(df)
+    bt = c[(c.metric == "density") & (c.behaviour == "backtracking") & (c.arm == "alpha0.05_aware")].iloc[0]
+    assert bt.n_pairs == 20
+    assert bt.delta == pytest.approx(1.0, abs=0.35)
+    assert bt.ci_lo > 0.3 and bt.ci_hi < 1.7
+    assert bt.p_paired_t < 0.01
+    un = c[(c.metric == "density") & (c.behaviour == "uncertainty-estimation") & (c.arm == "alpha0.05_aware")].iloc[0]
+    assert un.delta == pytest.approx(-1.0, abs=0.35)
+    ded = c[(c.metric == "density") & (c.behaviour == "deduction") & (c.arm == "alpha0.05_aware")].iloc[0]
+    assert ded.ci_lo < 0 < ded.ci_hi
+    # words and span counts are contrasted too
+    assert set(c[c.metric == "words"].arm) == {"alpha0.05_aware", "alpha0.25"}
+
+
+def test_sign_symmetry_flags_opposite_signs(df):
+    sym = A.sign_symmetry(A.paired_contrasts(df))
+    row = sym[sym.behaviour == "backtracking"].iloc[0]
+    assert row.aware_arm == "alpha0.05_aware" and row.unaware_arm == "alpha0.25"
+    assert row.d_aware > 0 > row.d_unaware and bool(row.opposite_sign)
+    assert bool(row.aware_ci_excludes_0) and bool(row.unaware_ci_excludes_0)
+    ded = sym[sym.behaviour == "deduction"].iloc[0]
+    assert not bool(ded.aware_ci_excludes_0)
+
+
+def test_flips_two_by_two_and_classes(df):
+    two, by_class = A.flips(df)
+    r = two[two.arm == "alpha0.05_aware"].iloc[0]
+    assert (r.both_exec, r.lost, r.gained, r.neither) == (7, 3, 5, 5)
+    assert r.net_gain == 2 and r.churn == 8
+    assert r.p_mcnemar == pytest.approx(0.7265625)
+    assert r.base_rate == pytest.approx(0.5) and r.arm_rate == pytest.approx(0.6)
+    # unaware arm: identical execution → no discordant pairs
+    u = two[two.arm == "alpha0.25"].iloc[0]
+    assert u.churn == 0 and math.isnan(u.p_mcnemar)
+    # classes with n >= MIN_N appear (gained=5, same=12); lost=3 is below the floor
+    k = by_class[by_class.arm == "alpha0.05_aware"]
+    assert set(k.flip_class) == {"gained", "same"}
+    assert k[k.flip_class == "gained"].n.iloc[0] == 5
+    # triggers rows (executed is None) must not enter the flip analysis
+    assert set(two.family) == {"actions"}
+
+
+def test_verbalization_splits_by_shipped_judgment(df):
+    v = A.verbalization(df)
+    assert set(v.family) == {"triggers"}
+    n = v.groupby("aware_class").n.first()
+    assert n["yes_or_maybe"] == 8 and n["no"] == 12
+
+
+def test_arm_means_and_coverage_shapes(df):
+    means = A.arm_means(df)
+    d = means[(means.metric == "density") & (means.arm == "alpha0.0") & (means.family == "actions")]
+    assert len(d) == len(LABELS)
+    assert (d.n == 20).all()
+    assert (d.ci_lo <= d["mean"]).all() and (d["mean"] <= d.ci_hi).all()
+    assert "executed" in set(means.metric)
+    cov = A.coverage_table(df)
+    assert len(cov) == 4 and (cov.n == 20).all() and (cov.n_ok == 20).all()
+
+
+def test_proxy_vs_judge_correlates_with_constructed_proxy(df):
+    p = A.proxy_vs_judge(df)
+    r = p[(p.scope == "all") & (p.proxy == "lex_wait_per100w")].iloc[0]
+    assert r.pearson_r > 0.7
+
+
+def test_load_traces_skips_missing_dir(tmp_path):
+    assert A.load_traces(tmp_path, None, None).empty
+
+
+def test_judge_failures_are_counted_and_excluded():
+    rng = np.random.default_rng(2)
+    rows = _rows("m", "actions", "real", "alpha0.0", 0.0, 20, rng, executed=[True] * 20, judge_fail_idx=(0, 1, 2))
+    df = pd.DataFrame(rows)
+    cov = A.coverage_table(df).iloc[0]
+    assert (cov.n, cov.n_annotated, cov.n_ok, cov.n_judge_fail) == (20, 20, 17, 3)
+    means = A.arm_means(df)
+    assert (means.n == 17).all()
+
+
+def test_load_traces_from_jsonl_applies_ok_rules(tmp_path):
+    import json
+
+    d = tmp_path / "m" / "actions"
+    d.mkdir(parents=True)
+    meta = {"model": "m", "family": "actions", "arm": "alpha0.0", "alpha": 0.0, "aware": False, "signed_alpha": 0.0,
+            "index": 0, "framing": "real", "task": "t", "reasoning": "Okay. Wait, no.", "reasoning_words": 3,
+            "has_think_close": True, "tool": "x", "executed": True, "judge": None}
+    recs = [
+        {"id": "ok", "text": '["initializing"]Okay.["end-section"]', "error": None, "finish_reason": "stop", "meta": meta},
+        {"id": "trunc", "text": '["initializing"]Okay.["end-section"]', "error": "finish_reason=length", "finish_reason": "length", "meta": {**meta, "index": 1}},
+        {"id": "nomarkers", "text": "Sorry, I cannot.", "error": None, "finish_reason": "stop", "meta": {**meta, "index": 2}},
+        {"id": "apierr", "text": None, "error": "HTTP 500", "finish_reason": None, "meta": {**meta, "index": 3}},
+    ]
+    (d / "alpha0.0.jsonl").write_text("\n".join(json.dumps(r) for r in recs) + "\n")
+    df = A.load_traces(tmp_path, None, None).set_index("id")
+    assert df.loc["ok", "ok"] and not df.loc["ok", "judge_fail"]
+    assert not df.loc["trunc", "ok"] and df.loc["trunc", "annotated"]
+    assert not df.loc["nomarkers", "ok"] and df.loc["nomarkers", "judge_fail"]
+    assert not df.loc["apierr", "ok"] and not df.loc["apierr", "annotated"]
+    cov = A.coverage_table(df.reset_index()).iloc[0]
+    assert (cov.n, cov.n_annotated, cov.n_ok, cov.n_judge_fail, cov.n_error, cov.n_truncated) == (4, 3, 1, 1, 2, 1)

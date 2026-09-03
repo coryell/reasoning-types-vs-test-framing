@@ -15,3 +15,7 @@ assets/
 
 # install noise
 logs/setup.log
+
+# smoke-test outputs
+results/smoke/
+logs/smoke.log
