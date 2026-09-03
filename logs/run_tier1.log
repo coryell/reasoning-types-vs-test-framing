@@ -345,3 +345,119 @@ Judged sides: 636 of 800 generated (the rest never closed `</think>` and are not
 [2026-09-03 08:42:09]   99/99 done, 3 errors, 211,892 tokens, ~$1.38 this run
 [2026-09-03 08:42:09] deepseek_qwen/harmbench/alpha0.25: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.25.jsonl", "jobs": 99, "cached": 0, "truncated_kept": 0, "run": 99, "errors": 3, "prompt_tokens": 98839, "completion_tokens": 113053, "est_cost_usd": 1.3776}
 [2026-09-03 08:42:09] /home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.0.jsonl: 102 jobs, 0 cached, 0 truncated (kept), 102 to run
+[2026-09-03 08:44:34]   50/102 done, 0 errors, 66,438 tokens, ~$0.42 this run
+[2026-09-03 08:47:25]   100/102 done, 0 errors, 125,741 tokens, ~$0.79 this run
+[2026-09-03 08:47:32]   102/102 done, 0 errors, 128,573 tokens, ~$0.80 this run
+[2026-09-03 08:47:32] qwen3/harmbench/alpha0.0: {"path": "/home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.0.jsonl", "jobs": 102, "cached": 0, "truncated_kept": 0, "run": 102, "errors": 0, "prompt_tokens": 64103, "completion_tokens": 64470, "est_cost_usd": 0.805}
+[2026-09-03 08:47:32] /home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.043_aware.jsonl: 99 jobs, 0 cached, 0 truncated (kept), 99 to run
+[2026-09-03 08:50:00]   50/99 done, 0 errors, 59,954 tokens, ~$0.37 this run
+[2026-09-03 08:52:40]   99/99 done, 0 errors, 125,762 tokens, ~$0.79 this run
+[2026-09-03 08:52:40] qwen3/harmbench/alpha0.043_aware: {"path": "/home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.043_aware.jsonl", "jobs": 99, "cached": 0, "truncated_kept": 0, "run": 99, "errors": 0, "prompt_tokens": 62702, "completion_tokens": 63060, "est_cost_usd": 0.7874}
+[2026-09-03 08:52:40] /home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.25.jsonl: 137 jobs, 0 cached, 0 truncated (kept), 137 to run
+[2026-09-03 08:55:16]   50/137 done, 0 errors, 74,099 tokens, ~$0.47 this run
+[2026-09-03 08:57:56]   100/137 done, 0 errors, 134,290 tokens, ~$0.85 this run
+[2026-09-03 08:59:38]   137/137 done, 0 errors, 185,616 tokens, ~$1.15 this run
+[2026-09-03 08:59:38] qwen3/harmbench/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.25.jsonl", "jobs": 137, "cached": 0, "truncated_kept": 0, "run": 137, "errors": 0, "prompt_tokens": 93723, "completion_tokens": 91893, "est_cost_usd": 1.1532}
+[2026-09-03 08:59:38] /home/cutter/d10/results/annotations/qwq/harmbench/alpha0.0.jsonl: 101 jobs, 0 cached, 0 truncated (kept), 101 to run
+[2026-09-03 09:03:39]   50/101 done, 0 errors, 111,093 tokens, ~$0.72 this run
+[2026-09-03 09:07:11]   100/101 done, 0 errors, 230,732 tokens, ~$1.51 this run
+[2026-09-03 09:07:14]   101/101 done, 0 errors, 237,352 tokens, ~$1.56 this run
+[2026-09-03 09:07:14] qwq/harmbench/alpha0.0: {"path": "/home/cutter/d10/results/annotations/qwq/harmbench/alpha0.0.jsonl", "jobs": 101, "cached": 0, "truncated_kept": 0, "run": 101, "errors": 0, "prompt_tokens": 108678, "completion_tokens": 128674, "est_cost_usd": 1.5584}
+[2026-09-03 09:07:14] /home/cutter/d10/results/annotations/qwq/harmbench/alpha0.05_aware.jsonl: 101 jobs, 0 cached, 0 truncated (kept), 101 to run
+[2026-09-03 09:11:01]   50/101 done, 0 errors, 136,835 tokens, ~$0.91 this run
+[2026-09-03 09:13:50]   100/101 done, 2 errors, 243,108 tokens, ~$1.59 this run
+[2026-09-03 09:14:03]   101/101 done, 2 errors, 251,311 tokens, ~$1.65 this run
+[2026-09-03 09:14:03] qwq/harmbench/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/qwq/harmbench/alpha0.05_aware.jsonl", "jobs": 101, "cached": 0, "truncated_kept": 0, "run": 101, "errors": 2, "prompt_tokens": 115705, "completion_tokens": 135606, "est_cost_usd": 1.6453}
+[2026-09-03 09:14:03] /home/cutter/d10/results/annotations/qwq/harmbench/alpha0.25.jsonl: 101 jobs, 0 cached, 0 truncated (kept), 101 to run
+[2026-09-03 09:16:39]   50/101 done, 1 errors, 118,296 tokens, ~$0.77 this run
+[2026-09-03 09:20:07]   100/101 done, 1 errors, 242,728 tokens, ~$1.60 this run
+[2026-09-03 09:20:24]   101/101 done, 1 errors, 248,290 tokens, ~$1.64 this run
+[2026-09-03 09:20:24] qwq/harmbench/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwq/harmbench/alpha0.25.jsonl", "jobs": 101, "cached": 0, "truncated_kept": 0, "run": 101, "errors": 1, "prompt_tokens": 112748, "completion_tokens": 135542, "est_cost_usd": 1.6373}
+[2026-09-03 09:20:24] done: 938 jobs, 938 run now, 11 errors, ~$11.88 this invocation
+[2026-09-03 09:20:24] rerun the same command to retry the errors; cached successes are skipped
+[2026-09-03 09:20:26] ==> retry pass (errors only; successes and truncations are cached)
+[2026-09-03 09:20:26] start: models=['deepseek_qwen', 'qwen3', 'qwq'] families=['actions', 'actions_sampling', 'triggers', 'harmbench'] limit=None dry_run=False
+[2026-09-03 09:20:26] /home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.0.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:26] deepseek_qwen/actions/alpha0.0: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.0.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:26] /home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.05_aware.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:26] deepseek_qwen/actions/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.05_aware.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:26] /home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.07_aware.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:26] deepseek_qwen/actions/alpha0.07_aware: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.07_aware.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:26] /home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.25.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:26] deepseek_qwen/actions/alpha0.25: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.25.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:26] /home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.3.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:26] deepseek_qwen/actions/alpha0.3: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.3.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.35.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/actions/alpha0.35: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/actions/alpha0.35.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/actions_sampling/alpha0.0.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/actions_sampling/alpha0.0: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/actions_sampling/alpha0.0.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/actions_sampling/alpha0.07_aware.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/actions_sampling/alpha0.07_aware: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/actions_sampling/alpha0.07_aware.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/actions_sampling/alpha0.35.jsonl: 176 jobs, 176 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/actions_sampling/alpha0.35: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/actions_sampling/alpha0.35.jsonl", "jobs": 176, "cached": 176, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.0.jsonl: 213 jobs, 211 cached, 2 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/triggers/alpha0.0: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.0.jsonl", "jobs": 213, "cached": 211, "truncated_kept": 2, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.05_aware.jsonl: 213 jobs, 212 cached, 1 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/triggers/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.05_aware.jsonl", "jobs": 213, "cached": 212, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.25.jsonl: 213 jobs, 212 cached, 1 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/triggers/alpha0.25: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.25.jsonl", "jobs": 213, "cached": 212, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.3.jsonl: 213 jobs, 211 cached, 2 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/triggers/alpha0.3: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.3.jsonl", "jobs": 213, "cached": 211, "truncated_kept": 2, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.0.jsonl: 99 jobs, 98 cached, 1 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/harmbench/alpha0.0: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.0.jsonl", "jobs": 99, "cached": 98, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.05_aware.jsonl: 99 jobs, 95 cached, 4 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/harmbench/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.05_aware.jsonl", "jobs": 99, "cached": 95, "truncated_kept": 4, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.25.jsonl: 99 jobs, 96 cached, 3 truncated (kept), 0 to run
+[2026-09-03 09:20:27] deepseek_qwen/harmbench/alpha0.25: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.25.jsonl", "jobs": 99, "cached": 96, "truncated_kept": 3, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/actions/alpha0.0.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/actions/alpha0.0: {"path": "/home/cutter/d10/results/annotations/qwen3/actions/alpha0.0.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/actions/alpha0.043_aware.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/actions/alpha0.043_aware: {"path": "/home/cutter/d10/results/annotations/qwen3/actions/alpha0.043_aware.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/actions/alpha0.053_aware.jsonl: 298 jobs, 295 cached, 3 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/actions/alpha0.053_aware: {"path": "/home/cutter/d10/results/annotations/qwen3/actions/alpha0.053_aware.jsonl", "jobs": 298, "cached": 295, "truncated_kept": 3, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/actions/alpha0.05_aware.jsonl: 298 jobs, 295 cached, 3 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/actions/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/qwen3/actions/alpha0.05_aware.jsonl", "jobs": 298, "cached": 295, "truncated_kept": 3, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/actions/alpha0.25.jsonl: 298 jobs, 297 cached, 1 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/actions/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwen3/actions/alpha0.25.jsonl", "jobs": 298, "cached": 297, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/actions/alpha0.3.jsonl: 298 jobs, 297 cached, 1 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/actions/alpha0.3: {"path": "/home/cutter/d10/results/annotations/qwen3/actions/alpha0.3.jsonl", "jobs": 298, "cached": 297, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/actions/alpha0.32.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/actions/alpha0.32: {"path": "/home/cutter/d10/results/annotations/qwen3/actions/alpha0.32.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] qwen3/actions_sampling: no files, skipping
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/triggers/alpha0.0.jsonl: 373 jobs, 373 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/triggers/alpha0.0: {"path": "/home/cutter/d10/results/annotations/qwen3/triggers/alpha0.0.jsonl", "jobs": 373, "cached": 373, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/triggers/alpha0.04_aware.jsonl: 373 jobs, 372 cached, 1 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/triggers/alpha0.04_aware: {"path": "/home/cutter/d10/results/annotations/qwen3/triggers/alpha0.04_aware.jsonl", "jobs": 373, "cached": 372, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/triggers/alpha0.2.jsonl: 373 jobs, 372 cached, 1 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/triggers/alpha0.2: {"path": "/home/cutter/d10/results/annotations/qwen3/triggers/alpha0.2.jsonl", "jobs": 373, "cached": 372, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/triggers/alpha0.25.jsonl: 373 jobs, 373 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/triggers/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwen3/triggers/alpha0.25.jsonl", "jobs": 373, "cached": 373, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.0.jsonl: 102 jobs, 102 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/harmbench/alpha0.0: {"path": "/home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.0.jsonl", "jobs": 102, "cached": 102, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.043_aware.jsonl: 99 jobs, 99 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/harmbench/alpha0.043_aware: {"path": "/home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.043_aware.jsonl", "jobs": 99, "cached": 99, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.25.jsonl: 137 jobs, 137 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwen3/harmbench/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.25.jsonl", "jobs": 137, "cached": 137, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/actions/alpha0.0.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/actions/alpha0.0: {"path": "/home/cutter/d10/results/annotations/qwq/actions/alpha0.0.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/actions/alpha0.05_aware.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/actions/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/qwq/actions/alpha0.05_aware.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/actions/alpha0.25.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/actions/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwq/actions/alpha0.25.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/actions/alpha0.3.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/actions/alpha0.3: {"path": "/home/cutter/d10/results/annotations/qwq/actions/alpha0.3.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] qwq/actions_sampling: no files, skipping
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/triggers/alpha0.0.jsonl: 493 jobs, 493 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/triggers/alpha0.0: {"path": "/home/cutter/d10/results/annotations/qwq/triggers/alpha0.0.jsonl", "jobs": 493, "cached": 493, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/triggers/alpha0.05_aware.jsonl: 493 jobs, 492 cached, 1 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/triggers/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/qwq/triggers/alpha0.05_aware.jsonl", "jobs": 493, "cached": 492, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/triggers/alpha0.25.jsonl: 493 jobs, 493 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/triggers/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwq/triggers/alpha0.25.jsonl", "jobs": 493, "cached": 493, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/harmbench/alpha0.0.jsonl: 101 jobs, 101 cached, 0 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/harmbench/alpha0.0: {"path": "/home/cutter/d10/results/annotations/qwq/harmbench/alpha0.0.jsonl", "jobs": 101, "cached": 101, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/harmbench/alpha0.05_aware.jsonl: 101 jobs, 99 cached, 2 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/harmbench/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/qwq/harmbench/alpha0.05_aware.jsonl", "jobs": 101, "cached": 99, "truncated_kept": 2, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] /home/cutter/d10/results/annotations/qwq/harmbench/alpha0.25.jsonl: 101 jobs, 100 cached, 1 truncated (kept), 0 to run
+[2026-09-03 09:20:27] qwq/harmbench/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwq/harmbench/alpha0.25.jsonl", "jobs": 101, "cached": 100, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 09:20:27] done: 10,599 jobs, 0 run now, 0 errors, ~$0.00 this invocation
+[2026-09-03 09:20:28] run_tier1 done

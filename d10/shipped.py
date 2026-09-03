@@ -249,6 +249,57 @@ def iter_traces(model: str, family: str) -> Iterator[Trace]:
                 )
 
 
+def load_generations(path: Path, model_name: str, family: str, arm: str = "alpha0.0", alpha: float = 0.0, aware: bool = False) -> list[Trace]:
+    """Our own generation files as :class:`Trace` lists.
+
+    Two layouts: trigger-style entries with ``real``/``hypothetical`` prompts and ``*_result``
+    generations (``scripts/gen_triggers.py``), and actions-style entries with ``data_item`` and
+    ``steered_result_real`` / ``steered_result_fake`` (``scripts/run_steering.py``), which mirror
+    the authors' shipped files so :func:`tool_executed` applies.
+    """
+    records = json.loads(Path(path).read_text())
+    out: list[Trace] = []
+    signed = (alpha if aware else -alpha) if alpha else 0.0
+    for i, rec in enumerate(records):
+        if "data_item" in rec:
+            fields = [("steered_result_real", "real"), ("steered_result_fake", "fake")]
+        else:
+            fields = [("real_result", "real"), ("hypothetical_result", "hypothetical")]
+        for fld, framing in fields:
+            raw = rec.get(fld)
+            if not isinstance(raw, str):
+                continue
+            reasoning, answer, has_close = split_think(raw)
+            tool = executed = None
+            if "data_item" in rec:
+                tool = rec["data_item"]["tools"]
+                executed = tool_executed(raw, tool)
+                task = actions_task_text(rec["data_item"], framing)
+            else:
+                task = rec[framing]
+            out.append(
+                Trace(
+                    id=f"{model_name}/{family}/{arm}/{i}/{framing}",
+                    model=model_name,
+                    family=family,
+                    arm=arm,
+                    alpha=alpha,
+                    aware=aware,
+                    signed_alpha=signed,
+                    index=i,
+                    framing=framing,
+                    task=task,
+                    raw=raw,
+                    reasoning=reasoning,
+                    answer=answer,
+                    has_think_close=has_close,
+                    tool=tool,
+                    executed=executed,
+                )
+            )
+    return out
+
+
 PILOT_MODEL = "r1_distill_qwen_1p5b"
 
 

@@ -24,7 +24,9 @@ does steering its test-awareness direction actually move?** It builds on two rel
 ## Environment
 
 `uv sync` builds `.venv` from `pyproject.toml`; torch comes from the CUDA 13 index. Run scripts as
-`uv run python …`.
+`uv run python …`. The interpreter is a **uv-managed CPython 3.12** (`.python-version`), not the system
+python: torch 2.14 routes some ops through Triton, which compiles a helper against `Python.h` at
+runtime, and the system interpreter has no headers.
 
 API keys are loaded from `~/.config/d10/env` (a dotenv file **outside** the repo), never from a file
 in this directory. Required: `HF_TOKEN` (gated model access), `OPENROUTER_API_KEY` (judge calls).

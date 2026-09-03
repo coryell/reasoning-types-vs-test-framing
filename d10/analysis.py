@@ -215,8 +215,8 @@ def arm_means(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def paired_contrasts(df: pd.DataFrame) -> pd.DataFrame:
-    """Each non-baseline arm vs alpha0.0 within (model, family, framing), paired by item index."""
+def paired_contrasts(df: pd.DataFrame, baseline: str = BASELINE) -> pd.DataFrame:
+    """Each non-baseline arm vs ``baseline`` within (model, family, framing), paired by item index."""
     rows = []
     ok = df[df.ok]
     cols = (
@@ -225,10 +225,10 @@ def paired_contrasts(df: pd.DataFrame) -> pd.DataFrame:
         + ["words", "n_spans_counted"]
     )
     for keys, sub in ok.groupby(GROUP, sort=True):
-        base = sub[sub.arm == BASELINE].set_index("index")
+        base = sub[sub.arm == baseline].set_index("index")
         if base.empty:
             continue
-        for (arm, sa), arm_df in sub[sub.arm != BASELINE].groupby(["arm", "signed_alpha"]):
+        for (arm, sa), arm_df in sub[sub.arm != baseline].groupby(["arm", "signed_alpha"]):
             arm_df = arm_df.set_index("index")
             common = base.index.intersection(arm_df.index)
             if len(common) < MIN_N:
