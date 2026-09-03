@@ -71,6 +71,7 @@ def main() -> None:
     ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
     ap.add_argument("--log", type=Path, default=DEFAULT_LOG)
     ap.add_argument("--dry-run", action="store_true", help="count jobs and estimate cost; no API calls")
+    ap.add_argument("--retry-truncated", action="store_true", help="resend prompts whose completion was truncated")
     args = ap.parse_args()
 
     log = make_logger(args.log)
@@ -95,7 +96,7 @@ def main() -> None:
                     log(f"{model}/{family}/{arm}: {len(jobs)} jobs, {words:,} reasoning words")
                     continue
                 out_path = args.out / model / family / f"{arm}.jsonl"
-                s = run_jobs(judge, jobs, out_path, log=log)
+                s = run_jobs(judge, jobs, out_path, log=log, retry_truncated=args.retry_truncated)
                 summaries.append(s)
                 log(f"{model}/{family}/{arm}: {json.dumps(s)}")
 

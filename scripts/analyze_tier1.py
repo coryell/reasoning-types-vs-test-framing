@@ -13,6 +13,8 @@ reasoning it was made from, computes the per-trace metrics, and writes tables an
     flips_2x2.csv         actions: compliance 2×2 vs baseline, McNemar
     flips_by_class.csv    actions: Δdensity by flip class
     verbalization.csv     triggers/harmbench: density by the shipped awareness judgment
+    verbalization_contrasts.csv  steering Δ among items in the same judged class in both arms
+    noise_floor.csv       greedy vs sampled decode of the same item at the same α (Distill-Qwen)
     proxy_vs_judge.csv    lexical proxies against judge densities
     SUMMARY.md            the tables that matter, readable
     fig_*.png             dose–response (density, coverage), length, flip-class deltas
@@ -60,6 +62,10 @@ def main() -> None:
     by_class.to_csv(args.out / "flips_by_class.csv", index=False)
     verb = A.verbalization(df)
     verb.to_csv(args.out / "verbalization.csv", index=False)
+    verb_contrasts = A.verbalization_contrasts(df)
+    verb_contrasts.to_csv(args.out / "verbalization_contrasts.csv", index=False)
+    noise = A.noise_floor(df)
+    noise.to_csv(args.out / "noise_floor.csv", index=False)
     proxy = A.proxy_vs_judge(df)
     proxy.to_csv(args.out / "proxy_vs_judge.csv", index=False)
 
@@ -69,7 +75,7 @@ def main() -> None:
     A.fig_words(means, args.out / "fig_words.png")
     A.fig_flip_classes(by_class, args.out / "fig_flip_classes.png")
 
-    A.write_summary(args.out / "SUMMARY.md", df, cov, means, contrasts, sym, two, by_class, verb, proxy)
+    A.write_summary(args.out / "SUMMARY.md", df, cov, means, contrasts, sym, two, by_class, verb, proxy, verb_contrasts, noise)
     print(f"wrote {args.out}/SUMMARY.md and {len(list(args.out.glob('*.csv')))} csv, {len(list(args.out.glob('*.png')))} png")
     print(json.dumps({"traces": len(df), "ok": int(df.ok.sum()), "arms": int(cov.shape[0])}))
 

@@ -275,20 +275,25 @@ def sign_symmetry(contrasts: pd.DataFrame) -> pd.DataFrame:
 
 
 def flips(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Actions only: compliance 2×2 vs baseline (McNemar) and Δdensity by flip class."""
+    """Actions only: compliance 2×2 vs baseline (McNemar) and Δdensity by flip class.
+
+    The 2×2 is over every item whose execution is known in both arms (the Table 4 population,
+    independent of annotation success); the Δdensity-by-class table is over items annotated
+    successfully in both arms.
+    """
     two_by_two, by_class = [], []
-    ok = df[df.ok & df.family.str.startswith("actions") & df.executed.notna()]
-    for keys, sub in ok.groupby(GROUP, sort=True):
-        base = sub[sub.arm == BASELINE].set_index("index")
-        if base.empty:
+    known = df[df.family.str.startswith("actions") & df.executed.notna()]
+    for keys, sub in known.groupby(GROUP, sort=True):
+        base_all = sub[sub.arm == BASELINE].set_index("index")
+        if base_all.empty:
             continue
-        for (arm, sa), arm_df in sub[sub.arm != BASELINE].groupby(["arm", "signed_alpha"]):
-            arm_df = arm_df.set_index("index")
-            common = base.index.intersection(arm_df.index)
+        for (arm, sa), arm_all in sub[sub.arm != BASELINE].groupby(["arm", "signed_alpha"]):
+            arm_all = arm_all.set_index("index")
+            common = base_all.index.intersection(arm_all.index)
             if len(common) < MIN_N:
                 continue
-            be = base.loc[common, "executed"].astype(bool)
-            ae = arm_df.loc[common, "executed"].astype(bool)
+            be = base_all.loc[common, "executed"].astype(bool)
+            ae = arm_all.loc[common, "executed"].astype(bool)
             a = int((be & ae).sum())
             b = int((be & ~ae).sum())  # lost compliance
             c = int((~be & ae).sum())  # gained compliance
@@ -313,8 +318,11 @@ def flips(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
             cls = pd.Series("same", index=common)
             cls[be & ~ae] = "lost"
             cls[~be & ae] = "gained"
+            base = base_all[base_all.ok]
+            arm_df = arm_all[arm_all.ok]
+            ok_idx = base.index.intersection(arm_df.index)
             for klass in ("gained", "lost", "same"):
-                idx = cls.index[cls == klass]
+                idx = cls.index[cls == klass].intersection(ok_idx)
                 if len(idx) < MIN_N:
                     continue
                 for beh in LABELS:
@@ -351,6 +359,71 @@ def verbalization(df: pd.DataFrame) -> pd.DataFrame:
             vals = sub[f"density_{beh}"].to_numpy(dtype=float)
             lo, hi = boot_ci(vals)
             rows.append({**dict(zip(ARM + ["aware_class"], keys)), "n": len(sub), "behaviour": beh, "mean_density": float(np.nanmean(vals)), "ci_lo": lo, "ci_hi": hi})
+    return pd.DataFrame(rows)
+
+
+def verbalization_contrasts(df: pd.DataFrame) -> pd.DataFrame:
+    """Triggers/harmbench: each arm vs baseline, paired by item, restricted to items the shipped judge
+    put in the same awareness class in both arms. ``no_both``: does steering move morphology even
+    where the model never verbalizes awareness? ``yes_both``: the complement."""
+    rows = []
+    ok = df[df.ok & df.aware_judged.notna()]
+    if ok.empty:
+        return pd.DataFrame()
+    ok = ok.assign(aware_class=np.where(ok.aware_judged.isin(["Yes", "Maybe"]), "yes", "no"))
+    for keys, sub in ok.groupby(GROUP, sort=True):
+        base = sub[sub.arm == BASELINE].set_index("index")
+        if base.empty:
+            continue
+        for (arm, sa), arm_df in sub[sub.arm != BASELINE].groupby(["arm", "signed_alpha"]):
+            arm_df = arm_df.set_index("index")
+            common = base.index.intersection(arm_df.index)
+            for klass in ("no", "yes"):
+                idx = [i for i in common if base.at[i, "aware_class"] == klass and arm_df.at[i, "aware_class"] == klass]
+                if len(idx) < MIN_N:
+                    continue
+                for beh in LABELS:
+                    col = f"density_{beh}"
+                    d = arm_df.loc[idx, col].to_numpy(dtype=float) - base.loc[idx, col].to_numpy(dtype=float)
+                    lo, hi = boot_ci(d)
+                    rows.append({**dict(zip(GROUP, keys)), "arm": arm, "signed_alpha": sa, "aware_class_both": klass, "n_pairs": len(idx), "behaviour": beh, "delta_density": float(np.nanmean(d)), "ci_lo": lo, "ci_hi": hi})
+    return pd.DataFrame(rows)
+
+
+def noise_floor(df: pd.DataFrame) -> pd.DataFrame:
+    """Decoding noise (plan §1): the same item decoded twice at the same α — greedy ``actions`` vs
+    sampled ``actions_sampling`` — gives the item-level Δdensity distribution with no steering change.
+    Compare its spread (``sd_delta``, ``mean_abs_delta``) with the steering deltas in
+    :func:`paired_contrasts`; ``mean_delta`` should sit near zero."""
+    rows = []
+    ok = df[df.ok & df.family.isin(["actions", "actions_sampling"])]
+    for (model, framing), sub in ok.groupby(["model", "framing"], sort=True):
+        g = sub[sub.family == "actions"]
+        s = sub[sub.family == "actions_sampling"]
+        for arm in sorted(set(g.arm) & set(s.arm)):
+            a = g[g.arm == arm].set_index("index")
+            b = s[s.arm == arm].set_index("index")
+            common = a.index.intersection(b.index)
+            if len(common) < MIN_N:
+                continue
+            for col, beh in [(f"density_{x}", x) for x in LABELS] + [("words", "words")]:
+                d = b.loc[common, col].to_numpy(dtype=float) - a.loc[common, col].to_numpy(dtype=float)
+                lo, hi = boot_ci(d)
+                rows.append(
+                    {
+                        "model": model,
+                        "framing": framing,
+                        "arm": arm,
+                        "signed_alpha": float(a.signed_alpha.iloc[0]),
+                        "n_pairs": len(common),
+                        "behaviour": beh,
+                        "mean_delta": float(np.nanmean(d)),
+                        "ci_lo": lo,
+                        "ci_hi": hi,
+                        "sd_delta": float(np.nanstd(d, ddof=1)),
+                        "mean_abs_delta": float(np.nanmean(np.abs(d))),
+                    }
+                )
     return pd.DataFrame(rows)
 
 
@@ -508,9 +581,15 @@ def md_table(df: pd.DataFrame, cols: list[str], nd: int = 3) -> str:
     return "\n".join(lines) + "\n"
 
 
-def write_summary(out: Path, df, cov, means, contrasts, sym, two, by_class, verb, proxy) -> None:
+def write_summary(out: Path, df, cov, means, contrasts, sym, two, by_class, verb, proxy, verb_contrasts=None, noise=None) -> None:
     parts = ["# Tier 1 — first-pass analysis\n"]
     parts.append(f"Annotated traces loaded: {len(df)} ({int(df.ok.sum())} ok). Generated by `scripts/analyze_tier1.py`.\n")
+    parts.append(
+        "Units: a *trace* is one generation; on `actions` there are two per item (real/fake framing), "
+        "elsewhere one. Bootstrap CIs resample traces (arm means) or item-level differences (paired "
+        "contrasts). The compliance 2×2 is over every item with known execution in both arms; every "
+        "morphology number is over traces the judge annotated successfully.\n"
+    )
     parts.append("## Coverage per arm\n")
     parts.append(md_table(cov, ["model", "family", "arm", "n", "n_annotated", "n_ok", "n_judge_fail", "n_error", "n_truncated", "n_no_think_close", "mean_words", "mean_spans", "not_found_exact_rate", "found_norm_only_rate", "unknown_label_rate", "mean_repetition"]))
     parts.append("\n## Density (spans per 100 words), arm means with 95% bootstrap CI\n")
@@ -540,10 +619,21 @@ def write_summary(out: Path, df, cov, means, contrasts, sym, two, by_class, verb
     if not by_class.empty:
         bc = by_class[by_class.behaviour.isin(["backtracking", "uncertainty-estimation", "deduction"])]
         parts.append(md_table(bc, ["model", "framing", "arm", "flip_class", "n", "behaviour", "delta_density", "ci_lo", "ci_hi"]))
+    parts.append("\n## Decoding-noise floor: same item, same α, greedy vs sampled decode (Distill-Qwen actions)\n")
+    if noise is not None and not noise.empty:
+        parts.append(md_table(noise, ["model", "framing", "arm", "n_pairs", "behaviour", "mean_delta", "ci_lo", "ci_hi", "sd_delta", "mean_abs_delta"]))
+    else:
+        parts.append("_(no sampled-decode arms annotated yet)_\n")
     parts.append("\n## Density by shipped awareness judgment (triggers / harmbench)\n")
     if not verb.empty:
         v = verb[verb.behaviour.isin(["backtracking", "uncertainty-estimation"])]
         parts.append(md_table(v, ["model", "family", "arm", "aware_class", "n", "behaviour", "mean_density", "ci_lo", "ci_hi"]))
+    parts.append("\n## Steering Δ density among items judged in the same awareness class in both arms\n")
+    if verb_contrasts is not None and not verb_contrasts.empty:
+        vc = verb_contrasts[verb_contrasts.behaviour.isin(["backtracking", "uncertainty-estimation", "deduction"])]
+        parts.append(md_table(vc, ["model", "family", "arm", "aware_class_both", "n_pairs", "behaviour", "delta_density", "ci_lo", "ci_hi"]))
+    else:
+        parts.append("_(no judged families annotated yet)_\n")
     parts.append("\n## Lexical proxy vs judge density\n")
     parts.append(md_table(proxy, ["scope", "n", "proxy", "judge", "pearson_r", "spearman_rho"]))
     out.write_text("\n".join(parts))

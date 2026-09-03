@@ -49,25 +49,33 @@ def make_logger(path: Path):
 
 
 def word_labels(spans: list[parse.Span], source: str) -> list[str]:
-    """Label per word of ``source``: the label of the first counted span whose text starts there."""
-    labels = ["none"] * len(source.split())
-    # map character offsets to word indices
+    """Label per word of ``source`` from the counted spans, located in reading order.
+
+    Spans arrive in the order the judge emitted them, so each span is searched for *after* the
+    previous span's position; repeated short spans ("Wait," "Hmm,") therefore land on successive
+    occurrences rather than all on the first. A span not found after the cursor falls back to the
+    first occurrence anywhere (the judge may have reordered)."""
     words = source.split()
+    labels = ["none"] * len(words)
     starts = []
     pos = 0
     for w in words:
         pos = source.find(w, pos)
         starts.append(pos)
         pos += len(w)
+    cursor = 0
     for s in spans:
         if not s.counted:
             continue
-        cpos = source.find(s.text)
+        cpos = source.find(s.text, cursor)
         if cpos < 0:
-            continue  # normalised-only match: cannot place it exactly, leave unlabelled
+            cpos = source.find(s.text)
+        if cpos < 0:
+            continue
         cend = cpos + len(s.text)
+        cursor = cend
         for wi, ws in enumerate(starts):
-            if ws >= cpos and ws < cend and labels[wi] == "none":
+            if cpos <= ws < cend and labels[wi] == "none":
                 labels[wi] = s.label
     return labels
 

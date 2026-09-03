@@ -192,3 +192,37 @@ def test_load_traces_from_jsonl_applies_ok_rules(tmp_path):
     assert not df.loc["apierr", "ok"] and not df.loc["apierr", "annotated"]
     cov = A.coverage_table(df.reset_index()).iloc[0]
     assert (cov.n, cov.n_annotated, cov.n_ok, cov.n_judge_fail, cov.n_error, cov.n_truncated) == (4, 3, 1, 1, 2, 1)
+
+
+def test_noise_floor_pairs_greedy_with_sampled_same_alpha():
+    rng = np.random.default_rng(3)
+    rows = _rows("deepseek_qwen", "actions", "real", "alpha0.0", 0.0, 20, rng, executed=[True] * 20)
+    rows += _rows("deepseek_qwen", "actions_sampling", "real", "alpha0.0", 0.0, 20, rng, executed=[True] * 20)
+    rows += _rows("deepseek_qwen", "actions_sampling", "real", "alpha0.35", -0.35, 20, rng, executed=[True] * 20)  # no greedy partner
+    nf = A.noise_floor(pd.DataFrame(rows))
+    assert set(nf.arm) == {"alpha0.0"} and (nf.n_pairs == 20).all()
+    bt = nf[nf.behaviour == "backtracking"].iloc[0]
+    assert abs(bt.mean_delta) < 0.3 and 0.2 < bt.sd_delta < 0.8
+    assert "words" in set(nf.behaviour)
+
+
+def test_verbalization_contrasts_restrict_to_same_class_in_both_arms():
+    rng = np.random.default_rng(4)
+    cls = ["Yes"] * 8 + ["No"] * 12
+    rows = _rows("qwq", "triggers", "hypothetical", "alpha0.0", 0.0, 20, rng, aware_judged=cls)
+    rows += _rows("qwq", "triggers", "hypothetical", "alpha0.05_aware", 0.05, 20, rng, aware_judged=["Yes"] * 12 + ["No"] * 8, shift={"backtracking": 1.0})
+    vc = A.verbalization_contrasts(pd.DataFrame(rows))
+    n = vc.groupby("aware_class_both").n_pairs.first()
+    assert n["yes"] == 8 and n["no"] == 8  # items 0-7 yes in both; items 12-19 no in both
+    assert vc[(vc.aware_class_both == "no") & (vc.behaviour == "backtracking")].delta_density.iloc[0] > 0.5
+
+
+def test_flips_two_by_two_uses_all_known_execution_but_deltas_use_ok_only():
+    rng = np.random.default_rng(5)
+    base_exec = [True] * 10 + [False] * 10
+    rows = _rows("m", "actions", "real", "alpha0.0", 0.0, 20, rng, executed=base_exec)
+    rows += _rows("m", "actions", "real", "alpha0.05_aware", 0.05, 20, rng, executed=[False] * 20, judge_fail_idx=range(0, 10))
+    two, by_class = A.flips(pd.DataFrame(rows))
+    r = two.iloc[0]
+    assert (r.n_pairs, r.lost, r.gained) == (20, 10, 0)  # all 20 items count in the 2x2
+    assert set(by_class.flip_class) == {"same"} and by_class.n.iloc[0] == 10  # lost items were judge failures

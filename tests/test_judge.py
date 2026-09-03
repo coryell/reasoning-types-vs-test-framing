@@ -67,7 +67,7 @@ def test_truncated_output_is_an_error_and_is_redone(tmp_path):
     rec = J.load_results(out)["a"]
     assert s1["errors"] == 1 and not J.record_ok(rec)
     assert rec["text"] == "partial" and "finish_reason=length" in rec["error"] and rec["attempts"] == 1
-    s2 = J.run_jobs(make_judge([("full", "stop")]), [job], out, log=lambda m: None)
+    s2 = J.run_jobs(make_judge([("full", "stop")]), [job], out, log=lambda m: None, retry_truncated=True)
     assert s2["run"] == 1 and J.record_ok(J.load_results(out)["a"])
 
 
@@ -135,3 +135,27 @@ def test_run_jobs_escapes_unicode_line_separators(tmp_path):
     J.run_jobs(make_judge([("line sep", "stop")]), [J.Job(id="a", prompt="p")], out, log=lambda m: None)
     assert " " not in out.read_text(encoding="utf-8")
     assert J.load_results(out)["a"]["text"] == "line sep"
+
+
+def test_interrupted_write_is_repaired_before_append(tmp_path):
+    out = tmp_path / "r.jsonl"
+    good = json.dumps({"id": "a", "text": "t", "error": None, "finish_reason": "stop", "prompt_sha": J.prompt_sha("pa"), "meta": {}})
+    out.write_text(good + "\n" + '{"id": "b", "tex')  # killed mid-write
+    jobs = [J.Job(id="a", prompt="pa"), J.Job(id="b", prompt="pb")]
+    s = J.run_jobs(make_judge([("bee", "stop")]), jobs, out, log=lambda m: None)
+    assert (s["cached"], s["run"]) == (1, 1)
+    recs = J.load_results(out)  # must not raise: the partial line was truncated, not glued to a record
+    assert recs["b"]["text"] == "bee" and out.read_text().endswith("\n")
+    # a second rerun is a no-op
+    s = J.run_jobs(make_judge([]), jobs, out, log=lambda m: None)
+    assert (s["cached"], s["run"]) == (2, 0)
+
+
+def test_truncated_records_are_kept_unless_retry_requested(tmp_path):
+    out = tmp_path / "r.jsonl"
+    job = J.Job(id="a", prompt="p")
+    J.run_jobs(make_judge([("partial", "length")]), [job], out, log=lambda m: None)
+    s = J.run_jobs(make_judge([]), [job], out, log=lambda m: None)
+    assert (s["truncated_kept"], s["run"]) == (1, 0)
+    s = J.run_jobs(make_judge([("full", "stop")]), [job], out, log=lambda m: None, retry_truncated=True)
+    assert s["run"] == 1 and J.record_ok(J.load_results(out)["a"])

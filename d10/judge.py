@@ -234,22 +234,53 @@ def estimate_cost(records: Iterable[dict]) -> tuple[int, int, float]:
     return tok_in, tok_out, tok_in * PRICE_PER_INPUT_TOKEN + tok_out * PRICE_PER_OUTPUT_TOKEN
 
 
+def repair_tail(path: Path) -> bool:
+    """Drop a partial final line left by a run killed mid-write. Every complete record ends with a
+    newline, so a file that does not end with one has exactly one incomplete record at its tail.
+    Returns True if something was removed."""
+    if not path.exists():
+        return False
+    data = path.read_bytes()
+    if not data or data.endswith(b"\n"):
+        return False
+    idx = data.rfind(b"\n")
+    path.write_bytes(data[: idx + 1] if idx >= 0 else b"")
+    return True
+
+
+def _is_terminal(rec: dict) -> bool:
+    """A truncated or filtered completion will recur at temperature 0; do not resend by default."""
+    return str(rec.get("error") or "").startswith("finish_reason=")
+
+
 def run_jobs(
     judge: Judge,
     jobs: list[Job],
     out_path: Path,
     log: Callable[[str], None] = print,
     progress_every: int = 50,
+    retry_truncated: bool = False,
 ) -> dict:
-    """Run every job whose result is not already cached as usable; append results as they land."""
+    """Run every job whose result is not already cached as usable; append results as they land.
+
+    Records with API errors, empty content or invalid JSON are redone. Records whose completion was
+    truncated or filtered are left alone unless ``retry_truncated`` is set.
+    """
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    if repair_tail(out_path):
+        log(f"{out_path}: removed a partial final record left by an interrupted run")
     existing = load_results(out_path)
-    todo = [
-        j
-        for j in jobs
-        if not ((rec := existing.get(j.id)) and rec.get("prompt_sha") == prompt_sha(j.prompt) and record_ok(rec))
-    ]
-    log(f"{out_path}: {len(jobs)} jobs, {len(jobs) - len(todo)} cached, {len(todo)} to run")
+    todo, terminal = [], 0
+    for j in jobs:
+        rec = existing.get(j.id)
+        if rec and rec.get("prompt_sha") == prompt_sha(j.prompt):
+            if record_ok(rec):
+                continue
+            if _is_terminal(rec) and not retry_truncated:
+                terminal += 1
+                continue
+        todo.append(j)
+    log(f"{out_path}: {len(jobs)} jobs, {len(jobs) - len(todo) - terminal} cached, {terminal} truncated (kept), {len(todo)} to run")
     lock = threading.Lock()
     n_done = n_err = 0
     new_records: list[dict] = []
@@ -275,7 +306,8 @@ def run_jobs(
     return {
         "path": str(out_path),
         "jobs": len(jobs),
-        "cached": len(jobs) - len(todo),
+        "cached": len(jobs) - len(todo) - terminal,
+        "truncated_kept": terminal,
         "run": n_done,
         "errors": n_err,
         "prompt_tokens": tok_in,
