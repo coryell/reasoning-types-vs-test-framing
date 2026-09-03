@@ -123,6 +123,17 @@ def is_test_span(text: str) -> bool:
     return TEST_LEXICON.search(text) is not None
 
 
+#: The naive alternative — any test/exam/evaluation word — kept only for comparison. On this data it
+#: also fires on the prompts' own cue vocabulary ("Test User", "Test Corporation") restated by the
+#: model, so it removes more spans in the aware arms than the self-referential pattern does and makes
+#: the residual look more negative. Used in the write-up's sensitivity check, never in the headline.
+NAIVE_TEST_WORDS = re.compile(r"\b(test\w*|exam\w*|evaluat\w*|assess\w*)\b", re.I)
+
+
+def is_naive_test_span(text: str) -> bool:
+    return NAIVE_TEST_WORDS.search(text) is not None
+
+
 def trace_metrics(spans: list[Span], source: str) -> dict:
     words = word_count(source)
     counted = [s for s in spans if s.counted]

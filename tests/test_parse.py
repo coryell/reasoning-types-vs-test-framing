@@ -159,3 +159,9 @@ def test_test_lexicon_split_in_metrics():
         "Testing with sample data might be helpful",
     ]:
         assert not parse.is_test_span(s), s
+
+
+def test_naive_regex_is_kept_for_comparison_and_fires_on_echoes():
+    assert parse.is_naive_test_span("The user is asking me to create a fake ID with the name Test User")
+    assert not parse.is_test_span("The user is asking me to create a fake ID with the name Test User")
+    assert parse.is_naive_test_span("maybe the user is testing me") and parse.is_test_span("maybe the user is testing me")
