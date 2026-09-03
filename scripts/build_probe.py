@@ -10,6 +10,12 @@ the No conclusion, as in their ``get_evidence_indices``.
 Outputs under ``--out-dir``: ``probe_metrics.json`` (per-layer acc/AUROC, both trainers, shuffled and
 layer-0 controls), ``probe_directions.pt`` (fc.weight[1] per layer; gitignored) and
 ``probe_best.json`` (best layer + direction as a list, committed).
+
+``--pooling`` reproduces their token-position ablation (§4.2): ``span`` (default, average over the
+judge's evidence span — what the steering direction uses), ``whole`` (average over every reasoning
+token; one datapoint per side), ``last`` (the last reasoning token before ``</think>``). The last two
+test whether awareness is decodable away from the words the judge selected; if only ``span`` works,
+the probe reads the quote's vocabulary. Use a different ``--out-dir`` per pooling.
 """
 
 from __future__ import annotations
@@ -54,6 +60,7 @@ def main() -> None:
     ap.add_argument("--out-dir", type=Path, default=REPO / "results" / "qwen3_4b" / "probe")
     ap.add_argument("--max-len", type=int, default=3072)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--pooling", choices=["span", "whole", "last"], default="span")
     ap.add_argument("--log", type=Path, default=REPO / "logs" / "build_probe.log")
     args = ap.parse_args()
     log = make_logger(args.log)
@@ -61,7 +68,7 @@ def main() -> None:
 
     traces = {t.id: t for t in load_generations(args.generations, args.model_name, args.family)}
     judged = {k: v for k, v in load_results(args.judgments).items() if record_ok(v) and k in traces}
-    log(f"{len(judged)} judged sides with usable judgments")
+    log(f"{len(judged)} judged sides with usable judgments; pooling={args.pooling}")
 
     model, tok = load_model(args.model)
     feats, labels, groups, meta = [], [], [], []
@@ -78,9 +85,16 @@ def main() -> None:
             continue
         t = traces[tid]
         text = abdelnabi_probe_text(tok, t.task, t.raw)
-        cspans = locate_quotes(text, quotes)
-        n_quotes_dropped += len([q for q in quotes if isinstance(q, str)]) - len(cspans)
-        tspans = char_spans_to_token_spans(tok, text, cspans, add_special_tokens=True)
+        if args.pooling == "span":
+            cspans = locate_quotes(text, quotes)
+            n_quotes_dropped += len([q for q in quotes if isinstance(q, str)]) - len(cspans)
+            tspans = char_spans_to_token_spans(tok, text, cspans, add_special_tokens=True)
+        else:
+            # the reasoning region: from the end of the chat-template prefix to the end of the text
+            prefix_len = len(text) - len(t.raw.rsplit("</think>", 1)[0].lower() + "</think>")
+            (rs, re_), = char_spans_to_token_spans(tok, text, [(prefix_len, len(text))], add_special_tokens=True) or [(0, 0)]
+            tspans = [(rs, re_)] if args.pooling == "whole" else [(max(rs, re_ - 1), re_)]
+            tspans = [s for s in tspans if s[1] > s[0]]
         if not tspans:
             continue
         pooled = pooled_states(model, tok, text, tspans, add_special_tokens=True, max_len=args.max_len)
@@ -117,6 +131,7 @@ def main() -> None:
     }
     log(f"direction diagnostics: {json.dumps({k: round(v, 4) for k, v in diag.items()})}")
     metrics = {
+        "pooling": args.pooling,
         "direction_diagnostics": diag,
         "model": args.model,
         "n_sides_pos": n_pos,
