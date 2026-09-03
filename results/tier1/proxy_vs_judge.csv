@@ -1,8 +1,8 @@
 scope,n,proxy,judge,pearson_r,spearman_rho
-all,6935,lex_wait_per100w,density_backtracking,0.3276140098113056,0.33043134826452786
-all,6935,lex_backtrack_lex_per100w,density_backtracking,0.2749662656948318,0.27301194422363323
-all,6935,lex_hmm_per100w,density_uncertainty-estimation,0.18730739111818506,0.22397481160975233
-all,6935,lex_uncertainty_lex_per100w,density_uncertainty-estimation,0.3499779314603712,0.33112120963063546
+all,6970,lex_wait_per100w,density_backtracking,0.3274261674862009,0.33034612851124595
+all,6970,lex_backtrack_lex_per100w,density_backtracking,0.2760421538620802,0.27435002295453265
+all,6970,lex_hmm_per100w,density_uncertainty-estimation,0.1869535092117391,0.22300898393316296
+all,6970,lex_uncertainty_lex_per100w,density_uncertainty-estimation,0.34871577636973394,0.3301239363628791
 deepseek_qwen,2553,lex_wait_per100w,density_backtracking,0.3515684937609197,0.3560801952290774
 deepseek_qwen,2553,lex_backtrack_lex_per100w,density_backtracking,0.3122569867223114,0.30538271411953294
 deepseek_qwen,2553,lex_hmm_per100w,density_uncertainty-estimation,0.25657555922757247,0.2315036967649505
@@ -11,7 +11,7 @@ qwen3,2078,lex_wait_per100w,density_backtracking,0.34319993468143806,0.305385209
 qwen3,2078,lex_backtrack_lex_per100w,density_backtracking,0.25206775620818817,0.22441439868606403
 qwen3,2078,lex_hmm_per100w,density_uncertainty-estimation,0.2156594062223167,0.25090644575052184
 qwen3,2078,lex_uncertainty_lex_per100w,density_uncertainty-estimation,0.45318521896615926,0.4458111288960326
-qwq,2304,lex_wait_per100w,density_backtracking,0.2304762827620963,0.22899497531097351
-qwq,2304,lex_backtrack_lex_per100w,density_backtracking,0.2003344933095843,0.19320425131746144
-qwq,2304,lex_hmm_per100w,density_uncertainty-estimation,0.12329146781074199,0.16983133085704205
-qwq,2304,lex_uncertainty_lex_per100w,density_uncertainty-estimation,0.3270988346722496,0.30831961226611265
+qwq,2339,lex_wait_per100w,density_backtracking,0.2310812836486575,0.23067701388867298
+qwq,2339,lex_backtrack_lex_per100w,density_backtracking,0.20385455465091415,0.19882161193182227
+qwq,2339,lex_hmm_per100w,density_uncertainty-estimation,0.12304020002191512,0.1679832013795853
+qwq,2339,lex_uncertainty_lex_per100w,density_uncertainty-estimation,0.3239869478241613,0.3044502378724028

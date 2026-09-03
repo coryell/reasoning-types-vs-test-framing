@@ -240,3 +240,4 @@
 [2026-09-03 05:58:32] /home/cutter/d10/results/annotations/qwq/triggers/alpha0.25.jsonl: 493 jobs, 0 cached, 0 truncated (kept), 493 to run
 [2026-09-03 06:01:07]   50/493 done, 0 errors, 61,888 tokens, ~$0.39 this run
 [2026-09-03 06:03:30]   100/493 done, 0 errors, 133,081 tokens, ~$0.84 this run
+[2026-09-03 06:06:03]   150/493 done, 0 errors, 191,852 tokens, ~$1.21 this run

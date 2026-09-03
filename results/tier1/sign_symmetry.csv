@@ -47,9 +47,9 @@ qwq,actions,real,deduction,alpha0.05_aware,-0.30187880258786254,"[-0.533, -0.060
 qwq,actions,real,example-testing,alpha0.05_aware,0.1357299944545106,"[+0.067, +0.199]",alpha0.3,0.0003033451936935612,"[-0.070, +0.093]",False,True,False
 qwq,actions,real,initializing,alpha0.05_aware,-0.06108182717026124,"[-0.159, +0.037]",alpha0.3,-0.04764280537248611,"[-0.138, +0.043]",False,False,False
 qwq,actions,real,uncertainty-estimation,alpha0.05_aware,0.2321693540699932,"[+0.112, +0.356]",alpha0.3,-0.07315228472538715,"[-0.205, +0.057]",True,True,False
-qwq,triggers,hypothetical,adding-knowledge,alpha0.05_aware,-0.14480120711841335,"[-0.236, -0.051]",alpha0.25,0.23535679304023532,"[+0.055, +0.431]",True,True,True
-qwq,triggers,hypothetical,backtracking,alpha0.05_aware,0.02006702711580469,"[-0.017, +0.060]",alpha0.25,0.012185503040437428,"[-0.059, +0.085]",False,False,False
-qwq,triggers,hypothetical,deduction,alpha0.05_aware,-0.025265242396001537,"[-0.154, +0.101]",alpha0.25,-0.15351807575380044,"[-0.401, +0.090]",False,False,False
-qwq,triggers,hypothetical,example-testing,alpha0.05_aware,-0.01042285642124662,"[-0.072, +0.052]",alpha0.25,-0.045113614787067505,"[-0.129, +0.036]",False,False,False
-qwq,triggers,hypothetical,initializing,alpha0.05_aware,0.018944227417900292,"[-0.029, +0.068]",alpha0.25,-0.03414161286095137,"[-0.127, +0.047]",True,False,False
-qwq,triggers,hypothetical,uncertainty-estimation,alpha0.05_aware,0.10211261050726633,"[+0.042, +0.158]",alpha0.25,-0.13891509406643518,"[-0.253, -0.020]",True,True,True
+qwq,triggers,hypothetical,adding-knowledge,alpha0.05_aware,-0.14480120711841335,"[-0.236, -0.051]",alpha0.25,0.19593271467693538,"[+0.034, +0.371]",True,True,True
+qwq,triggers,hypothetical,backtracking,alpha0.05_aware,0.02006702711580469,"[-0.017, +0.060]",alpha0.25,0.022444614512302966,"[-0.040, +0.085]",False,False,False
+qwq,triggers,hypothetical,deduction,alpha0.05_aware,-0.025265242396001537,"[-0.154, +0.101]",alpha0.25,-0.12429207870082601,"[-0.352, +0.083]",False,False,False
+qwq,triggers,hypothetical,example-testing,alpha0.05_aware,-0.01042285642124662,"[-0.072, +0.052]",alpha0.25,-0.0385621435540463,"[-0.108, +0.035]",False,False,False
+qwq,triggers,hypothetical,initializing,alpha0.05_aware,0.018944227417900292,"[-0.029, +0.068]",alpha0.25,-0.01025807452387901,"[-0.089, +0.068]",True,False,False
+qwq,triggers,hypothetical,uncertainty-estimation,alpha0.05_aware,0.10211261050726633,"[+0.042, +0.158]",alpha0.25,-0.13537212042941182,"[-0.247, -0.029]",True,True,True
