@@ -77,6 +77,7 @@ class Result:
     served_model: str | None
     error: str | None
     attempts: int
+    retry_errors: list[str]
     judge_model: str
     temperature: float
     max_tokens: int
@@ -126,7 +127,7 @@ class Judge:
             max_retries=0,
         )
 
-    def _result(self, job: Job, *, text, finish_reason, usage, served_model, error, attempts) -> Result:
+    def _result(self, job: Job, *, text, finish_reason, usage, served_model, error, attempts, retry_errors=()) -> Result:
         return Result(
             id=job.id,
             prompt_sha=prompt_sha(job.prompt),
@@ -136,6 +137,7 @@ class Judge:
             served_model=served_model,
             error=error,
             attempts=attempts,
+            retry_errors=list(retry_errors),
             judge_model=self.model,
             temperature=self.temperature,
             max_tokens=self.max_tokens,
@@ -147,6 +149,7 @@ class Judge:
         err: str | None = None
         last: dict = dict(text=None, finish_reason=None, usage={}, served_model=None)
         attempt = 0
+        retry_errors: list[str] = []
         for attempt in range(1, self.max_attempts + 1):
             retry = False
             try:
@@ -187,7 +190,7 @@ class Judge:
                 else:
                     err = None
                 if err is None:
-                    return self._result(job, **last, error=None, attempts=attempt)
+                    return self._result(job, **last, error=None, attempts=attempt, retry_errors=retry_errors)
             except (RateLimitError, APIConnectionError, APITimeoutError) as e:
                 err, retry = repr(e), True
             except APIStatusError as e:
@@ -195,10 +198,11 @@ class Judge:
                 retry = e.status_code >= 500 or e.status_code in (408, 409, 425, 429)
             except Exception as e:  # noqa: BLE001 - recorded, not swallowed
                 err, retry = repr(e), "empty choices" in repr(e)
+            retry_errors.append(str(err)[:300])
             if not retry or attempt == self.max_attempts:
                 break
             time.sleep(min(60.0, 2.0**attempt + random.random()))
-        return self._result(job, **last, error=err, attempts=attempt)
+        return self._result(job, **last, error=err, attempts=attempt, retry_errors=retry_errors)
 
 
 def load_results(path: Path) -> dict[str, dict]:
