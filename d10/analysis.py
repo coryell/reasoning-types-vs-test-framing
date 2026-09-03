@@ -490,6 +490,7 @@ def fig_dose(means: pd.DataFrame, metric: str, family: str, out: Path, title: st
                 last = g.iloc[-1]
                 ax.annotate(framing, (last.signed_alpha, last["mean"]), xytext=(4, 0), textcoords="offset points", fontsize=7, color="#4a4a48", va="center")
             ax.axvline(0, color="#c3c2b7", linewidth=0.8, linestyle=":")
+            ax.ticklabel_format(axis="x", useOffset=False, style="plain")
             if j == 0:
                 ax.set_ylabel(SHORT[beh], fontsize=8)
             if i == 0:
