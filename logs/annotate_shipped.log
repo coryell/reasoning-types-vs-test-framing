@@ -241,3 +241,98 @@
 [2026-09-03 06:01:07]   50/493 done, 0 errors, 61,888 tokens, ~$0.39 this run
 [2026-09-03 06:03:30]   100/493 done, 0 errors, 133,081 tokens, ~$0.84 this run
 [2026-09-03 06:06:03]   150/493 done, 0 errors, 191,852 tokens, ~$1.21 this run
+[2026-09-03 06:08:45]   200/493 done, 0 errors, 261,373 tokens, ~$1.65 this run
+[2026-09-03 06:11:16]   250/493 done, 0 errors, 330,823 tokens, ~$2.09 this run
+[2026-09-03 06:13:51]   300/493 done, 0 errors, 414,825 tokens, ~$2.63 this run
+[2026-09-03 06:16:21]   350/493 done, 0 errors, 506,359 tokens, ~$3.22 this run
+[2026-09-03 06:18:51]   400/493 done, 0 errors, 585,289 tokens, ~$3.73 this run
+[2026-09-03 06:21:33]   450/493 done, 0 errors, 672,723 tokens, ~$4.29 this run
+[2026-09-03 06:23:50]   493/493 done, 0 errors, 740,032 tokens, ~$4.72 this run
+[2026-09-03 06:23:50] qwq/triggers/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwq/triggers/alpha0.25.jsonl", "jobs": 493, "cached": 0, "truncated_kept": 0, "run": 493, "errors": 0, "prompt_tokens": 357045, "completion_tokens": 382987, "est_cost_usd": 4.7225}
+[2026-09-03 06:23:50] done: 1,479 jobs, 1,479 run now, 1 errors, ~$14.06 this invocation
+[2026-09-03 06:23:50] rerun the same command to retry the errors; cached successes are skipped
+[2026-09-03 06:23:52] start: models=['qwen3', 'deepseek_qwen'] families=['triggers'] limit=None dry_run=False
+[2026-09-03 06:23:53] /home/cutter/d10/results/annotations/qwen3/triggers/alpha0.0.jsonl: 373 jobs, 0 cached, 0 truncated (kept), 373 to run
+[2026-09-03 06:26:11]   50/373 done, 0 errors, 70,177 tokens, ~$0.44 this run
+[2026-09-03 06:28:29]   100/373 done, 0 errors, 136,782 tokens, ~$0.86 this run
+[2026-09-03 06:31:20]   150/373 done, 0 errors, 207,204 tokens, ~$1.31 this run
+[2026-09-03 06:33:49]   200/373 done, 0 errors, 271,203 tokens, ~$1.71 this run
+[2026-09-03 06:36:34]   250/373 done, 0 errors, 363,743 tokens, ~$2.31 this run
+[2026-09-03 06:39:04]   300/373 done, 0 errors, 456,924 tokens, ~$2.92 this run
+[2026-09-03 06:41:46]   350/373 done, 0 errors, 532,110 tokens, ~$3.40 this run
+[2026-09-03 06:42:51]   373/373 done, 0 errors, 572,032 tokens, ~$3.66 this run
+[2026-09-03 06:42:51] qwen3/triggers/alpha0.0: {"path": "/home/cutter/d10/results/annotations/qwen3/triggers/alpha0.0.jsonl", "jobs": 373, "cached": 0, "truncated_kept": 0, "run": 373, "errors": 0, "prompt_tokens": 274912, "completion_tokens": 297120, "est_cost_usd": 3.6585}
+[2026-09-03 06:42:51] /home/cutter/d10/results/annotations/qwen3/triggers/alpha0.04_aware.jsonl: 373 jobs, 0 cached, 0 truncated (kept), 373 to run
+[2026-09-03 06:45:31]   50/373 done, 1 errors, 74,466 tokens, ~$0.45 this run
+[2026-09-03 06:48:00]   100/373 done, 1 errors, 143,746 tokens, ~$0.87 this run
+[2026-09-03 06:50:38]   150/373 done, 1 errors, 215,910 tokens, ~$1.33 this run
+[2026-09-03 06:53:11]   200/373 done, 1 errors, 281,813 tokens, ~$1.74 this run
+[2026-09-03 06:55:44]   250/373 done, 1 errors, 369,692 tokens, ~$2.31 this run
+[2026-09-03 06:58:26]   300/373 done, 1 errors, 461,612 tokens, ~$2.90 this run
+[2026-09-03 07:01:04]   350/373 done, 1 errors, 542,562 tokens, ~$3.43 this run
+[2026-09-03 07:02:09]   373/373 done, 1 errors, 586,068 tokens, ~$3.70 this run
+[2026-09-03 07:02:09] qwen3/triggers/alpha0.04_aware: {"path": "/home/cutter/d10/results/annotations/qwen3/triggers/alpha0.04_aware.jsonl", "jobs": 373, "cached": 0, "truncated_kept": 0, "run": 373, "errors": 1, "prompt_tokens": 287455, "completion_tokens": 298613, "est_cost_usd": 3.7048}
+[2026-09-03 07:02:09] /home/cutter/d10/results/annotations/qwen3/triggers/alpha0.2.jsonl: 373 jobs, 0 cached, 0 truncated (kept), 373 to run
+[2026-09-03 07:04:48]   50/373 done, 0 errors, 71,787 tokens, ~$0.45 this run
+[2026-09-03 07:07:16]   100/373 done, 1 errors, 151,436 tokens, ~$0.96 this run
+[2026-09-03 07:09:50]   150/373 done, 1 errors, 228,843 tokens, ~$1.45 this run
+[2026-09-03 07:12:32]   200/373 done, 1 errors, 298,174 tokens, ~$1.89 this run
+[2026-09-03 07:15:04]   250/373 done, 1 errors, 385,901 tokens, ~$2.46 this run
+[2026-09-03 07:17:33]   300/373 done, 1 errors, 477,046 tokens, ~$3.05 this run
+[2026-09-03 07:20:15]   350/373 done, 1 errors, 560,202 tokens, ~$3.58 this run
+[2026-09-03 07:21:29]   373/373 done, 1 errors, 596,967 tokens, ~$3.82 this run
+[2026-09-03 07:21:29] qwen3/triggers/alpha0.2: {"path": "/home/cutter/d10/results/annotations/qwen3/triggers/alpha0.2.jsonl", "jobs": 373, "cached": 0, "truncated_kept": 0, "run": 373, "errors": 1, "prompt_tokens": 286526, "completion_tokens": 310441, "est_cost_usd": 3.8207}
+[2026-09-03 07:21:29] /home/cutter/d10/results/annotations/qwen3/triggers/alpha0.25.jsonl: 373 jobs, 0 cached, 0 truncated (kept), 373 to run
+[2026-09-03 07:24:00]   50/373 done, 0 errors, 78,200 tokens, ~$0.50 this run
+[2026-09-03 07:26:40]   100/373 done, 0 errors, 155,311 tokens, ~$0.99 this run
+[2026-09-03 07:29:04]   150/373 done, 0 errors, 233,343 tokens, ~$1.49 this run
+[2026-09-03 07:31:48]   200/373 done, 0 errors, 300,131 tokens, ~$1.91 this run
+[2026-09-03 07:34:25]   250/373 done, 0 errors, 393,578 tokens, ~$2.51 this run
+[2026-09-03 07:36:54]   300/373 done, 0 errors, 486,291 tokens, ~$3.11 this run
+[2026-09-03 07:39:40]   350/373 done, 0 errors, 568,527 tokens, ~$3.64 this run
+[2026-09-03 07:40:47]   373/373 done, 0 errors, 603,228 tokens, ~$3.86 this run
+[2026-09-03 07:40:47] qwen3/triggers/alpha0.25: {"path": "/home/cutter/d10/results/annotations/qwen3/triggers/alpha0.25.jsonl", "jobs": 373, "cached": 0, "truncated_kept": 0, "run": 373, "errors": 0, "prompt_tokens": 289698, "completion_tokens": 313530, "est_cost_usd": 3.8595}
+[2026-09-03 07:40:48] /home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.0.jsonl: 213 jobs, 0 cached, 0 truncated (kept), 213 to run
+[2026-09-03 07:43:20]   50/213 done, 0 errors, 87,482 tokens, ~$0.56 this run
+[2026-09-03 07:46:01]   100/213 done, 1 errors, 188,393 tokens, ~$1.26 this run
+[2026-09-03 07:48:35]   150/213 done, 1 errors, 280,396 tokens, ~$1.85 this run
+[2026-09-03 07:51:14]   200/213 done, 2 errors, 369,559 tokens, ~$2.43 this run
+[2026-09-03 07:51:54]   213/213 done, 2 errors, 395,169 tokens, ~$2.59 this run
+[2026-09-03 07:51:54] deepseek_qwen/triggers/alpha0.0: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.0.jsonl", "jobs": 213, "cached": 0, "truncated_kept": 0, "run": 213, "errors": 2, "prompt_tokens": 181226, "completion_tokens": 213943, "est_cost_usd": 2.5925}
+[2026-09-03 07:51:54] /home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.05_aware.jsonl: 213 jobs, 0 cached, 0 truncated (kept), 213 to run
+[2026-09-03 07:54:32]   50/213 done, 0 errors, 82,729 tokens, ~$0.53 this run
+[2026-09-03 07:56:59]   100/213 done, 1 errors, 179,344 tokens, ~$1.15 this run
+[2026-09-03 07:59:47]   150/213 done, 1 errors, 268,003 tokens, ~$1.73 this run
+[2026-09-03 08:02:21]   200/213 done, 1 errors, 368,280 tokens, ~$2.38 this run
+[2026-09-03 08:03:02]   213/213 done, 1 errors, 390,137 tokens, ~$2.52 this run
+[2026-09-03 08:03:02] deepseek_qwen/triggers/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.05_aware.jsonl", "jobs": 213, "cached": 0, "truncated_kept": 0, "run": 213, "errors": 1, "prompt_tokens": 184706, "completion_tokens": 205431, "est_cost_usd": 2.5161}
+[2026-09-03 08:03:02] /home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.25.jsonl: 213 jobs, 0 cached, 0 truncated (kept), 213 to run
+[2026-09-03 08:05:56]   50/213 done, 0 errors, 83,532 tokens, ~$0.53 this run
+[2026-09-03 08:08:40]   100/213 done, 1 errors, 174,961 tokens, ~$1.12 this run
+[2026-09-03 08:11:26]   150/213 done, 1 errors, 271,775 tokens, ~$1.75 this run
+[2026-09-03 08:13:58]   200/213 done, 1 errors, 360,123 tokens, ~$2.32 this run
+[2026-09-03 08:14:41]   213/213 done, 1 errors, 380,645 tokens, ~$2.45 this run
+[2026-09-03 08:14:41] deepseek_qwen/triggers/alpha0.25: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.25.jsonl", "jobs": 213, "cached": 0, "truncated_kept": 0, "run": 213, "errors": 1, "prompt_tokens": 180839, "completion_tokens": 199806, "est_cost_usd": 2.4502}
+[2026-09-03 08:14:41] /home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.3.jsonl: 213 jobs, 0 cached, 0 truncated (kept), 213 to run
+[2026-09-03 08:17:17]   50/213 done, 0 errors, 93,239 tokens, ~$0.60 this run
+[2026-09-03 08:19:57]   100/213 done, 2 errors, 194,128 tokens, ~$1.29 this run
+[2026-09-03 08:22:32]   150/213 done, 2 errors, 294,884 tokens, ~$1.94 this run
+[2026-09-03 08:25:08]   200/213 done, 2 errors, 388,103 tokens, ~$2.54 this run
+[2026-09-03 08:25:48]   213/213 done, 2 errors, 409,127 tokens, ~$2.68 this run
+[2026-09-03 08:25:48] deepseek_qwen/triggers/alpha0.3: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/triggers/alpha0.3.jsonl", "jobs": 213, "cached": 0, "truncated_kept": 0, "run": 213, "errors": 2, "prompt_tokens": 188510, "completion_tokens": 220617, "est_cost_usd": 2.6774}
+[2026-09-03 08:25:48] done: 2,344 jobs, 2,344 run now, 8 errors, ~$25.28 this invocation
+[2026-09-03 08:25:48] rerun the same command to retry the errors; cached successes are skipped
+[2026-09-03 08:25:52] start: models=['deepseek_qwen', 'qwen3', 'qwq'] families=['harmbench'] limit=None dry_run=False
+[2026-09-03 08:25:52] /home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.0.jsonl: 99 jobs, 0 cached, 0 truncated (kept), 99 to run
+[2026-09-03 08:28:44]   50/99 done, 0 errors, 118,290 tokens, ~$0.78 this run
+[2026-09-03 08:31:25]   99/99 done, 1 errors, 229,481 tokens, ~$1.51 this run
+[2026-09-03 08:31:25] deepseek_qwen/harmbench/alpha0.0: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.0.jsonl", "jobs": 99, "cached": 0, "truncated_kept": 0, "run": 99, "errors": 1, "prompt_tokens": 104763, "completion_tokens": 124718, "est_cost_usd": 1.5091}
+[2026-09-03 08:31:25] /home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.05_aware.jsonl: 99 jobs, 0 cached, 0 truncated (kept), 99 to run
+[2026-09-03 08:34:12]   50/99 done, 2 errors, 110,544 tokens, ~$0.72 this run
+[2026-09-03 08:36:43]   99/99 done, 4 errors, 214,920 tokens, ~$1.40 this run
+[2026-09-03 08:36:43] deepseek_qwen/harmbench/alpha0.05_aware: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.05_aware.jsonl", "jobs": 99, "cached": 0, "truncated_kept": 0, "run": 99, "errors": 4, "prompt_tokens": 99274, "completion_tokens": 115646, "est_cost_usd": 1.4046}
+[2026-09-03 08:36:43] /home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.25.jsonl: 99 jobs, 0 cached, 0 truncated (kept), 99 to run
+[2026-09-03 08:39:31]   50/99 done, 2 errors, 103,998 tokens, ~$0.68 this run
+[2026-09-03 08:42:09]   99/99 done, 3 errors, 211,892 tokens, ~$1.38 this run
+[2026-09-03 08:42:09] deepseek_qwen/harmbench/alpha0.25: {"path": "/home/cutter/d10/results/annotations/deepseek_qwen/harmbench/alpha0.25.jsonl", "jobs": 99, "cached": 0, "truncated_kept": 0, "run": 99, "errors": 3, "prompt_tokens": 98839, "completion_tokens": 113053, "est_cost_usd": 1.3776}
+[2026-09-03 08:42:09] /home/cutter/d10/results/annotations/qwen3/harmbench/alpha0.0.jsonl: 102 jobs, 0 cached, 0 truncated (kept), 102 to run
