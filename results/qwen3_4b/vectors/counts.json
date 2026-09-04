@@ -1,0 +1,29 @@
+{
+ "all": {
+  "initializing": 985,
+  "deduction": 10478,
+  "adding-knowledge": 3048,
+  "uncertainty-estimation": 3081,
+  "example-testing": 2340,
+  "backtracking": 1376,
+  "overall": 499
+ },
+ "nontest": {
+  "initializing": 976,
+  "deduction": 10433,
+  "adding-knowledge": 3034,
+  "uncertainty-estimation": 2897,
+  "example-testing": 2320,
+  "backtracking": 1354,
+  "overall": 499
+ },
+ "testlex": {
+  "adding-knowledge": 14,
+  "overall": 209,
+  "example-testing": 20,
+  "backtracking": 22,
+  "deduction": 45,
+  "uncertainty-estimation": 184,
+  "initializing": 9
+ }
+}

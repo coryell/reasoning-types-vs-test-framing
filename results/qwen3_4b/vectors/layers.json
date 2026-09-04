@@ -1,0 +1,78 @@
+{
+ "candidates": [
+  13,
+  18,
+  23
+ ],
+ "n_eval": 20,
+ "fractions": {
+  "original": {
+   "backtracking": 0.09487793838480676,
+   "uncertainty-estimation": 0.25639246953557826
+  },
+  "backtracking/13/pos": {
+   "backtracking": 0.3078745620993634,
+   "uncertainty-estimation": 0.48606769160631064
+  },
+  "backtracking/13/neg": {
+   "backtracking": 0.0,
+   "uncertainty-estimation": 0.03649874281609195
+  },
+  "backtracking/18/pos": {
+   "backtracking": 0.13635903669041669,
+   "uncertainty-estimation": 0.5257391618260087
+  },
+  "backtracking/18/neg": {
+   "backtracking": 0.0,
+   "uncertainty-estimation": 0.09090909090909091
+  },
+  "backtracking/23/pos": {
+   "backtracking": 0.45734274119697055,
+   "uncertainty-estimation": 0.393783926322102
+  },
+  "backtracking/23/neg": {
+   "backtracking": 0.06421793664773227,
+   "uncertainty-estimation": 0.34838012884881236
+  },
+  "uncertainty-estimation/13/pos": {
+   "backtracking": 0.2134926575537338,
+   "uncertainty-estimation": 0.645254053060048
+  },
+  "uncertainty-estimation/13/neg": {
+   "backtracking": 0.05555555555555555,
+   "uncertainty-estimation": 0.16666666666666666
+  },
+  "uncertainty-estimation/18/pos": {
+   "backtracking": 0.03397047853014438,
+   "uncertainty-estimation": 0.7912943829842225
+  },
+  "uncertainty-estimation/18/neg": {
+   "backtracking": 0.0857142857142857,
+   "uncertainty-estimation": 0.06666666666666667
+  },
+  "uncertainty-estimation/23/pos": {
+   "backtracking": 0.4162166934719409,
+   "uncertainty-estimation": 0.49269483941675113
+  },
+  "uncertainty-estimation/23/neg": {
+   "backtracking": 0.06482790025752151,
+   "uncertainty-estimation": 0.05299560253468808
+  }
+ },
+ "chosen": {
+  "backtracking": {
+   "layer": 23,
+   "pos_minus_neg": 0.39312480454923826,
+   "original": 0.09487793838480676,
+   "pos": 0.45734274119697055,
+   "neg": 0.06421793664773227
+  },
+  "uncertainty-estimation": {
+   "layer": 18,
+   "pos_minus_neg": 0.7246277163175558,
+   "original": 0.25639246953557826,
+   "pos": 0.7912943829842225,
+   "neg": 0.06666666666666667
+  }
+ }
+}
