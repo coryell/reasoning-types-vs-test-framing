@@ -111,6 +111,9 @@ def test_followup_experiment_specs():
     assert f3["conds"][2].aware is False and f3["conds"][3].direction == "random" and f3["conds"][1].alpha == 0.2
     f4 = rf.experiment("f4_reverse", layers, 0.2)
     assert f4["framings"] == ["real"] and f4["conds"][0].layer == 23 and f4["conds"][2].direction == "uncertainty-estimation"
+    half = rf.experiment("f2_uncertainty", layers, 0.2, coefficient=0.5)
+    assert [c.coefficient for c in half["conds"][1:]] == [0.5, -0.5] * 3
+    assert rf.experiment("f4_reverse", layers, 0.2, coefficient=-0.25)["conds"][1].coefficient == -0.25
     with pytest.raises(SystemExit):
         rf.experiment("nope", layers, 0.2)
     # held-out trigger selection is disjoint from the gate + probe sets (offsets 0-600 under seed 0)

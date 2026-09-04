@@ -63,15 +63,18 @@ def chosen_layers(vectors_dir: Path) -> dict[str, int]:
     return {b: v["layer"] for b, v in json.loads((vectors_dir / "layers.json").read_text())["chosen"].items()}
 
 
-def experiment(name: str, layers: dict[str, int], strong_alpha: float) -> dict:
-    """Task set, framings and conditions per experiment."""
+def experiment(name: str, layers: dict[str, int], strong_alpha: float, coefficient: float = 1.0) -> dict:
+    """Task set, framings and conditions per experiment. ``coefficient`` scales every residual-add
+    arm (Venhoff's validation used ±1; on Qwen3-4B, +1 on the uncertainty direction at layer 18 is
+    degenerate — closure 17/120, 4-gram repetition 0.90 — so the follow-ups calibrate it first)."""
     unc, bt = layers["uncertainty-estimation"], layers["backtracking"]
+    c = abs(coefficient)
     if name == "f1_prompt":
         return {"task": "actions", "framings": ["real", "fake"], "conds": [Condition("prompt_test", kind="prompt", prompt_suffix=TEST_SCENARIO_SENTENCE)]}
     if name == "f2_uncertainty":
         conds = [Condition("baseline")]
         for vecs, tag in (("mean_vectors", "all"), ("mean_vectors_nontest", "nontest"), ("mean_vectors_testlex", "testlex")):
-            for coef, sign in ((1.0, "pos"), (-1.0, "neg")):
+            for coef, sign in ((c, "pos"), (-c, "neg")):
                 conds.append(Condition(f"unc_{tag}_{sign}", kind="residual_add", direction="uncertainty-estimation", vectors=vecs, layer=unc, coefficient=coef))
         return {"task": "triggers", "framings": ["real", "hypothetical"], "conds": conds}
     if name == "f3_triggers":
@@ -84,7 +87,7 @@ def experiment(name: str, layers: dict[str, int], strong_alpha: float) -> dict:
     if name == "f4_reverse":
         conds = []
         for b, layer, tag in (("backtracking", bt, "bt"), ("uncertainty-estimation", unc, "unc")):
-            for coef, sign in ((1.0, "pos"), (-1.0, "neg")):
+            for coef, sign in ((c, "pos"), (-c, "neg")):
                 conds.append(Condition(f"{tag}_{sign}", kind="residual_add", direction=b, vectors="mean_vectors", layer=layer, coefficient=coef))
         return {"task": "actions", "framings": ["real"], "conds": conds}
     raise SystemExit(f"unknown experiment {name}")
@@ -122,6 +125,7 @@ def main() -> None:
     ap.add_argument("--vectors-dir", type=Path, default=REPO / "results" / "qwen3_4b" / "vectors")
     ap.add_argument("--out-dir", type=Path, default=None, help="default results/qwen3_4b/followups/<experiment>")
     ap.add_argument("--strong-alpha", type=float, default=0.2, help="f3: |alpha| of the probe edit")
+    ap.add_argument("--coefficient", type=float, default=1.0, help="f2/f4: |coefficient| of the residual add (both signs)")
     ap.add_argument("--n-pairs", type=int, default=100, help="triggers: held-out pairs")
     ap.add_argument("--offset", type=int, default=HELD_OUT_OFFSET)
     ap.add_argument("--n-items", type=int, default=None, help="actions: first N items (smoke tests)")
@@ -135,7 +139,7 @@ def main() -> None:
     out_dir = args.out_dir or (REPO / "results" / "qwen3_4b" / "followups" / args.experiment)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    spec = experiment(args.experiment, chosen_layers(args.vectors_dir), args.strong_alpha)
+    spec = experiment(args.experiment, chosen_layers(args.vectors_dir), args.strong_alpha, args.coefficient)
     conds = spec["conds"]
     if args.arms:
         by_name = {c.name: c for c in conds}
