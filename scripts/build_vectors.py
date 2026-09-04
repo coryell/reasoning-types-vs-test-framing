@@ -82,6 +82,7 @@ def main() -> None:
     ap.add_argument("--concurrency", type=int, default=32)
     ap.add_argument("--seed", type=int, default=42, help="their seed")
     ap.add_argument("--stages", nargs="+", default=["generate", "annotate", "extract", "layers"])
+    ap.add_argument("--coefficient", type=float, default=1.0, help="layers: |coefficient| of the residual add (their setting is 1; +1 saturates Qwen3-4B). Values other than 1 write layers_c<coef>.json etc. beside the originals")
     ap.add_argument("--log", type=Path, default=REPO / "logs" / "build_vectors.log")
     args = ap.parse_args()
     log = make_logger(args.log)
@@ -168,22 +169,23 @@ def main() -> None:
         ev = ev[: args.n_eval]
         cfg = GenConfig(model_name=args.model, max_new_tokens=args.max_tokens, batch_size=args.batch_size, seed=args.seed)
         prompts = [format_prompt(tok, m["content"]) for m in ev]
+        sfx = "" if args.coefficient == 1.0 else f"_c{args.coefficient:g}"
         runs: dict[str, list[str]] = {}
         gens = generate(model, tok, prompts, cfg, log=log)
         runs["original"] = [g.text for g in gens]
         for b in STEER_BEHAVIOURS:
             for layer in cands:
-                vec = fv[b][layer].to(model.device).to(torch.bfloat16)
+                vec = (fv[b][layer] * abs(args.coefficient)).to(model.device).to(torch.bfloat16)
                 for sign, name in ((1, "pos"), (-1, "neg")):
                     with ResidualAdd(model, layer, sign * vec):
                         gens = generate(model, tok, prompts, cfg, log=log)
                     runs[f"{b}/{layer}/{name}"] = [g.text for g in gens]
-                    log(f"steered {b} layer {layer} {name}")
-        (args.out_dir / "layer_runs.json").write_text(json.dumps(runs, indent=1))
+                    log(f"steered {b} layer {layer} {name} (coefficient {args.coefficient})")
+        (args.out_dir / f"layer_runs{sfx}.json").write_text(json.dumps(runs, indent=1))
         jobs = [Job(id=f"{k}/{i}", prompt=venhoff_annotation_prompt(extract_thinking(t)), meta={"run": k, "i": i}) for k, texts in runs.items() for i, t in enumerate(texts) if extract_thinking(t).strip()]
         judge = Judge(concurrency=args.concurrency, provider=args.provider)
-        log(json.dumps(run_jobs(judge, jobs, args.out_dir / "layer_annotations.jsonl", log=log)))
-        recs = load_results(args.out_dir / "layer_annotations.jsonl")
+        log(json.dumps(run_jobs(judge, jobs, args.out_dir / f"layer_annotations{sfx}.jsonl", log=log)))
+        recs = load_results(args.out_dir / f"layer_annotations{sfx}.jsonl")
         frac: dict[str, dict[str, float]] = {}
         for k, texts in runs.items():
             vals = []
@@ -192,6 +194,9 @@ def main() -> None:
                 if r and record_ok(r):
                     vals.append(token_fractions(r["text"], t, tok))
             frac[k] = {b: (sum(v[b] for v in vals) / len(vals) if vals else float("nan")) for b in STEER_BEHAVIOURS}
+            # coherence of each steered run, so a layer is not chosen on saturated output
+            frac[k]["closure"] = sum("</think>" in t for t in texts) / len(texts)
+            frac[k]["repetition"] = sum(parse.repetition_rate(extract_thinking(t)) for t in texts) / len(texts)
         chosen = {}
         for b in STEER_BEHAVIOURS:
             best, score = None, -1.0
@@ -200,7 +205,7 @@ def main() -> None:
                 if s > score:
                     best, score = layer, s
             chosen[b] = {"layer": best, "pos_minus_neg": score, "original": frac["original"][b], "pos": frac[f"{b}/{best}/pos"][b], "neg": frac[f"{b}/{best}/neg"][b]}
-        (args.out_dir / "layers.json").write_text(json.dumps({"candidates": cands, "n_eval": len(ev), "fractions": frac, "chosen": chosen}, indent=1))
+        (args.out_dir / f"layers{sfx}.json").write_text(json.dumps({"coefficient": args.coefficient, "candidates": cands, "n_eval": len(ev), "fractions": frac, "chosen": chosen}, indent=1))
         log(f"chosen layers: {json.dumps(chosen)}")
 
 
