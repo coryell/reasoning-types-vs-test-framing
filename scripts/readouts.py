@@ -9,6 +9,7 @@ directions at their chosen layers, computed on the steered model (the arm's weig
     uv run python scripts/readouts.py --stage project       # projections (GPU)
     uv run python scripts/readouts.py --stage probe         # projection onto the awareness probe direction (GPU)
     uv run python scripts/readouts.py --stage prompt_state  # last-prompt-token state, before any generation (GPU)
+    uv run python scripts/readouts.py --stage project_incontext  # projections over the reasoning tokens with the prompt in context (GPU)
 
 The ``probe`` stage scores each trace's reasoning on the *unedited* model in the probe's own input
 regime (``build_probe.py --pooling whole``: chat template + lowercased task + lowercased reasoning,
@@ -23,6 +24,13 @@ system prompt), and projects it onto the rebuilt behaviour directions at their l
 probe direction at its index. With Qwen3's thinking template the last prompt token is the newline
 after ``assistant``, the position that generates ``<think>``. It measures the state an intervention
 induces before the model has written anything, independent of the sampled trace.
+
+The ``project_incontext`` stage is the ``project`` readout done properly for prompt conditions: the
+forward pass runs on the arm's chat-templated prompt followed by the trace's own reasoning, under the
+arm's condition, and the mean projection is taken over the reasoning tokens only. Where ``project``
+reads the written text in isolation (so a system-prompt cue can act only through what it changed in
+the writing), this measures the representation the model had while reasoning under the cue.
+Directions: the rebuilt behaviour directions at their layers and the probe direction at its index.
 """
 
 from __future__ import annotations
@@ -75,6 +83,25 @@ def last_token_projections(model, tok, prompt: str, dirs: list[tuple[str, int, t
 
 
 @torch.inference_mode()
+def in_context_projections(model, tok, prompt: str, reasoning: str, dirs: list[tuple[str, int, torch.Tensor]], max_len: int = 4096) -> dict[str, float]:
+    """Mean ``h · v̂`` over the reasoning tokens of ``prompt + reasoning`` (the generation-time context),
+    for every ``(name, hs_index, direction)``; NaN if the reasoning falls beyond ``max_len``."""
+    text = prompt + reasoning
+    enc = tok(text, return_tensors="pt", return_offsets_mapping=True, add_special_tokens=False, truncation=True, max_length=max_len)
+    offsets = enc.pop("offset_mapping")[0].tolist()
+    start = next((i for i, (a, b) in enumerate(offsets) if b > len(prompt)), None)  # first token that reaches into the reasoning
+    if start is None:
+        return {name: float("nan") for name, _, _ in dirs}
+    hs = model(**enc.to(model.device), output_hidden_states=True).hidden_states
+    out = {}
+    for name, hs_index, d in dirs:
+        h = hs[hs_index][0, start:].float()
+        v = d.to(h.device).float()
+        out[name] = float((h @ (v / v.norm())).mean()) if h.shape[0] else float("nan")
+    return out
+
+
+@torch.inference_mode()
 def whole_reasoning_probe_score(model, tok, task: str, raw: str, hs_index: int, direction: torch.Tensor, max_len: int = 3072) -> float:
     """The probe's input regime (``build_probe.py --pooling whole``): mean hidden state over the
     reasoning tokens of chat-template(lowercased task) + lowercased reasoning, dotted with ``v̂``."""
@@ -107,7 +134,7 @@ def load_arm(p: Path, model_name: str, family: str | None):
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--stage", choices=["annotate", "awareness", "project", "probe", "prompt_state"], required=True)
+    ap.add_argument("--stage", choices=["annotate", "awareness", "project", "probe", "prompt_state", "project_incontext"], required=True)
     ap.add_argument("--steering-dir", type=Path, default=REPO / "results" / "qwen3_4b" / "steering")
     ap.add_argument("--vectors-dir", type=Path, default=REPO / "results" / "qwen3_4b" / "vectors")
     ap.add_argument("--probe", type=Path, default=REPO / "results" / "qwen3_4b" / "probe" / "probe_best.json")
@@ -177,6 +204,43 @@ def main() -> None:
                         log(f"  {p.stem}: {len(rows)} prompt states")
             out.write_text(json.dumps({"arm": p.stem, "condition": cond.to_dict(), "directions": {n: {"hs_index": h} for n, h, _ in dirs}, "system_prompt": system, "rows": rows}, indent=1))
             log(f"{p.stem}: wrote {len(rows)} prompt states")
+
+    elif args.stage == "project_incontext":
+        model, tok = load_model(args.model)
+        fv = feature_vectors(torch.load(args.vectors_dir / "mean_vectors.pt"))
+        layers = json.loads((args.vectors_dir / "layers.json").read_text())["chosen"]
+        probe = json.loads(args.probe.read_text())
+        dirs = [(b, layers[b]["layer"] + 1, fv[b][layers[b]["layer"]]) for b in layers] + [("probe", int(probe["layer"]), torch.tensor(probe["direction"], dtype=torch.float32))]
+        for p in arms:
+            out = p.with_suffix(p.suffix + ".projections_incontext.json")
+            if out.exists():
+                log(f"{p.stem}: in-context projections exist, skipping")
+                continue
+            traces, cond = load_arm(p, args.model_name, args.family)
+            side = json.loads(p.with_suffix(p.suffix + ".gen.json").read_text())
+            enable_thinking = bool(side.get("config", {}).get("enable_thinking", True))
+            records = json.loads(p.read_text())
+            if not records:
+                continue
+            is_actions = "data_item" in records[0]
+            system = cond.system_prompt(AGENT_PROMPT.read_text() if is_actions else None)
+            rows = []
+            with applied(model, cond, probe=probe, vectors_dir=args.vectors_dir):
+                log(f"{p.stem}: condition {cond.kind} {json.dumps(cond.info)}; system prompt {'present' if system else 'none'}")
+                for t in traces:
+                    if not t.reasoning.strip():
+                        continue
+                    rec = records[t.index]
+                    user = action_prompt(rec["data_item"], t.framing) if is_actions else rec[t.framing]
+                    prompt = format_prompt(tok, user, system=system, enable_thinking=enable_thinking)
+                    think = t.raw.split("</think>")[0]  # the model's own reasoning, from <think>
+                    row = {"id": t.id, "index": t.index, "framing": t.framing}
+                    row.update({f"proj_incontext_{k}": v for k, v in in_context_projections(model, tok, prompt, think, dirs).items()})
+                    rows.append(row)
+                    if len(rows) % 50 == 0:
+                        log(f"  {p.stem}: {len(rows)} in-context projections")
+            out.write_text(json.dumps({"arm": p.stem, "condition": cond.to_dict(), "directions": {n: {"hs_index": h} for n, h, _ in dirs}, "system_prompt": system, "rows": rows}, indent=1))
+            log(f"{p.stem}: wrote {len(rows)} in-context projections")
 
     elif args.stage == "probe":
         model, tok = load_model(args.model)

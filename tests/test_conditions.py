@@ -54,6 +54,8 @@ def test_condition_from_sidecar_prefers_serialised(tmp_path):
     assert C.condition_from_sidecar(tmp_path / "prompt_test.json", side) == c
     legacy = C.condition_from_sidecar(tmp_path / "aware.json", {"alpha": 0.05, "aware": True, "config": {"seed": 3}})
     assert legacy.kind == "weight_edit" and legacy.seed == 3
+    second = C.condition_from_sidecar(tmp_path / "random_aware_seed1.json", {"alpha": 0.05, "aware": True, "config": {"seed": 1}})
+    assert second.direction == "random" and second.seed == 0  # the random direction was drawn at the base seed
 
 
 def test_applied_weight_edit_undoes():

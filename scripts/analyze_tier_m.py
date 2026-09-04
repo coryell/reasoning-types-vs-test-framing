@@ -46,7 +46,7 @@ def build_trace_table(files: list[Path], model_name: str, family: str | None = N
         ann = load_results(p.with_suffix(p.suffix + ".annotations.jsonl"))
         aw = load_results(p.with_suffix(p.suffix + ".awareness.jsonl"))
         proj: dict[str, dict] = {}
-        for suffix in (".projections.json", ".probe_projections.json", ".prompt_state.json"):
+        for suffix in (".projections.json", ".probe_projections.json", ".prompt_state.json", ".projections_incontext.json"):
             f = p.with_suffix(p.suffix + suffix)
             if f.exists():
                 for r in json.loads(f.read_text())["rows"]:

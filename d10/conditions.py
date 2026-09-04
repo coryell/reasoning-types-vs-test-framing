@@ -88,8 +88,11 @@ def legacy_condition(arm: str, alpha: float, aware: bool) -> Condition:
 def condition_from_sidecar(path: Path, side: dict) -> Condition:
     if isinstance(side.get("condition"), dict):
         return Condition.from_dict(side["condition"])
-    c = legacy_condition(Path(path).stem, float(side.get("alpha", 0.0)), bool(side.get("aware")))
-    c.seed = int(side.get("config", {}).get("seed", 0))
+    stem = Path(path).stem
+    c = legacy_condition(stem, float(side.get("alpha", 0.0)), bool(side.get("aware")))
+    # run_steering.py draws its random direction from the *base* seed even for the `_seed1` second
+    # decodes (whose generation seed is base + 1), so the edit seed is recovered from the name
+    c.seed = int(side.get("config", {}).get("seed", 0)) - (1 if stem.endswith("_seed1") else 0)
     return c
 
 

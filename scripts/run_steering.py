@@ -2,7 +2,8 @@
 """Steer a local model with Abdelnabi & Salem's weight edit and generate the actions set under each
 condition (EXECUTION_PLAN_2 §M3), plus the α sweep that picks the coefficients.
 
-Conditions are named arms so the Tier 1 loaders and analysis apply unchanged:
+Conditions are named arms so the Tier 1 loaders and analysis apply unchanged (any arm plus a
+``_seed1`` suffix is a second decode of that arm at seed + 1, with the same edit):
   baseline · baseline_seed1 · aware · unaware · aware_strong · unaware_strong (probe edit at a larger |α|) · random_aware (matched-norm Gaussian direction through
   the same top-800 pipeline, so it selects its own rows) · shuffled_aware (direction from the
   shuffled-label probe, matched norm, own rows) · random_samerows_aware and shuffled_samerows_aware
@@ -100,10 +101,14 @@ def main_conditions(v_pos, v_shuf, rnd, alpha_aware: float, alpha_unaware: float
         conds["unaware_strong"] = ("unaware_strong", v_pos, strong_alpha, False)
     if arms is None:
         return list(conds.values())
-    unknown = [a for a in arms if a not in conds]
-    if unknown:
-        raise SystemExit(f"unknown arms {unknown}; known: {list(conds)}")
-    return [conds[a] for a in arms]
+    out = []
+    for a in arms:
+        base = a[: -len("_seed1")] if a.endswith("_seed1") and a not in conds else a
+        if base not in conds:
+            raise SystemExit(f"unknown arm {a}; known: {list(conds)} (+ any of them with a _seed1 suffix: a second decode at seed + 1)")
+        name, vec, alpha, aware = conds[base]
+        out.append((a, vec, alpha, aware))
+    return out
 
 
 def main() -> None:
@@ -153,15 +158,15 @@ def main() -> None:
         if path.exists():
             log(f"{name}: exists, skipping")
             continue
-        cfg.seed = args.seed + (1 if name == "baseline_seed1" else 0)
-        fixed_rows = rank_rows(model, v_pos) if name.endswith("_samerows_aware") else None
+        cfg.seed = args.seed + (1 if name.endswith("_seed1") else 0)  # *_seed1: a second decode of that arm
+        fixed_rows = rank_rows(model, v_pos) if "_samerows_aware" in name else None
         edit = apply_edit(model, vec, alpha, aware, rows=fixed_rows) if vec is not None and alpha else None
         rel = None
         if edit is not None:
             row_norms = torch.stack([edit.originals[(l, r)].float().norm() for l, r, _ in edit.layer_rows])
             rel = float(alpha * vec.norm() / row_norms.mean())  # size of the edit relative to the rows it touches
         log(f"{name}: alpha={alpha} aware={aware} rows edited={len(edit.layer_rows) if edit else 0} relative edit={rel}")
-        cfg.notes = {"arm": name, "alpha": alpha, "aware": aware, "layer_histogram": edit.layer_histogram if edit else {}, "probe_layer": probe["layer"], "relative_edit": rel, "vector_norm": float(vec.norm()) if vec is not None else None, "rows_from": "probe direction" if name.endswith("_samerows_aware") else "edit direction"}
+        cfg.notes = {"arm": name, "alpha": alpha, "aware": aware, "layer_histogram": edit.layer_histogram if edit else {}, "probe_layer": probe["layer"], "relative_edit": rel, "vector_norm": float(vec.norm()) if vec is not None else None, "rows_from": "probe direction" if "_samerows_aware" in name else "edit direction"}
         try:
             data = generate_arm(model, tok, items, framings, cfg, system, log)
         finally:

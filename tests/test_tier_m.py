@@ -356,3 +356,6 @@ def test_main_conditions_order_and_strong_arms():
     assert sub[3][1] is not v and sub[3][2] == 0.05
     with pytest.raises(SystemExit):
         rs.main_conditions(v, v, v, 0.05, 0.1, arms=["nope"])
+    fresh = rs.main_conditions(v, v * 2, v * 3, 0.05, 0.1, strong_alpha=0.2, arms=["aware_strong_seed1", "baseline_seed1"])
+    assert fresh[0][0] == "aware_strong_seed1" and fresh[0][1] is v and fresh[0][2] == 0.2 and fresh[0][3] is True
+    assert fresh[1] == ("baseline_seed1", None, 0.0, True)
