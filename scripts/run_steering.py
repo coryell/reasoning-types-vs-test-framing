@@ -3,7 +3,7 @@
 condition (EXECUTION_PLAN_2 §M3), plus the α sweep that picks the coefficients.
 
 Conditions are named arms so the Tier 1 loaders and analysis apply unchanged:
-  baseline · baseline_seed1 · aware · unaware · random_aware (matched-norm Gaussian direction through
+  baseline · baseline_seed1 · aware · unaware · aware_strong · unaware_strong (probe edit at a larger |α|) · random_aware (matched-norm Gaussian direction through
   the same top-800 pipeline, so it selects its own rows) · shuffled_aware (direction from the
   shuffled-label probe, matched norm, own rows) · random_samerows_aware and shuffled_samerows_aware
   (the 800 rows the probe direction selects, edited with the random / shuffled direction).
@@ -15,6 +15,9 @@ Outputs, per arm, ``<out-dir>/<arm>.json`` in the shipped actions layout (``data
     uv run python scripts/run_steering.py sweep --alphas 0.02 0.05 0.1 0.2 --n-items 40
     # main run with the chosen coefficients
     uv run python scripts/run_steering.py main --alpha-aware 0.05 --alpha-unaware 0.1
+    # resume in a chosen order, adding the stronger-coefficient arms
+    uv run python scripts/run_steering.py main --alpha-aware 0.05 --alpha-unaware 0.1 --strong-alpha 0.2 \
+        --arms baseline_seed1 aware_strong unaware_strong shuffled_aware random_samerows_aware shuffled_samerows_aware
 """
 
 from __future__ import annotations
@@ -76,6 +79,33 @@ def generate_arm(model, tok, items, framings, cfg, system, log):
     return out
 
 
+def main_conditions(v_pos, v_shuf, rnd, alpha_aware: float, alpha_unaware: float, strong_alpha: float | None = None, arms: list[str] | None = None) -> list[tuple]:
+    """``(name, vector, alpha, aware)`` per arm. Essential arms first so a deadline can cut the tail.
+    The four controls form a 2x2: direction (random | shuffled-label probe) x rows (self-selected by
+    that direction | the 800 rows the real probe direction selects). ``aware_strong`` /
+    ``unaware_strong`` (only with ``strong_alpha``) re-run the probe edit at a larger coefficient.
+    ``arms`` selects and orders a subset; an unknown name is an error."""
+    conds = {
+        "baseline": ("baseline", None, 0.0, True),
+        "aware": ("aware", v_pos, alpha_aware, True),
+        "unaware": ("unaware", v_pos, alpha_unaware, False),
+        "random_aware": ("random_aware", rnd, alpha_aware, True),
+        "shuffled_aware": ("shuffled_aware", v_shuf, alpha_aware, True),
+        "random_samerows_aware": ("random_samerows_aware", rnd, alpha_aware, True),
+        "shuffled_samerows_aware": ("shuffled_samerows_aware", v_shuf, alpha_aware, True),
+        "baseline_seed1": ("baseline_seed1", None, 0.0, True),  # a second decode of the baseline: the paired-delta noise floor
+    }
+    if strong_alpha:
+        conds["aware_strong"] = ("aware_strong", v_pos, strong_alpha, True)
+        conds["unaware_strong"] = ("unaware_strong", v_pos, strong_alpha, False)
+    if arms is None:
+        return list(conds.values())
+    unknown = [a for a in arms if a not in conds]
+    if unknown:
+        raise SystemExit(f"unknown arms {unknown}; known: {list(conds)}")
+    return [conds[a] for a in arms]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("mode", choices=["sweep", "main"])
@@ -86,6 +116,8 @@ def main() -> None:
     ap.add_argument("--n-items", type=int, default=40, help="sweep: items (real framing only)")
     ap.add_argument("--alpha-aware", type=float, default=None)
     ap.add_argument("--alpha-unaware", type=float, default=None)
+    ap.add_argument("--strong-alpha", type=float, default=None, help="main: also run aware_strong / unaware_strong at this |alpha| (the sweep repetition guard was calibrated on a 40-item baseline that undershot the full-size baseline)")
+    ap.add_argument("--arms", nargs="+", default=None, help="main: subset and order of arms to run (default: all, essential first)")
     ap.add_argument("--max-new-tokens", type=int, default=1536)
     ap.add_argument("--batch-size", type=int, default=6)
     ap.add_argument("--greedy", action="store_true", help="their steered-output setting (do_sample=False)")
@@ -114,20 +146,8 @@ def main() -> None:
     else:
         assert args.alpha_aware is not None and args.alpha_unaware is not None, "main needs --alpha-aware and --alpha-unaware"
         framings = ["real", "fake"]
-        # Essential arms first so a deadline can cut the tail. The four controls form a 2x2:
-        # direction (random | shuffled-label probe) x rows (self-selected by that direction | the
-        # 800 rows the real probe direction selects).
-        rnd = random_direction_like(v_pos, seed=args.seed)
-        conds = [
-            ("baseline", None, 0.0, True),
-            ("aware", v_pos, args.alpha_aware, True),
-            ("unaware", v_pos, args.alpha_unaware, False),
-            ("random_aware", rnd, args.alpha_aware, True),
-            ("shuffled_aware", v_shuf, args.alpha_aware, True),
-            ("random_samerows_aware", rnd, args.alpha_aware, True),
-            ("shuffled_samerows_aware", v_shuf, args.alpha_aware, True),
-            ("baseline_seed1", None, 0.0, True),  # a second decode of the baseline: the paired-delta noise floor
-        ]
+        conds = main_conditions(v_pos, v_shuf, random_direction_like(v_pos, seed=args.seed), args.alpha_aware, args.alpha_unaware, args.strong_alpha, args.arms)
+    log(f"{args.mode}: arms {[c[0] for c in conds]}")
     for name, vec, alpha, aware in conds:
         path = out_dir / f"{name}.json"
         if path.exists():

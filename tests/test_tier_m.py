@@ -337,3 +337,22 @@ def test_flips_reaches_tier_m_tables():
     assert len(two) == 1 and two.iloc[0].gained == 2 and two.iloc[0].lost == 0
     r = by_class[(by_class.flip_class == "refuse_both") & (by_class.behaviour == "deduction") & (by_class.metric == "density")].iloc[0]
     assert r.n == 8 and r.delta_density == pytest.approx(-1.0, abs=0.5)
+
+
+# ---------------------------------------------------------------- run_steering arm list
+def test_main_conditions_order_and_strong_arms():
+    import importlib.util, pathlib
+    spec = importlib.util.spec_from_file_location("run_steering", pathlib.Path(__file__).resolve().parents[1] / "scripts" / "run_steering.py")
+    rs = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rs)
+    v = torch.ones(4)
+    default = rs.main_conditions(v, v * 2, v * 3, 0.05, 0.1)
+    assert [c[0] for c in default][:3] == ["baseline", "aware", "unaware"] and default[-1][0] == "baseline_seed1"
+    assert all(c[0] not in ("aware_strong", "unaware_strong") for c in default)
+    sub = rs.main_conditions(v, v * 2, v * 3, 0.05, 0.1, strong_alpha=0.2, arms=["baseline_seed1", "aware_strong", "unaware_strong", "shuffled_aware"])
+    assert [c[0] for c in sub] == ["baseline_seed1", "aware_strong", "unaware_strong", "shuffled_aware"]
+    assert sub[1][1] is v and sub[1][2] == 0.2 and sub[1][3] is True
+    assert sub[2][2] == 0.2 and sub[2][3] is False
+    assert sub[3][1] is not v and sub[3][2] == 0.05
+    with pytest.raises(SystemExit):
+        rs.main_conditions(v, v, v, 0.05, 0.1, arms=["nope"])
