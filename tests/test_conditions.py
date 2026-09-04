@@ -139,3 +139,38 @@ def test_applied_matches_run_steering_path():
         with C.applied(m2, cond, probe=probe):
             assert all(torch.equal(a.mlp.gate_proj.weight, b.mlp.gate_proj.weight) for a, b in zip(m1.model.layers, m2.model.layers)), arm
         undo_edit(m1, edit)
+
+
+def test_api_prompt_serialisation():
+    import importlib.util, pathlib, sys, types
+    scripts = pathlib.Path(__file__).resolve().parents[1] / "scripts"
+    sys.path.insert(0, str(scripts))
+    spec = importlib.util.spec_from_file_location("run_api_prompt", scripts / "run_api_prompt.py")
+    ra = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(ra)
+    from d10.shipped import split_think
+
+    msg = types.SimpleNamespace(content="  Final answer.", model_extra={"reasoning": "  I think.\n"})
+    text, src = ra.serialise(msg)
+    assert src == "reasoning_field" and text.startswith("<think>\nI think.\n</think>\n\nFinal answer.")
+    reasoning, answer, closed = split_think(text)
+    assert closed and reasoning.strip() == "I think." and answer.strip() == "Final answer."
+    inline = types.SimpleNamespace(content="<think>\nhmm\n</think>\n\nok", model_extra={})
+    assert ra.serialise(inline) == (inline.content, "inline")
+    bare = types.SimpleNamespace(content="just an answer", model_extra={"reasoning": None})
+    assert ra.serialise(bare) == ("just an answer", "none")
+    none = types.SimpleNamespace(content=None, model_extra={})
+    assert ra.serialise(none) == ("", "none")
+    # truncated: reasoning but no answer / no clean stop → unclosed think block, executed == None downstream
+    cut = types.SimpleNamespace(content="", model_extra={"reasoning": "partial"})
+    text, _ = ra.serialise(cut, "length")
+    assert text == "<think>\npartial" and split_think(text)[2] is False
+    text, _ = ra.serialise(types.SimpleNamespace(content="ans", model_extra={"reasoning": "r"}), "length")
+    assert not split_think(text)[2]
+    both = types.SimpleNamespace(content="<think>\ndup\n</think>\n\nanswer", model_extra={"reasoning": "field"})
+    text, _ = ra.serialise(both)
+    assert text.count("<think>") == 1 and split_think(text)[1].strip() == "answer" and "field" in split_think(text)[0]
+    alt = types.SimpleNamespace(content="a", model_extra={"reasoning_content": "rc"})
+    assert ra.serialise(alt)[1] == "reasoning_field"
+    names = [c.name for c in ra.conditions()]
+    assert names == ["baseline", "prompt_test"] and ra.conditions()[1].system_prompt("AGENT").endswith(ra.TEST_SCENARIO_SENTENCE)
