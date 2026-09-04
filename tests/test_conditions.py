@@ -176,3 +176,26 @@ def test_api_prompt_serialisation():
     assert ra.serialise(alt)[1] == "reasoning_field"
     names = [c.name for c in ra.conditions()]
     assert names == ["baseline", "prompt_test"] and ra.conditions()[1].system_prompt("AGENT").endswith(ra.TEST_SCENARIO_SENTENCE)
+
+
+def test_shipped_probe_geometry_stats():
+    import importlib.util, pathlib, sys
+    scripts = pathlib.Path(__file__).resolve().parents[1] / "scripts"
+    spec = importlib.util.spec_from_file_location("probe_geometry_shipped", scripts / "probe_geometry_shipped.py")
+    pg = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(pg)
+    # a fully trained head: rows exactly opposite → w1 is the discriminant
+    w1 = torch.tensor([3.0, 4.0]); sd = {"fc.weight": torch.stack([-w1, w1]), "fc.bias": torch.tensor([0.0, 1.0])}
+    s = pg.probe_stats(sd)
+    assert abs(s["cos_w1_diff"] - 1.0) < 1e-6 and abs(s["cos_w0_w1"] + 1.0) < 1e-6 and abs(s["frac_w1_along_diff"] - 1.0) < 1e-6 and s["bias_diff"] == 1.0
+    # an untrained-looking head: orthogonal rows → half of w1 lies along the discriminant, cos 1/√2
+    sd = {"fc.weight": torch.tensor([[1.0, 0.0], [0.0, 1.0]]), "fc.bias": torch.zeros(2)}
+    s = pg.probe_stats(sd)
+    assert abs(s["cos_w1_diff"] - 1 / 2 ** 0.5) < 1e-6 and abs(s["frac_w1_along_diff"] - 0.5) < 1e-6 and s["cos_w0_w1"] == 0.0
+    assert abs(pg.INIT_ROW_RMS - 0.57735) < 1e-4
+    # w1 + w0 is invariant under their training: the stat must return the init sum, and init_over_w1 = ‖c‖/‖w1‖
+    c = torch.tensor([0.3, -0.4]); delta = torch.tensor([2.0, 1.0])
+    s = pg.probe_stats({"fc.weight": torch.stack([c - delta, c + delta]), "fc.bias": torch.zeros(2)})
+    assert abs(s["norm_sum"] - float((2 * c).norm())) < 1e-6 and abs(s["init_over_w1"] - float(c.norm() / (c + delta).norm())) < 1e-6
+    zero = pg.probe_stats({"fc.weight": torch.stack([c, c]), "fc.bias": torch.zeros(2)})
+    assert zero["frac_w1_along_diff"] != zero["frac_w1_along_diff"]  # NaN when the rows coincide
