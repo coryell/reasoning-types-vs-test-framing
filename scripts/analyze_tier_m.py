@@ -15,6 +15,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from scipy import stats
 
 from d10 import analysis as A
 from d10 import parse
@@ -44,8 +45,12 @@ def build_trace_table(files: list[Path], model_name: str, family: str | None = N
         alpha, aware = cond.signed
         ann = load_results(p.with_suffix(p.suffix + ".annotations.jsonl"))
         aw = load_results(p.with_suffix(p.suffix + ".awareness.jsonl"))
-        projf = p.with_suffix(p.suffix + ".projections.json")
-        proj = {r["id"]: r for r in json.loads(projf.read_text())["rows"]} if projf.exists() else {}
+        proj: dict[str, dict] = {}
+        for suffix in (".projections.json", ".probe_projections.json", ".prompt_state.json"):
+            f = p.with_suffix(p.suffix + suffix)
+            if f.exists():
+                for r in json.loads(f.read_text())["rows"]:
+                    proj.setdefault(r["id"], {}).update({k: v for k, v in r.items() if k.startswith("proj_")})
         for t in load_generations(p, model_name, fam, arm, alpha, aware):
             rec = ann.get(t.id)
             usable = bool(rec and record_ok(rec))
@@ -199,6 +204,22 @@ def main() -> None:
             pr.to_csv(args.root / f"{pre}steering_projections.csv", index=False)
             parts.append("\n## Representation-level morphology: Δ mean projection onto the rebuilt directions (steered model's own activations)\n")
             parts.append(md(pr, ["arm", "framing", "projection", "n_pairs", "base_mean", "delta", "ci_lo", "ci_hi"], 4))
+        if "proj_probe" in df and df.proj_probe.notna().any():
+            # the awareness probe's view of each arm's text (unedited model), split by the judge's verdict
+            rows = []
+            for arm in order:
+                for fr in framings:
+                    s = df[(df.arm == arm) & (df.framing == fr) & df.proj_probe.notna()]
+                    yes, no = s[s.aware_judged == "Yes"].proj_probe, s[s.aware_judged == "No"].proj_probe
+                    d = s.proj_probe.to_numpy(dtype=float)
+                    lo, hi = A.boot_ci(d) if len(d) else (math.nan, math.nan)
+                    rows.append({"arm": arm, "framing": fr, "n": len(s), "mean": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi,
+                                 "n_verbalizing": int(len(yes)), "mean_verbalizing": float(yes.mean()) if len(yes) else math.nan, "mean_not": float(no.mean()) if len(no) else math.nan,
+                                 "p_welch": float(stats.ttest_ind(yes, no, equal_var=False).pvalue) if len(yes) > 1 and len(no) > 1 else math.nan})
+            pb = pd.DataFrame(rows)
+            pb.to_csv(args.root / f"{pre}probe_projections.csv", index=False)
+            parts.append("\n## Awareness-probe score of each arm's reasoning (unedited model, the probe's own input regime and hidden-state index): per arm, and verbalizing vs non-verbalizing traces within the arm\n")
+            parts.append(md(pb, ["arm", "framing", "n", "mean", "ci_lo", "ci_hi", "n_verbalizing", "mean_verbalizing", "mean_not", "p_welch"], 4))
     out = args.root / (f"SUMMARY_{args.out_prefix}.md" if args.out_prefix else "SUMMARY_M.md")
     out.write_text("\n".join(parts) + "\n")
     print(f"wrote {out}")
