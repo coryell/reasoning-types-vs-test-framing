@@ -1,0 +1,919 @@
+{
+ "arm": "bt_pos",
+ "condition": {
+  "name": "bt_pos",
+  "kind": "residual_add",
+  "direction": "backtracking",
+  "alpha": 0.0,
+  "aware": true,
+  "rows_from": "edit direction",
+  "vectors": "mean_vectors",
+  "layer": 23,
+  "coefficient": 0.25,
+  "prompt_suffix": "",
+  "seed": 0,
+  "info": {
+   "vector_norm": 18.28502655029297,
+   "layer": 23
+  }
+ },
+ "probe_hs_index": 20,
+ "model_edited": false,
+ "pooling": "whole reasoning, probe input regime",
+ "rows": [
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/0/real",
+   "index": 0,
+   "framing": "real",
+   "proj_probe": -1.3693153858184814
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/1/real",
+   "index": 1,
+   "framing": "real",
+   "proj_probe": 1.3565555810928345
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/2/real",
+   "index": 2,
+   "framing": "real",
+   "proj_probe": -2.9088709354400635
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/3/real",
+   "index": 3,
+   "framing": "real",
+   "proj_probe": -1.396880865097046
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/4/real",
+   "index": 4,
+   "framing": "real",
+   "proj_probe": -0.4609683156013489
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/5/real",
+   "index": 5,
+   "framing": "real",
+   "proj_probe": -4.960278034210205
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/6/real",
+   "index": 6,
+   "framing": "real",
+   "proj_probe": -1.033257246017456
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/7/real",
+   "index": 7,
+   "framing": "real",
+   "proj_probe": -0.2656196355819702
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/8/real",
+   "index": 8,
+   "framing": "real",
+   "proj_probe": -4.5980305671691895
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/9/real",
+   "index": 9,
+   "framing": "real",
+   "proj_probe": -0.04750478267669678
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/10/real",
+   "index": 10,
+   "framing": "real",
+   "proj_probe": 0.7247164249420166
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/11/real",
+   "index": 11,
+   "framing": "real",
+   "proj_probe": -4.248542785644531
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/12/real",
+   "index": 12,
+   "framing": "real",
+   "proj_probe": -1.8644856214523315
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/13/real",
+   "index": 13,
+   "framing": "real",
+   "proj_probe": -3.9574904441833496
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/14/real",
+   "index": 14,
+   "framing": "real",
+   "proj_probe": -0.4546326994895935
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/15/real",
+   "index": 15,
+   "framing": "real",
+   "proj_probe": -3.41753888130188
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/16/real",
+   "index": 16,
+   "framing": "real",
+   "proj_probe": 1.0844066143035889
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/17/real",
+   "index": 17,
+   "framing": "real",
+   "proj_probe": -2.5641584396362305
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/18/real",
+   "index": 18,
+   "framing": "real",
+   "proj_probe": -1.465799331665039
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/19/real",
+   "index": 19,
+   "framing": "real",
+   "proj_probe": 0.6782889366149902
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/20/real",
+   "index": 20,
+   "framing": "real",
+   "proj_probe": -0.5870513916015625
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/21/real",
+   "index": 21,
+   "framing": "real",
+   "proj_probe": 0.4627861976623535
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/22/real",
+   "index": 22,
+   "framing": "real",
+   "proj_probe": 0.5422688722610474
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/23/real",
+   "index": 23,
+   "framing": "real",
+   "proj_probe": 0.037493348121643066
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/24/real",
+   "index": 24,
+   "framing": "real",
+   "proj_probe": -0.152055561542511
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/25/real",
+   "index": 25,
+   "framing": "real",
+   "proj_probe": -3.8914434909820557
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/26/real",
+   "index": 26,
+   "framing": "real",
+   "proj_probe": 1.2558183670043945
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/27/real",
+   "index": 27,
+   "framing": "real",
+   "proj_probe": -2.785125732421875
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/28/real",
+   "index": 28,
+   "framing": "real",
+   "proj_probe": -3.7267065048217773
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/29/real",
+   "index": 29,
+   "framing": "real",
+   "proj_probe": 0.4509337544441223
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/30/real",
+   "index": 30,
+   "framing": "real",
+   "proj_probe": -1.4577054977416992
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/31/real",
+   "index": 31,
+   "framing": "real",
+   "proj_probe": -0.5434834957122803
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/32/real",
+   "index": 32,
+   "framing": "real",
+   "proj_probe": -3.3052098751068115
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/33/real",
+   "index": 33,
+   "framing": "real",
+   "proj_probe": -2.6105761528015137
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/34/real",
+   "index": 34,
+   "framing": "real",
+   "proj_probe": -0.4488387107849121
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/35/real",
+   "index": 35,
+   "framing": "real",
+   "proj_probe": -2.3233025074005127
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/36/real",
+   "index": 36,
+   "framing": "real",
+   "proj_probe": -0.8598573207855225
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/37/real",
+   "index": 37,
+   "framing": "real",
+   "proj_probe": -1.5054683685302734
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/38/real",
+   "index": 38,
+   "framing": "real",
+   "proj_probe": 1.1176674365997314
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/39/real",
+   "index": 39,
+   "framing": "real",
+   "proj_probe": -2.3642005920410156
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/40/real",
+   "index": 40,
+   "framing": "real",
+   "proj_probe": -2.99247670173645
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/41/real",
+   "index": 41,
+   "framing": "real",
+   "proj_probe": 0.5346641540527344
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/42/real",
+   "index": 42,
+   "framing": "real",
+   "proj_probe": -0.8668619990348816
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/43/real",
+   "index": 43,
+   "framing": "real",
+   "proj_probe": -1.1931548118591309
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/44/real",
+   "index": 44,
+   "framing": "real",
+   "proj_probe": 0.7466481924057007
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/45/real",
+   "index": 45,
+   "framing": "real",
+   "proj_probe": -3.8661582469940186
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/46/real",
+   "index": 46,
+   "framing": "real",
+   "proj_probe": -0.5350855588912964
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/47/real",
+   "index": 47,
+   "framing": "real",
+   "proj_probe": -3.538952112197876
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/48/real",
+   "index": 48,
+   "framing": "real",
+   "proj_probe": 0.5354931354522705
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/49/real",
+   "index": 49,
+   "framing": "real",
+   "proj_probe": -1.713498592376709
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/50/real",
+   "index": 50,
+   "framing": "real",
+   "proj_probe": 0.9752329587936401
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/51/real",
+   "index": 51,
+   "framing": "real",
+   "proj_probe": -1.0583088397979736
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/52/real",
+   "index": 52,
+   "framing": "real",
+   "proj_probe": -3.1958327293395996
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/53/real",
+   "index": 53,
+   "framing": "real",
+   "proj_probe": 1.5007762908935547
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/54/real",
+   "index": 54,
+   "framing": "real",
+   "proj_probe": -4.399050235748291
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/55/real",
+   "index": 55,
+   "framing": "real",
+   "proj_probe": -2.0487754344940186
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/56/real",
+   "index": 56,
+   "framing": "real",
+   "proj_probe": -0.9705449342727661
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/57/real",
+   "index": 57,
+   "framing": "real",
+   "proj_probe": -2.750554084777832
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/58/real",
+   "index": 58,
+   "framing": "real",
+   "proj_probe": -1.0322600603103638
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/59/real",
+   "index": 59,
+   "framing": "real",
+   "proj_probe": -1.941765308380127
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/60/real",
+   "index": 60,
+   "framing": "real",
+   "proj_probe": 0.9162604212760925
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/61/real",
+   "index": 61,
+   "framing": "real",
+   "proj_probe": -0.06689631938934326
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/62/real",
+   "index": 62,
+   "framing": "real",
+   "proj_probe": 0.14033091068267822
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/63/real",
+   "index": 63,
+   "framing": "real",
+   "proj_probe": -3.097493886947632
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/64/real",
+   "index": 64,
+   "framing": "real",
+   "proj_probe": -0.37947988510131836
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/65/real",
+   "index": 65,
+   "framing": "real",
+   "proj_probe": -1.4877197742462158
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/66/real",
+   "index": 66,
+   "framing": "real",
+   "proj_probe": -2.109653949737549
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/67/real",
+   "index": 67,
+   "framing": "real",
+   "proj_probe": 0.6349481344223022
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/68/real",
+   "index": 68,
+   "framing": "real",
+   "proj_probe": -2.730529308319092
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/69/real",
+   "index": 69,
+   "framing": "real",
+   "proj_probe": -0.3090837001800537
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/70/real",
+   "index": 70,
+   "framing": "real",
+   "proj_probe": 0.7295254468917847
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/71/real",
+   "index": 71,
+   "framing": "real",
+   "proj_probe": -0.5895785093307495
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/72/real",
+   "index": 72,
+   "framing": "real",
+   "proj_probe": -0.07401442527770996
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/73/real",
+   "index": 73,
+   "framing": "real",
+   "proj_probe": -1.3356258869171143
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/74/real",
+   "index": 74,
+   "framing": "real",
+   "proj_probe": -1.0493431091308594
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/75/real",
+   "index": 75,
+   "framing": "real",
+   "proj_probe": -1.1297019720077515
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/76/real",
+   "index": 76,
+   "framing": "real",
+   "proj_probe": -0.75846266746521
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/77/real",
+   "index": 77,
+   "framing": "real",
+   "proj_probe": 0.31736069917678833
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/78/real",
+   "index": 78,
+   "framing": "real",
+   "proj_probe": -0.49046409130096436
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/79/real",
+   "index": 79,
+   "framing": "real",
+   "proj_probe": -1.4203689098358154
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/80/real",
+   "index": 80,
+   "framing": "real",
+   "proj_probe": 0.27081358432769775
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/81/real",
+   "index": 81,
+   "framing": "real",
+   "proj_probe": -1.7020894289016724
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/82/real",
+   "index": 82,
+   "framing": "real",
+   "proj_probe": -3.217284679412842
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/83/real",
+   "index": 83,
+   "framing": "real",
+   "proj_probe": 0.07191205024719238
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/84/real",
+   "index": 84,
+   "framing": "real",
+   "proj_probe": -0.3802304267883301
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/85/real",
+   "index": 85,
+   "framing": "real",
+   "proj_probe": -1.7201238870620728
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/86/real",
+   "index": 86,
+   "framing": "real",
+   "proj_probe": -1.303581714630127
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/87/real",
+   "index": 87,
+   "framing": "real",
+   "proj_probe": -0.16618216037750244
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/88/real",
+   "index": 88,
+   "framing": "real",
+   "proj_probe": -5.033039093017578
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/89/real",
+   "index": 89,
+   "framing": "real",
+   "proj_probe": 0.07668912410736084
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/90/real",
+   "index": 90,
+   "framing": "real",
+   "proj_probe": 0.7416018843650818
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/91/real",
+   "index": 91,
+   "framing": "real",
+   "proj_probe": -0.6874700784683228
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/92/real",
+   "index": 92,
+   "framing": "real",
+   "proj_probe": -0.1947827935218811
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/93/real",
+   "index": 93,
+   "framing": "real",
+   "proj_probe": 0.09538137912750244
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/94/real",
+   "index": 94,
+   "framing": "real",
+   "proj_probe": -0.3587164878845215
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/95/real",
+   "index": 95,
+   "framing": "real",
+   "proj_probe": -1.1771968603134155
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/96/real",
+   "index": 96,
+   "framing": "real",
+   "proj_probe": -2.0779495239257812
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/97/real",
+   "index": 97,
+   "framing": "real",
+   "proj_probe": 0.14659523963928223
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/98/real",
+   "index": 98,
+   "framing": "real",
+   "proj_probe": -0.13625377416610718
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/99/real",
+   "index": 99,
+   "framing": "real",
+   "proj_probe": -0.278764009475708
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/100/real",
+   "index": 100,
+   "framing": "real",
+   "proj_probe": -0.4128683805465698
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/101/real",
+   "index": 101,
+   "framing": "real",
+   "proj_probe": -3.0502376556396484
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/102/real",
+   "index": 102,
+   "framing": "real",
+   "proj_probe": -0.07632005214691162
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/103/real",
+   "index": 103,
+   "framing": "real",
+   "proj_probe": -0.5127811431884766
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/104/real",
+   "index": 104,
+   "framing": "real",
+   "proj_probe": -0.8287503719329834
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/105/real",
+   "index": 105,
+   "framing": "real",
+   "proj_probe": -2.691786766052246
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/106/real",
+   "index": 106,
+   "framing": "real",
+   "proj_probe": -2.2099337577819824
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/107/real",
+   "index": 107,
+   "framing": "real",
+   "proj_probe": -2.6530823707580566
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/108/real",
+   "index": 108,
+   "framing": "real",
+   "proj_probe": 0.5339975953102112
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/109/real",
+   "index": 109,
+   "framing": "real",
+   "proj_probe": 1.037900447845459
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/110/real",
+   "index": 110,
+   "framing": "real",
+   "proj_probe": -0.7808120250701904
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/111/real",
+   "index": 111,
+   "framing": "real",
+   "proj_probe": 0.30777662992477417
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/112/real",
+   "index": 112,
+   "framing": "real",
+   "proj_probe": -0.8250706195831299
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/113/real",
+   "index": 113,
+   "framing": "real",
+   "proj_probe": 0.22841238975524902
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/114/real",
+   "index": 114,
+   "framing": "real",
+   "proj_probe": -0.49197155237197876
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/115/real",
+   "index": 115,
+   "framing": "real",
+   "proj_probe": 1.099949836730957
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/116/real",
+   "index": 116,
+   "framing": "real",
+   "proj_probe": -1.2161635160446167
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/117/real",
+   "index": 117,
+   "framing": "real",
+   "proj_probe": 0.10070323944091797
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/118/real",
+   "index": 118,
+   "framing": "real",
+   "proj_probe": -2.220141649246216
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/119/real",
+   "index": 119,
+   "framing": "real",
+   "proj_probe": -3.0559563636779785
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/120/real",
+   "index": 120,
+   "framing": "real",
+   "proj_probe": -0.46248626708984375
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/121/real",
+   "index": 121,
+   "framing": "real",
+   "proj_probe": -0.5701711177825928
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/122/real",
+   "index": 122,
+   "framing": "real",
+   "proj_probe": -0.24182766675949097
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/123/real",
+   "index": 123,
+   "framing": "real",
+   "proj_probe": -0.6024918556213379
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/124/real",
+   "index": 124,
+   "framing": "real",
+   "proj_probe": -0.19601547718048096
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/125/real",
+   "index": 125,
+   "framing": "real",
+   "proj_probe": 0.007651686668395996
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/126/real",
+   "index": 126,
+   "framing": "real",
+   "proj_probe": -0.11776256561279297
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/127/real",
+   "index": 127,
+   "framing": "real",
+   "proj_probe": -0.47029536962509155
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/128/real",
+   "index": 128,
+   "framing": "real",
+   "proj_probe": 0.16714692115783691
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/129/real",
+   "index": 129,
+   "framing": "real",
+   "proj_probe": -1.3845758438110352
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/130/real",
+   "index": 130,
+   "framing": "real",
+   "proj_probe": -1.230623483657837
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/131/real",
+   "index": 131,
+   "framing": "real",
+   "proj_probe": 0.3304142951965332
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/132/real",
+   "index": 132,
+   "framing": "real",
+   "proj_probe": -0.46787524223327637
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/133/real",
+   "index": 133,
+   "framing": "real",
+   "proj_probe": -0.20017224550247192
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/134/real",
+   "index": 134,
+   "framing": "real",
+   "proj_probe": -0.40866363048553467
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/135/real",
+   "index": 135,
+   "framing": "real",
+   "proj_probe": -2.1998631954193115
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/136/real",
+   "index": 136,
+   "framing": "real",
+   "proj_probe": 0.12517225742340088
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/137/real",
+   "index": 137,
+   "framing": "real",
+   "proj_probe": -3.931104898452759
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/138/real",
+   "index": 138,
+   "framing": "real",
+   "proj_probe": -0.34810376167297363
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/139/real",
+   "index": 139,
+   "framing": "real",
+   "proj_probe": -1.451487421989441
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/140/real",
+   "index": 140,
+   "framing": "real",
+   "proj_probe": -2.852870464324951
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/141/real",
+   "index": 141,
+   "framing": "real",
+   "proj_probe": -0.5871819257736206
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/142/real",
+   "index": 142,
+   "framing": "real",
+   "proj_probe": -1.0133715867996216
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/143/real",
+   "index": 143,
+   "framing": "real",
+   "proj_probe": -1.513106346130371
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/144/real",
+   "index": 144,
+   "framing": "real",
+   "proj_probe": -0.6161344051361084
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/145/real",
+   "index": 145,
+   "framing": "real",
+   "proj_probe": 0.5265354514122009
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/146/real",
+   "index": 146,
+   "framing": "real",
+   "proj_probe": -0.18183010816574097
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/147/real",
+   "index": 147,
+   "framing": "real",
+   "proj_probe": 0.06299781799316406
+  },
+  {
+   "id": "qwen3_4b/steer_actions/bt_pos/148/real",
+   "index": 148,
+   "framing": "real",
+   "proj_probe": -0.21656513214111328
+  }
+ ]
+}

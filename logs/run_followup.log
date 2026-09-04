@@ -421,3 +421,222 @@ F1_DONE
 [2026-09-04 12:45:39]   gen 120/120  40.3 min  eta 0.0 min  unfinished so far 14
 [2026-09-04 12:45:39] unc_testlex_neg: wrote /home/cutter/d10/results/qwen3_4b/followups/f2_uncertainty/unc_testlex_neg.json; closed </think> 116/120
 F2_DONE
+[2026-09-04 14:11:09] f4_reverse: task actions, 149 items × ['real'], arms ['bt_pos', 'bt_neg', 'unc_pos', 'unc_neg']
+[2026-09-04 14:11:27] bt_pos: kind=residual_add {"vector_norm": 18.28502655029297, "layer": 23}
+[2026-09-04 14:13:53]   gen 6/149  2.4 min  eta 58.0 min  unfinished so far 3
+[2026-09-04 14:16:16]   gen 12/149  4.8 min  eta 55.1 min  unfinished so far 5
+[2026-09-04 14:18:34]   gen 18/149  7.1 min  eta 51.8 min  unfinished so far 9
+[2026-09-04 14:20:53]   gen 24/149  9.4 min  eta 49.1 min  unfinished so far 10
+[2026-09-04 14:23:11]   gen 30/149  11.7 min  eta 46.5 min  unfinished so far 11
+[2026-09-04 14:25:29]   gen 36/149  14.0 min  eta 44.0 min  unfinished so far 16
+[2026-09-04 14:27:47]   gen 42/149  16.3 min  eta 41.6 min  unfinished so far 19
+[2026-09-04 14:30:06]   gen 48/149  18.6 min  eta 39.2 min  unfinished so far 22
+[2026-09-04 14:32:26]   gen 54/149  21.0 min  eta 36.9 min  unfinished so far 24
+[2026-09-04 14:34:45]   gen 60/149  23.3 min  eta 34.5 min  unfinished so far 25
+[2026-09-04 14:37:04]   gen 66/149  25.6 min  eta 32.2 min  unfinished so far 28
+[2026-09-04 14:39:23]   gen 72/149  27.9 min  eta 29.9 min  unfinished so far 32
+[2026-09-04 14:41:38]   gen 78/149  30.2 min  eta 27.5 min  unfinished so far 34
+[2026-09-04 14:43:56]   gen 84/149  32.5 min  eta 25.1 min  unfinished so far 36
+[2026-09-04 14:45:25]   gen 90/149  34.0 min  eta 22.3 min  unfinished so far 36
+[2026-09-04 14:47:40]   gen 96/149  36.2 min  eta 20.0 min  unfinished so far 37
+[2026-09-04 14:49:56]   gen 102/149  38.5 min  eta 17.7 min  unfinished so far 39
+[2026-09-04 14:51:27]   gen 108/149  40.0 min  eta 15.2 min  unfinished so far 39
+[2026-09-04 14:53:45]   gen 114/149  42.3 min  eta 13.0 min  unfinished so far 42
+[2026-09-04 14:56:44]   gen 120/149  45.3 min  eta 10.9 min  unfinished so far 44
+[2026-09-04 14:58:58]   gen 126/149  47.5 min  eta 8.7 min  unfinished so far 47
+[2026-09-04 15:01:14]   gen 132/149  49.8 min  eta 6.4 min  unfinished so far 50
+[2026-09-04 15:04:24]   gen 138/149  53.0 min  eta 4.2 min  unfinished so far 55
+[2026-09-04 15:06:51]   gen 144/149  55.4 min  eta 1.9 min  unfinished so far 55
+[2026-09-04 15:09:37]   gen 149/149  58.2 min  eta 0.0 min  unfinished so far 56
+[2026-09-04 15:09:37] bt_pos: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/bt_pos.json; closed </think> 94/149
+[2026-09-04 15:09:37] bt_neg: kind=residual_add {"vector_norm": 18.28502655029297, "layer": 23}
+[2026-09-04 15:10:35]   gen 6/149  1.0 min  eta 22.7 min  unfinished so far 0
+[2026-09-04 15:11:41]   gen 12/149  2.1 min  eta 23.6 min  unfinished so far 0
+[2026-09-04 15:12:44]   gen 18/149  3.1 min  eta 22.7 min  unfinished so far 0
+[2026-09-04 15:13:42]   gen 24/149  4.1 min  eta 21.2 min  unfinished so far 0
+[2026-09-04 15:15:01]   gen 30/149  5.4 min  eta 21.4 min  unfinished so far 0
+[2026-09-04 15:16:12]   gen 36/149  6.6 min  eta 20.7 min  unfinished so far 0
+[2026-09-04 15:17:07]   gen 42/149  7.5 min  eta 19.1 min  unfinished so far 0
+[2026-09-04 15:18:15]   gen 48/149  8.6 min  eta 18.2 min  unfinished so far 0
+[2026-09-04 15:19:23]   gen 54/149  9.8 min  eta 17.2 min  unfinished so far 0
+[2026-09-04 15:20:24]   gen 60/149  10.8 min  eta 16.0 min  unfinished so far 0
+[2026-09-04 15:21:30]   gen 66/149  11.9 min  eta 14.9 min  unfinished so far 0
+[2026-09-04 15:22:19]   gen 72/149  12.7 min  eta 13.6 min  unfinished so far 0
+[2026-09-04 15:23:16]   gen 78/149  13.6 min  eta 12.4 min  unfinished so far 0
+[2026-09-04 15:24:02]   gen 84/149  14.4 min  eta 11.2 min  unfinished so far 0
+[2026-09-04 15:24:44]   gen 90/149  15.1 min  eta 9.9 min  unfinished so far 0
+[2026-09-04 15:25:18]   gen 96/149  15.7 min  eta 8.7 min  unfinished so far 0
+[2026-09-04 15:26:12]   gen 102/149  16.6 min  eta 7.6 min  unfinished so far 0
+[2026-09-04 15:27:15]   gen 108/149  17.6 min  eta 6.7 min  unfinished so far 0
+[2026-09-04 15:28:01]   gen 114/149  18.4 min  eta 5.6 min  unfinished so far 0
+[2026-09-04 15:29:27]   gen 120/149  19.8 min  eta 4.8 min  unfinished so far 0
+[2026-09-04 14:11:09] f4_reverse: task actions, 149 items × ['real'], arms ['bt_pos', 'bt_neg', 'unc_pos', 'unc_neg']
+[2026-09-04 14:11:27] bt_pos: kind=residual_add {"vector_norm": 18.28502655029297, "layer": 23}
+[2026-09-04 14:13:53]   gen 6/149  2.4 min  eta 58.0 min  unfinished so far 3
+[2026-09-04 14:16:16]   gen 12/149  4.8 min  eta 55.1 min  unfinished so far 5
+[2026-09-04 14:18:34]   gen 18/149  7.1 min  eta 51.8 min  unfinished so far 9
+[2026-09-04 14:20:53]   gen 24/149  9.4 min  eta 49.1 min  unfinished so far 10
+[2026-09-04 14:23:11]   gen 30/149  11.7 min  eta 46.5 min  unfinished so far 11
+[2026-09-04 14:25:29]   gen 36/149  14.0 min  eta 44.0 min  unfinished so far 16
+[2026-09-04 14:27:47]   gen 42/149  16.3 min  eta 41.6 min  unfinished so far 19
+[2026-09-04 14:30:06]   gen 48/149  18.6 min  eta 39.2 min  unfinished so far 22
+[2026-09-04 14:32:26]   gen 54/149  21.0 min  eta 36.9 min  unfinished so far 24
+[2026-09-04 14:34:45]   gen 60/149  23.3 min  eta 34.5 min  unfinished so far 25
+[2026-09-04 14:37:04]   gen 66/149  25.6 min  eta 32.2 min  unfinished so far 28
+[2026-09-04 14:39:23]   gen 72/149  27.9 min  eta 29.9 min  unfinished so far 32
+[2026-09-04 14:41:38]   gen 78/149  30.2 min  eta 27.5 min  unfinished so far 34
+[2026-09-04 14:43:56]   gen 84/149  32.5 min  eta 25.1 min  unfinished so far 36
+[2026-09-04 14:45:25]   gen 90/149  34.0 min  eta 22.3 min  unfinished so far 36
+[2026-09-04 14:47:40]   gen 96/149  36.2 min  eta 20.0 min  unfinished so far 37
+[2026-09-04 14:49:56]   gen 102/149  38.5 min  eta 17.7 min  unfinished so far 39
+[2026-09-04 14:51:27]   gen 108/149  40.0 min  eta 15.2 min  unfinished so far 39
+[2026-09-04 14:53:45]   gen 114/149  42.3 min  eta 13.0 min  unfinished so far 42
+[2026-09-04 14:56:44]   gen 120/149  45.3 min  eta 10.9 min  unfinished so far 44
+[2026-09-04 14:58:58]   gen 126/149  47.5 min  eta 8.7 min  unfinished so far 47
+[2026-09-04 15:01:14]   gen 132/149  49.8 min  eta 6.4 min  unfinished so far 50
+[2026-09-04 15:04:24]   gen 138/149  53.0 min  eta 4.2 min  unfinished so far 55
+[2026-09-04 15:06:51]   gen 144/149  55.4 min  eta 1.9 min  unfinished so far 55
+[2026-09-04 15:09:37]   gen 149/149  58.2 min  eta 0.0 min  unfinished so far 56
+[2026-09-04 15:09:37] bt_pos: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/bt_pos.json; closed </think> 94/149
+[2026-09-04 15:09:37] bt_neg: kind=residual_add {"vector_norm": 18.28502655029297, "layer": 23}
+[2026-09-04 15:10:35]   gen 6/149  1.0 min  eta 22.7 min  unfinished so far 0
+[2026-09-04 15:11:41]   gen 12/149  2.1 min  eta 23.6 min  unfinished so far 0
+[2026-09-04 15:12:44]   gen 18/149  3.1 min  eta 22.7 min  unfinished so far 0
+[2026-09-04 15:13:42]   gen 24/149  4.1 min  eta 21.2 min  unfinished so far 0
+[2026-09-04 15:15:01]   gen 30/149  5.4 min  eta 21.4 min  unfinished so far 0
+[2026-09-04 15:16:12]   gen 36/149  6.6 min  eta 20.7 min  unfinished so far 0
+[2026-09-04 15:17:07]   gen 42/149  7.5 min  eta 19.1 min  unfinished so far 0
+[2026-09-04 15:18:15]   gen 48/149  8.6 min  eta 18.2 min  unfinished so far 0
+[2026-09-04 15:19:23]   gen 54/149  9.8 min  eta 17.2 min  unfinished so far 0
+[2026-09-04 15:20:24]   gen 60/149  10.8 min  eta 16.0 min  unfinished so far 0
+[2026-09-04 15:21:30]   gen 66/149  11.9 min  eta 14.9 min  unfinished so far 0
+[2026-09-04 15:22:19]   gen 72/149  12.7 min  eta 13.6 min  unfinished so far 0
+[2026-09-04 15:23:16]   gen 78/149  13.6 min  eta 12.4 min  unfinished so far 0
+[2026-09-04 15:24:02]   gen 84/149  14.4 min  eta 11.2 min  unfinished so far 0
+[2026-09-04 15:24:44]   gen 90/149  15.1 min  eta 9.9 min  unfinished so far 0
+[2026-09-04 15:25:18]   gen 96/149  15.7 min  eta 8.7 min  unfinished so far 0
+[2026-09-04 15:26:12]   gen 102/149  16.6 min  eta 7.6 min  unfinished so far 0
+[2026-09-04 15:27:15]   gen 108/149  17.6 min  eta 6.7 min  unfinished so far 0
+[2026-09-04 15:28:01]   gen 114/149  18.4 min  eta 5.6 min  unfinished so far 0
+[2026-09-04 15:29:27]   gen 120/149  19.8 min  eta 4.8 min  unfinished so far 0
+[2026-09-04 15:30:35]   gen 126/149  21.0 min  et[2026-09-04 15:30:35]   gen 126/149  21.0 min  eta 3.8 min  unfinished so far 0
+[2026-09-04 15:31:33]   gen 132/149  21.9 min  eta 2.8 min  unfinished so far 0
+[2026-09-04 15:33:02]   gen 138/149  23.4 min  eta 1.9 min  unfinished so far 0
+[2026-09-04 15:34:09]   gen 144/149  24.5 min  eta 0.9 min  unfinished so far 0
+[2026-09-04 15:34:54]   gen 149/149  25.3 min  eta 0.0 min  unfinished so far 0
+[2026-09-04 15:34:54] bt_neg: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/bt_neg.json; closed </think> 149/149
+[2026-09-04 15:34:54] unc_pos: kind=residual_add {"vector_norm": 10.153962135314941, "layer": 18}
+[2026-09-04 15:38:04]   gen 6/149  3.2 min  eta 75.5 min  unfinished so far 0
+[2026-09-04 15:41:41]   gen 12/149  6.8 min  eta 77.5 min  unfinished so far 2
+[2026-09-04 15:45:10]   gen 18/149  10.3 min  eta 74.7 min  unfinished so far 3
+[2026-09-04 15:47:35]   gen 24/149  12.7 min  eta 66.0 min  unfinished so far 3
+[2026-09-04 15:50:02]   gen 30/149  15.1 min  eta 60.0 min  unfinished so far 4
+[2026-09-04 15:52:19]   gen 36/149  17.4 min  eta 54.7 min  unfinished so far 5
+[2026-09-04 15:54:37]   gen 42/149  19.7 min  eta 50.2 min  unfinished so far 7
+[2026-09-04 15:55:38]   gen 48/149  20.7 min  eta 43.6 min  unfinished so far 7
+[2026-09-04 15:57:57]   gen 54/149  23.0 min  eta 40.5 min  unfinished so far 8
+[2026-09-04 15:58:59]   gen 60/149  24.1 min  eta 35.7 min  unfinished so far 8
+[2026-09-04 16:01:17]   gen 66/149  26.4 min  eta 33.2 min  unfinished so far 9
+[2026-09-04 16:03:36]   gen 72/149  28.7 min  eta 30.7 min  unfinished so far 10
+[2026-09-04 16:05:50]   gen 78/149  30.9 min  eta 28.2 min  unfinished so far 11
+[2026-09-04 16:07:11]   gen 84/149  32.3 min  eta 25.0 min  unfinished so far 11
+[2026-09-04 16:08:00]   gen 90/149  33.1 min  eta 21.7 min  unfinished so far 11
+[2026-09-04 16:10:14]   gen 96/149  35.3 min  eta 19.5 min  unfinished so far 12
+[2026-09-04 16:11:41]   gen 102/149  36.8 min  eta 16.9 min  unfinished so far 12
+[2026-09-04 16:12:56]   gen 108/149  38.0 min  eta 14.4 min  unfinished so far 12
+[2026-09-04 16:15:10]   gen 114/149  40.3 min  eta 12.4 min  unfinished so far 13
+[2026-09-04 16:16:40]   gen 120/149  41.8 min  eta 10.1 min  unfinished so far 13
+[2026-09-04 16:17:51]   gen 126/149  43.0 min  eta 7.8 min  unfinished so far 13
+[2026-09-04 16:18:51]   gen 132/149  43.9 min  eta 5.7 min  unfinished so far 13
+[2026-09-04 16:21:06]   gen 138/149  46.2 min  eta 3.7 min  unfinished so far 15
+[2026-09-04 16:22:20]   gen 144/149  47.4 min  eta 1.6 min  unfinished so far 15
+[2026-09-04 16:23:10]   gen 149/149  48.3 min  eta 0.0 min  unfinished so far 15
+[2026-09-04 16:23:10] unc_pos: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/unc_pos.json; closed </think> 139/149
+[2026-09-04 16:23:10] unc_neg: kind=residual_add {"vector_norm": 10.153962135314941, "layer": 18}
+[2026-09-04 16:23:57]   gen 6/149  0.8 min  eta 18.5 min  unfinished so far 0
+[2026-09-04 16:24:39]   gen 12/149  1.5 min  eta 16.8 min  unfinished so far 0
+[2026-09-04 16:26:57]   gen 18/149  3.8 min  eta 27.5 min  unfinished so far 1
+[2026-09-04 16:27:37]   gen 24/149  4.4 min  eta 23.2 min  unfinished so far 1
+[2026-09-04 16:29:55]   gen 30/149  6.7 min  eta 26.8 min  unfinished so far 2
+[2026-09-04 16:30:22]   gen 36/149  7.2 min  eta 22.6 min  unfinished so far 2
+[2026-09-04 16:30:59]   gen 42/149  7.8 min  eta 19.9 min  unfinished so far 2
+[2026-09-04 16:31:36]   gen 48/149  8.4 min  eta 17.8 min  unfinished so far 2
+[2026-09-04 16:32:37]   gen 54/149  9.5 min  eta 16.6 min  unfinished so far 2
+[2026-09-04 16:33:20]   gen 60/149  10.2 min  eta 15.1 min  unfinished so far 2
+[2026-09-04 16:34:12]   gen 66/149  11.0 min  eta 13.9 min  unfinished so far 2
+[2026-09-04 16:34:48]   gen 72/149  11.6 min  eta 12.4 min  unfinished so far 2
+[2026-09-04 16:35:31]   gen 78/149  12.3 min  eta 11.2 min  unfinished so far 2
+[2026-09-04 16:37:49]   gen 84/149  14.6 min  eta 11.3 min  unfinished so far 3
+[2026-09-04 16:38:25]   gen 90/149  15.2 min  eta 10.0 min  unfinished so far 3
+[2026-09-04 16:39:00]   gen 96/149  15.8 min  eta 8.7 min  unfinished so far 3
+a 3.8 min  unfinished so far 0
+[2026-09-04 15:31:33]   gen 132/149  21.9 min  eta 2.8 min  unfinished so far 0
+[2026-09-04 15:33:02]   gen 138/149  23.4 min  eta 1.9 min  unfinished so far 0
+[2026-09-04 15:34:09]   gen 144/149  24.5 min  eta 0.9 min  unfinished so far 0
+[2026-09-04 15:34:54]   gen 149/149  25.3 min  eta 0.0 min  unfinished so far 0
+[2026-09-04 15:34:54] bt_neg: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/bt_neg.json; closed </think> 149/149
+[2026-09-04 15:34:54] unc_pos: kind=residual_add {"vector_norm": 10.153962135314941, "layer": 18}
+[2026-09-04 15:38:04]   gen 6/149  3.2 min  eta 75.5 min  unfinished so far 0
+[2026-09-04 15:41:41]   gen 12/149  6.8 min  eta 77.5 min  unfinished so far 2
+[2026-09-04 15:45:10]   gen 18/149  10.3 min  eta 74.7 min  unfinished so far 3
+[2026-09-04 15:47:35]   gen 24/149  12.7 min  eta 66.0 min  unfinished so far 3
+[2026-09-04 15:50:02]   gen 30/149  15.1 min  eta 60.0 min  unfinished so far 4
+[2026-09-04 15:52:19]   gen 36/149  17.4 min  eta 54.7 min  unfinished so far 5
+[2026-09-04 15:54:37]   gen 42/149  19.7 min  eta 50.2 min  unfinished so far 7
+[2026-09-04 15:55:38]   gen 48/149  20.7 min  eta 43.6 min  unfinished so far 7
+[2026-09-04 15:57:57]   gen 54/149  23.0 min  eta 40.5 min  unfinished so far 8
+[2026-09-04 15:58:59]   gen 60/149  24.1 min  eta 35.7 min  unfinished so far 8
+[2026-09-04 16:01:17]   gen 66/149  26.4 min  eta 33.2 min  unfinished so far 9
+[2026-09-04 16:03:36]   gen 72/149  28.7 min  eta 30.7 min  unfinished so far 10
+[2026-09-04 16:05:50]   gen 78/149  30.9 min  eta 28.2 min  unfinished so far 11
+[2026-09-04 16:07:11]   gen 84/149  32.3 min  eta 25.0 min  unfinished so far 11
+[2026-09-04 16:08:00]   gen 90/149  33.1 min  eta 21.7 min  unfinished so far 11
+[2026-09-04 16:10:14]   gen 96/149  35.3 min  eta 19.5 min  unfinished so far 12
+[2026-09-04 16:11:41]   gen 102/149  36.8 min  eta 16.9 min  unfinished so far 12
+[2026-09-04 16:12:56]   gen 108/149  38.0 min  eta 14.4 min  unfinished so far 12
+[2026-09-04 16:15:10]   gen 114/149  40.3 min  eta 12.4 min  unfinished so far 13
+[2026-09-04 16:16:40]   gen 120/149  41.8 min  eta 10.1 min  unfinished so far 13
+[2026-09-04 16:17:51]   gen 126/149  43.0 min  eta 7.8 min  unfinished so far 13
+[2026-09-04 16:18:51]   gen 132/149  43.9 min  eta 5.7 min  unfinished so far 13
+[2026-09-04 16:21:06]   gen 138/149  46.2 min  eta 3.7 min  unfinished so far 15
+[2026-09-04 16:22:20]   gen 144/149  47.4 min  eta 1.6 min  unfinished so far 15
+[2026-09-04 16:23:10]   gen 149/149  48.3 min  eta 0.0 min  unfinished so far 15
+[2026-09-04 16:23:10] unc_pos: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/unc_pos.json; closed </think> 139/149
+[2026-09-04 16:23:10] unc_neg: kind=residual_add {"vector_norm": 10.153962135314941, "layer": 18}
+[2026-09-04 16:23:57]   gen 6/149  0.8 min  eta 18.5 min  unfinished so far 0
+[2026-09-04 16:24:39]   gen 12/149  1.5 min  eta 16.8 min  unfinished so far 0
+[2026-09-04 16:26:57]   gen 18/149  3.8 min  eta 27.5 min  unfinished so far 1
+[2026-09-04 16:27:37]   gen 24/149  4.4 min  eta 23.2 min  unfinished so far 1
+[2026-09-04 16:29:55]   gen 30/149  6.7 min  eta 26.8 min  unfinished so far 2
+[2026-09-04 16:30:22]   gen 36/149  7.2 min  eta 22.6 min  unfinished so far 2
+[2026-09-04 16:30:59]   gen 42/149  7.8 min  eta 19.9 min  unfinished so far 2
+[2026-09-04 16:31:36]   gen 48/149  8.4 min  eta 17.8 min  unfinished so far 2
+[2026-09-04 16:32:37]   gen 54/149  9.5 min  eta 16.6 min  unfinished so far 2
+[2026-09-04 16:33:20]   gen 60/149  10.2 min  eta 15.1 min  unfinished so far 2
+[2026-09-04 16:34:12]   gen 66/149  11.0 min  eta 13.9 min  unfinished so far 2
+[2026-09-04 16:34:48]   gen 72/149  11.6 min  eta 12.4 min  unfinished so far 2
+[2026-09-04 16:35:31]   gen 78/149  12.3 min  eta 11.2 min  unfinished so far 2
+[2026-09-04 16:37:49]   gen 84/149  14.6 min  eta 11.3 min  unfinished so far 3
+[2026-09-04 16:38:25]   gen 90/149  15.2 min  eta 10.0 min  unfinished so far 3
+[2026-09-04 16:39:00]   gen 96/149  15.8 min  eta 8.7 min  unfinished so far 3
+[2026-0[2026-09-04 16:39:54]   gen 102/149  16.7 min  eta 7.7 min  unfinished so far 3
+[2026-09-04 16:40:27]   gen 108/149  17.3 min  eta 6.6 min  unfinished so far 3
+[2026-09-04 16:40:48]   gen 114/149  17.6 min  eta 5.4 min  unfinished so far 3
+[2026-09-04 16:41:43]   gen 120/149  18.5 min  eta 4.5 min  unfinished so far 3
+[2026-09-04 16:43:58]   gen 126/149  20.8 min  eta 3.8 min  unfinished so far 4
+[2026-09-04 16:44:42]   gen 132/149  21.5 min  eta 2.8 min  unfinished so far 4
+[2026-09-04 16:45:20]   gen 138/149  22.2 min  eta 1.8 min  unfinished so far 4
+[2026-09-04 16:47:34]   gen 144/149  24.4 min  eta 0.8 min  unfinished so far 4
+[2026-09-04 16:48:25]   gen 149/149  25.2 min  eta 0.0 min  unfinished so far 4
+[2026-09-04 16:48:25] unc_neg: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/unc_neg.json; closed </think> 146/149
+9-04 16:39:54]   gen 102/149  16.7 min  eta 7.7 min  unfinished so far 3
+[2026-09-04 16:40:27]   gen 108/149  17.3 min  eta 6.6 min  unfinished so far 3
+[2026-09-04 16:40:48]   gen 114/149  17.6 min  eta 5.4 min  unfinished so far 3
+[2026-09-04 16:41:43]   gen 120/149  18.5 min  eta 4.5 min  unfinished so far 3
+[2026-09-04 16:43:58]   gen 126/149  20.8 min  eta 3.8 min  unfinished so far 4
+[2026-09-04 16:44:42]   gen 132/149  21.5 min  eta 2.8 min  unfinished so far 4
+[2026-09-04 16:45:20]   gen 138/149  22.2 min  eta 1.8 min  unfinished so far 4
+[2026-09-04 16:47:34]   gen 144/149  24.4 min  eta 0.8 min  unfinished so far 4
+[2026-09-04 16:48:25]   gen 149/149  25.2 min  eta 0.0 min  unfinished so far 4
+[2026-09-04 16:48:25] unc_neg: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/unc_neg.json; closed </think> 146/149
+F4_DONE
