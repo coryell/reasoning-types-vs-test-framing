@@ -1,0 +1,66 @@
+{
+ "config": {
+  "model_name": "qwen/qwen3-32b",
+  "dtype": "provider",
+  "max_new_tokens": 4096,
+  "do_sample": true,
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "batch_size": 8,
+  "seed": 0,
+  "enable_thinking": true,
+  "system_prompt": "agentMetaPrompt.txt",
+  "notes": {
+   "arm": "baseline",
+   "condition": {
+    "name": "baseline",
+    "kind": "none",
+    "direction": "",
+    "alpha": 0.0,
+    "aware": true,
+    "rows_from": "edit direction",
+    "vectors": "mean_vectors",
+    "layer": null,
+    "coefficient": 0.0,
+    "prompt_suffix": "",
+    "seed": 0,
+    "info": {}
+   },
+   "family": "api_actions",
+   "provider": "openrouter"
+  }
+ },
+ "git_commit": "13f1a06",
+ "torch": "2.14.0+cu130",
+ "transformers": "5.16.1",
+ "cuda_device": "NVIDIA GeForce RTX 4070 Ti",
+ "written": "2026-09-04 12:23:35",
+ "arm": "baseline",
+ "alpha": 0.0,
+ "aware": true,
+ "condition": {
+  "name": "baseline",
+  "kind": "none",
+  "direction": "",
+  "alpha": 0.0,
+  "aware": true,
+  "rows_from": "edit direction",
+  "vectors": "mean_vectors",
+  "layer": null,
+  "coefficient": 0.0,
+  "prompt_suffix": "",
+  "seed": 0,
+  "info": {}
+ },
+ "task": "actions",
+ "family": "api_actions",
+ "n_items": 149,
+ "framings": [
+  "real",
+  "fake"
+ ],
+ "provider": "openrouter",
+ "api_model": "qwen/qwen3-32b",
+ "missing": 0
+}

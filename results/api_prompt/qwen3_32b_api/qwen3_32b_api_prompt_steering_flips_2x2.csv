@@ -1,0 +1,3 @@
+model,family,framing,arm,signed_alpha,n_pairs,base_rate,arm_rate,both_exec,lost,gained,neither,net_gain,churn,p_mcnemar
+qwen3_32b_api,api_actions,fake,prompt_test,0.0,148,0.41216216216216217,0.5608108108108109,47,14,36,51,22,50,0.0026021714567221466
+qwen3_32b_api,api_actions,real,prompt_test,0.0,149,0.24161073825503357,0.2684563758389262,17,19,23,90,4,42,0.6439689563703723
