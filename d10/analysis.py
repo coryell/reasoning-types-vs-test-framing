@@ -633,6 +633,7 @@ def fmt(x, nd=3):
 def md_table(df: pd.DataFrame, cols: list[str], nd: int = 3) -> str:
     if df.empty:
         return "_(no data)_\n"
+    cols = [c for c in cols if c in df.columns]
     lines = ["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
     for _, r in df.iterrows():
         lines.append("| " + " | ".join(fmt(r[c], nd) if isinstance(r[c], float) else str(r[c]) for c in cols) + " |")

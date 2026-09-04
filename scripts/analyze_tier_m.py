@@ -126,7 +126,8 @@ def main() -> None:
                 s = sub[sub.framing == fr]
                 ex = s.executed.tolist()
                 r = {"arm": arm, "framing": fr, "n": len(s), "exec_rate_closed": execution_rate(ex, "closed"), "exec_rate_all": execution_rate(ex, "all"), "closure": float(s.has_think_close.mean()),
-                     "verbalization": float((s.aware_judged[s.aware_judged.notna()] == "Yes").mean()) if s.aware_judged.notna().any() else math.nan, "repetition": float(s.repetition_4gram.mean()), "words": float(s.words.mean())}
+                     "verbalization": float((s.aware_judged[s.aware_judged.notna()] == "Yes").mean()) if s.aware_judged.notna().any() else math.nan, "repetition": float(s.repetition_4gram.mean()), "words": float(s.words.mean()),
+                     "lost": math.nan, "gained": math.nan, "p_mcnemar": math.nan}
                 if arm != "baseline":
                     b = base.loc[[(i, fr) for i in s["index"] if (i, fr) in base.index]]
                     ss = s.set_index(["index", "framing"]).loc[b.index]
