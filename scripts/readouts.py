@@ -101,8 +101,8 @@ def main() -> None:
             gen_seed = int(side.get("config", {}).get("seed", args.seed))
             v_shuf_scaled = v_shuf / v_shuf.norm() * v_pos.norm()
             rnd = random_direction_like(v_pos, seed=gen_seed)
-            vec = {"aware": v_pos, "unaware": v_pos, "random_aware": rnd, "random_samerows_aware": rnd, "shuffled_aware": v_shuf_scaled}.get(p.stem)
-            fixed_rows = rank_rows(model, v_pos) if p.stem == "random_samerows_aware" else None
+            vec = {"aware": v_pos, "unaware": v_pos, "random_aware": rnd, "random_samerows_aware": rnd, "shuffled_aware": v_shuf_scaled, "shuffled_samerows_aware": v_shuf_scaled}.get(p.stem)
+            fixed_rows = rank_rows(model, v_pos) if p.stem.endswith("_samerows_aware") else None
             edit = apply_edit(model, vec, alpha, aware, rows=fixed_rows) if vec is not None and alpha else None
             rows = []
             try:
