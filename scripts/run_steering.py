@@ -3,8 +3,10 @@
 condition (EXECUTION_PLAN_2 §M3), plus the α sweep that picks the coefficients.
 
 Conditions are named arms so the Tier 1 loaders and analysis apply unchanged:
-  baseline · aware · unaware · random_aware (matched-norm Gaussian direction through the same
-  top-800 pipeline) · shuffled_aware (direction from the shuffled-label probe).
+  baseline · baseline_seed1 · aware · unaware · random_aware (matched-norm Gaussian direction through
+  the same top-800 pipeline, so it selects its own rows) · random_samerows_aware (the 800 rows the
+  probe direction selects, edited with the matched-norm Gaussian direction) · shuffled_aware
+  (direction from the shuffled-label probe, matched norm).
 
 Outputs, per arm, ``<out-dir>/<arm>.json`` in the shipped actions layout (``data_item``,
 ``steered_result_real`` / ``steered_result_fake``) with a sidecar recording the edit's layer histogram.
@@ -26,7 +28,7 @@ import torch
 
 from d10.generate import GenConfig, format_prompt, generate, load_model, write_sidecar
 from d10.shipped import TA_DIR, actions_task_text
-from d10.steer import apply_edit, random_direction_like, undo_edit
+from d10.steer import apply_edit, random_direction_like, rank_rows, undo_edit
 
 REPO = Path(__file__).resolve().parents[1]
 ACTIONS = TA_DIR / "data" / "actions" / "test_actions_examples.json"
@@ -118,6 +120,7 @@ def main() -> None:
             ("aware", v_pos, args.alpha_aware, True),
             ("unaware", v_pos, args.alpha_unaware, False),
             ("random_aware", random_direction_like(v_pos, seed=args.seed), args.alpha_aware, True),
+            ("random_samerows_aware", random_direction_like(v_pos, seed=args.seed), args.alpha_aware, True),
             ("shuffled_aware", v_shuf, args.alpha_aware, True),
         ]
     for name, vec, alpha, aware in conds:
@@ -126,13 +129,14 @@ def main() -> None:
             log(f"{name}: exists, skipping")
             continue
         cfg.seed = args.seed + (1 if name == "baseline_seed1" else 0)
-        edit = apply_edit(model, vec, alpha, aware) if vec is not None and alpha else None
+        fixed_rows = rank_rows(model, v_pos) if name == "random_samerows_aware" else None
+        edit = apply_edit(model, vec, alpha, aware, rows=fixed_rows) if vec is not None and alpha else None
         rel = None
         if edit is not None:
             row_norms = torch.stack([edit.originals[(l, r)].float().norm() for l, r, _ in edit.layer_rows])
             rel = float(alpha * vec.norm() / row_norms.mean())  # size of the edit relative to the rows it touches
         log(f"{name}: alpha={alpha} aware={aware} rows edited={len(edit.layer_rows) if edit else 0} relative edit={rel}")
-        cfg.notes = {"arm": name, "alpha": alpha, "aware": aware, "layer_histogram": edit.layer_histogram if edit else {}, "probe_layer": probe["layer"], "relative_edit": rel, "vector_norm": float(vec.norm()) if vec is not None else None}
+        cfg.notes = {"arm": name, "alpha": alpha, "aware": aware, "layer_histogram": edit.layer_histogram if edit else {}, "probe_layer": probe["layer"], "relative_edit": rel, "vector_norm": float(vec.norm()) if vec is not None else None, "rows_from": "probe direction" if name == "random_samerows_aware" else "edit direction"}
         try:
             data = generate_arm(model, tok, items, framings, cfg, system, log)
         finally:

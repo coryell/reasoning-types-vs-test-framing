@@ -25,7 +25,7 @@ from d10.shipped import execution_rate, load_generations
 
 REPO = Path(__file__).resolve().parents[1]
 ROOT = REPO / "results" / "qwen3_4b"
-ORDER = ["baseline", "baseline_seed1", "unaware", "aware", "random_aware", "shuffled_aware"]
+ORDER = ["baseline", "baseline_seed1", "unaware", "aware", "random_aware", "random_samerows_aware", "shuffled_aware"]
 
 
 def build_trace_table(steering_dir: Path, model_name: str) -> pd.DataFrame:

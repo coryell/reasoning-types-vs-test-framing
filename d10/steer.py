@@ -46,9 +46,11 @@ def rank_rows(model, vector: torch.Tensor, k: int = TOP_K) -> list[tuple[int, in
 
 
 @torch.no_grad()
-def apply_edit(model, vector: torch.Tensor, alpha: float, aware: bool, k: int = TOP_K) -> Edit:
-    """``w_row += alpha * vector`` (aware) or ``-=`` (unaware) on the top-k rows. Returns an undo handle."""
-    rows = rank_rows(model, vector, k)
+def apply_edit(model, vector: torch.Tensor, alpha: float, aware: bool, k: int = TOP_K, rows: list[tuple[int, int, float]] | None = None) -> Edit:
+    """``w_row += alpha * vector`` (aware) or ``-=`` (unaware) on the top-k rows ranked against
+    ``vector`` — or, if ``rows`` is given, on exactly those rows (the "same rows, different direction"
+    control: the rows selected by the probe direction, edited with a random one). Returns an undo handle."""
+    rows = rank_rows(model, vector, k) if rows is None else list(rows)
     originals = {}
     for layer_idx, row, _ in rows:
         w = model.model.layers[layer_idx].mlp.gate_proj.weight

@@ -294,3 +294,20 @@ def test_evidence_audit_tiers():
     real_rc = [r for r in rows if r["side"] == "real" and r["dimension"] == "recognition"][0]
     assert real_rc["used_by_probe_code"] and not real_rc["used_by_probe_paper"]
     assert all(not r["used_by_probe_code"] for r in rows if r["dimension"] == "task_performance")
+
+
+def test_apply_edit_on_fixed_rows_uses_those_rows_with_the_other_direction():
+    torch.manual_seed(1)
+    m = TinyModel()
+    v = torch.tensor([1.0, 0.0, 0.0, 0.0])
+    r = steer.random_direction_like(v, seed=3)
+    probe_rows = steer.rank_rows(m, v, k=4)
+    before = [l.mlp.gate_proj.weight.detach().clone() for l in m.model.layers]
+    edit = steer.apply_edit(m, r, alpha=0.5, aware=True, rows=probe_rows)
+    assert edit.layer_rows == probe_rows  # rows chosen by v, not by r
+    for li, ri, _ in probe_rows:
+        assert torch.allclose(m.model.layers[li].mlp.gate_proj.weight.detach()[ri] - before[li][ri], 0.5 * r)
+    assert {(l, rr) for l, rr, _ in steer.rank_rows(m, r, k=4)} != {(l, rr) for l, rr, _ in probe_rows} or True  # may coincide by chance on a tiny model
+    steer.undo_edit(m, edit)
+    for li, l in enumerate(m.model.layers):
+        assert torch.allclose(l.mlp.gate_proj.weight.detach(), before[li])

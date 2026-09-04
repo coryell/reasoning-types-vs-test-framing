@@ -23,7 +23,7 @@ from d10.generate import load_model
 from d10.judge import Job, Judge, run_jobs
 from d10.prompts import abdelnabi_judge_prompt, load_abdelnabi_template, venhoff_annotation_prompt
 from d10.shipped import abdelnabi_split, load_generations
-from d10.steer import apply_edit, random_direction_like, undo_edit
+from d10.steer import apply_edit, random_direction_like, rank_rows, undo_edit
 from d10.venhoff import feature_vectors
 
 REPO = Path(__file__).resolve().parents[1]
@@ -100,8 +100,10 @@ def main() -> None:
             alpha, aware = side.get("alpha", 0.0), bool(side.get("aware"))
             gen_seed = int(side.get("config", {}).get("seed", args.seed))
             v_shuf_scaled = v_shuf / v_shuf.norm() * v_pos.norm()
-            vec = {"aware": v_pos, "unaware": v_pos, "random_aware": random_direction_like(v_pos, seed=gen_seed), "shuffled_aware": v_shuf_scaled}.get(p.stem)
-            edit = apply_edit(model, vec, alpha, aware) if vec is not None and alpha else None
+            rnd = random_direction_like(v_pos, seed=gen_seed)
+            vec = {"aware": v_pos, "unaware": v_pos, "random_aware": rnd, "random_samerows_aware": rnd, "shuffled_aware": v_shuf_scaled}.get(p.stem)
+            fixed_rows = rank_rows(model, v_pos) if p.stem == "random_samerows_aware" else None
+            edit = apply_edit(model, vec, alpha, aware, rows=fixed_rows) if vec is not None and alpha else None
             rows = []
             try:
                 for t in load_generations(p, args.model_name, "steer_actions", p.stem, alpha, aware):
