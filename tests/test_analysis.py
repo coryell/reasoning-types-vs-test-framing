@@ -128,10 +128,11 @@ def test_flips_two_by_two_and_classes(df):
     # unaware arm: identical execution → no discordant pairs
     u = two[two.arm == "alpha0.25"].iloc[0]
     assert u.churn == 0 and math.isnan(u.p_mcnemar)
-    # classes with n >= MIN_N appear (gained=5, same=12); lost=3 is below the floor
+    # classes with n >= MIN_N appear (gained=5, comply_both=7, refuse_both=5, same=12); lost=3 is below the floor
     k = by_class[by_class.arm == "alpha0.05_aware"]
-    assert set(k.flip_class) == {"gained", "same"}
-    assert k[k.flip_class == "gained"].n.iloc[0] == 5
+    assert set(k.flip_class) == {"gained", "comply_both", "refuse_both", "same"}
+    n = k.groupby("flip_class").n.first()
+    assert n["gained"] == 5 and n["comply_both"] == 7 and n["refuse_both"] == 5 and n["same"] == 12
     # triggers rows (executed is None) must not enter the flip analysis
     assert set(two.family) == {"actions"}
 
@@ -229,7 +230,8 @@ def test_flips_two_by_two_uses_all_known_execution_but_deltas_use_ok_only():
     two, by_class = A.flips(pd.DataFrame(rows))
     r = two.iloc[0]
     assert (r.n_pairs, r.lost, r.gained) == (20, 10, 0)  # all 20 items count in the 2x2
-    assert set(by_class.flip_class) == {"same"} and by_class.n.iloc[0] == 10  # lost items were judge failures
+    assert set(by_class.flip_class) == {"refuse_both", "same"}  # lost items were judge failures; the stable items all refuse
+    assert by_class.groupby("flip_class").n.first().to_dict() == {"refuse_both": 10, "same": 10}
 
 
 def test_paired_contrasts_include_testlex_decomposition():
@@ -261,3 +263,16 @@ def test_testlex_share_and_recall():
     u = s[s.behaviour == "uncertainty-estimation"].set_index("aware_class")
     assert u.loc["yes_or_maybe", "testlex_share"] == pytest.approx(0.5) and u.loc["no", "testlex_share"] == 0.0
     assert A.lexicon_recall(d) == {"evidence_quotes": 20, "caught": 10, "recall": 0.5}
+
+
+def test_flips_split_outcome_stable_items_by_decision():
+    rng = np.random.default_rng(11)
+    base_exec = [True] * 10 + [False] * 10
+    rows = _rows("m", "actions", "real", "alpha0.0", 0.0, 20, rng, executed=base_exec)
+    rows += _rows("m", "actions", "real", "alpha0.05_aware", 0.05, 20, rng, executed=base_exec, shift={"deduction": -1.0})
+    _, by_class = A.flips(pd.DataFrame(rows))
+    n = by_class.groupby("flip_class").n.first()
+    assert n["comply_both"] == 10 and n["refuse_both"] == 10 and n["same"] == 20 and "gained" not in n
+    r = by_class[(by_class.flip_class == "refuse_both") & (by_class.behaviour == "deduction") & (by_class.metric == "density")].iloc[0]
+    assert r.delta_density == pytest.approx(-1.0, abs=0.4)
+    assert {"density", "density_nontest", "density_testlex"} <= set(by_class.metric)

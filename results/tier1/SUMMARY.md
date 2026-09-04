@@ -701,251 +701,1018 @@ A span 'with test language' matches `parse.TEST_LEXICON` — the model reasoning
 
 ## Δ density by flip class (largest |α| arms; see flips.csv for all)
 
-| model | framing | arm | flip_class | n | behaviour | delta_density | ci_lo | ci_hi |
-|---|---|---|---|---|---|---|---|---|
-| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | deduction | 0.062 | -0.327 | 0.451 |
-| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | uncertainty-estimation | -0.210 | -0.472 | 0.039 |
-| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | backtracking | 0.019 | -0.083 | 0.112 |
-| deepseek_qwen | fake | alpha0.05_aware | same | 119 | deduction | -0.051 | -0.235 | 0.140 |
-| deepseek_qwen | fake | alpha0.05_aware | same | 119 | uncertainty-estimation | 0.139 | 0.027 | 0.253 |
-| deepseek_qwen | fake | alpha0.05_aware | same | 119 | backtracking | -0.007 | -0.057 | 0.043 |
-| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | deduction | 0.274 | -0.197 | 0.698 |
-| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | uncertainty-estimation | -0.548 | -0.783 | -0.328 |
-| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | backtracking | -0.047 | -0.128 | 0.029 |
-| deepseek_qwen | fake | alpha0.07_aware | same | 114 | deduction | -0.384 | -0.606 | -0.141 |
-| deepseek_qwen | fake | alpha0.07_aware | same | 114 | uncertainty-estimation | 0.094 | -0.030 | 0.207 |
-| deepseek_qwen | fake | alpha0.07_aware | same | 114 | backtracking | -0.024 | -0.072 | 0.024 |
-| deepseek_qwen | fake | alpha0.25 | gained | 5 | deduction | -0.032 | -0.878 | 0.680 |
-| deepseek_qwen | fake | alpha0.25 | gained | 5 | uncertainty-estimation | -0.143 | -0.978 | 0.691 |
-| deepseek_qwen | fake | alpha0.25 | gained | 5 | backtracking | -0.069 | -0.371 | 0.233 |
-| deepseek_qwen | fake | alpha0.25 | lost | 12 | deduction | -0.416 | -0.810 | -0.043 |
-| deepseek_qwen | fake | alpha0.25 | lost | 12 | uncertainty-estimation | 0.500 | 0.060 | 0.976 |
-| deepseek_qwen | fake | alpha0.25 | lost | 12 | backtracking | -0.129 | -0.222 | -0.047 |
-| deepseek_qwen | fake | alpha0.25 | same | 131 | deduction | 0.070 | -0.122 | 0.259 |
-| deepseek_qwen | fake | alpha0.25 | same | 131 | uncertainty-estimation | 0.011 | -0.085 | 0.110 |
-| deepseek_qwen | fake | alpha0.25 | same | 131 | backtracking | 0.005 | -0.045 | 0.053 |
-| deepseek_qwen | fake | alpha0.3 | lost | 10 | deduction | -0.799 | -1.609 | -0.216 |
-| deepseek_qwen | fake | alpha0.3 | lost | 10 | uncertainty-estimation | 0.569 | 0.061 | 1.118 |
-| deepseek_qwen | fake | alpha0.3 | lost | 10 | backtracking | -0.028 | -0.200 | 0.180 |
-| deepseek_qwen | fake | alpha0.3 | same | 135 | deduction | 0.125 | -0.064 | 0.322 |
-| deepseek_qwen | fake | alpha0.3 | same | 135 | uncertainty-estimation | -0.052 | -0.148 | 0.041 |
-| deepseek_qwen | fake | alpha0.3 | same | 135 | backtracking | 0.020 | -0.028 | 0.065 |
-| deepseek_qwen | fake | alpha0.35 | lost | 12 | deduction | -0.566 | -1.091 | -0.071 |
-| deepseek_qwen | fake | alpha0.35 | lost | 12 | uncertainty-estimation | 0.393 | 0.001 | 0.751 |
-| deepseek_qwen | fake | alpha0.35 | lost | 12 | backtracking | 0.020 | -0.147 | 0.191 |
-| deepseek_qwen | fake | alpha0.35 | same | 133 | deduction | 0.149 | -0.034 | 0.333 |
-| deepseek_qwen | fake | alpha0.35 | same | 133 | uncertainty-estimation | -0.050 | -0.158 | 0.058 |
-| deepseek_qwen | fake | alpha0.35 | same | 133 | backtracking | 0.023 | -0.030 | 0.087 |
-| deepseek_qwen | real | alpha0.05_aware | gained | 10 | deduction | -0.124 | -0.833 | 0.490 |
-| deepseek_qwen | real | alpha0.05_aware | gained | 10 | uncertainty-estimation | -0.214 | -0.644 | 0.165 |
-| deepseek_qwen | real | alpha0.05_aware | gained | 10 | backtracking | 0.149 | 0.044 | 0.275 |
-| deepseek_qwen | real | alpha0.05_aware | same | 135 | deduction | 0.024 | -0.153 | 0.206 |
-| deepseek_qwen | real | alpha0.05_aware | same | 135 | uncertainty-estimation | 0.125 | 0.036 | 0.220 |
-| deepseek_qwen | real | alpha0.05_aware | same | 135 | backtracking | 0.002 | -0.044 | 0.048 |
-| deepseek_qwen | real | alpha0.07_aware | gained | 26 | deduction | -0.385 | -0.806 | 0.016 |
-| deepseek_qwen | real | alpha0.07_aware | gained | 26 | uncertainty-estimation | -0.026 | -0.317 | 0.271 |
-| deepseek_qwen | real | alpha0.07_aware | gained | 26 | backtracking | 0.057 | -0.084 | 0.190 |
-| deepseek_qwen | real | alpha0.07_aware | same | 119 | deduction | -0.070 | -0.270 | 0.120 |
-| deepseek_qwen | real | alpha0.07_aware | same | 119 | uncertainty-estimation | 0.203 | 0.101 | 0.307 |
-| deepseek_qwen | real | alpha0.07_aware | same | 119 | backtracking | 0.074 | 0.025 | 0.128 |
-| deepseek_qwen | real | alpha0.25 | same | 141 | deduction | 0.121 | -0.052 | 0.292 |
-| deepseek_qwen | real | alpha0.25 | same | 141 | uncertainty-estimation | -0.025 | -0.115 | 0.065 |
-| deepseek_qwen | real | alpha0.25 | same | 141 | backtracking | -0.003 | -0.049 | 0.040 |
-| deepseek_qwen | real | alpha0.3 | lost | 5 | deduction | 0.528 | -0.692 | 2.075 |
-| deepseek_qwen | real | alpha0.3 | lost | 5 | uncertainty-estimation | 0.060 | -0.756 | 0.663 |
-| deepseek_qwen | real | alpha0.3 | lost | 5 | backtracking | -0.113 | -0.227 | 0.000 |
-| deepseek_qwen | real | alpha0.3 | same | 142 | deduction | 0.145 | -0.031 | 0.323 |
-| deepseek_qwen | real | alpha0.3 | same | 142 | uncertainty-estimation | -0.016 | -0.108 | 0.074 |
-| deepseek_qwen | real | alpha0.3 | same | 142 | backtracking | -0.009 | -0.053 | 0.032 |
-| deepseek_qwen | real | alpha0.35 | lost | 6 | deduction | -0.024 | -0.610 | 0.548 |
-| deepseek_qwen | real | alpha0.35 | lost | 6 | uncertainty-estimation | -0.141 | -0.580 | 0.193 |
-| deepseek_qwen | real | alpha0.35 | lost | 6 | backtracking | -0.252 | -0.583 | -0.027 |
-| deepseek_qwen | real | alpha0.35 | same | 141 | deduction | 0.193 | 0.025 | 0.371 |
-| deepseek_qwen | real | alpha0.35 | same | 141 | uncertainty-estimation | 0.019 | -0.078 | 0.121 |
-| deepseek_qwen | real | alpha0.35 | same | 141 | backtracking | -0.001 | -0.047 | 0.042 |
-| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | deduction | 0.022 | -0.464 | 0.492 |
-| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | uncertainty-estimation | -0.269 | -0.489 | -0.055 |
-| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | backtracking | -0.038 | -0.210 | 0.099 |
-| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | deduction | -0.272 | -1.396 | 0.786 |
-| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | uncertainty-estimation | 0.851 | 0.284 | 1.418 |
-| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | backtracking | 0.088 | 0.000 | 0.263 |
-| deepseek_qwen | fake | alpha0.07_aware | same | 108 | deduction | -0.392 | -0.617 | -0.163 |
-| deepseek_qwen | fake | alpha0.07_aware | same | 108 | uncertainty-estimation | 0.079 | -0.034 | 0.197 |
-| deepseek_qwen | fake | alpha0.07_aware | same | 108 | backtracking | 0.011 | -0.036 | 0.057 |
-| deepseek_qwen | fake | alpha0.35 | gained | 11 | deduction | 0.603 | -0.082 | 1.357 |
-| deepseek_qwen | fake | alpha0.35 | gained | 11 | uncertainty-estimation | -0.149 | -0.648 | 0.289 |
-| deepseek_qwen | fake | alpha0.35 | gained | 11 | backtracking | -0.183 | -0.358 | -0.008 |
-| deepseek_qwen | fake | alpha0.35 | lost | 7 | deduction | -0.204 | -1.080 | 0.604 |
-| deepseek_qwen | fake | alpha0.35 | lost | 7 | uncertainty-estimation | 0.526 | 0.230 | 0.820 |
-| deepseek_qwen | fake | alpha0.35 | lost | 7 | backtracking | 0.328 | 0.079 | 0.631 |
-| deepseek_qwen | fake | alpha0.35 | same | 70 | deduction | 0.197 | -0.076 | 0.468 |
-| deepseek_qwen | fake | alpha0.35 | same | 70 | uncertainty-estimation | 0.016 | -0.143 | 0.170 |
-| deepseek_qwen | fake | alpha0.35 | same | 70 | backtracking | -0.004 | -0.101 | 0.077 |
-| deepseek_qwen | real | alpha0.07_aware | gained | 20 | deduction | 0.462 | 0.062 | 0.872 |
-| deepseek_qwen | real | alpha0.07_aware | gained | 20 | uncertainty-estimation | -0.493 | -0.768 | -0.213 |
-| deepseek_qwen | real | alpha0.07_aware | gained | 20 | backtracking | -0.068 | -0.173 | 0.035 |
-| deepseek_qwen | real | alpha0.07_aware | lost | 7 | deduction | -0.648 | -1.493 | 0.133 |
-| deepseek_qwen | real | alpha0.07_aware | lost | 7 | uncertainty-estimation | 0.245 | -0.111 | 0.632 |
-| deepseek_qwen | real | alpha0.07_aware | lost | 7 | backtracking | 0.078 | -0.102 | 0.297 |
-| deepseek_qwen | real | alpha0.07_aware | same | 121 | deduction | -0.009 | -0.204 | 0.182 |
-| deepseek_qwen | real | alpha0.07_aware | same | 121 | uncertainty-estimation | 0.090 | -0.017 | 0.194 |
-| deepseek_qwen | real | alpha0.07_aware | same | 121 | backtracking | -0.015 | -0.074 | 0.042 |
-| deepseek_qwen | real | alpha0.35 | gained | 9 | deduction | -0.057 | -0.898 | 0.639 |
-| deepseek_qwen | real | alpha0.35 | gained | 9 | uncertainty-estimation | -0.475 | -0.932 | 0.036 |
-| deepseek_qwen | real | alpha0.35 | gained | 9 | backtracking | -0.056 | -0.276 | 0.146 |
-| deepseek_qwen | real | alpha0.35 | lost | 7 | deduction | -0.295 | -1.227 | 0.542 |
-| deepseek_qwen | real | alpha0.35 | lost | 7 | uncertainty-estimation | 0.121 | -0.151 | 0.413 |
-| deepseek_qwen | real | alpha0.35 | lost | 7 | backtracking | -0.035 | -0.203 | 0.175 |
-| deepseek_qwen | real | alpha0.35 | same | 72 | deduction | 0.453 | 0.156 | 0.763 |
-| deepseek_qwen | real | alpha0.35 | same | 72 | uncertainty-estimation | -0.109 | -0.233 | 0.017 |
-| deepseek_qwen | real | alpha0.35 | same | 72 | backtracking | -0.013 | -0.074 | 0.047 |
-| qwen3 | fake | alpha0.043_aware | gained | 15 | deduction | 0.291 | -0.311 | 0.839 |
-| qwen3 | fake | alpha0.043_aware | gained | 15 | uncertainty-estimation | 0.025 | -0.177 | 0.244 |
-| qwen3 | fake | alpha0.043_aware | gained | 15 | backtracking | -0.050 | -0.213 | 0.119 |
-| qwen3 | fake | alpha0.043_aware | lost | 7 | deduction | 0.002 | -0.449 | 0.373 |
-| qwen3 | fake | alpha0.043_aware | lost | 7 | uncertainty-estimation | 0.236 | -0.194 | 0.672 |
-| qwen3 | fake | alpha0.043_aware | lost | 7 | backtracking | -0.102 | -0.298 | 0.134 |
-| qwen3 | fake | alpha0.043_aware | same | 126 | deduction | -0.069 | -0.282 | 0.161 |
-| qwen3 | fake | alpha0.043_aware | same | 126 | uncertainty-estimation | 0.128 | 0.023 | 0.226 |
-| qwen3 | fake | alpha0.043_aware | same | 126 | backtracking | -0.027 | -0.076 | 0.018 |
-| qwen3 | fake | alpha0.053_aware | gained | 9 | deduction | -0.169 | -0.917 | 0.519 |
-| qwen3 | fake | alpha0.053_aware | gained | 9 | uncertainty-estimation | 0.068 | -0.366 | 0.541 |
-| qwen3 | fake | alpha0.053_aware | gained | 9 | backtracking | 0.045 | -0.214 | 0.288 |
-| qwen3 | fake | alpha0.053_aware | same | 127 | deduction | 0.006 | -0.221 | 0.224 |
-| qwen3 | fake | alpha0.053_aware | same | 127 | uncertainty-estimation | 0.090 | -0.020 | 0.203 |
-| qwen3 | fake | alpha0.053_aware | same | 127 | backtracking | 0.014 | -0.037 | 0.066 |
-| qwen3 | fake | alpha0.05_aware | gained | 16 | deduction | 0.605 | -0.062 | 1.270 |
-| qwen3 | fake | alpha0.05_aware | gained | 16 | uncertainty-estimation | 0.239 | -0.054 | 0.559 |
-| qwen3 | fake | alpha0.05_aware | gained | 16 | backtracking | 0.029 | -0.141 | 0.213 |
-| qwen3 | fake | alpha0.05_aware | lost | 7 | deduction | 0.058 | -0.518 | 0.722 |
-| qwen3 | fake | alpha0.05_aware | lost | 7 | uncertainty-estimation | 0.408 | 0.015 | 0.741 |
-| qwen3 | fake | alpha0.05_aware | lost | 7 | backtracking | -0.301 | -0.497 | -0.115 |
-| qwen3 | fake | alpha0.05_aware | same | 120 | deduction | -0.026 | -0.254 | 0.189 |
-| qwen3 | fake | alpha0.05_aware | same | 120 | uncertainty-estimation | 0.097 | -0.020 | 0.214 |
-| qwen3 | fake | alpha0.05_aware | same | 120 | backtracking | -0.001 | -0.059 | 0.058 |
-| qwen3 | fake | alpha0.25 | gained | 42 | deduction | 0.009 | -0.373 | 0.394 |
-| qwen3 | fake | alpha0.25 | gained | 42 | uncertainty-estimation | 0.281 | 0.050 | 0.517 |
-| qwen3 | fake | alpha0.25 | gained | 42 | backtracking | 0.017 | -0.083 | 0.109 |
-| qwen3 | fake | alpha0.25 | lost | 7 | deduction | 0.098 | -0.817 | 1.216 |
-| qwen3 | fake | alpha0.25 | lost | 7 | uncertainty-estimation | 0.383 | -0.146 | 0.907 |
-| qwen3 | fake | alpha0.25 | lost | 7 | backtracking | 0.040 | -0.123 | 0.198 |
-| qwen3 | fake | alpha0.25 | same | 99 | deduction | 0.007 | -0.271 | 0.301 |
-| qwen3 | fake | alpha0.25 | same | 99 | uncertainty-estimation | 0.066 | -0.073 | 0.205 |
-| qwen3 | fake | alpha0.25 | same | 99 | backtracking | 0.071 | -0.001 | 0.144 |
-| qwen3 | fake | alpha0.3 | gained | 52 | deduction | -0.142 | -0.521 | 0.226 |
-| qwen3 | fake | alpha0.3 | gained | 52 | uncertainty-estimation | 0.250 | -0.005 | 0.477 |
-| qwen3 | fake | alpha0.3 | gained | 52 | backtracking | 0.067 | -0.040 | 0.158 |
-| qwen3 | fake | alpha0.3 | lost | 6 | deduction | 0.423 | -0.479 | 1.296 |
-| qwen3 | fake | alpha0.3 | lost | 6 | uncertainty-estimation | 0.301 | -0.393 | 0.996 |
-| qwen3 | fake | alpha0.3 | lost | 6 | backtracking | -0.209 | -0.466 | 0.092 |
-| qwen3 | fake | alpha0.3 | same | 89 | deduction | -0.034 | -0.337 | 0.273 |
-| qwen3 | fake | alpha0.3 | same | 89 | uncertainty-estimation | 0.192 | 0.056 | 0.324 |
-| qwen3 | fake | alpha0.3 | same | 89 | backtracking | 0.012 | -0.057 | 0.088 |
-| qwen3 | fake | alpha0.32 | gained | 43 | deduction | 0.085 | -0.322 | 0.516 |
-| qwen3 | fake | alpha0.32 | gained | 43 | uncertainty-estimation | 0.233 | -0.016 | 0.478 |
-| qwen3 | fake | alpha0.32 | gained | 43 | backtracking | 0.121 | 0.006 | 0.229 |
-| qwen3 | fake | alpha0.32 | lost | 9 | deduction | -0.321 | -0.776 | 0.140 |
-| qwen3 | fake | alpha0.32 | lost | 9 | uncertainty-estimation | 0.066 | -0.425 | 0.539 |
-| qwen3 | fake | alpha0.32 | lost | 9 | backtracking | 0.038 | -0.219 | 0.316 |
-| qwen3 | fake | alpha0.32 | same | 96 | deduction | -0.154 | -0.462 | 0.138 |
-| qwen3 | fake | alpha0.32 | same | 96 | uncertainty-estimation | 0.187 | 0.047 | 0.340 |
-| qwen3 | fake | alpha0.32 | same | 96 | backtracking | 0.066 | -0.016 | 0.149 |
-| qwen3 | real | alpha0.043_aware | gained | 12 | deduction | 0.255 | -0.308 | 0.780 |
-| qwen3 | real | alpha0.043_aware | gained | 12 | uncertainty-estimation | 0.107 | -0.406 | 0.597 |
-| qwen3 | real | alpha0.043_aware | gained | 12 | backtracking | -0.066 | -0.253 | 0.100 |
-| qwen3 | real | alpha0.043_aware | lost | 9 | deduction | -0.460 | -1.373 | 0.626 |
-| qwen3 | real | alpha0.043_aware | lost | 9 | uncertainty-estimation | -0.354 | -0.706 | -0.008 |
-| qwen3 | real | alpha0.043_aware | lost | 9 | backtracking | -0.080 | -0.304 | 0.091 |
-| qwen3 | real | alpha0.043_aware | same | 127 | deduction | -0.160 | -0.342 | 0.016 |
-| qwen3 | real | alpha0.043_aware | same | 127 | uncertainty-estimation | 0.159 | 0.058 | 0.253 |
-| qwen3 | real | alpha0.043_aware | same | 127 | backtracking | -0.005 | -0.065 | 0.057 |
-| qwen3 | real | alpha0.053_aware | gained | 14 | deduction | -0.306 | -1.292 | 0.798 |
-| qwen3 | real | alpha0.053_aware | gained | 14 | uncertainty-estimation | 0.002 | -0.478 | 0.504 |
-| qwen3 | real | alpha0.053_aware | gained | 14 | backtracking | 0.210 | -0.045 | 0.512 |
-| qwen3 | real | alpha0.053_aware | lost | 6 | deduction | -0.799 | -1.499 | -0.170 |
-| qwen3 | real | alpha0.053_aware | lost | 6 | uncertainty-estimation | 0.329 | -0.176 | 0.863 |
-| qwen3 | real | alpha0.053_aware | lost | 6 | backtracking | 0.133 | -0.170 | 0.472 |
-| qwen3 | real | alpha0.053_aware | same | 117 | deduction | -0.161 | -0.370 | 0.041 |
-| qwen3 | real | alpha0.053_aware | same | 117 | uncertainty-estimation | 0.046 | -0.055 | 0.149 |
-| qwen3 | real | alpha0.053_aware | same | 117 | backtracking | -0.052 | -0.112 | 0.003 |
-| qwen3 | real | alpha0.05_aware | gained | 11 | deduction | 0.903 | 0.415 | 1.363 |
-| qwen3 | real | alpha0.05_aware | gained | 11 | uncertainty-estimation | -0.039 | -0.510 | 0.428 |
-| qwen3 | real | alpha0.05_aware | gained | 11 | backtracking | -0.027 | -0.262 | 0.207 |
-| qwen3 | real | alpha0.05_aware | lost | 8 | deduction | -0.651 | -1.261 | -0.100 |
-| qwen3 | real | alpha0.05_aware | lost | 8 | uncertainty-estimation | 0.081 | -0.456 | 0.669 |
-| qwen3 | real | alpha0.05_aware | lost | 8 | backtracking | -0.041 | -0.250 | 0.135 |
-| qwen3 | real | alpha0.05_aware | same | 126 | deduction | -0.210 | -0.406 | -0.006 |
-| qwen3 | real | alpha0.05_aware | same | 126 | uncertainty-estimation | 0.068 | -0.039 | 0.179 |
-| qwen3 | real | alpha0.05_aware | same | 126 | backtracking | -0.013 | -0.073 | 0.048 |
-| qwen3 | real | alpha0.25 | gained | 34 | deduction | -0.234 | -0.757 | 0.277 |
-| qwen3 | real | alpha0.25 | gained | 34 | uncertainty-estimation | 0.272 | -0.004 | 0.564 |
-| qwen3 | real | alpha0.25 | gained | 34 | backtracking | 0.049 | -0.075 | 0.180 |
-| qwen3 | real | alpha0.25 | same | 111 | deduction | 0.155 | -0.068 | 0.375 |
-| qwen3 | real | alpha0.25 | same | 111 | uncertainty-estimation | 0.091 | -0.023 | 0.212 |
-| qwen3 | real | alpha0.25 | same | 111 | backtracking | 0.023 | -0.044 | 0.092 |
-| qwen3 | real | alpha0.3 | gained | 36 | deduction | -0.070 | -0.559 | 0.443 |
-| qwen3 | real | alpha0.3 | gained | 36 | uncertainty-estimation | 0.036 | -0.216 | 0.287 |
-| qwen3 | real | alpha0.3 | gained | 36 | backtracking | 0.143 | 0.018 | 0.277 |
-| qwen3 | real | alpha0.3 | same | 108 | deduction | -0.043 | -0.266 | 0.183 |
-| qwen3 | real | alpha0.3 | same | 108 | uncertainty-estimation | 0.147 | 0.010 | 0.287 |
-| qwen3 | real | alpha0.3 | same | 108 | backtracking | 0.038 | -0.028 | 0.104 |
-| qwen3 | real | alpha0.32 | gained | 52 | deduction | -0.383 | -0.769 | 0.015 |
-| qwen3 | real | alpha0.32 | gained | 52 | uncertainty-estimation | 0.378 | 0.124 | 0.630 |
-| qwen3 | real | alpha0.32 | gained | 52 | backtracking | 0.121 | 0.012 | 0.221 |
-| qwen3 | real | alpha0.32 | lost | 6 | deduction | -1.070 | -2.076 | 0.042 |
-| qwen3 | real | alpha0.32 | lost | 6 | uncertainty-estimation | -0.017 | -0.487 | 0.486 |
-| qwen3 | real | alpha0.32 | lost | 6 | backtracking | 0.215 | 0.000 | 0.523 |
-| qwen3 | real | alpha0.32 | same | 89 | deduction | 0.031 | -0.267 | 0.327 |
-| qwen3 | real | alpha0.32 | same | 89 | uncertainty-estimation | -0.077 | -0.205 | 0.050 |
-| qwen3 | real | alpha0.32 | same | 89 | backtracking | 0.041 | -0.032 | 0.111 |
-| qwq | fake | alpha0.05_aware | gained | 26 | deduction | -0.262 | -0.886 | 0.339 |
-| qwq | fake | alpha0.05_aware | gained | 26 | uncertainty-estimation | 0.187 | -0.115 | 0.484 |
-| qwq | fake | alpha0.05_aware | gained | 26 | backtracking | -0.047 | -0.168 | 0.080 |
-| qwq | fake | alpha0.05_aware | same | 120 | deduction | 0.074 | -0.180 | 0.324 |
-| qwq | fake | alpha0.05_aware | same | 120 | uncertainty-estimation | -0.055 | -0.182 | 0.078 |
-| qwq | fake | alpha0.05_aware | same | 120 | backtracking | 0.006 | -0.053 | 0.064 |
-| qwq | fake | alpha0.25 | gained | 5 | deduction | -0.531 | -1.363 | 0.380 |
-| qwq | fake | alpha0.25 | gained | 5 | uncertainty-estimation | 0.494 | -0.255 | 1.191 |
-| qwq | fake | alpha0.25 | gained | 5 | backtracking | 0.061 | -0.281 | 0.395 |
-| qwq | fake | alpha0.25 | lost | 31 | deduction | 0.456 | -0.077 | 0.978 |
-| qwq | fake | alpha0.25 | lost | 31 | uncertainty-estimation | -0.185 | -0.569 | 0.189 |
-| qwq | fake | alpha0.25 | lost | 31 | backtracking | 0.006 | -0.135 | 0.145 |
-| qwq | fake | alpha0.25 | same | 113 | deduction | 0.086 | -0.238 | 0.424 |
-| qwq | fake | alpha0.25 | same | 113 | uncertainty-estimation | 0.060 | -0.052 | 0.173 |
-| qwq | fake | alpha0.25 | same | 113 | backtracking | 0.019 | -0.047 | 0.083 |
-| qwq | fake | alpha0.3 | gained | 5 | deduction | 1.655 | -0.235 | 3.054 |
-| qwq | fake | alpha0.3 | gained | 5 | uncertainty-estimation | 0.278 | -0.497 | 1.045 |
-| qwq | fake | alpha0.3 | gained | 5 | backtracking | 0.156 | 0.034 | 0.287 |
-| qwq | fake | alpha0.3 | lost | 30 | deduction | 0.566 | 0.093 | 1.029 |
-| qwq | fake | alpha0.3 | lost | 30 | uncertainty-estimation | 0.147 | -0.206 | 0.486 |
-| qwq | fake | alpha0.3 | lost | 30 | backtracking | 0.067 | -0.092 | 0.221 |
-| qwq | fake | alpha0.3 | same | 114 | deduction | 0.110 | -0.144 | 0.361 |
-| qwq | fake | alpha0.3 | same | 114 | uncertainty-estimation | 0.025 | -0.100 | 0.160 |
-| qwq | fake | alpha0.3 | same | 114 | backtracking | 0.052 | -0.018 | 0.127 |
-| qwq | real | alpha0.05_aware | gained | 33 | deduction | -0.607 | -1.144 | -0.051 |
-| qwq | real | alpha0.05_aware | gained | 33 | uncertainty-estimation | 0.358 | 0.099 | 0.615 |
-| qwq | real | alpha0.05_aware | gained | 33 | backtracking | 0.043 | -0.099 | 0.199 |
-| qwq | real | alpha0.05_aware | same | 113 | deduction | -0.236 | -0.506 | 0.024 |
-| qwq | real | alpha0.05_aware | same | 113 | uncertainty-estimation | 0.207 | 0.076 | 0.347 |
-| qwq | real | alpha0.05_aware | same | 113 | backtracking | 0.024 | -0.058 | 0.107 |
-| qwq | real | alpha0.25 | gained | 9 | deduction | 1.242 | -0.011 | 2.212 |
-| qwq | real | alpha0.25 | gained | 9 | uncertainty-estimation | -0.093 | -0.456 | 0.264 |
-| qwq | real | alpha0.25 | gained | 9 | backtracking | -0.020 | -0.261 | 0.214 |
-| qwq | real | alpha0.25 | lost | 16 | deduction | 0.066 | -0.565 | 0.796 |
-| qwq | real | alpha0.25 | lost | 16 | uncertainty-estimation | 0.057 | -0.398 | 0.476 |
-| qwq | real | alpha0.25 | lost | 16 | backtracking | 0.108 | -0.063 | 0.294 |
-| qwq | real | alpha0.25 | same | 124 | deduction | -0.104 | -0.354 | 0.146 |
-| qwq | real | alpha0.25 | same | 124 | uncertainty-estimation | -0.135 | -0.246 | -0.027 |
-| qwq | real | alpha0.25 | same | 124 | backtracking | 0.038 | -0.045 | 0.119 |
-| qwq | real | alpha0.3 | gained | 5 | deduction | 0.245 | -1.269 | 1.564 |
-| qwq | real | alpha0.3 | gained | 5 | uncertainty-estimation | -0.066 | -0.618 | 0.762 |
-| qwq | real | alpha0.3 | gained | 5 | backtracking | -0.124 | -0.517 | 0.144 |
-| qwq | real | alpha0.3 | lost | 16 | deduction | 0.582 | -0.129 | 1.269 |
-| qwq | real | alpha0.3 | lost | 16 | uncertainty-estimation | 0.273 | -0.440 | 0.940 |
-| qwq | real | alpha0.3 | lost | 16 | backtracking | 0.076 | -0.097 | 0.254 |
-| qwq | real | alpha0.3 | same | 128 | deduction | -0.149 | -0.421 | 0.121 |
-| qwq | real | alpha0.3 | same | 128 | uncertainty-estimation | -0.117 | -0.231 | 0.003 |
-| qwq | real | alpha0.3 | same | 128 | backtracking | 0.021 | -0.058 | 0.094 |
+Classes: `gained`/`lost` flipped decision; `comply_both`/`refuse_both` kept it. Within `refuse_both` the decision is held fixed, so a delta there is not a by-product of the compliance change.
+
+| model | framing | arm | flip_class | n | behaviour | metric | delta_density | ci_lo | ci_hi |
+|---|---|---|---|---|---|---|---|---|---|
+| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | deduction | density | 0.062 | -0.327 | 0.451 |
+| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | deduction | density_nontest | -0.165 | -0.579 | 0.232 |
+| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | deduction | density_testlex | 0.228 | 0.057 | 0.399 |
+| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | uncertainty-estimation | density | -0.210 | -0.472 | 0.039 |
+| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | uncertainty-estimation | density_nontest | -0.321 | -0.578 | -0.074 |
+| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | uncertainty-estimation | density_testlex | 0.111 | 0.028 | 0.197 |
+| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | backtracking | density | 0.019 | -0.083 | 0.112 |
+| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | backtracking | density_nontest | -0.004 | -0.099 | 0.087 |
+| deepseek_qwen | fake | alpha0.05_aware | gained | 26 | backtracking | density_testlex | 0.023 | 0.000 | 0.057 |
+| deepseek_qwen | fake | alpha0.05_aware | comply_both | 28 | deduction | density | -0.256 | -0.613 | 0.094 |
+| deepseek_qwen | fake | alpha0.05_aware | comply_both | 28 | deduction | density_nontest | -0.359 | -0.724 | 0.003 |
+| deepseek_qwen | fake | alpha0.05_aware | comply_both | 28 | deduction | density_testlex | 0.103 | 0.035 | 0.188 |
+| deepseek_qwen | fake | alpha0.05_aware | comply_both | 28 | uncertainty-estimation | density | 0.055 | -0.124 | 0.213 |
+| deepseek_qwen | fake | alpha0.05_aware | comply_both | 28 | uncertainty-estimation | density_nontest | 0.055 | -0.124 | 0.213 |
+| deepseek_qwen | fake | alpha0.05_aware | comply_both | 28 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.05_aware | comply_both | 28 | backtracking | density | -0.047 | -0.117 | 0.021 |
+| deepseek_qwen | fake | alpha0.05_aware | comply_both | 28 | backtracking | density_nontest | -0.047 | -0.117 | 0.021 |
+| deepseek_qwen | fake | alpha0.05_aware | comply_both | 28 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.05_aware | refuse_both | 91 | deduction | density | 0.013 | -0.223 | 0.253 |
+| deepseek_qwen | fake | alpha0.05_aware | refuse_both | 91 | deduction | density_nontest | -0.132 | -0.384 | 0.105 |
+| deepseek_qwen | fake | alpha0.05_aware | refuse_both | 91 | deduction | density_testlex | 0.145 | 0.075 | 0.224 |
+| deepseek_qwen | fake | alpha0.05_aware | refuse_both | 91 | uncertainty-estimation | density | 0.165 | 0.021 | 0.301 |
+| deepseek_qwen | fake | alpha0.05_aware | refuse_both | 91 | uncertainty-estimation | density_nontest | 0.012 | -0.127 | 0.154 |
+| deepseek_qwen | fake | alpha0.05_aware | refuse_both | 91 | uncertainty-estimation | density_testlex | 0.153 | 0.087 | 0.226 |
+| deepseek_qwen | fake | alpha0.05_aware | refuse_both | 91 | backtracking | density | 0.005 | -0.057 | 0.069 |
+| deepseek_qwen | fake | alpha0.05_aware | refuse_both | 91 | backtracking | density_nontest | -0.001 | -0.060 | 0.059 |
+| deepseek_qwen | fake | alpha0.05_aware | refuse_both | 91 | backtracking | density_testlex | 0.006 | 0.000 | 0.018 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | deduction | density | 0.274 | -0.197 | 0.698 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | deduction | density_nontest | -0.242 | -0.726 | 0.208 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | deduction | density_testlex | 0.516 | 0.322 | 0.719 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | uncertainty-estimation | density | -0.548 | -0.783 | -0.328 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | uncertainty-estimation | density_nontest | -0.638 | -0.858 | -0.428 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | uncertainty-estimation | density_testlex | 0.090 | 0.027 | 0.163 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | backtracking | density | -0.047 | -0.128 | 0.029 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | backtracking | density_nontest | -0.059 | -0.137 | 0.013 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 31 | backtracking | density_testlex | 0.011 | 0.000 | 0.034 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 29 | deduction | density | -0.392 | -0.866 | 0.117 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 29 | deduction | density_nontest | -0.441 | -0.926 | 0.082 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 29 | deduction | density_testlex | 0.048 | 0.011 | 0.094 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 29 | uncertainty-estimation | density | -0.085 | -0.289 | 0.100 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 29 | uncertainty-estimation | density_nontest | -0.127 | -0.328 | 0.062 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 29 | uncertainty-estimation | density_testlex | 0.042 | -0.004 | 0.095 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 29 | backtracking | density | -0.027 | -0.115 | 0.059 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 29 | backtracking | density_nontest | -0.027 | -0.115 | 0.059 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 29 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 85 | deduction | density | -0.382 | -0.652 | -0.128 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 85 | deduction | density_nontest | -0.648 | -0.910 | -0.387 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 85 | deduction | density_testlex | 0.266 | 0.178 | 0.355 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 85 | uncertainty-estimation | density | 0.155 | 0.015 | 0.297 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 85 | uncertainty-estimation | density_nontest | -0.049 | -0.191 | 0.095 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 85 | uncertainty-estimation | density_testlex | 0.205 | 0.139 | 0.269 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 85 | backtracking | density | -0.023 | -0.077 | 0.032 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 85 | backtracking | density_nontest | -0.037 | -0.091 | 0.019 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 85 | backtracking | density_testlex | 0.014 | 0.000 | 0.033 |
+| deepseek_qwen | fake | alpha0.25 | gained | 5 | deduction | density | -0.032 | -0.878 | 0.680 |
+| deepseek_qwen | fake | alpha0.25 | gained | 5 | deduction | density_nontest | 0.025 | -0.828 | 0.737 |
+| deepseek_qwen | fake | alpha0.25 | gained | 5 | deduction | density_testlex | -0.057 | -0.170 | 0.000 |
+| deepseek_qwen | fake | alpha0.25 | gained | 5 | uncertainty-estimation | density | -0.143 | -0.978 | 0.691 |
+| deepseek_qwen | fake | alpha0.25 | gained | 5 | uncertainty-estimation | density_nontest | -0.076 | -0.796 | 0.644 |
+| deepseek_qwen | fake | alpha0.25 | gained | 5 | uncertainty-estimation | density_testlex | -0.067 | -0.273 | 0.071 |
+| deepseek_qwen | fake | alpha0.25 | gained | 5 | backtracking | density | -0.069 | -0.371 | 0.233 |
+| deepseek_qwen | fake | alpha0.25 | gained | 5 | backtracking | density_nontest | -0.069 | -0.371 | 0.233 |
+| deepseek_qwen | fake | alpha0.25 | gained | 5 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.25 | lost | 12 | deduction | density | -0.416 | -0.810 | -0.043 |
+| deepseek_qwen | fake | alpha0.25 | lost | 12 | deduction | density_nontest | -0.427 | -0.826 | -0.040 |
+| deepseek_qwen | fake | alpha0.25 | lost | 12 | deduction | density_testlex | 0.010 | -0.071 | 0.102 |
+| deepseek_qwen | fake | alpha0.25 | lost | 12 | uncertainty-estimation | density | 0.500 | 0.060 | 0.976 |
+| deepseek_qwen | fake | alpha0.25 | lost | 12 | uncertainty-estimation | density_nontest | 0.523 | 0.078 | 0.992 |
+| deepseek_qwen | fake | alpha0.25 | lost | 12 | uncertainty-estimation | density_testlex | -0.023 | -0.069 | 0.000 |
+| deepseek_qwen | fake | alpha0.25 | lost | 12 | backtracking | density | -0.129 | -0.222 | -0.047 |
+| deepseek_qwen | fake | alpha0.25 | lost | 12 | backtracking | density_nontest | -0.129 | -0.222 | -0.047 |
+| deepseek_qwen | fake | alpha0.25 | lost | 12 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.25 | comply_both | 18 | deduction | density | 0.096 | -0.767 | 0.857 |
+| deepseek_qwen | fake | alpha0.25 | comply_both | 18 | deduction | density_nontest | 0.087 | -0.769 | 0.848 |
+| deepseek_qwen | fake | alpha0.25 | comply_both | 18 | deduction | density_testlex | 0.010 | 0.000 | 0.029 |
+| deepseek_qwen | fake | alpha0.25 | comply_both | 18 | uncertainty-estimation | density | -0.025 | -0.295 | 0.234 |
+| deepseek_qwen | fake | alpha0.25 | comply_both | 18 | uncertainty-estimation | density_nontest | -0.039 | -0.308 | 0.216 |
+| deepseek_qwen | fake | alpha0.25 | comply_both | 18 | uncertainty-estimation | density_testlex | 0.014 | 0.000 | 0.042 |
+| deepseek_qwen | fake | alpha0.25 | comply_both | 18 | backtracking | density | -0.021 | -0.160 | 0.118 |
+| deepseek_qwen | fake | alpha0.25 | comply_both | 18 | backtracking | density_nontest | -0.021 | -0.160 | 0.118 |
+| deepseek_qwen | fake | alpha0.25 | comply_both | 18 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.25 | refuse_both | 113 | deduction | density | 0.066 | -0.120 | 0.252 |
+| deepseek_qwen | fake | alpha0.25 | refuse_both | 113 | deduction | density_nontest | 0.075 | -0.113 | 0.271 |
+| deepseek_qwen | fake | alpha0.25 | refuse_both | 113 | deduction | density_testlex | -0.010 | -0.048 | 0.028 |
+| deepseek_qwen | fake | alpha0.25 | refuse_both | 113 | uncertainty-estimation | density | 0.016 | -0.087 | 0.120 |
+| deepseek_qwen | fake | alpha0.25 | refuse_both | 113 | uncertainty-estimation | density_nontest | 0.024 | -0.080 | 0.126 |
+| deepseek_qwen | fake | alpha0.25 | refuse_both | 113 | uncertainty-estimation | density_testlex | -0.007 | -0.042 | 0.025 |
+| deepseek_qwen | fake | alpha0.25 | refuse_both | 113 | backtracking | density | 0.009 | -0.048 | 0.061 |
+| deepseek_qwen | fake | alpha0.25 | refuse_both | 113 | backtracking | density_nontest | 0.009 | -0.048 | 0.061 |
+| deepseek_qwen | fake | alpha0.25 | refuse_both | 113 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.3 | lost | 10 | deduction | density | -0.799 | -1.609 | -0.216 |
+| deepseek_qwen | fake | alpha0.3 | lost | 10 | deduction | density_nontest | -0.812 | -1.601 | -0.264 |
+| deepseek_qwen | fake | alpha0.3 | lost | 10 | deduction | density_testlex | 0.013 | -0.085 | 0.124 |
+| deepseek_qwen | fake | alpha0.3 | lost | 10 | uncertainty-estimation | density | 0.569 | 0.061 | 1.118 |
+| deepseek_qwen | fake | alpha0.3 | lost | 10 | uncertainty-estimation | density_nontest | 0.569 | 0.067 | 1.098 |
+| deepseek_qwen | fake | alpha0.3 | lost | 10 | uncertainty-estimation | density_testlex | -0.000 | -0.083 | 0.083 |
+| deepseek_qwen | fake | alpha0.3 | lost | 10 | backtracking | density | -0.028 | -0.200 | 0.180 |
+| deepseek_qwen | fake | alpha0.3 | lost | 10 | backtracking | density_nontest | -0.028 | -0.200 | 0.180 |
+| deepseek_qwen | fake | alpha0.3 | lost | 10 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.3 | comply_both | 21 | deduction | density | 0.006 | -0.622 | 0.596 |
+| deepseek_qwen | fake | alpha0.3 | comply_both | 21 | deduction | density_nontest | -0.004 | -0.623 | 0.581 |
+| deepseek_qwen | fake | alpha0.3 | comply_both | 21 | deduction | density_testlex | 0.010 | 0.000 | 0.031 |
+| deepseek_qwen | fake | alpha0.3 | comply_both | 21 | uncertainty-estimation | density | -0.041 | -0.249 | 0.149 |
+| deepseek_qwen | fake | alpha0.3 | comply_both | 21 | uncertainty-estimation | density_nontest | -0.041 | -0.249 | 0.149 |
+| deepseek_qwen | fake | alpha0.3 | comply_both | 21 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.3 | comply_both | 21 | backtracking | density | -0.009 | -0.125 | 0.094 |
+| deepseek_qwen | fake | alpha0.3 | comply_both | 21 | backtracking | density_nontest | -0.009 | -0.125 | 0.094 |
+| deepseek_qwen | fake | alpha0.3 | comply_both | 21 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.3 | refuse_both | 114 | deduction | density | 0.147 | -0.068 | 0.370 |
+| deepseek_qwen | fake | alpha0.3 | refuse_both | 114 | deduction | density_nontest | 0.162 | -0.053 | 0.389 |
+| deepseek_qwen | fake | alpha0.3 | refuse_both | 114 | deduction | density_testlex | -0.016 | -0.053 | 0.023 |
+| deepseek_qwen | fake | alpha0.3 | refuse_both | 114 | uncertainty-estimation | density | -0.054 | -0.158 | 0.055 |
+| deepseek_qwen | fake | alpha0.3 | refuse_both | 114 | uncertainty-estimation | density_nontest | -0.032 | -0.142 | 0.075 |
+| deepseek_qwen | fake | alpha0.3 | refuse_both | 114 | uncertainty-estimation | density_testlex | -0.021 | -0.053 | 0.009 |
+| deepseek_qwen | fake | alpha0.3 | refuse_both | 114 | backtracking | density | 0.025 | -0.026 | 0.075 |
+| deepseek_qwen | fake | alpha0.3 | refuse_both | 114 | backtracking | density_nontest | 0.025 | -0.026 | 0.075 |
+| deepseek_qwen | fake | alpha0.3 | refuse_both | 114 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | lost | 12 | deduction | density | -0.566 | -1.091 | -0.071 |
+| deepseek_qwen | fake | alpha0.35 | lost | 12 | deduction | density_nontest | -0.595 | -1.196 | -0.057 |
+| deepseek_qwen | fake | alpha0.35 | lost | 12 | deduction | density_testlex | 0.028 | -0.055 | 0.123 |
+| deepseek_qwen | fake | alpha0.35 | lost | 12 | uncertainty-estimation | density | 0.393 | 0.001 | 0.751 |
+| deepseek_qwen | fake | alpha0.35 | lost | 12 | uncertainty-estimation | density_nontest | 0.401 | -0.009 | 0.785 |
+| deepseek_qwen | fake | alpha0.35 | lost | 12 | uncertainty-estimation | density_testlex | -0.008 | -0.069 | 0.038 |
+| deepseek_qwen | fake | alpha0.35 | lost | 12 | backtracking | density | 0.020 | -0.147 | 0.191 |
+| deepseek_qwen | fake | alpha0.35 | lost | 12 | backtracking | density_nontest | 0.020 | -0.147 | 0.191 |
+| deepseek_qwen | fake | alpha0.35 | lost | 12 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 19 | deduction | density | 0.124 | -0.298 | 0.548 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 19 | deduction | density_nontest | 0.108 | -0.321 | 0.544 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 19 | deduction | density_testlex | 0.016 | 0.000 | 0.047 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 19 | uncertainty-estimation | density | -0.064 | -0.322 | 0.165 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 19 | uncertainty-estimation | density_nontest | -0.064 | -0.322 | 0.165 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 19 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 19 | backtracking | density | -0.016 | -0.137 | 0.109 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 19 | backtracking | density_nontest | -0.016 | -0.137 | 0.109 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 19 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 114 | deduction | density | 0.153 | -0.056 | 0.361 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 114 | deduction | density_nontest | 0.137 | -0.082 | 0.358 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 114 | deduction | density_testlex | 0.016 | -0.026 | 0.058 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 114 | uncertainty-estimation | density | -0.047 | -0.161 | 0.076 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 114 | uncertainty-estimation | density_nontest | -0.033 | -0.146 | 0.083 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 114 | uncertainty-estimation | density_testlex | -0.014 | -0.041 | 0.012 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 114 | backtracking | density | 0.029 | -0.030 | 0.096 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 114 | backtracking | density_nontest | 0.029 | -0.030 | 0.096 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 114 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.05_aware | gained | 10 | deduction | density | -0.124 | -0.833 | 0.490 |
+| deepseek_qwen | real | alpha0.05_aware | gained | 10 | deduction | density_nontest | -0.414 | -1.086 | 0.203 |
+| deepseek_qwen | real | alpha0.05_aware | gained | 10 | deduction | density_testlex | 0.290 | 0.098 | 0.531 |
+| deepseek_qwen | real | alpha0.05_aware | gained | 10 | uncertainty-estimation | density | -0.214 | -0.644 | 0.165 |
+| deepseek_qwen | real | alpha0.05_aware | gained | 10 | uncertainty-estimation | density_nontest | -0.265 | -0.653 | 0.059 |
+| deepseek_qwen | real | alpha0.05_aware | gained | 10 | uncertainty-estimation | density_testlex | 0.051 | 0.000 | 0.152 |
+| deepseek_qwen | real | alpha0.05_aware | gained | 10 | backtracking | density | 0.149 | 0.044 | 0.275 |
+| deepseek_qwen | real | alpha0.05_aware | gained | 10 | backtracking | density_nontest | 0.122 | 0.028 | 0.260 |
+| deepseek_qwen | real | alpha0.05_aware | gained | 10 | backtracking | density_testlex | 0.027 | 0.000 | 0.081 |
+| deepseek_qwen | real | alpha0.05_aware | comply_both | 15 | deduction | density | 0.019 | -0.466 | 0.524 |
+| deepseek_qwen | real | alpha0.05_aware | comply_both | 15 | deduction | density_nontest | 0.012 | -0.470 | 0.523 |
+| deepseek_qwen | real | alpha0.05_aware | comply_both | 15 | deduction | density_testlex | 0.007 | -0.002 | 0.023 |
+| deepseek_qwen | real | alpha0.05_aware | comply_both | 15 | uncertainty-estimation | density | -0.050 | -0.344 | 0.215 |
+| deepseek_qwen | real | alpha0.05_aware | comply_both | 15 | uncertainty-estimation | density_nontest | -0.068 | -0.354 | 0.188 |
+| deepseek_qwen | real | alpha0.05_aware | comply_both | 15 | uncertainty-estimation | density_testlex | 0.018 | 0.000 | 0.054 |
+| deepseek_qwen | real | alpha0.05_aware | comply_both | 15 | backtracking | density | 0.059 | -0.021 | 0.140 |
+| deepseek_qwen | real | alpha0.05_aware | comply_both | 15 | backtracking | density_nontest | 0.059 | -0.021 | 0.140 |
+| deepseek_qwen | real | alpha0.05_aware | comply_both | 15 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.05_aware | refuse_both | 120 | deduction | density | 0.025 | -0.183 | 0.226 |
+| deepseek_qwen | real | alpha0.05_aware | refuse_both | 120 | deduction | density_nontest | -0.036 | -0.250 | 0.174 |
+| deepseek_qwen | real | alpha0.05_aware | refuse_both | 120 | deduction | density_testlex | 0.061 | 0.022 | 0.104 |
+| deepseek_qwen | real | alpha0.05_aware | refuse_both | 120 | uncertainty-estimation | density | 0.147 | 0.044 | 0.249 |
+| deepseek_qwen | real | alpha0.05_aware | refuse_both | 120 | uncertainty-estimation | density_nontest | 0.040 | -0.066 | 0.141 |
+| deepseek_qwen | real | alpha0.05_aware | refuse_both | 120 | uncertainty-estimation | density_testlex | 0.107 | 0.071 | 0.146 |
+| deepseek_qwen | real | alpha0.05_aware | refuse_both | 120 | backtracking | density | -0.005 | -0.059 | 0.047 |
+| deepseek_qwen | real | alpha0.05_aware | refuse_both | 120 | backtracking | density_nontest | -0.008 | -0.061 | 0.044 |
+| deepseek_qwen | real | alpha0.05_aware | refuse_both | 120 | backtracking | density_testlex | 0.003 | 0.000 | 0.008 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 26 | deduction | density | -0.385 | -0.806 | 0.016 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 26 | deduction | density_nontest | -0.783 | -1.229 | -0.342 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 26 | deduction | density_testlex | 0.399 | 0.215 | 0.607 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 26 | uncertainty-estimation | density | -0.026 | -0.317 | 0.271 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 26 | uncertainty-estimation | density_nontest | -0.133 | -0.425 | 0.165 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 26 | uncertainty-estimation | density_testlex | 0.108 | 0.029 | 0.196 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 26 | backtracking | density | 0.057 | -0.084 | 0.190 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 26 | backtracking | density_nontest | 0.057 | -0.084 | 0.190 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 26 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 15 | deduction | density | 0.302 | 0.007 | 0.624 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 15 | deduction | density_nontest | 0.279 | -0.051 | 0.615 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 15 | deduction | density_testlex | 0.023 | 0.000 | 0.069 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 15 | uncertainty-estimation | density | 0.046 | -0.115 | 0.191 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 15 | uncertainty-estimation | density_nontest | 0.046 | -0.115 | 0.191 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 15 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 15 | backtracking | density | 0.064 | -0.040 | 0.174 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 15 | backtracking | density_nontest | 0.064 | -0.040 | 0.174 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 15 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | deduction | density | -0.124 | -0.345 | 0.102 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | deduction | density_nontest | -0.284 | -0.511 | -0.060 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | deduction | density_testlex | 0.161 | 0.104 | 0.214 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | uncertainty-estimation | density | 0.226 | 0.110 | 0.341 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | uncertainty-estimation | density_nontest | 0.064 | -0.047 | 0.173 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | uncertainty-estimation | density_testlex | 0.162 | 0.107 | 0.224 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | backtracking | density | 0.075 | 0.018 | 0.131 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | backtracking | density_nontest | 0.068 | 0.012 | 0.122 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | backtracking | density_testlex | 0.007 | 0.000 | 0.018 |
+| deepseek_qwen | real | alpha0.25 | comply_both | 14 | deduction | density | 0.423 | -0.165 | 1.001 |
+| deepseek_qwen | real | alpha0.25 | comply_both | 14 | deduction | density_nontest | 0.317 | -0.219 | 0.907 |
+| deepseek_qwen | real | alpha0.25 | comply_both | 14 | deduction | density_testlex | 0.105 | -0.015 | 0.222 |
+| deepseek_qwen | real | alpha0.25 | comply_both | 14 | uncertainty-estimation | density | -0.114 | -0.273 | 0.045 |
+| deepseek_qwen | real | alpha0.25 | comply_both | 14 | uncertainty-estimation | density_nontest | -0.114 | -0.273 | 0.045 |
+| deepseek_qwen | real | alpha0.25 | comply_both | 14 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.25 | comply_both | 14 | backtracking | density | -0.016 | -0.208 | 0.125 |
+| deepseek_qwen | real | alpha0.25 | comply_both | 14 | backtracking | density_nontest | -0.016 | -0.208 | 0.125 |
+| deepseek_qwen | real | alpha0.25 | comply_both | 14 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.25 | refuse_both | 127 | deduction | density | 0.088 | -0.092 | 0.264 |
+| deepseek_qwen | real | alpha0.25 | refuse_both | 127 | deduction | density_nontest | 0.089 | -0.085 | 0.266 |
+| deepseek_qwen | real | alpha0.25 | refuse_both | 127 | deduction | density_testlex | -0.001 | -0.032 | 0.029 |
+| deepseek_qwen | real | alpha0.25 | refuse_both | 127 | uncertainty-estimation | density | -0.015 | -0.112 | 0.080 |
+| deepseek_qwen | real | alpha0.25 | refuse_both | 127 | uncertainty-estimation | density_nontest | -0.011 | -0.109 | 0.081 |
+| deepseek_qwen | real | alpha0.25 | refuse_both | 127 | uncertainty-estimation | density_testlex | -0.004 | -0.024 | 0.014 |
+| deepseek_qwen | real | alpha0.25 | refuse_both | 127 | backtracking | density | -0.002 | -0.050 | 0.043 |
+| deepseek_qwen | real | alpha0.25 | refuse_both | 127 | backtracking | density_nontest | -0.002 | -0.050 | 0.043 |
+| deepseek_qwen | real | alpha0.25 | refuse_both | 127 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.3 | lost | 5 | deduction | density | 0.528 | -0.692 | 2.075 |
+| deepseek_qwen | real | alpha0.3 | lost | 5 | deduction | density_nontest | 0.640 | -0.698 | 2.293 |
+| deepseek_qwen | real | alpha0.3 | lost | 5 | deduction | density_testlex | -0.112 | -0.488 | 0.214 |
+| deepseek_qwen | real | alpha0.3 | lost | 5 | uncertainty-estimation | density | 0.060 | -0.756 | 0.663 |
+| deepseek_qwen | real | alpha0.3 | lost | 5 | uncertainty-estimation | density_nontest | 0.060 | -0.756 | 0.663 |
+| deepseek_qwen | real | alpha0.3 | lost | 5 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.3 | lost | 5 | backtracking | density | -0.113 | -0.227 | 0.000 |
+| deepseek_qwen | real | alpha0.3 | lost | 5 | backtracking | density_nontest | -0.113 | -0.227 | 0.000 |
+| deepseek_qwen | real | alpha0.3 | lost | 5 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.3 | comply_both | 13 | deduction | density | 0.212 | -0.291 | 0.666 |
+| deepseek_qwen | real | alpha0.3 | comply_both | 13 | deduction | density_nontest | 0.191 | -0.298 | 0.646 |
+| deepseek_qwen | real | alpha0.3 | comply_both | 13 | deduction | density_testlex | 0.021 | -0.064 | 0.125 |
+| deepseek_qwen | real | alpha0.3 | comply_both | 13 | uncertainty-estimation | density | -0.149 | -0.302 | 0.002 |
+| deepseek_qwen | real | alpha0.3 | comply_both | 13 | uncertainty-estimation | density_nontest | -0.149 | -0.302 | 0.002 |
+| deepseek_qwen | real | alpha0.3 | comply_both | 13 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.3 | comply_both | 13 | backtracking | density | -0.022 | -0.168 | 0.128 |
+| deepseek_qwen | real | alpha0.3 | comply_both | 13 | backtracking | density_nontest | -0.022 | -0.168 | 0.128 |
+| deepseek_qwen | real | alpha0.3 | comply_both | 13 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.3 | refuse_both | 129 | deduction | density | 0.139 | -0.039 | 0.325 |
+| deepseek_qwen | real | alpha0.3 | refuse_both | 129 | deduction | density_nontest | 0.141 | -0.043 | 0.327 |
+| deepseek_qwen | real | alpha0.3 | refuse_both | 129 | deduction | density_testlex | -0.003 | -0.033 | 0.027 |
+| deepseek_qwen | real | alpha0.3 | refuse_both | 129 | uncertainty-estimation | density | -0.003 | -0.101 | 0.090 |
+| deepseek_qwen | real | alpha0.3 | refuse_both | 129 | uncertainty-estimation | density_nontest | -0.001 | -0.096 | 0.086 |
+| deepseek_qwen | real | alpha0.3 | refuse_both | 129 | uncertainty-estimation | density_testlex | -0.002 | -0.021 | 0.020 |
+| deepseek_qwen | real | alpha0.3 | refuse_both | 129 | backtracking | density | -0.008 | -0.053 | 0.037 |
+| deepseek_qwen | real | alpha0.3 | refuse_both | 129 | backtracking | density_nontest | -0.008 | -0.053 | 0.037 |
+| deepseek_qwen | real | alpha0.3 | refuse_both | 129 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.35 | lost | 6 | deduction | density | -0.024 | -0.610 | 0.548 |
+| deepseek_qwen | real | alpha0.35 | lost | 6 | deduction | density_nontest | 0.107 | -0.649 | 0.824 |
+| deepseek_qwen | real | alpha0.35 | lost | 6 | deduction | density_testlex | -0.130 | -0.462 | 0.162 |
+| deepseek_qwen | real | alpha0.35 | lost | 6 | uncertainty-estimation | density | -0.141 | -0.580 | 0.193 |
+| deepseek_qwen | real | alpha0.35 | lost | 6 | uncertainty-estimation | density_nontest | -0.141 | -0.580 | 0.193 |
+| deepseek_qwen | real | alpha0.35 | lost | 6 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.35 | lost | 6 | backtracking | density | -0.252 | -0.583 | -0.027 |
+| deepseek_qwen | real | alpha0.35 | lost | 6 | backtracking | density_nontest | -0.252 | -0.583 | -0.027 |
+| deepseek_qwen | real | alpha0.35 | lost | 6 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.35 | comply_both | 12 | deduction | density | 0.634 | -0.101 | 1.357 |
+| deepseek_qwen | real | alpha0.35 | comply_both | 12 | deduction | density_nontest | 0.552 | -0.177 | 1.276 |
+| deepseek_qwen | real | alpha0.35 | comply_both | 12 | deduction | density_testlex | 0.082 | -0.021 | 0.185 |
+| deepseek_qwen | real | alpha0.35 | comply_both | 12 | uncertainty-estimation | density | -0.046 | -0.289 | 0.224 |
+| deepseek_qwen | real | alpha0.35 | comply_both | 12 | uncertainty-estimation | density_nontest | -0.101 | -0.325 | 0.134 |
+| deepseek_qwen | real | alpha0.35 | comply_both | 12 | uncertainty-estimation | density_testlex | 0.055 | 0.000 | 0.135 |
+| deepseek_qwen | real | alpha0.35 | comply_both | 12 | backtracking | density | -0.002 | -0.127 | 0.122 |
+| deepseek_qwen | real | alpha0.35 | comply_both | 12 | backtracking | density_nontest | -0.002 | -0.127 | 0.122 |
+| deepseek_qwen | real | alpha0.35 | comply_both | 12 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 129 | deduction | density | 0.152 | -0.015 | 0.327 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 129 | deduction | density_nontest | 0.151 | -0.019 | 0.323 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 129 | deduction | density_testlex | 0.001 | -0.029 | 0.032 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 129 | uncertainty-estimation | density | 0.026 | -0.073 | 0.125 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 129 | uncertainty-estimation | density_nontest | 0.035 | -0.066 | 0.136 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 129 | uncertainty-estimation | density_testlex | -0.010 | -0.027 | 0.007 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 129 | backtracking | density | -0.001 | -0.046 | 0.047 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 129 | backtracking | density_nontest | -0.001 | -0.046 | 0.047 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 129 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | deduction | density | 0.022 | -0.464 | 0.492 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | deduction | density_nontest | -0.251 | -0.718 | 0.256 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | deduction | density_testlex | 0.273 | 0.121 | 0.441 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | uncertainty-estimation | density | -0.269 | -0.489 | -0.055 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | uncertainty-estimation | density_nontest | -0.372 | -0.573 | -0.188 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | uncertainty-estimation | density_testlex | 0.103 | 0.029 | 0.183 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | backtracking | density | -0.038 | -0.210 | 0.099 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | backtracking | density_nontest | -0.056 | -0.231 | 0.082 |
+| deepseek_qwen | fake | alpha0.07_aware | gained | 35 | backtracking | density_testlex | 0.017 | 0.000 | 0.044 |
+| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | deduction | density | -0.272 | -1.396 | 0.786 |
+| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | deduction | density_nontest | -0.352 | -1.476 | 0.718 |
+| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | deduction | density_testlex | 0.081 | 0.000 | 0.242 |
+| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | uncertainty-estimation | density | 0.851 | 0.284 | 1.418 |
+| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | uncertainty-estimation | density_nontest | 0.542 | 0.169 | 0.937 |
+| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | uncertainty-estimation | density_testlex | 0.309 | 0.065 | 0.636 |
+| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | backtracking | density | 0.088 | 0.000 | 0.263 |
+| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | backtracking | density_nontest | 0.088 | 0.000 | 0.263 |
+| deepseek_qwen | fake | alpha0.07_aware | lost | 6 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 24 | deduction | density | -0.298 | -0.847 | 0.260 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 24 | deduction | density_nontest | -0.485 | -1.072 | 0.134 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 24 | deduction | density_testlex | 0.186 | 0.080 | 0.303 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 24 | uncertainty-estimation | density | -0.107 | -0.324 | 0.088 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 24 | uncertainty-estimation | density_nontest | -0.079 | -0.292 | 0.101 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 24 | uncertainty-estimation | density_testlex | -0.028 | -0.101 | 0.036 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 24 | backtracking | density | -0.008 | -0.086 | 0.069 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 24 | backtracking | density_nontest | 0.004 | -0.070 | 0.079 |
+| deepseek_qwen | fake | alpha0.07_aware | comply_both | 24 | backtracking | density_testlex | -0.013 | -0.038 | 0.000 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 84 | deduction | density | -0.419 | -0.661 | -0.192 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 84 | deduction | density_nontest | -0.601 | -0.840 | -0.388 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 84 | deduction | density_testlex | 0.182 | 0.100 | 0.273 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 84 | uncertainty-estimation | density | 0.133 | -0.002 | 0.273 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 84 | uncertainty-estimation | density_nontest | -0.102 | -0.223 | 0.024 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 84 | uncertainty-estimation | density_testlex | 0.235 | 0.167 | 0.301 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 84 | backtracking | density | 0.017 | -0.039 | 0.074 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 84 | backtracking | density_nontest | 0.017 | -0.039 | 0.074 |
+| deepseek_qwen | fake | alpha0.07_aware | refuse_both | 84 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | gained | 11 | deduction | density | 0.603 | -0.082 | 1.357 |
+| deepseek_qwen | fake | alpha0.35 | gained | 11 | deduction | density_nontest | 0.637 | -0.037 | 1.399 |
+| deepseek_qwen | fake | alpha0.35 | gained | 11 | deduction | density_testlex | -0.034 | -0.214 | 0.154 |
+| deepseek_qwen | fake | alpha0.35 | gained | 11 | uncertainty-estimation | density | -0.149 | -0.648 | 0.289 |
+| deepseek_qwen | fake | alpha0.35 | gained | 11 | uncertainty-estimation | density_nontest | -0.112 | -0.616 | 0.333 |
+| deepseek_qwen | fake | alpha0.35 | gained | 11 | uncertainty-estimation | density_testlex | -0.037 | -0.112 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | gained | 11 | backtracking | density | -0.183 | -0.358 | -0.008 |
+| deepseek_qwen | fake | alpha0.35 | gained | 11 | backtracking | density_nontest | -0.183 | -0.358 | -0.008 |
+| deepseek_qwen | fake | alpha0.35 | gained | 11 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | lost | 7 | deduction | density | -0.204 | -1.080 | 0.604 |
+| deepseek_qwen | fake | alpha0.35 | lost | 7 | deduction | density_nontest | -0.300 | -1.131 | 0.422 |
+| deepseek_qwen | fake | alpha0.35 | lost | 7 | deduction | density_testlex | 0.096 | 0.000 | 0.208 |
+| deepseek_qwen | fake | alpha0.35 | lost | 7 | uncertainty-estimation | density | 0.526 | 0.230 | 0.820 |
+| deepseek_qwen | fake | alpha0.35 | lost | 7 | uncertainty-estimation | density_nontest | 0.526 | 0.230 | 0.820 |
+| deepseek_qwen | fake | alpha0.35 | lost | 7 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | lost | 7 | backtracking | density | 0.328 | 0.079 | 0.631 |
+| deepseek_qwen | fake | alpha0.35 | lost | 7 | backtracking | density_nontest | 0.328 | 0.079 | 0.631 |
+| deepseek_qwen | fake | alpha0.35 | lost | 7 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 7 | deduction | density | 0.178 | -0.734 | 1.138 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 7 | deduction | density_nontest | 0.178 | -0.734 | 1.138 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 7 | deduction | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 7 | uncertainty-estimation | density | -0.115 | -0.273 | 0.030 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 7 | uncertainty-estimation | density_nontest | -0.048 | -0.175 | 0.040 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 7 | uncertainty-estimation | density_testlex | -0.067 | -0.200 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 7 | backtracking | density | 0.024 | 0.000 | 0.073 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 7 | backtracking | density_nontest | 0.067 | 0.000 | 0.202 |
+| deepseek_qwen | fake | alpha0.35 | comply_both | 7 | backtracking | density_testlex | -0.043 | -0.129 | 0.000 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 63 | deduction | density | 0.199 | -0.078 | 0.476 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 63 | deduction | density_nontest | 0.292 | 0.013 | 0.580 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 63 | deduction | density_testlex | -0.092 | -0.185 | -0.006 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 63 | uncertainty-estimation | density | 0.030 | -0.137 | 0.202 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 63 | uncertainty-estimation | density_nontest | 0.022 | -0.147 | 0.194 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 63 | uncertainty-estimation | density_testlex | 0.008 | -0.032 | 0.050 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 63 | backtracking | density | -0.007 | -0.118 | 0.075 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 63 | backtracking | density_nontest | -0.007 | -0.118 | 0.075 |
+| deepseek_qwen | fake | alpha0.35 | refuse_both | 63 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 20 | deduction | density | 0.462 | 0.062 | 0.872 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 20 | deduction | density_nontest | 0.248 | -0.128 | 0.634 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 20 | deduction | density_testlex | 0.214 | 0.065 | 0.367 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 20 | uncertainty-estimation | density | -0.493 | -0.768 | -0.213 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 20 | uncertainty-estimation | density_nontest | -0.466 | -0.724 | -0.217 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 20 | uncertainty-estimation | density_testlex | -0.027 | -0.114 | 0.049 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 20 | backtracking | density | -0.068 | -0.173 | 0.035 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 20 | backtracking | density_nontest | -0.068 | -0.173 | 0.035 |
+| deepseek_qwen | real | alpha0.07_aware | gained | 20 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.07_aware | lost | 7 | deduction | density | -0.648 | -1.493 | 0.133 |
+| deepseek_qwen | real | alpha0.07_aware | lost | 7 | deduction | density_nontest | -0.868 | -1.607 | -0.188 |
+| deepseek_qwen | real | alpha0.07_aware | lost | 7 | deduction | density_testlex | 0.221 | 0.048 | 0.442 |
+| deepseek_qwen | real | alpha0.07_aware | lost | 7 | uncertainty-estimation | density | 0.245 | -0.111 | 0.632 |
+| deepseek_qwen | real | alpha0.07_aware | lost | 7 | uncertainty-estimation | density_nontest | 0.098 | -0.325 | 0.536 |
+| deepseek_qwen | real | alpha0.07_aware | lost | 7 | uncertainty-estimation | density_testlex | 0.147 | 0.000 | 0.351 |
+| deepseek_qwen | real | alpha0.07_aware | lost | 7 | backtracking | density | 0.078 | -0.102 | 0.297 |
+| deepseek_qwen | real | alpha0.07_aware | lost | 7 | backtracking | density_nontest | 0.078 | -0.102 | 0.297 |
+| deepseek_qwen | real | alpha0.07_aware | lost | 7 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 17 | deduction | density | -0.254 | -0.869 | 0.340 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 17 | deduction | density_nontest | -0.275 | -0.884 | 0.323 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 17 | deduction | density_testlex | 0.020 | -0.057 | 0.109 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 17 | uncertainty-estimation | density | 0.070 | -0.086 | 0.219 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 17 | uncertainty-estimation | density_nontest | 0.018 | -0.109 | 0.149 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 17 | uncertainty-estimation | density_testlex | 0.052 | 0.000 | 0.106 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 17 | backtracking | density | -0.093 | -0.200 | 0.009 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 17 | backtracking | density_nontest | -0.093 | -0.200 | 0.009 |
+| deepseek_qwen | real | alpha0.07_aware | comply_both | 17 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | deduction | density | 0.031 | -0.163 | 0.229 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | deduction | density_nontest | -0.152 | -0.359 | 0.054 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | deduction | density_testlex | 0.183 | 0.116 | 0.250 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | uncertainty-estimation | density | 0.093 | -0.030 | 0.220 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | uncertainty-estimation | density_nontest | -0.051 | -0.162 | 0.056 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | uncertainty-estimation | density_testlex | 0.144 | 0.092 | 0.197 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | backtracking | density | -0.003 | -0.071 | 0.059 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | backtracking | density_nontest | -0.013 | -0.077 | 0.047 |
+| deepseek_qwen | real | alpha0.07_aware | refuse_both | 104 | backtracking | density_testlex | 0.010 | 0.000 | 0.031 |
+| deepseek_qwen | real | alpha0.35 | gained | 9 | deduction | density | -0.057 | -0.898 | 0.639 |
+| deepseek_qwen | real | alpha0.35 | gained | 9 | deduction | density_nontest | -0.057 | -0.898 | 0.639 |
+| deepseek_qwen | real | alpha0.35 | gained | 9 | deduction | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.35 | gained | 9 | uncertainty-estimation | density | -0.475 | -0.932 | 0.036 |
+| deepseek_qwen | real | alpha0.35 | gained | 9 | uncertainty-estimation | density_nontest | -0.499 | -0.937 | -0.022 |
+| deepseek_qwen | real | alpha0.35 | gained | 9 | uncertainty-estimation | density_testlex | 0.024 | 0.000 | 0.072 |
+| deepseek_qwen | real | alpha0.35 | gained | 9 | backtracking | density | -0.056 | -0.276 | 0.146 |
+| deepseek_qwen | real | alpha0.35 | gained | 9 | backtracking | density_nontest | -0.056 | -0.276 | 0.146 |
+| deepseek_qwen | real | alpha0.35 | gained | 9 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.35 | lost | 7 | deduction | density | -0.295 | -1.227 | 0.542 |
+| deepseek_qwen | real | alpha0.35 | lost | 7 | deduction | density_nontest | -0.335 | -1.324 | 0.587 |
+| deepseek_qwen | real | alpha0.35 | lost | 7 | deduction | density_testlex | 0.040 | -0.138 | 0.258 |
+| deepseek_qwen | real | alpha0.35 | lost | 7 | uncertainty-estimation | density | 0.121 | -0.151 | 0.413 |
+| deepseek_qwen | real | alpha0.35 | lost | 7 | uncertainty-estimation | density_nontest | 0.121 | -0.151 | 0.413 |
+| deepseek_qwen | real | alpha0.35 | lost | 7 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.35 | lost | 7 | backtracking | density | -0.035 | -0.203 | 0.175 |
+| deepseek_qwen | real | alpha0.35 | lost | 7 | backtracking | density_nontest | -0.035 | -0.203 | 0.175 |
+| deepseek_qwen | real | alpha0.35 | lost | 7 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 68 | deduction | density | 0.514 | 0.204 | 0.822 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 68 | deduction | density_nontest | 0.517 | 0.202 | 0.828 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 68 | deduction | density_testlex | -0.003 | -0.064 | 0.060 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 68 | uncertainty-estimation | density | -0.097 | -0.219 | 0.027 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 68 | uncertainty-estimation | density_nontest | -0.092 | -0.219 | 0.038 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 68 | uncertainty-estimation | density_testlex | -0.005 | -0.042 | 0.032 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 68 | backtracking | density | -0.016 | -0.076 | 0.044 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 68 | backtracking | density_nontest | -0.016 | -0.076 | 0.044 |
+| deepseek_qwen | real | alpha0.35 | refuse_both | 68 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.043_aware | gained | 15 | deduction | density | 0.291 | -0.311 | 0.839 |
+| qwen3 | fake | alpha0.043_aware | gained | 15 | deduction | density_nontest | -0.096 | -0.714 | 0.487 |
+| qwen3 | fake | alpha0.043_aware | gained | 15 | deduction | density_testlex | 0.387 | 0.171 | 0.630 |
+| qwen3 | fake | alpha0.043_aware | gained | 15 | uncertainty-estimation | density | 0.025 | -0.177 | 0.244 |
+| qwen3 | fake | alpha0.043_aware | gained | 15 | uncertainty-estimation | density_nontest | -0.208 | -0.467 | 0.025 |
+| qwen3 | fake | alpha0.043_aware | gained | 15 | uncertainty-estimation | density_testlex | 0.233 | 0.096 | 0.365 |
+| qwen3 | fake | alpha0.043_aware | gained | 15 | backtracking | density | -0.050 | -0.213 | 0.119 |
+| qwen3 | fake | alpha0.043_aware | gained | 15 | backtracking | density_nontest | -0.064 | -0.230 | 0.101 |
+| qwen3 | fake | alpha0.043_aware | gained | 15 | backtracking | density_testlex | 0.014 | 0.000 | 0.042 |
+| qwen3 | fake | alpha0.043_aware | lost | 7 | deduction | density | 0.002 | -0.449 | 0.373 |
+| qwen3 | fake | alpha0.043_aware | lost | 7 | deduction | density_nontest | -0.228 | -0.742 | 0.258 |
+| qwen3 | fake | alpha0.043_aware | lost | 7 | deduction | density_testlex | 0.230 | 0.012 | 0.410 |
+| qwen3 | fake | alpha0.043_aware | lost | 7 | uncertainty-estimation | density | 0.236 | -0.194 | 0.672 |
+| qwen3 | fake | alpha0.043_aware | lost | 7 | uncertainty-estimation | density_nontest | -0.200 | -0.561 | 0.143 |
+| qwen3 | fake | alpha0.043_aware | lost | 7 | uncertainty-estimation | density_testlex | 0.436 | 0.319 | 0.569 |
+| qwen3 | fake | alpha0.043_aware | lost | 7 | backtracking | density | -0.102 | -0.298 | 0.134 |
+| qwen3 | fake | alpha0.043_aware | lost | 7 | backtracking | density_nontest | -0.102 | -0.298 | 0.134 |
+| qwen3 | fake | alpha0.043_aware | lost | 7 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.043_aware | comply_both | 48 | deduction | density | 0.038 | -0.373 | 0.454 |
+| qwen3 | fake | alpha0.043_aware | comply_both | 48 | deduction | density_nontest | -0.160 | -0.550 | 0.244 |
+| qwen3 | fake | alpha0.043_aware | comply_both | 48 | deduction | density_testlex | 0.198 | 0.086 | 0.335 |
+| qwen3 | fake | alpha0.043_aware | comply_both | 48 | uncertainty-estimation | density | 0.069 | -0.064 | 0.204 |
+| qwen3 | fake | alpha0.043_aware | comply_both | 48 | uncertainty-estimation | density_nontest | 0.076 | -0.073 | 0.221 |
+| qwen3 | fake | alpha0.043_aware | comply_both | 48 | uncertainty-estimation | density_testlex | -0.006 | -0.081 | 0.067 |
+| qwen3 | fake | alpha0.043_aware | comply_both | 48 | backtracking | density | -0.027 | -0.099 | 0.040 |
+| qwen3 | fake | alpha0.043_aware | comply_both | 48 | backtracking | density_nontest | -0.027 | -0.099 | 0.040 |
+| qwen3 | fake | alpha0.043_aware | comply_both | 48 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.043_aware | refuse_both | 78 | deduction | density | -0.135 | -0.379 | 0.116 |
+| qwen3 | fake | alpha0.043_aware | refuse_both | 78 | deduction | density_nontest | -0.227 | -0.462 | 0.015 |
+| qwen3 | fake | alpha0.043_aware | refuse_both | 78 | deduction | density_testlex | 0.091 | -0.003 | 0.193 |
+| qwen3 | fake | alpha0.043_aware | refuse_both | 78 | uncertainty-estimation | density | 0.164 | 0.026 | 0.299 |
+| qwen3 | fake | alpha0.043_aware | refuse_both | 78 | uncertainty-estimation | density_nontest | -0.025 | -0.147 | 0.094 |
+| qwen3 | fake | alpha0.043_aware | refuse_both | 78 | uncertainty-estimation | density_testlex | 0.190 | 0.131 | 0.249 |
+| qwen3 | fake | alpha0.043_aware | refuse_both | 78 | backtracking | density | -0.027 | -0.093 | 0.036 |
+| qwen3 | fake | alpha0.043_aware | refuse_both | 78 | backtracking | density_nontest | -0.028 | -0.093 | 0.034 |
+| qwen3 | fake | alpha0.043_aware | refuse_both | 78 | backtracking | density_testlex | 0.001 | -0.016 | 0.020 |
+| qwen3 | fake | alpha0.053_aware | gained | 9 | deduction | density | -0.169 | -0.917 | 0.519 |
+| qwen3 | fake | alpha0.053_aware | gained | 9 | deduction | density_nontest | -0.149 | -0.773 | 0.444 |
+| qwen3 | fake | alpha0.053_aware | gained | 9 | deduction | density_testlex | -0.020 | -0.279 | 0.201 |
+| qwen3 | fake | alpha0.053_aware | gained | 9 | uncertainty-estimation | density | 0.068 | -0.366 | 0.541 |
+| qwen3 | fake | alpha0.053_aware | gained | 9 | uncertainty-estimation | density_nontest | -0.064 | -0.555 | 0.454 |
+| qwen3 | fake | alpha0.053_aware | gained | 9 | uncertainty-estimation | density_testlex | 0.132 | -0.035 | 0.317 |
+| qwen3 | fake | alpha0.053_aware | gained | 9 | backtracking | density | 0.045 | -0.214 | 0.288 |
+| qwen3 | fake | alpha0.053_aware | gained | 9 | backtracking | density_nontest | 0.010 | -0.224 | 0.232 |
+| qwen3 | fake | alpha0.053_aware | gained | 9 | backtracking | density_testlex | 0.034 | 0.000 | 0.103 |
+| qwen3 | fake | alpha0.053_aware | comply_both | 52 | deduction | density | 0.203 | -0.176 | 0.614 |
+| qwen3 | fake | alpha0.053_aware | comply_both | 52 | deduction | density_nontest | 0.082 | -0.294 | 0.487 |
+| qwen3 | fake | alpha0.053_aware | comply_both | 52 | deduction | density_testlex | 0.121 | 0.033 | 0.218 |
+| qwen3 | fake | alpha0.053_aware | comply_both | 52 | uncertainty-estimation | density | 0.023 | -0.167 | 0.204 |
+| qwen3 | fake | alpha0.053_aware | comply_both | 52 | uncertainty-estimation | density_nontest | -0.036 | -0.215 | 0.137 |
+| qwen3 | fake | alpha0.053_aware | comply_both | 52 | uncertainty-estimation | density_testlex | 0.059 | -0.020 | 0.139 |
+| qwen3 | fake | alpha0.053_aware | comply_both | 52 | backtracking | density | 0.011 | -0.057 | 0.083 |
+| qwen3 | fake | alpha0.053_aware | comply_both | 52 | backtracking | density_nontest | 0.011 | -0.057 | 0.083 |
+| qwen3 | fake | alpha0.053_aware | comply_both | 52 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.053_aware | refuse_both | 75 | deduction | density | -0.132 | -0.387 | 0.113 |
+| qwen3 | fake | alpha0.053_aware | refuse_both | 75 | deduction | density_nontest | -0.329 | -0.591 | -0.058 |
+| qwen3 | fake | alpha0.053_aware | refuse_both | 75 | deduction | density_testlex | 0.197 | 0.079 | 0.328 |
+| qwen3 | fake | alpha0.053_aware | refuse_both | 75 | uncertainty-estimation | density | 0.137 | -0.011 | 0.273 |
+| qwen3 | fake | alpha0.053_aware | refuse_both | 75 | uncertainty-estimation | density_nontest | -0.098 | -0.201 | -0.000 |
+| qwen3 | fake | alpha0.053_aware | refuse_both | 75 | uncertainty-estimation | density_testlex | 0.236 | 0.151 | 0.321 |
+| qwen3 | fake | alpha0.053_aware | refuse_both | 75 | backtracking | density | 0.016 | -0.057 | 0.086 |
+| qwen3 | fake | alpha0.053_aware | refuse_both | 75 | backtracking | density_nontest | 0.012 | -0.058 | 0.078 |
+| qwen3 | fake | alpha0.053_aware | refuse_both | 75 | backtracking | density_testlex | 0.004 | -0.013 | 0.022 |
+| qwen3 | fake | alpha0.05_aware | gained | 16 | deduction | density | 0.605 | -0.062 | 1.270 |
+| qwen3 | fake | alpha0.05_aware | gained | 16 | deduction | density_nontest | 0.318 | -0.390 | 1.046 |
+| qwen3 | fake | alpha0.05_aware | gained | 16 | deduction | density_testlex | 0.287 | 0.019 | 0.603 |
+| qwen3 | fake | alpha0.05_aware | gained | 16 | uncertainty-estimation | density | 0.239 | -0.054 | 0.559 |
+| qwen3 | fake | alpha0.05_aware | gained | 16 | uncertainty-estimation | density_nontest | 0.089 | -0.237 | 0.427 |
+| qwen3 | fake | alpha0.05_aware | gained | 16 | uncertainty-estimation | density_testlex | 0.150 | 0.018 | 0.285 |
+| qwen3 | fake | alpha0.05_aware | gained | 16 | backtracking | density | 0.029 | -0.141 | 0.213 |
+| qwen3 | fake | alpha0.05_aware | gained | 16 | backtracking | density_nontest | 0.029 | -0.141 | 0.213 |
+| qwen3 | fake | alpha0.05_aware | gained | 16 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.05_aware | lost | 7 | deduction | density | 0.058 | -0.518 | 0.722 |
+| qwen3 | fake | alpha0.05_aware | lost | 7 | deduction | density_nontest | -0.180 | -0.941 | 0.593 |
+| qwen3 | fake | alpha0.05_aware | lost | 7 | deduction | density_testlex | 0.237 | -0.121 | 0.563 |
+| qwen3 | fake | alpha0.05_aware | lost | 7 | uncertainty-estimation | density | 0.408 | 0.015 | 0.741 |
+| qwen3 | fake | alpha0.05_aware | lost | 7 | uncertainty-estimation | density_nontest | 0.031 | -0.341 | 0.361 |
+| qwen3 | fake | alpha0.05_aware | lost | 7 | uncertainty-estimation | density_testlex | 0.377 | 0.314 | 0.446 |
+| qwen3 | fake | alpha0.05_aware | lost | 7 | backtracking | density | -0.301 | -0.497 | -0.115 |
+| qwen3 | fake | alpha0.05_aware | lost | 7 | backtracking | density_nontest | -0.301 | -0.497 | -0.115 |
+| qwen3 | fake | alpha0.05_aware | lost | 7 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.05_aware | comply_both | 48 | deduction | density | 0.245 | -0.116 | 0.593 |
+| qwen3 | fake | alpha0.05_aware | comply_both | 48 | deduction | density_nontest | -0.006 | -0.352 | 0.336 |
+| qwen3 | fake | alpha0.05_aware | comply_both | 48 | deduction | density_testlex | 0.251 | 0.138 | 0.375 |
+| qwen3 | fake | alpha0.05_aware | comply_both | 48 | uncertainty-estimation | density | 0.020 | -0.166 | 0.206 |
+| qwen3 | fake | alpha0.05_aware | comply_both | 48 | uncertainty-estimation | density_nontest | -0.009 | -0.182 | 0.158 |
+| qwen3 | fake | alpha0.05_aware | comply_both | 48 | uncertainty-estimation | density_testlex | 0.028 | -0.046 | 0.104 |
+| qwen3 | fake | alpha0.05_aware | comply_both | 48 | backtracking | density | 0.008 | -0.081 | 0.092 |
+| qwen3 | fake | alpha0.05_aware | comply_both | 48 | backtracking | density_nontest | -0.001 | -0.087 | 0.088 |
+| qwen3 | fake | alpha0.05_aware | comply_both | 48 | backtracking | density_testlex | 0.008 | 0.000 | 0.025 |
+| qwen3 | fake | alpha0.05_aware | refuse_both | 72 | deduction | density | -0.207 | -0.482 | 0.059 |
+| qwen3 | fake | alpha0.05_aware | refuse_both | 72 | deduction | density_nontest | -0.300 | -0.563 | -0.044 |
+| qwen3 | fake | alpha0.05_aware | refuse_both | 72 | deduction | density_testlex | 0.092 | -0.009 | 0.196 |
+| qwen3 | fake | alpha0.05_aware | refuse_both | 72 | uncertainty-estimation | density | 0.148 | -0.006 | 0.296 |
+| qwen3 | fake | alpha0.05_aware | refuse_both | 72 | uncertainty-estimation | density_nontest | -0.073 | -0.211 | 0.056 |
+| qwen3 | fake | alpha0.05_aware | refuse_both | 72 | uncertainty-estimation | density_testlex | 0.222 | 0.125 | 0.327 |
+| qwen3 | fake | alpha0.05_aware | refuse_both | 72 | backtracking | density | -0.006 | -0.083 | 0.069 |
+| qwen3 | fake | alpha0.05_aware | refuse_both | 72 | backtracking | density_nontest | -0.004 | -0.081 | 0.069 |
+| qwen3 | fake | alpha0.05_aware | refuse_both | 72 | backtracking | density_testlex | -0.002 | -0.017 | 0.012 |
+| qwen3 | fake | alpha0.25 | gained | 42 | deduction | density | 0.009 | -0.373 | 0.394 |
+| qwen3 | fake | alpha0.25 | gained | 42 | deduction | density_nontest | 0.369 | 0.005 | 0.715 |
+| qwen3 | fake | alpha0.25 | gained | 42 | deduction | density_testlex | -0.361 | -0.465 | -0.258 |
+| qwen3 | fake | alpha0.25 | gained | 42 | uncertainty-estimation | density | 0.281 | 0.050 | 0.517 |
+| qwen3 | fake | alpha0.25 | gained | 42 | uncertainty-estimation | density_nontest | 0.280 | 0.057 | 0.526 |
+| qwen3 | fake | alpha0.25 | gained | 42 | uncertainty-estimation | density_testlex | 0.001 | -0.068 | 0.065 |
+| qwen3 | fake | alpha0.25 | gained | 42 | backtracking | density | 0.017 | -0.083 | 0.109 |
+| qwen3 | fake | alpha0.25 | gained | 42 | backtracking | density_nontest | 0.017 | -0.083 | 0.109 |
+| qwen3 | fake | alpha0.25 | gained | 42 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.25 | lost | 7 | deduction | density | 0.098 | -0.817 | 1.216 |
+| qwen3 | fake | alpha0.25 | lost | 7 | deduction | density_nontest | 0.193 | -0.743 | 1.390 |
+| qwen3 | fake | alpha0.25 | lost | 7 | deduction | density_testlex | -0.095 | -0.376 | 0.166 |
+| qwen3 | fake | alpha0.25 | lost | 7 | uncertainty-estimation | density | 0.383 | -0.146 | 0.907 |
+| qwen3 | fake | alpha0.25 | lost | 7 | uncertainty-estimation | density_nontest | 0.577 | -0.050 | 1.137 |
+| qwen3 | fake | alpha0.25 | lost | 7 | uncertainty-estimation | density_testlex | -0.195 | -0.427 | -0.009 |
+| qwen3 | fake | alpha0.25 | lost | 7 | backtracking | density | 0.040 | -0.123 | 0.198 |
+| qwen3 | fake | alpha0.25 | lost | 7 | backtracking | density_nontest | 0.040 | -0.123 | 0.198 |
+| qwen3 | fake | alpha0.25 | lost | 7 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.25 | comply_both | 49 | deduction | density | 0.262 | -0.142 | 0.653 |
+| qwen3 | fake | alpha0.25 | comply_both | 49 | deduction | density_nontest | 0.248 | -0.151 | 0.648 |
+| qwen3 | fake | alpha0.25 | comply_both | 49 | deduction | density_testlex | 0.014 | -0.051 | 0.082 |
+| qwen3 | fake | alpha0.25 | comply_both | 49 | uncertainty-estimation | density | -0.071 | -0.246 | 0.084 |
+| qwen3 | fake | alpha0.25 | comply_both | 49 | uncertainty-estimation | density_nontest | -0.105 | -0.284 | 0.053 |
+| qwen3 | fake | alpha0.25 | comply_both | 49 | uncertainty-estimation | density_testlex | 0.035 | -0.045 | 0.117 |
+| qwen3 | fake | alpha0.25 | comply_both | 49 | backtracking | density | 0.049 | -0.046 | 0.141 |
+| qwen3 | fake | alpha0.25 | comply_both | 49 | backtracking | density_nontest | 0.049 | -0.046 | 0.141 |
+| qwen3 | fake | alpha0.25 | comply_both | 49 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.25 | refuse_both | 50 | deduction | density | -0.243 | -0.627 | 0.134 |
+| qwen3 | fake | alpha0.25 | refuse_both | 50 | deduction | density_nontest | -0.151 | -0.548 | 0.245 |
+| qwen3 | fake | alpha0.25 | refuse_both | 50 | deduction | density_testlex | -0.092 | -0.182 | 0.000 |
+| qwen3 | fake | alpha0.25 | refuse_both | 50 | uncertainty-estimation | density | 0.201 | -0.016 | 0.421 |
+| qwen3 | fake | alpha0.25 | refuse_both | 50 | uncertainty-estimation | density_nontest | 0.231 | 0.024 | 0.448 |
+| qwen3 | fake | alpha0.25 | refuse_both | 50 | uncertainty-estimation | density_testlex | -0.031 | -0.092 | 0.032 |
+| qwen3 | fake | alpha0.25 | refuse_both | 50 | backtracking | density | 0.092 | -0.007 | 0.197 |
+| qwen3 | fake | alpha0.25 | refuse_both | 50 | backtracking | density_nontest | 0.101 | 0.003 | 0.202 |
+| qwen3 | fake | alpha0.25 | refuse_both | 50 | backtracking | density_testlex | -0.008 | -0.025 | 0.000 |
+| qwen3 | fake | alpha0.3 | gained | 52 | deduction | density | -0.142 | -0.521 | 0.226 |
+| qwen3 | fake | alpha0.3 | gained | 52 | deduction | density_nontest | 0.154 | -0.256 | 0.545 |
+| qwen3 | fake | alpha0.3 | gained | 52 | deduction | density_testlex | -0.296 | -0.387 | -0.204 |
+| qwen3 | fake | alpha0.3 | gained | 52 | uncertainty-estimation | density | 0.250 | -0.005 | 0.477 |
+| qwen3 | fake | alpha0.3 | gained | 52 | uncertainty-estimation | density_nontest | 0.293 | 0.056 | 0.507 |
+| qwen3 | fake | alpha0.3 | gained | 52 | uncertainty-estimation | density_testlex | -0.042 | -0.105 | 0.025 |
+| qwen3 | fake | alpha0.3 | gained | 52 | backtracking | density | 0.067 | -0.040 | 0.158 |
+| qwen3 | fake | alpha0.3 | gained | 52 | backtracking | density_nontest | 0.067 | -0.040 | 0.158 |
+| qwen3 | fake | alpha0.3 | gained | 52 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.3 | lost | 6 | deduction | density | 0.423 | -0.479 | 1.296 |
+| qwen3 | fake | alpha0.3 | lost | 6 | deduction | density_nontest | 0.445 | -0.719 | 1.546 |
+| qwen3 | fake | alpha0.3 | lost | 6 | deduction | density_testlex | -0.022 | -0.269 | 0.225 |
+| qwen3 | fake | alpha0.3 | lost | 6 | uncertainty-estimation | density | 0.301 | -0.393 | 0.996 |
+| qwen3 | fake | alpha0.3 | lost | 6 | uncertainty-estimation | density_nontest | 0.354 | -0.342 | 1.051 |
+| qwen3 | fake | alpha0.3 | lost | 6 | uncertainty-estimation | density_testlex | -0.053 | -0.162 | 0.036 |
+| qwen3 | fake | alpha0.3 | lost | 6 | backtracking | density | -0.209 | -0.466 | 0.092 |
+| qwen3 | fake | alpha0.3 | lost | 6 | backtracking | density_nontest | -0.209 | -0.466 | 0.092 |
+| qwen3 | fake | alpha0.3 | lost | 6 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.3 | comply_both | 48 | deduction | density | -0.014 | -0.429 | 0.400 |
+| qwen3 | fake | alpha0.3 | comply_both | 48 | deduction | density_nontest | 0.001 | -0.386 | 0.385 |
+| qwen3 | fake | alpha0.3 | comply_both | 48 | deduction | density_testlex | -0.015 | -0.090 | 0.059 |
+| qwen3 | fake | alpha0.3 | comply_both | 48 | uncertainty-estimation | density | -0.049 | -0.188 | 0.100 |
+| qwen3 | fake | alpha0.3 | comply_both | 48 | uncertainty-estimation | density_nontest | -0.024 | -0.156 | 0.113 |
+| qwen3 | fake | alpha0.3 | comply_both | 48 | uncertainty-estimation | density_testlex | -0.026 | -0.097 | 0.049 |
+| qwen3 | fake | alpha0.3 | comply_both | 48 | backtracking | density | 0.001 | -0.103 | 0.106 |
+| qwen3 | fake | alpha0.3 | comply_both | 48 | backtracking | density_nontest | -0.009 | -0.112 | 0.094 |
+| qwen3 | fake | alpha0.3 | comply_both | 48 | backtracking | density_testlex | 0.010 | 0.000 | 0.031 |
+| qwen3 | fake | alpha0.3 | refuse_both | 41 | deduction | density | -0.058 | -0.498 | 0.400 |
+| qwen3 | fake | alpha0.3 | refuse_both | 41 | deduction | density_nontest | 0.120 | -0.346 | 0.607 |
+| qwen3 | fake | alpha0.3 | refuse_both | 41 | deduction | density_testlex | -0.179 | -0.291 | -0.063 |
+| qwen3 | fake | alpha0.3 | refuse_both | 41 | uncertainty-estimation | density | 0.473 | 0.274 | 0.693 |
+| qwen3 | fake | alpha0.3 | refuse_both | 41 | uncertainty-estimation | density_nontest | 0.451 | 0.263 | 0.659 |
+| qwen3 | fake | alpha0.3 | refuse_both | 41 | uncertainty-estimation | density_testlex | 0.022 | -0.062 | 0.103 |
+| qwen3 | fake | alpha0.3 | refuse_both | 41 | backtracking | density | 0.024 | -0.075 | 0.118 |
+| qwen3 | fake | alpha0.3 | refuse_both | 41 | backtracking | density_nontest | 0.034 | -0.065 | 0.122 |
+| qwen3 | fake | alpha0.3 | refuse_both | 41 | backtracking | density_testlex | -0.010 | -0.031 | 0.000 |
+| qwen3 | fake | alpha0.32 | gained | 43 | deduction | density | 0.085 | -0.322 | 0.516 |
+| qwen3 | fake | alpha0.32 | gained | 43 | deduction | density_nontest | 0.453 | 0.027 | 0.908 |
+| qwen3 | fake | alpha0.32 | gained | 43 | deduction | density_testlex | -0.368 | -0.469 | -0.262 |
+| qwen3 | fake | alpha0.32 | gained | 43 | uncertainty-estimation | density | 0.233 | -0.016 | 0.478 |
+| qwen3 | fake | alpha0.32 | gained | 43 | uncertainty-estimation | density_nontest | 0.236 | -0.000 | 0.485 |
+| qwen3 | fake | alpha0.32 | gained | 43 | uncertainty-estimation | density_testlex | -0.003 | -0.101 | 0.091 |
+| qwen3 | fake | alpha0.32 | gained | 43 | backtracking | density | 0.121 | 0.006 | 0.229 |
+| qwen3 | fake | alpha0.32 | gained | 43 | backtracking | density_nontest | 0.121 | 0.006 | 0.229 |
+| qwen3 | fake | alpha0.32 | gained | 43 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.32 | lost | 9 | deduction | density | -0.321 | -0.776 | 0.140 |
+| qwen3 | fake | alpha0.32 | lost | 9 | deduction | density_nontest | -0.426 | -0.985 | 0.171 |
+| qwen3 | fake | alpha0.32 | lost | 9 | deduction | density_testlex | 0.105 | -0.082 | 0.294 |
+| qwen3 | fake | alpha0.32 | lost | 9 | uncertainty-estimation | density | 0.066 | -0.425 | 0.539 |
+| qwen3 | fake | alpha0.32 | lost | 9 | uncertainty-estimation | density_nontest | 0.092 | -0.475 | 0.613 |
+| qwen3 | fake | alpha0.32 | lost | 9 | uncertainty-estimation | density_testlex | -0.026 | -0.136 | 0.093 |
+| qwen3 | fake | alpha0.32 | lost | 9 | backtracking | density | 0.038 | -0.219 | 0.316 |
+| qwen3 | fake | alpha0.32 | lost | 9 | backtracking | density_nontest | -0.009 | -0.254 | 0.254 |
+| qwen3 | fake | alpha0.32 | lost | 9 | backtracking | density_testlex | 0.047 | 0.000 | 0.141 |
+| qwen3 | fake | alpha0.32 | comply_both | 47 | deduction | density | 0.155 | -0.298 | 0.605 |
+| qwen3 | fake | alpha0.32 | comply_both | 47 | deduction | density_nontest | 0.154 | -0.276 | 0.587 |
+| qwen3 | fake | alpha0.32 | comply_both | 47 | deduction | density_testlex | 0.002 | -0.081 | 0.082 |
+| qwen3 | fake | alpha0.32 | comply_both | 47 | uncertainty-estimation | density | -0.021 | -0.162 | 0.115 |
+| qwen3 | fake | alpha0.32 | comply_both | 47 | uncertainty-estimation | density_nontest | -0.031 | -0.163 | 0.103 |
+| qwen3 | fake | alpha0.32 | comply_both | 47 | uncertainty-estimation | density_testlex | 0.009 | -0.069 | 0.086 |
+| qwen3 | fake | alpha0.32 | comply_both | 47 | backtracking | density | 0.057 | -0.058 | 0.175 |
+| qwen3 | fake | alpha0.32 | comply_both | 47 | backtracking | density_nontest | 0.057 | -0.058 | 0.175 |
+| qwen3 | fake | alpha0.32 | comply_both | 47 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | fake | alpha0.32 | refuse_both | 49 | deduction | density | -0.450 | -0.801 | -0.097 |
+| qwen3 | fake | alpha0.32 | refuse_both | 49 | deduction | density_nontest | -0.325 | -0.689 | 0.043 |
+| qwen3 | fake | alpha0.32 | refuse_both | 49 | deduction | density_testlex | -0.126 | -0.242 | -0.015 |
+| qwen3 | fake | alpha0.32 | refuse_both | 49 | uncertainty-estimation | density | 0.387 | 0.123 | 0.616 |
+| qwen3 | fake | alpha0.32 | refuse_both | 49 | uncertainty-estimation | density_nontest | 0.379 | 0.135 | 0.602 |
+| qwen3 | fake | alpha0.32 | refuse_both | 49 | uncertainty-estimation | density_testlex | 0.009 | -0.070 | 0.083 |
+| qwen3 | fake | alpha0.32 | refuse_both | 49 | backtracking | density | 0.075 | -0.038 | 0.194 |
+| qwen3 | fake | alpha0.32 | refuse_both | 49 | backtracking | density_nontest | 0.078 | -0.044 | 0.204 |
+| qwen3 | fake | alpha0.32 | refuse_both | 49 | backtracking | density_testlex | -0.003 | -0.026 | 0.017 |
+| qwen3 | real | alpha0.043_aware | gained | 12 | deduction | density | 0.255 | -0.308 | 0.780 |
+| qwen3 | real | alpha0.043_aware | gained | 12 | deduction | density_nontest | 0.099 | -0.476 | 0.615 |
+| qwen3 | real | alpha0.043_aware | gained | 12 | deduction | density_testlex | 0.156 | -0.011 | 0.347 |
+| qwen3 | real | alpha0.043_aware | gained | 12 | uncertainty-estimation | density | 0.107 | -0.406 | 0.597 |
+| qwen3 | real | alpha0.043_aware | gained | 12 | uncertainty-estimation | density_nontest | -0.021 | -0.507 | 0.464 |
+| qwen3 | real | alpha0.043_aware | gained | 12 | uncertainty-estimation | density_testlex | 0.128 | -0.158 | 0.427 |
+| qwen3 | real | alpha0.043_aware | gained | 12 | backtracking | density | -0.066 | -0.253 | 0.100 |
+| qwen3 | real | alpha0.043_aware | gained | 12 | backtracking | density_nontest | -0.066 | -0.253 | 0.100 |
+| qwen3 | real | alpha0.043_aware | gained | 12 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.043_aware | lost | 9 | deduction | density | -0.460 | -1.373 | 0.626 |
+| qwen3 | real | alpha0.043_aware | lost | 9 | deduction | density_nontest | -0.642 | -1.565 | 0.479 |
+| qwen3 | real | alpha0.043_aware | lost | 9 | deduction | density_testlex | 0.181 | 0.028 | 0.362 |
+| qwen3 | real | alpha0.043_aware | lost | 9 | uncertainty-estimation | density | -0.354 | -0.706 | -0.008 |
+| qwen3 | real | alpha0.043_aware | lost | 9 | uncertainty-estimation | density_nontest | -0.565 | -0.810 | -0.283 |
+| qwen3 | real | alpha0.043_aware | lost | 9 | uncertainty-estimation | density_testlex | 0.211 | -0.042 | 0.457 |
+| qwen3 | real | alpha0.043_aware | lost | 9 | backtracking | density | -0.080 | -0.304 | 0.091 |
+| qwen3 | real | alpha0.043_aware | lost | 9 | backtracking | density_nontest | -0.080 | -0.304 | 0.091 |
+| qwen3 | real | alpha0.043_aware | lost | 9 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.043_aware | comply_both | 21 | deduction | density | 0.140 | -0.364 | 0.642 |
+| qwen3 | real | alpha0.043_aware | comply_both | 21 | deduction | density_nontest | 0.122 | -0.391 | 0.616 |
+| qwen3 | real | alpha0.043_aware | comply_both | 21 | deduction | density_testlex | 0.018 | -0.140 | 0.196 |
+| qwen3 | real | alpha0.043_aware | comply_both | 21 | uncertainty-estimation | density | 0.011 | -0.243 | 0.251 |
+| qwen3 | real | alpha0.043_aware | comply_both | 21 | uncertainty-estimation | density_nontest | -0.037 | -0.252 | 0.175 |
+| qwen3 | real | alpha0.043_aware | comply_both | 21 | uncertainty-estimation | density_testlex | 0.048 | -0.055 | 0.152 |
+| qwen3 | real | alpha0.043_aware | comply_both | 21 | backtracking | density | -0.105 | -0.243 | 0.038 |
+| qwen3 | real | alpha0.043_aware | comply_both | 21 | backtracking | density_nontest | -0.105 | -0.243 | 0.038 |
+| qwen3 | real | alpha0.043_aware | comply_both | 21 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.043_aware | refuse_both | 106 | deduction | density | -0.219 | -0.415 | -0.027 |
+| qwen3 | real | alpha0.043_aware | refuse_both | 106 | deduction | density_nontest | -0.318 | -0.513 | -0.123 |
+| qwen3 | real | alpha0.043_aware | refuse_both | 106 | deduction | density_testlex | 0.099 | 0.019 | 0.179 |
+| qwen3 | real | alpha0.043_aware | refuse_both | 106 | uncertainty-estimation | density | 0.188 | 0.078 | 0.298 |
+| qwen3 | real | alpha0.043_aware | refuse_both | 106 | uncertainty-estimation | density_nontest | -0.021 | -0.127 | 0.082 |
+| qwen3 | real | alpha0.043_aware | refuse_both | 106 | uncertainty-estimation | density_testlex | 0.209 | 0.147 | 0.270 |
+| qwen3 | real | alpha0.043_aware | refuse_both | 106 | backtracking | density | 0.015 | -0.053 | 0.076 |
+| qwen3 | real | alpha0.043_aware | refuse_both | 106 | backtracking | density_nontest | 0.015 | -0.053 | 0.076 |
+| qwen3 | real | alpha0.043_aware | refuse_both | 106 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.053_aware | gained | 14 | deduction | density | -0.306 | -1.292 | 0.798 |
+| qwen3 | real | alpha0.053_aware | gained | 14 | deduction | density_nontest | -0.593 | -1.580 | 0.472 |
+| qwen3 | real | alpha0.053_aware | gained | 14 | deduction | density_testlex | 0.287 | 0.088 | 0.514 |
+| qwen3 | real | alpha0.053_aware | gained | 14 | uncertainty-estimation | density | 0.002 | -0.478 | 0.504 |
+| qwen3 | real | alpha0.053_aware | gained | 14 | uncertainty-estimation | density_nontest | -0.007 | -0.472 | 0.488 |
+| qwen3 | real | alpha0.053_aware | gained | 14 | uncertainty-estimation | density_testlex | 0.010 | -0.162 | 0.189 |
+| qwen3 | real | alpha0.053_aware | gained | 14 | backtracking | density | 0.210 | -0.045 | 0.512 |
+| qwen3 | real | alpha0.053_aware | gained | 14 | backtracking | density_nontest | 0.187 | -0.069 | 0.486 |
+| qwen3 | real | alpha0.053_aware | gained | 14 | backtracking | density_testlex | 0.024 | 0.000 | 0.071 |
+| qwen3 | real | alpha0.053_aware | lost | 6 | deduction | density | -0.799 | -1.499 | -0.170 |
+| qwen3 | real | alpha0.053_aware | lost | 6 | deduction | density_nontest | -0.891 | -1.781 | -0.231 |
+| qwen3 | real | alpha0.053_aware | lost | 6 | deduction | density_testlex | 0.092 | -0.153 | 0.398 |
+| qwen3 | real | alpha0.053_aware | lost | 6 | uncertainty-estimation | density | 0.329 | -0.176 | 0.863 |
+| qwen3 | real | alpha0.053_aware | lost | 6 | uncertainty-estimation | density_nontest | 0.158 | -0.206 | 0.523 |
+| qwen3 | real | alpha0.053_aware | lost | 6 | uncertainty-estimation | density_testlex | 0.171 | -0.053 | 0.381 |
+| qwen3 | real | alpha0.053_aware | lost | 6 | backtracking | density | 0.133 | -0.170 | 0.472 |
+| qwen3 | real | alpha0.053_aware | lost | 6 | backtracking | density_nontest | 0.133 | -0.170 | 0.472 |
+| qwen3 | real | alpha0.053_aware | lost | 6 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.053_aware | comply_both | 22 | deduction | density | -0.006 | -0.466 | 0.472 |
+| qwen3 | real | alpha0.053_aware | comply_both | 22 | deduction | density_nontest | -0.016 | -0.454 | 0.407 |
+| qwen3 | real | alpha0.053_aware | comply_both | 22 | deduction | density_testlex | 0.011 | -0.121 | 0.132 |
+| qwen3 | real | alpha0.053_aware | comply_both | 22 | uncertainty-estimation | density | -0.210 | -0.424 | 0.003 |
+| qwen3 | real | alpha0.053_aware | comply_both | 22 | uncertainty-estimation | density_nontest | -0.206 | -0.413 | 0.003 |
+| qwen3 | real | alpha0.053_aware | comply_both | 22 | uncertainty-estimation | density_testlex | -0.004 | -0.077 | 0.062 |
+| qwen3 | real | alpha0.053_aware | comply_both | 22 | backtracking | density | -0.108 | -0.219 | -0.008 |
+| qwen3 | real | alpha0.053_aware | comply_both | 22 | backtracking | density_nontest | -0.108 | -0.219 | -0.008 |
+| qwen3 | real | alpha0.053_aware | comply_both | 22 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.053_aware | refuse_both | 95 | deduction | density | -0.197 | -0.419 | 0.024 |
+| qwen3 | real | alpha0.053_aware | refuse_both | 95 | deduction | density_nontest | -0.405 | -0.640 | -0.174 |
+| qwen3 | real | alpha0.053_aware | refuse_both | 95 | deduction | density_testlex | 0.209 | 0.120 | 0.298 |
+| qwen3 | real | alpha0.053_aware | refuse_both | 95 | uncertainty-estimation | density | 0.105 | -0.009 | 0.221 |
+| qwen3 | real | alpha0.053_aware | refuse_both | 95 | uncertainty-estimation | density_nontest | -0.034 | -0.125 | 0.057 |
+| qwen3 | real | alpha0.053_aware | refuse_both | 95 | uncertainty-estimation | density_testlex | 0.139 | 0.062 | 0.220 |
+| qwen3 | real | alpha0.053_aware | refuse_both | 95 | backtracking | density | -0.039 | -0.111 | 0.023 |
+| qwen3 | real | alpha0.053_aware | refuse_both | 95 | backtracking | density_nontest | -0.043 | -0.115 | 0.019 |
+| qwen3 | real | alpha0.053_aware | refuse_both | 95 | backtracking | density_testlex | 0.003 | 0.000 | 0.010 |
+| qwen3 | real | alpha0.05_aware | gained | 11 | deduction | density | 0.903 | 0.415 | 1.363 |
+| qwen3 | real | alpha0.05_aware | gained | 11 | deduction | density_nontest | 0.637 | 0.155 | 1.061 |
+| qwen3 | real | alpha0.05_aware | gained | 11 | deduction | density_testlex | 0.266 | 0.002 | 0.549 |
+| qwen3 | real | alpha0.05_aware | gained | 11 | uncertainty-estimation | density | -0.039 | -0.510 | 0.428 |
+| qwen3 | real | alpha0.05_aware | gained | 11 | uncertainty-estimation | density_nontest | -0.225 | -0.619 | 0.167 |
+| qwen3 | real | alpha0.05_aware | gained | 11 | uncertainty-estimation | density_testlex | 0.186 | -0.037 | 0.422 |
+| qwen3 | real | alpha0.05_aware | gained | 11 | backtracking | density | -0.027 | -0.262 | 0.207 |
+| qwen3 | real | alpha0.05_aware | gained | 11 | backtracking | density_nontest | -0.027 | -0.262 | 0.207 |
+| qwen3 | real | alpha0.05_aware | gained | 11 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.05_aware | lost | 8 | deduction | density | -0.651 | -1.261 | -0.100 |
+| qwen3 | real | alpha0.05_aware | lost | 8 | deduction | density_nontest | -0.604 | -1.243 | -0.020 |
+| qwen3 | real | alpha0.05_aware | lost | 8 | deduction | density_testlex | -0.046 | -0.305 | 0.210 |
+| qwen3 | real | alpha0.05_aware | lost | 8 | uncertainty-estimation | density | 0.081 | -0.456 | 0.669 |
+| qwen3 | real | alpha0.05_aware | lost | 8 | uncertainty-estimation | density_nontest | -0.176 | -0.580 | 0.270 |
+| qwen3 | real | alpha0.05_aware | lost | 8 | uncertainty-estimation | density_testlex | 0.257 | 0.091 | 0.454 |
+| qwen3 | real | alpha0.05_aware | lost | 8 | backtracking | density | -0.041 | -0.250 | 0.135 |
+| qwen3 | real | alpha0.05_aware | lost | 8 | backtracking | density_nontest | -0.041 | -0.250 | 0.135 |
+| qwen3 | real | alpha0.05_aware | lost | 8 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.05_aware | comply_both | 22 | deduction | density | 0.052 | -0.431 | 0.605 |
+| qwen3 | real | alpha0.05_aware | comply_both | 22 | deduction | density_nontest | -0.114 | -0.558 | 0.380 |
+| qwen3 | real | alpha0.05_aware | comply_both | 22 | deduction | density_testlex | 0.166 | 0.013 | 0.306 |
+| qwen3 | real | alpha0.05_aware | comply_both | 22 | uncertainty-estimation | density | -0.004 | -0.237 | 0.232 |
+| qwen3 | real | alpha0.05_aware | comply_both | 22 | uncertainty-estimation | density_nontest | -0.086 | -0.277 | 0.116 |
+| qwen3 | real | alpha0.05_aware | comply_both | 22 | uncertainty-estimation | density_testlex | 0.082 | -0.036 | 0.208 |
+| qwen3 | real | alpha0.05_aware | comply_both | 22 | backtracking | density | -0.025 | -0.211 | 0.152 |
+| qwen3 | real | alpha0.05_aware | comply_both | 22 | backtracking | density_nontest | -0.025 | -0.211 | 0.152 |
+| qwen3 | real | alpha0.05_aware | comply_both | 22 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.05_aware | refuse_both | 104 | deduction | density | -0.265 | -0.480 | -0.056 |
+| qwen3 | real | alpha0.05_aware | refuse_both | 104 | deduction | density_nontest | -0.430 | -0.654 | -0.223 |
+| qwen3 | real | alpha0.05_aware | refuse_both | 104 | deduction | density_testlex | 0.165 | 0.081 | 0.255 |
+| qwen3 | real | alpha0.05_aware | refuse_both | 104 | uncertainty-estimation | density | 0.083 | -0.034 | 0.212 |
+| qwen3 | real | alpha0.05_aware | refuse_both | 104 | uncertainty-estimation | density_nontest | -0.051 | -0.151 | 0.058 |
+| qwen3 | real | alpha0.05_aware | refuse_both | 104 | uncertainty-estimation | density_testlex | 0.134 | 0.072 | 0.199 |
+| qwen3 | real | alpha0.05_aware | refuse_both | 104 | backtracking | density | -0.011 | -0.074 | 0.056 |
+| qwen3 | real | alpha0.05_aware | refuse_both | 104 | backtracking | density_nontest | -0.014 | -0.080 | 0.055 |
+| qwen3 | real | alpha0.05_aware | refuse_both | 104 | backtracking | density_testlex | 0.003 | 0.000 | 0.010 |
+| qwen3 | real | alpha0.25 | gained | 34 | deduction | density | -0.234 | -0.757 | 0.277 |
+| qwen3 | real | alpha0.25 | gained | 34 | deduction | density_nontest | -0.008 | -0.553 | 0.522 |
+| qwen3 | real | alpha0.25 | gained | 34 | deduction | density_testlex | -0.225 | -0.371 | -0.087 |
+| qwen3 | real | alpha0.25 | gained | 34 | uncertainty-estimation | density | 0.272 | -0.004 | 0.564 |
+| qwen3 | real | alpha0.25 | gained | 34 | uncertainty-estimation | density_nontest | 0.336 | 0.066 | 0.635 |
+| qwen3 | real | alpha0.25 | gained | 34 | uncertainty-estimation | density_testlex | -0.064 | -0.167 | 0.035 |
+| qwen3 | real | alpha0.25 | gained | 34 | backtracking | density | 0.049 | -0.075 | 0.180 |
+| qwen3 | real | alpha0.25 | gained | 34 | backtracking | density_nontest | 0.049 | -0.075 | 0.180 |
+| qwen3 | real | alpha0.25 | gained | 34 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.25 | comply_both | 26 | deduction | density | 0.038 | -0.401 | 0.503 |
+| qwen3 | real | alpha0.25 | comply_both | 26 | deduction | density_nontest | 0.123 | -0.270 | 0.557 |
+| qwen3 | real | alpha0.25 | comply_both | 26 | deduction | density_testlex | -0.085 | -0.198 | 0.024 |
+| qwen3 | real | alpha0.25 | comply_both | 26 | uncertainty-estimation | density | -0.105 | -0.347 | 0.146 |
+| qwen3 | real | alpha0.25 | comply_both | 26 | uncertainty-estimation | density_nontest | -0.116 | -0.337 | 0.119 |
+| qwen3 | real | alpha0.25 | comply_both | 26 | uncertainty-estimation | density_testlex | 0.011 | -0.101 | 0.120 |
+| qwen3 | real | alpha0.25 | comply_both | 26 | backtracking | density | 0.003 | -0.111 | 0.120 |
+| qwen3 | real | alpha0.25 | comply_both | 26 | backtracking | density_nontest | 0.003 | -0.111 | 0.120 |
+| qwen3 | real | alpha0.25 | comply_both | 26 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.25 | refuse_both | 85 | deduction | density | 0.191 | -0.089 | 0.459 |
+| qwen3 | real | alpha0.25 | refuse_both | 85 | deduction | density_nontest | 0.345 | 0.054 | 0.616 |
+| qwen3 | real | alpha0.25 | refuse_both | 85 | deduction | density_testlex | -0.155 | -0.236 | -0.075 |
+| qwen3 | real | alpha0.25 | refuse_both | 85 | uncertainty-estimation | density | 0.151 | 0.015 | 0.289 |
+| qwen3 | real | alpha0.25 | refuse_both | 85 | uncertainty-estimation | density_nontest | 0.180 | 0.046 | 0.311 |
+| qwen3 | real | alpha0.25 | refuse_both | 85 | uncertainty-estimation | density_testlex | -0.029 | -0.084 | 0.026 |
+| qwen3 | real | alpha0.25 | refuse_both | 85 | backtracking | density | 0.029 | -0.051 | 0.108 |
+| qwen3 | real | alpha0.25 | refuse_both | 85 | backtracking | density_nontest | 0.023 | -0.055 | 0.099 |
+| qwen3 | real | alpha0.25 | refuse_both | 85 | backtracking | density_testlex | 0.006 | 0.000 | 0.017 |
+| qwen3 | real | alpha0.3 | gained | 36 | deduction | density | -0.070 | -0.559 | 0.443 |
+| qwen3 | real | alpha0.3 | gained | 36 | deduction | density_nontest | 0.218 | -0.304 | 0.770 |
+| qwen3 | real | alpha0.3 | gained | 36 | deduction | density_testlex | -0.288 | -0.399 | -0.193 |
+| qwen3 | real | alpha0.3 | gained | 36 | uncertainty-estimation | density | 0.036 | -0.216 | 0.287 |
+| qwen3 | real | alpha0.3 | gained | 36 | uncertainty-estimation | density_nontest | 0.119 | -0.120 | 0.356 |
+| qwen3 | real | alpha0.3 | gained | 36 | uncertainty-estimation | density_testlex | -0.083 | -0.188 | 0.018 |
+| qwen3 | real | alpha0.3 | gained | 36 | backtracking | density | 0.143 | 0.018 | 0.277 |
+| qwen3 | real | alpha0.3 | gained | 36 | backtracking | density_nontest | 0.143 | 0.018 | 0.277 |
+| qwen3 | real | alpha0.3 | gained | 36 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.3 | comply_both | 26 | deduction | density | 0.008 | -0.446 | 0.448 |
+| qwen3 | real | alpha0.3 | comply_both | 26 | deduction | density_nontest | 0.086 | -0.356 | 0.509 |
+| qwen3 | real | alpha0.3 | comply_both | 26 | deduction | density_testlex | -0.078 | -0.184 | 0.021 |
+| qwen3 | real | alpha0.3 | comply_both | 26 | uncertainty-estimation | density | -0.047 | -0.302 | 0.221 |
+| qwen3 | real | alpha0.3 | comply_both | 26 | uncertainty-estimation | density_nontest | -0.009 | -0.255 | 0.245 |
+| qwen3 | real | alpha0.3 | comply_both | 26 | uncertainty-estimation | density_testlex | -0.038 | -0.102 | 0.027 |
+| qwen3 | real | alpha0.3 | comply_both | 26 | backtracking | density | 0.060 | -0.082 | 0.199 |
+| qwen3 | real | alpha0.3 | comply_both | 26 | backtracking | density_nontest | 0.060 | -0.082 | 0.199 |
+| qwen3 | real | alpha0.3 | comply_both | 26 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.3 | refuse_both | 82 | deduction | density | -0.060 | -0.318 | 0.196 |
+| qwen3 | real | alpha0.3 | refuse_both | 82 | deduction | density_nontest | 0.052 | -0.207 | 0.320 |
+| qwen3 | real | alpha0.3 | refuse_both | 82 | deduction | density_testlex | -0.112 | -0.192 | -0.028 |
+| qwen3 | real | alpha0.3 | refuse_both | 82 | uncertainty-estimation | density | 0.209 | 0.048 | 0.361 |
+| qwen3 | real | alpha0.3 | refuse_both | 82 | uncertainty-estimation | density_nontest | 0.249 | 0.100 | 0.388 |
+| qwen3 | real | alpha0.3 | refuse_both | 82 | uncertainty-estimation | density_testlex | -0.040 | -0.092 | 0.010 |
+| qwen3 | real | alpha0.3 | refuse_both | 82 | backtracking | density | 0.032 | -0.045 | 0.110 |
+| qwen3 | real | alpha0.3 | refuse_both | 82 | backtracking | density_nontest | 0.032 | -0.045 | 0.110 |
+| qwen3 | real | alpha0.3 | refuse_both | 82 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.32 | gained | 52 | deduction | density | -0.383 | -0.769 | 0.015 |
+| qwen3 | real | alpha0.32 | gained | 52 | deduction | density_nontest | -0.110 | -0.505 | 0.294 |
+| qwen3 | real | alpha0.32 | gained | 52 | deduction | density_testlex | -0.273 | -0.370 | -0.176 |
+| qwen3 | real | alpha0.32 | gained | 52 | uncertainty-estimation | density | 0.378 | 0.124 | 0.630 |
+| qwen3 | real | alpha0.32 | gained | 52 | uncertainty-estimation | density_nontest | 0.453 | 0.202 | 0.692 |
+| qwen3 | real | alpha0.32 | gained | 52 | uncertainty-estimation | density_testlex | -0.075 | -0.152 | -0.000 |
+| qwen3 | real | alpha0.32 | gained | 52 | backtracking | density | 0.121 | 0.012 | 0.221 |
+| qwen3 | real | alpha0.32 | gained | 52 | backtracking | density_nontest | 0.117 | 0.009 | 0.215 |
+| qwen3 | real | alpha0.32 | gained | 52 | backtracking | density_testlex | 0.004 | 0.000 | 0.013 |
+| qwen3 | real | alpha0.32 | lost | 6 | deduction | density | -1.070 | -2.076 | 0.042 |
+| qwen3 | real | alpha0.32 | lost | 6 | deduction | density_nontest | -0.659 | -1.629 | 0.375 |
+| qwen3 | real | alpha0.32 | lost | 6 | deduction | density_testlex | -0.411 | -0.623 | -0.182 |
+| qwen3 | real | alpha0.32 | lost | 6 | uncertainty-estimation | density | -0.017 | -0.487 | 0.486 |
+| qwen3 | real | alpha0.32 | lost | 6 | uncertainty-estimation | density_nontest | -0.017 | -0.487 | 0.486 |
+| qwen3 | real | alpha0.32 | lost | 6 | uncertainty-estimation | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.32 | lost | 6 | backtracking | density | 0.215 | 0.000 | 0.523 |
+| qwen3 | real | alpha0.32 | lost | 6 | backtracking | density_nontest | 0.215 | 0.000 | 0.523 |
+| qwen3 | real | alpha0.32 | lost | 6 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.32 | comply_both | 24 | deduction | density | 0.004 | -0.591 | 0.652 |
+| qwen3 | real | alpha0.32 | comply_both | 24 | deduction | density_nontest | -0.005 | -0.587 | 0.656 |
+| qwen3 | real | alpha0.32 | comply_both | 24 | deduction | density_testlex | 0.009 | -0.104 | 0.116 |
+| qwen3 | real | alpha0.32 | comply_both | 24 | uncertainty-estimation | density | -0.122 | -0.400 | 0.155 |
+| qwen3 | real | alpha0.32 | comply_both | 24 | uncertainty-estimation | density_nontest | -0.106 | -0.369 | 0.169 |
+| qwen3 | real | alpha0.32 | comply_both | 24 | uncertainty-estimation | density_testlex | -0.015 | -0.122 | 0.086 |
+| qwen3 | real | alpha0.32 | comply_both | 24 | backtracking | density | 0.053 | -0.074 | 0.176 |
+| qwen3 | real | alpha0.32 | comply_both | 24 | backtracking | density_nontest | 0.053 | -0.074 | 0.176 |
+| qwen3 | real | alpha0.32 | comply_both | 24 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwen3 | real | alpha0.32 | refuse_both | 65 | deduction | density | 0.041 | -0.310 | 0.381 |
+| qwen3 | real | alpha0.32 | refuse_both | 65 | deduction | density_nontest | 0.140 | -0.210 | 0.477 |
+| qwen3 | real | alpha0.32 | refuse_both | 65 | deduction | density_testlex | -0.098 | -0.194 | 0.000 |
+| qwen3 | real | alpha0.32 | refuse_both | 65 | uncertainty-estimation | density | -0.061 | -0.204 | 0.079 |
+| qwen3 | real | alpha0.32 | refuse_both | 65 | uncertainty-estimation | density_nontest | -0.034 | -0.169 | 0.098 |
+| qwen3 | real | alpha0.32 | refuse_both | 65 | uncertainty-estimation | density_testlex | -0.027 | -0.086 | 0.033 |
+| qwen3 | real | alpha0.32 | refuse_both | 65 | backtracking | density | 0.036 | -0.051 | 0.123 |
+| qwen3 | real | alpha0.32 | refuse_both | 65 | backtracking | density_nontest | 0.036 | -0.051 | 0.123 |
+| qwen3 | real | alpha0.32 | refuse_both | 65 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | fake | alpha0.05_aware | gained | 26 | deduction | density | -0.262 | -0.886 | 0.339 |
+| qwq | fake | alpha0.05_aware | gained | 26 | deduction | density_nontest | -0.328 | -0.898 | 0.220 |
+| qwq | fake | alpha0.05_aware | gained | 26 | deduction | density_testlex | 0.067 | -0.128 | 0.266 |
+| qwq | fake | alpha0.05_aware | gained | 26 | uncertainty-estimation | density | 0.187 | -0.115 | 0.484 |
+| qwq | fake | alpha0.05_aware | gained | 26 | uncertainty-estimation | density_nontest | -0.032 | -0.346 | 0.270 |
+| qwq | fake | alpha0.05_aware | gained | 26 | uncertainty-estimation | density_testlex | 0.218 | 0.086 | 0.354 |
+| qwq | fake | alpha0.05_aware | gained | 26 | backtracking | density | -0.047 | -0.168 | 0.080 |
+| qwq | fake | alpha0.05_aware | gained | 26 | backtracking | density_nontest | -0.057 | -0.159 | 0.062 |
+| qwq | fake | alpha0.05_aware | gained | 26 | backtracking | density_testlex | 0.009 | -0.046 | 0.063 |
+| qwq | fake | alpha0.05_aware | comply_both | 101 | deduction | density | 0.128 | -0.160 | 0.411 |
+| qwq | fake | alpha0.05_aware | comply_both | 101 | deduction | density_nontest | 0.015 | -0.273 | 0.313 |
+| qwq | fake | alpha0.05_aware | comply_both | 101 | deduction | density_testlex | 0.113 | 0.005 | 0.215 |
+| qwq | fake | alpha0.05_aware | comply_both | 101 | uncertainty-estimation | density | -0.115 | -0.235 | 0.009 |
+| qwq | fake | alpha0.05_aware | comply_both | 101 | uncertainty-estimation | density_nontest | -0.156 | -0.261 | -0.056 |
+| qwq | fake | alpha0.05_aware | comply_both | 101 | uncertainty-estimation | density_testlex | 0.041 | -0.015 | 0.098 |
+| qwq | fake | alpha0.05_aware | comply_both | 101 | backtracking | density | 0.003 | -0.061 | 0.066 |
+| qwq | fake | alpha0.05_aware | comply_both | 101 | backtracking | density_nontest | -0.008 | -0.069 | 0.055 |
+| qwq | fake | alpha0.05_aware | comply_both | 101 | backtracking | density_testlex | 0.011 | 0.000 | 0.024 |
+| qwq | fake | alpha0.05_aware | refuse_both | 19 | deduction | density | -0.210 | -0.743 | 0.398 |
+| qwq | fake | alpha0.05_aware | refuse_both | 19 | deduction | density_nontest | -0.367 | -0.850 | 0.186 |
+| qwq | fake | alpha0.05_aware | refuse_both | 19 | deduction | density_testlex | 0.157 | -0.093 | 0.400 |
+| qwq | fake | alpha0.05_aware | refuse_both | 19 | uncertainty-estimation | density | 0.265 | -0.205 | 0.718 |
+| qwq | fake | alpha0.05_aware | refuse_both | 19 | uncertainty-estimation | density_nontest | 0.014 | -0.300 | 0.323 |
+| qwq | fake | alpha0.05_aware | refuse_both | 19 | uncertainty-estimation | density_testlex | 0.251 | -0.042 | 0.506 |
+| qwq | fake | alpha0.05_aware | refuse_both | 19 | backtracking | density | 0.020 | -0.151 | 0.182 |
+| qwq | fake | alpha0.05_aware | refuse_both | 19 | backtracking | density_nontest | 0.020 | -0.151 | 0.182 |
+| qwq | fake | alpha0.05_aware | refuse_both | 19 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | fake | alpha0.25 | gained | 5 | deduction | density | -0.531 | -1.363 | 0.380 |
+| qwq | fake | alpha0.25 | gained | 5 | deduction | density_nontest | -0.274 | -1.107 | 0.558 |
+| qwq | fake | alpha0.25 | gained | 5 | deduction | density_testlex | -0.257 | -0.466 | -0.048 |
+| qwq | fake | alpha0.25 | gained | 5 | uncertainty-estimation | density | 0.494 | -0.255 | 1.191 |
+| qwq | fake | alpha0.25 | gained | 5 | uncertainty-estimation | density_nontest | 0.799 | -0.203 | 1.802 |
+| qwq | fake | alpha0.25 | gained | 5 | uncertainty-estimation | density_testlex | -0.305 | -0.740 | 0.000 |
+| qwq | fake | alpha0.25 | gained | 5 | backtracking | density | 0.061 | -0.281 | 0.395 |
+| qwq | fake | alpha0.25 | gained | 5 | backtracking | density_nontest | 0.061 | -0.281 | 0.395 |
+| qwq | fake | alpha0.25 | gained | 5 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | fake | alpha0.25 | lost | 31 | deduction | density | 0.456 | -0.077 | 0.978 |
+| qwq | fake | alpha0.25 | lost | 31 | deduction | density_nontest | 0.514 | -0.040 | 1.025 |
+| qwq | fake | alpha0.25 | lost | 31 | deduction | density_testlex | -0.058 | -0.223 | 0.093 |
+| qwq | fake | alpha0.25 | lost | 31 | uncertainty-estimation | density | -0.185 | -0.569 | 0.189 |
+| qwq | fake | alpha0.25 | lost | 31 | uncertainty-estimation | density_nontest | -0.103 | -0.478 | 0.282 |
+| qwq | fake | alpha0.25 | lost | 31 | uncertainty-estimation | density_testlex | -0.082 | -0.168 | -0.007 |
+| qwq | fake | alpha0.25 | lost | 31 | backtracking | density | 0.006 | -0.135 | 0.145 |
+| qwq | fake | alpha0.25 | lost | 31 | backtracking | density_nontest | 0.006 | -0.135 | 0.145 |
+| qwq | fake | alpha0.25 | lost | 31 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | fake | alpha0.25 | comply_both | 73 | deduction | density | 0.160 | -0.280 | 0.613 |
+| qwq | fake | alpha0.25 | comply_both | 73 | deduction | density_nontest | 0.273 | -0.165 | 0.729 |
+| qwq | fake | alpha0.25 | comply_both | 73 | deduction | density_testlex | -0.113 | -0.201 | -0.036 |
+| qwq | fake | alpha0.25 | comply_both | 73 | uncertainty-estimation | density | 0.139 | 0.005 | 0.277 |
+| qwq | fake | alpha0.25 | comply_both | 73 | uncertainty-estimation | density_nontest | 0.154 | 0.013 | 0.297 |
+| qwq | fake | alpha0.25 | comply_both | 73 | uncertainty-estimation | density_testlex | -0.015 | -0.076 | 0.041 |
+| qwq | fake | alpha0.25 | comply_both | 73 | backtracking | density | 0.040 | -0.041 | 0.121 |
+| qwq | fake | alpha0.25 | comply_both | 73 | backtracking | density_nontest | 0.042 | -0.039 | 0.122 |
+| qwq | fake | alpha0.25 | comply_both | 73 | backtracking | density_testlex | -0.002 | -0.006 | 0.000 |
+| qwq | fake | alpha0.25 | refuse_both | 40 | deduction | density | -0.050 | -0.531 | 0.376 |
+| qwq | fake | alpha0.25 | refuse_both | 40 | deduction | density_nontest | 0.133 | -0.366 | 0.566 |
+| qwq | fake | alpha0.25 | refuse_both | 40 | deduction | density_testlex | -0.184 | -0.319 | -0.052 |
+| qwq | fake | alpha0.25 | refuse_both | 40 | uncertainty-estimation | density | -0.083 | -0.261 | 0.103 |
+| qwq | fake | alpha0.25 | refuse_both | 40 | uncertainty-estimation | density_nontest | -0.025 | -0.209 | 0.178 |
+| qwq | fake | alpha0.25 | refuse_both | 40 | uncertainty-estimation | density_testlex | -0.058 | -0.128 | 0.001 |
+| qwq | fake | alpha0.25 | refuse_both | 40 | backtracking | density | -0.020 | -0.134 | 0.091 |
+| qwq | fake | alpha0.25 | refuse_both | 40 | backtracking | density_nontest | -0.007 | -0.120 | 0.100 |
+| qwq | fake | alpha0.25 | refuse_both | 40 | backtracking | density_testlex | -0.013 | -0.039 | 0.000 |
+| qwq | fake | alpha0.3 | gained | 5 | deduction | density | 1.655 | -0.235 | 3.054 |
+| qwq | fake | alpha0.3 | gained | 5 | deduction | density_nontest | 1.880 | -0.161 | 3.297 |
+| qwq | fake | alpha0.3 | gained | 5 | deduction | density_testlex | -0.226 | -0.640 | 0.149 |
+| qwq | fake | alpha0.3 | gained | 5 | uncertainty-estimation | density | 0.278 | -0.497 | 1.045 |
+| qwq | fake | alpha0.3 | gained | 5 | uncertainty-estimation | density_nontest | 0.583 | -0.409 | 1.748 |
+| qwq | fake | alpha0.3 | gained | 5 | uncertainty-estimation | density_testlex | -0.305 | -0.740 | 0.000 |
+| qwq | fake | alpha0.3 | gained | 5 | backtracking | density | 0.156 | 0.034 | 0.287 |
+| qwq | fake | alpha0.3 | gained | 5 | backtracking | density_nontest | 0.156 | 0.034 | 0.287 |
+| qwq | fake | alpha0.3 | gained | 5 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | fake | alpha0.3 | lost | 30 | deduction | density | 0.566 | 0.093 | 1.029 |
+| qwq | fake | alpha0.3 | lost | 30 | deduction | density_nontest | 0.665 | 0.200 | 1.131 |
+| qwq | fake | alpha0.3 | lost | 30 | deduction | density_testlex | -0.100 | -0.289 | 0.081 |
+| qwq | fake | alpha0.3 | lost | 30 | uncertainty-estimation | density | 0.147 | -0.206 | 0.486 |
+| qwq | fake | alpha0.3 | lost | 30 | uncertainty-estimation | density_nontest | 0.252 | -0.104 | 0.611 |
+| qwq | fake | alpha0.3 | lost | 30 | uncertainty-estimation | density_testlex | -0.105 | -0.190 | -0.030 |
+| qwq | fake | alpha0.3 | lost | 30 | backtracking | density | 0.067 | -0.092 | 0.221 |
+| qwq | fake | alpha0.3 | lost | 30 | backtracking | density_nontest | 0.067 | -0.092 | 0.221 |
+| qwq | fake | alpha0.3 | lost | 30 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | fake | alpha0.3 | comply_both | 74 | deduction | density | 0.230 | -0.119 | 0.585 |
+| qwq | fake | alpha0.3 | comply_both | 74 | deduction | density_nontest | 0.285 | -0.082 | 0.655 |
+| qwq | fake | alpha0.3 | comply_both | 74 | deduction | density_testlex | -0.055 | -0.142 | 0.028 |
+| qwq | fake | alpha0.3 | comply_both | 74 | uncertainty-estimation | density | 0.142 | -0.023 | 0.309 |
+| qwq | fake | alpha0.3 | comply_both | 74 | uncertainty-estimation | density_nontest | 0.145 | -0.017 | 0.313 |
+| qwq | fake | alpha0.3 | comply_both | 74 | uncertainty-estimation | density_testlex | -0.004 | -0.060 | 0.050 |
+| qwq | fake | alpha0.3 | comply_both | 74 | backtracking | density | 0.017 | -0.062 | 0.095 |
+| qwq | fake | alpha0.3 | comply_both | 74 | backtracking | density_nontest | 0.019 | -0.059 | 0.096 |
+| qwq | fake | alpha0.3 | comply_both | 74 | backtracking | density_testlex | -0.002 | -0.005 | 0.000 |
+| qwq | fake | alpha0.3 | refuse_both | 40 | deduction | density | -0.113 | -0.426 | 0.182 |
+| qwq | fake | alpha0.3 | refuse_both | 40 | deduction | density_nontest | 0.042 | -0.301 | 0.394 |
+| qwq | fake | alpha0.3 | refuse_both | 40 | deduction | density_testlex | -0.155 | -0.289 | -0.027 |
+| qwq | fake | alpha0.3 | refuse_both | 40 | uncertainty-estimation | density | -0.191 | -0.405 | 0.021 |
+| qwq | fake | alpha0.3 | refuse_both | 40 | uncertainty-estimation | density_nontest | -0.157 | -0.361 | 0.040 |
+| qwq | fake | alpha0.3 | refuse_both | 40 | uncertainty-estimation | density_testlex | -0.034 | -0.122 | 0.042 |
+| qwq | fake | alpha0.3 | refuse_both | 40 | backtracking | density | 0.117 | -0.021 | 0.270 |
+| qwq | fake | alpha0.3 | refuse_both | 40 | backtracking | density_nontest | 0.130 | -0.008 | 0.280 |
+| qwq | fake | alpha0.3 | refuse_both | 40 | backtracking | density_testlex | -0.013 | -0.039 | 0.000 |
+| qwq | real | alpha0.05_aware | gained | 33 | deduction | density | -0.607 | -1.144 | -0.051 |
+| qwq | real | alpha0.05_aware | gained | 33 | deduction | density_nontest | -0.695 | -1.253 | -0.140 |
+| qwq | real | alpha0.05_aware | gained | 33 | deduction | density_testlex | 0.087 | -0.084 | 0.260 |
+| qwq | real | alpha0.05_aware | gained | 33 | uncertainty-estimation | density | 0.358 | 0.099 | 0.615 |
+| qwq | real | alpha0.05_aware | gained | 33 | uncertainty-estimation | density_nontest | 0.075 | -0.184 | 0.346 |
+| qwq | real | alpha0.05_aware | gained | 33 | uncertainty-estimation | density_testlex | 0.283 | 0.140 | 0.427 |
+| qwq | real | alpha0.05_aware | gained | 33 | backtracking | density | 0.043 | -0.099 | 0.199 |
+| qwq | real | alpha0.05_aware | gained | 33 | backtracking | density_nontest | 0.035 | -0.105 | 0.183 |
+| qwq | real | alpha0.05_aware | gained | 33 | backtracking | density_testlex | 0.009 | -0.027 | 0.041 |
+| qwq | real | alpha0.05_aware | comply_both | 51 | deduction | density | -0.154 | -0.507 | 0.231 |
+| qwq | real | alpha0.05_aware | comply_both | 51 | deduction | density_nontest | -0.217 | -0.575 | 0.180 |
+| qwq | real | alpha0.05_aware | comply_both | 51 | deduction | density_testlex | 0.063 | -0.006 | 0.139 |
+| qwq | real | alpha0.05_aware | comply_both | 51 | uncertainty-estimation | density | -0.003 | -0.173 | 0.167 |
+| qwq | real | alpha0.05_aware | comply_both | 51 | uncertainty-estimation | density_nontest | -0.061 | -0.220 | 0.099 |
+| qwq | real | alpha0.05_aware | comply_both | 51 | uncertainty-estimation | density_testlex | 0.058 | -0.012 | 0.124 |
+| qwq | real | alpha0.05_aware | comply_both | 51 | backtracking | density | 0.050 | -0.038 | 0.138 |
+| qwq | real | alpha0.05_aware | comply_both | 51 | backtracking | density_nontest | 0.030 | -0.048 | 0.113 |
+| qwq | real | alpha0.05_aware | comply_both | 51 | backtracking | density_testlex | 0.020 | -0.009 | 0.056 |
+| qwq | real | alpha0.05_aware | refuse_both | 62 | deduction | density | -0.303 | -0.640 | 0.049 |
+| qwq | real | alpha0.05_aware | refuse_both | 62 | deduction | density_nontest | -0.509 | -0.844 | -0.151 |
+| qwq | real | alpha0.05_aware | refuse_both | 62 | deduction | density_testlex | 0.206 | 0.053 | 0.376 |
+| qwq | real | alpha0.05_aware | refuse_both | 62 | uncertainty-estimation | density | 0.379 | 0.170 | 0.598 |
+| qwq | real | alpha0.05_aware | refuse_both | 62 | uncertainty-estimation | density_nontest | 0.026 | -0.187 | 0.257 |
+| qwq | real | alpha0.05_aware | refuse_both | 62 | uncertainty-estimation | density_testlex | 0.353 | 0.235 | 0.478 |
+| qwq | real | alpha0.05_aware | refuse_both | 62 | backtracking | density | 0.003 | -0.124 | 0.123 |
+| qwq | real | alpha0.05_aware | refuse_both | 62 | backtracking | density_nontest | -0.026 | -0.145 | 0.090 |
+| qwq | real | alpha0.05_aware | refuse_both | 62 | backtracking | density_testlex | 0.029 | -0.010 | 0.072 |
+| qwq | real | alpha0.25 | gained | 9 | deduction | density | 1.242 | -0.011 | 2.212 |
+| qwq | real | alpha0.25 | gained | 9 | deduction | density_nontest | 1.253 | 0.035 | 2.187 |
+| qwq | real | alpha0.25 | gained | 9 | deduction | density_testlex | -0.011 | -0.161 | 0.144 |
+| qwq | real | alpha0.25 | gained | 9 | uncertainty-estimation | density | -0.093 | -0.456 | 0.264 |
+| qwq | real | alpha0.25 | gained | 9 | uncertainty-estimation | density_nontest | 0.133 | -0.239 | 0.463 |
+| qwq | real | alpha0.25 | gained | 9 | uncertainty-estimation | density_testlex | -0.226 | -0.409 | -0.044 |
+| qwq | real | alpha0.25 | gained | 9 | backtracking | density | -0.020 | -0.261 | 0.214 |
+| qwq | real | alpha0.25 | gained | 9 | backtracking | density_nontest | -0.020 | -0.261 | 0.214 |
+| qwq | real | alpha0.25 | gained | 9 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | real | alpha0.25 | lost | 16 | deduction | density | 0.066 | -0.565 | 0.796 |
+| qwq | real | alpha0.25 | lost | 16 | deduction | density_nontest | 0.120 | -0.495 | 0.827 |
+| qwq | real | alpha0.25 | lost | 16 | deduction | density_testlex | -0.054 | -0.159 | 0.058 |
+| qwq | real | alpha0.25 | lost | 16 | uncertainty-estimation | density | 0.057 | -0.398 | 0.476 |
+| qwq | real | alpha0.25 | lost | 16 | uncertainty-estimation | density_nontest | 0.134 | -0.301 | 0.526 |
+| qwq | real | alpha0.25 | lost | 16 | uncertainty-estimation | density_testlex | -0.077 | -0.149 | -0.014 |
+| qwq | real | alpha0.25 | lost | 16 | backtracking | density | 0.108 | -0.063 | 0.294 |
+| qwq | real | alpha0.25 | lost | 16 | backtracking | density_nontest | 0.108 | -0.063 | 0.294 |
+| qwq | real | alpha0.25 | lost | 16 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | real | alpha0.25 | comply_both | 38 | deduction | density | -0.008 | -0.526 | 0.506 |
+| qwq | real | alpha0.25 | comply_both | 38 | deduction | density_nontest | -0.001 | -0.541 | 0.535 |
+| qwq | real | alpha0.25 | comply_both | 38 | deduction | density_testlex | -0.007 | -0.075 | 0.054 |
+| qwq | real | alpha0.25 | comply_both | 38 | uncertainty-estimation | density | -0.017 | -0.189 | 0.152 |
+| qwq | real | alpha0.25 | comply_both | 38 | uncertainty-estimation | density_nontest | -0.025 | -0.193 | 0.139 |
+| qwq | real | alpha0.25 | comply_both | 38 | uncertainty-estimation | density_testlex | 0.008 | -0.032 | 0.050 |
+| qwq | real | alpha0.25 | comply_both | 38 | backtracking | density | 0.065 | -0.029 | 0.164 |
+| qwq | real | alpha0.25 | comply_both | 38 | backtracking | density_nontest | 0.074 | -0.015 | 0.166 |
+| qwq | real | alpha0.25 | comply_both | 38 | backtracking | density_testlex | -0.009 | -0.026 | 0.000 |
+| qwq | real | alpha0.25 | refuse_both | 86 | deduction | density | -0.147 | -0.422 | 0.135 |
+| qwq | real | alpha0.25 | refuse_both | 86 | deduction | density_nontest | -0.087 | -0.366 | 0.187 |
+| qwq | real | alpha0.25 | refuse_both | 86 | deduction | density_testlex | -0.060 | -0.137 | 0.022 |
+| qwq | real | alpha0.25 | refuse_both | 86 | uncertainty-estimation | density | -0.187 | -0.328 | -0.045 |
+| qwq | real | alpha0.25 | refuse_both | 86 | uncertainty-estimation | density_nontest | -0.072 | -0.221 | 0.072 |
+| qwq | real | alpha0.25 | refuse_both | 86 | uncertainty-estimation | density_testlex | -0.115 | -0.171 | -0.064 |
+| qwq | real | alpha0.25 | refuse_both | 86 | backtracking | density | 0.026 | -0.085 | 0.135 |
+| qwq | real | alpha0.25 | refuse_both | 86 | backtracking | density_nontest | 0.032 | -0.081 | 0.138 |
+| qwq | real | alpha0.25 | refuse_both | 86 | backtracking | density_testlex | -0.006 | -0.031 | 0.019 |
+| qwq | real | alpha0.3 | gained | 5 | deduction | density | 0.245 | -1.269 | 1.564 |
+| qwq | real | alpha0.3 | gained | 5 | deduction | density_nontest | 0.289 | -1.018 | 1.271 |
+| qwq | real | alpha0.3 | gained | 5 | deduction | density_testlex | -0.044 | -0.469 | 0.337 |
+| qwq | real | alpha0.3 | gained | 5 | uncertainty-estimation | density | -0.066 | -0.618 | 0.762 |
+| qwq | real | alpha0.3 | gained | 5 | uncertainty-estimation | density_nontest | 0.269 | -0.278 | 0.925 |
+| qwq | real | alpha0.3 | gained | 5 | uncertainty-estimation | density_testlex | -0.335 | -0.680 | 0.000 |
+| qwq | real | alpha0.3 | gained | 5 | backtracking | density | -0.124 | -0.517 | 0.144 |
+| qwq | real | alpha0.3 | gained | 5 | backtracking | density_nontest | -0.124 | -0.517 | 0.144 |
+| qwq | real | alpha0.3 | gained | 5 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | real | alpha0.3 | lost | 16 | deduction | density | 0.582 | -0.129 | 1.269 |
+| qwq | real | alpha0.3 | lost | 16 | deduction | density_nontest | 0.622 | -0.097 | 1.323 |
+| qwq | real | alpha0.3 | lost | 16 | deduction | density_testlex | -0.040 | -0.157 | 0.086 |
+| qwq | real | alpha0.3 | lost | 16 | uncertainty-estimation | density | 0.273 | -0.440 | 0.940 |
+| qwq | real | alpha0.3 | lost | 16 | uncertainty-estimation | density_nontest | 0.398 | -0.304 | 1.037 |
+| qwq | real | alpha0.3 | lost | 16 | uncertainty-estimation | density_testlex | -0.125 | -0.223 | -0.036 |
+| qwq | real | alpha0.3 | lost | 16 | backtracking | density | 0.076 | -0.097 | 0.254 |
+| qwq | real | alpha0.3 | lost | 16 | backtracking | density_nontest | 0.076 | -0.097 | 0.254 |
+| qwq | real | alpha0.3 | lost | 16 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| qwq | real | alpha0.3 | comply_both | 38 | deduction | density | -0.401 | -0.934 | 0.158 |
+| qwq | real | alpha0.3 | comply_both | 38 | deduction | density_nontest | -0.368 | -0.907 | 0.198 |
+| qwq | real | alpha0.3 | comply_both | 38 | deduction | density_testlex | -0.033 | -0.114 | 0.047 |
+| qwq | real | alpha0.3 | comply_both | 38 | uncertainty-estimation | density | -0.001 | -0.184 | 0.194 |
+| qwq | real | alpha0.3 | comply_both | 38 | uncertainty-estimation | density_nontest | -0.009 | -0.183 | 0.186 |
+| qwq | real | alpha0.3 | comply_both | 38 | uncertainty-estimation | density_testlex | 0.007 | -0.044 | 0.056 |
+| qwq | real | alpha0.3 | comply_both | 38 | backtracking | density | 0.067 | -0.039 | 0.172 |
+| qwq | real | alpha0.3 | comply_both | 38 | backtracking | density_nontest | 0.076 | -0.027 | 0.177 |
+| qwq | real | alpha0.3 | comply_both | 38 | backtracking | density_testlex | -0.009 | -0.026 | 0.000 |
+| qwq | real | alpha0.3 | refuse_both | 90 | deduction | density | -0.042 | -0.326 | 0.266 |
+| qwq | real | alpha0.3 | refuse_both | 90 | deduction | density_nontest | 0.038 | -0.238 | 0.316 |
+| qwq | real | alpha0.3 | refuse_both | 90 | deduction | density_testlex | -0.080 | -0.158 | 0.003 |
+| qwq | real | alpha0.3 | refuse_both | 90 | uncertainty-estimation | density | -0.165 | -0.305 | -0.022 |
+| qwq | real | alpha0.3 | refuse_both | 90 | uncertainty-estimation | density_nontest | -0.057 | -0.204 | 0.092 |
+| qwq | real | alpha0.3 | refuse_both | 90 | uncertainty-estimation | density_testlex | -0.109 | -0.164 | -0.058 |
+| qwq | real | alpha0.3 | refuse_both | 90 | backtracking | density | 0.001 | -0.102 | 0.100 |
+| qwq | real | alpha0.3 | refuse_both | 90 | backtracking | density_nontest | 0.012 | -0.088 | 0.108 |
+| qwq | real | alpha0.3 | refuse_both | 90 | backtracking | density_testlex | -0.011 | -0.033 | 0.008 |
 
 
 ## Decoding-noise floor: same item, same α, greedy vs sampled decode (Distill-Qwen actions)

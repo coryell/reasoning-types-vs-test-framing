@@ -340,33 +340,41 @@ def flips(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
                     "p_mcnemar": mcnemar_exact(b, c),
                 }
             )
+            # Outcome classes: the decision itself changes reasoning (complying and refusing traces differ
+            # in morphology at baseline by about the size of the steering effects), so the steering delta
+            # is reported within items whose decision did not change, split by which decision it was.
             cls = pd.Series("same", index=common)
             cls[be & ~ae] = "lost"
             cls[~be & ae] = "gained"
+            cls[be & ae] = "comply_both"
+            cls[~be & ~ae] = "refuse_both"
             base = base_all[base_all.ok]
             arm_df = arm_all[arm_all.ok]
             ok_idx = base.index.intersection(arm_df.index)
-            for klass in ("gained", "lost", "same"):
-                idx = cls.index[cls == klass].intersection(ok_idx)
+            for klass in ("gained", "lost", "comply_both", "refuse_both", "same"):
+                idx = (cls.index[cls.isin(["comply_both", "refuse_both"])] if klass == "same" else cls.index[cls == klass]).intersection(ok_idx)
                 if len(idx) < MIN_N:
                     continue
                 for beh in LABELS:
-                    col = f"density_{beh}"
-                    dd = arm_df.loc[idx, col].to_numpy(dtype=float) - base.loc[idx, col].to_numpy(dtype=float)
-                    lo, hi = boot_ci(dd)
-                    by_class.append(
-                        {
-                            **dict(zip(GROUP, keys)),
-                            "arm": arm,
-                            "signed_alpha": sa,
-                            "flip_class": klass,
-                            "n": len(idx),
-                            "behaviour": beh,
-                            "delta_density": float(np.nanmean(dd)),
-                            "ci_lo": lo,
-                            "ci_hi": hi,
-                        }
-                    )
+                    for metric, col in (("density", f"density_{beh}"), ("density_nontest", f"density_{beh}_nontest"), ("density_testlex", f"density_{beh}_testlex")):
+                        if col not in arm_df:
+                            continue
+                        dd = arm_df.loc[idx, col].to_numpy(dtype=float) - base.loc[idx, col].to_numpy(dtype=float)
+                        lo, hi = boot_ci(dd)
+                        by_class.append(
+                            {
+                                **dict(zip(GROUP, keys)),
+                                "arm": arm,
+                                "signed_alpha": sa,
+                                "flip_class": klass,
+                                "n": len(idx),
+                                "behaviour": beh,
+                                "metric": metric,
+                                "delta_density": float(np.nanmean(dd)),
+                                "ci_lo": lo,
+                                "ci_hi": hi,
+                            }
+                        )
     return pd.DataFrame(two_by_two), pd.DataFrame(by_class)
 
 
@@ -596,6 +604,7 @@ def fig_flip_classes(by_class: pd.DataFrame, out: Path) -> None:
     w = 0.26
     for ax, (keys, arm, s) in zip(axes[0], panels):
         _style(ax)
+        s = s[s.metric == "density"] if "metric" in s else s
         for k, klass in enumerate(("gained", "lost", "same")):
             g = s[s.flip_class == klass].set_index("behaviour").reindex(LABELS)
             if g.delta_density.isna().all():
@@ -689,8 +698,9 @@ def write_summary(out: Path, df, cov, means, contrasts, sym, two, by_class, verb
     parts.append(md_table(two, ["model", "family", "framing", "arm", "n_pairs", "base_rate", "arm_rate", "lost", "gained", "net_gain", "churn", "p_mcnemar"]))
     parts.append("\n## Δ density by flip class (largest |α| arms; see flips.csv for all)\n")
     if not by_class.empty:
-        bc = by_class[by_class.behaviour.isin(["backtracking", "uncertainty-estimation", "deduction"])]
-        parts.append(md_table(bc, ["model", "framing", "arm", "flip_class", "n", "behaviour", "delta_density", "ci_lo", "ci_hi"]))
+        bc = by_class[by_class.behaviour.isin(["backtracking", "uncertainty-estimation", "deduction"]) & by_class.flip_class.isin(["gained", "lost", "comply_both", "refuse_both"])]
+        parts.append("Classes: `gained`/`lost` flipped decision; `comply_both`/`refuse_both` kept it. Within `refuse_both` the decision is held fixed, so a delta there is not a by-product of the compliance change.\n")
+        parts.append(md_table(bc, ["model", "framing", "arm", "flip_class", "n", "behaviour", "metric", "delta_density", "ci_lo", "ci_hi"]))
     parts.append("\n## Decoding-noise floor: same item, same α, greedy vs sampled decode (Distill-Qwen actions)\n")
     if noise is not None and not noise.empty:
         parts.append(md_table(noise, ["model", "framing", "arm", "n_pairs", "behaviour", "mean_delta", "ci_lo", "ci_hi", "sd_delta", "mean_abs_delta"]))
