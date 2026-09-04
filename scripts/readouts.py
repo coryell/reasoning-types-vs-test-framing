@@ -31,6 +31,13 @@ arm's condition, and the mean projection is taken over the reasoning tokens only
 reads the written text in isolation (so a system-prompt cue can act only through what it changed in
 the writing), this measures the representation the model had while reasoning under the cue.
 Directions: the rebuilt behaviour directions at their layers and the probe direction at its index.
+
+Residual-add arms, a caveat on indexing: transformers 5 collects ``output_hidden_states`` through
+its own recording hooks on each decoder layer, which capture the layer's output *before* our
+``ResidualAdd`` forward hook modifies it (verified: the last-prompt-token projection onto the steered
+direction at ``hidden_states[layer + 1]`` is identical with and without the add, while downstream
+indices shift). So for a residual-add arm, readouts at exactly ``layer + 1`` measure the model's own
+state before the addition; readouts at later indices (e.g. the probe's) include it.
 """
 
 from __future__ import annotations
