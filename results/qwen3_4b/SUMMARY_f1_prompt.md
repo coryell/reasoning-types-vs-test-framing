@@ -348,14 +348,70 @@ chosen: {"aware": {"arm": "alpha0.05_aware", "alpha": 0.05, "closure": 1.0, "rep
 |---|---|---|---|---|---|---|---|
 | baseline_seed1 | real | proj_backtracking | 149 | 20.3383 | 0.0840 | -0.3104 | 0.4595 |
 | baseline_seed1 | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.1679 | -0.4809 | 0.1340 |
+| baseline_seed1 | real | proj_probe | 149 | -2.4006 | 0.0435 | -0.1405 | 0.2261 |
+| baseline_seed1 | real | proj_lastprompt_backtracking | 149 | 11.9075 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | real | proj_lastprompt_probe | 149 | -1.9825 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | real | proj_incontext_backtracking | 149 | 18.8387 | 0.0492 | -0.3461 | 0.4324 |
+| baseline_seed1 | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.3027 | -0.7517 | 0.1046 |
+| baseline_seed1 | real | proj_incontext_probe | 149 | -2.9817 | 0.0752 | -0.0959 | 0.2403 |
 | baseline_seed1 | fake | proj_backtracking | 149 | 19.4140 | 0.1414 | -0.2317 | 0.4960 |
 | baseline_seed1 | fake | proj_uncertainty-estimation | 149 | 8.3488 | 0.0931 | -0.2649 | 0.4594 |
+| baseline_seed1 | fake | proj_probe | 149 | -2.7419 | -0.0196 | -0.2233 | 0.1764 |
+| baseline_seed1 | fake | proj_lastprompt_backtracking | 149 | 11.7580 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | fake | proj_lastprompt_probe | 149 | -2.0660 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.1430 | -0.2352 | 0.4983 |
+| baseline_seed1 | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.1819 | -0.2166 | 0.6130 |
+| baseline_seed1 | fake | proj_incontext_probe | 149 | -3.2032 | -0.0272 | -0.2094 | 0.1516 |
 | aware_strong | real | proj_backtracking | 149 | 20.3383 | -0.1800 | -0.6088 | 0.2246 |
 | aware_strong | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.2790 | -0.5283 | -0.0587 |
+| aware_strong | real | proj_probe | 149 | -2.4006 | -0.0935 | -0.2892 | 0.1018 |
+| aware_strong | real | proj_lastprompt_backtracking | 149 | 11.9075 | -0.0172 | -0.0332 | -0.0021 |
+| aware_strong | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | -0.0313 | -0.0419 | -0.0200 |
+| aware_strong | real | proj_lastprompt_probe | 149 | -1.9825 | -0.0005 | -0.0042 | 0.0036 |
+| aware_strong | real | proj_incontext_backtracking | 149 | 18.8387 | -0.2289 | -0.6630 | 0.1777 |
+| aware_strong | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.5750 | -0.9798 | -0.1971 |
+| aware_strong | real | proj_incontext_probe | 149 | -2.9817 | 0.0006 | -0.1856 | 0.1822 |
 | aware_strong | fake | proj_backtracking | 149 | 19.4140 | 0.5754 | 0.1815 | 0.9753 |
 | aware_strong | fake | proj_uncertainty-estimation | 149 | 8.3488 | -0.1149 | -0.4379 | 0.1666 |
+| aware_strong | fake | proj_probe | 149 | -2.7419 | 0.2801 | 0.0832 | 0.4771 |
+| aware_strong | fake | proj_lastprompt_backtracking | 149 | 11.7580 | -0.0229 | -0.0387 | -0.0061 |
+| aware_strong | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | -0.0469 | -0.0584 | -0.0358 |
+| aware_strong | fake | proj_lastprompt_probe | 149 | -2.0660 | 0.0052 | 0.0008 | 0.0094 |
+| aware_strong | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.5941 | 0.2173 | 0.9865 |
+| aware_strong | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.2816 | -0.0847 | 0.6640 |
+| aware_strong | fake | proj_incontext_probe | 149 | -3.2032 | 0.2155 | 0.0508 | 0.3857 |
 | prompt_test | real | proj_backtracking | 149 | 20.3383 | -0.0126 | -0.4212 | 0.3773 |
 | prompt_test | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.1593 | -0.4809 | 0.1810 |
+| prompt_test | real | proj_probe | 149 | -2.4006 | -0.0597 | -0.2870 | 0.1430 |
+| prompt_test | real | proj_lastprompt_backtracking | 149 | 11.9075 | 0.0985 | 0.0695 | 0.1288 |
+| prompt_test | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | 0.0460 | 0.0322 | 0.0602 |
+| prompt_test | real | proj_lastprompt_probe | 149 | -1.9825 | 0.1365 | 0.1246 | 0.1493 |
+| prompt_test | real | proj_incontext_backtracking | 149 | 18.8387 | -0.0530 | -0.4866 | 0.3437 |
+| prompt_test | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.4056 | -0.8381 | 0.0400 |
+| prompt_test | real | proj_incontext_probe | 149 | -2.9817 | 0.0322 | -0.1734 | 0.2263 |
 | prompt_test | fake | proj_backtracking | 149 | 19.4140 | 0.1107 | -0.2972 | 0.5264 |
 | prompt_test | fake | proj_uncertainty-estimation | 149 | 8.3488 | -0.2042 | -0.4677 | 0.0577 |
+| prompt_test | fake | proj_probe | 149 | -2.7419 | -0.0009 | -0.2037 | 0.1853 |
+| prompt_test | fake | proj_lastprompt_backtracking | 149 | 11.7580 | 0.0949 | 0.0614 | 0.1292 |
+| prompt_test | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | 0.0555 | 0.0407 | 0.0695 |
+| prompt_test | fake | proj_lastprompt_probe | 149 | -2.0660 | 0.1400 | 0.1291 | 0.1519 |
+| prompt_test | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.1232 | -0.2841 | 0.5270 |
+| prompt_test | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | -0.2345 | -0.5635 | 0.0883 |
+| prompt_test | fake | proj_incontext_probe | 149 | -3.2032 | 0.0494 | -0.1212 | 0.2125 |
+
+
+## Awareness-probe score of each arm's reasoning (unedited model, the probe's own input regime and hidden-state index): per arm, and verbalizing vs non-verbalizing traces within the arm
+
+| arm | framing | n | mean | ci_lo | ci_hi | n_verbalizing | mean_verbalizing | mean_not | p_welch |
+|---|---|---|---|---|---|---|---|---|---|
+| baseline | real | 149 | -2.4006 | -2.5992 | -2.1838 | 28 | -1.1496 | -2.6900 | 0.0000 |
+| baseline | fake | 149 | -2.7419 | -2.9424 | -2.5154 | 13 | -1.2038 | -2.8878 | 0.0000 |
+| baseline_seed1 | real | 149 | -2.3571 | -2.5585 | -2.1620 | 22 | -1.4930 | -2.5068 | 0.0004 |
+| baseline_seed1 | fake | 149 | -2.7615 | -2.9646 | -2.5511 | 9 | -0.5367 | -2.9046 | 0.0010 |
+| aware_strong | real | 149 | -2.4941 | -2.6946 | -2.2860 | 27 | -1.0875 | -2.7973 | 0.0000 |
+| aware_strong | fake | 149 | -2.4618 | -2.6434 | -2.2568 | 20 | -1.4412 | -2.6324 | 0.0003 |
+| prompt_test | real | 149 | -2.4603 | -2.6642 | -2.2455 | 27 | -1.2021 | -2.7388 | 0.0000 |
+| prompt_test | fake | 149 | -2.7428 | -2.9192 | -2.5443 | 17 | -1.6375 | -2.8892 | 0.0000 |
 

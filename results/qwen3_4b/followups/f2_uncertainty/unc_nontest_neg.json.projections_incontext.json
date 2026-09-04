@@ -1,0 +1,994 @@
+{
+ "arm": "unc_nontest_neg",
+ "condition": {
+  "name": "unc_nontest_neg",
+  "kind": "residual_add",
+  "direction": "uncertainty-estimation",
+  "alpha": 0.0,
+  "aware": true,
+  "rows_from": "edit direction",
+  "vectors": "mean_vectors_nontest",
+  "layer": 18,
+  "coefficient": -0.25,
+  "prompt_suffix": "",
+  "seed": 0,
+  "info": {
+   "vector_norm": 10.154252052307129,
+   "layer": 18
+  }
+ },
+ "directions": {
+  "backtracking": {
+   "hs_index": 24
+  },
+  "uncertainty-estimation": {
+   "hs_index": 19
+  },
+  "probe": {
+   "hs_index": 20
+  }
+ },
+ "system_prompt": null,
+ "rows": [
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/0/real",
+   "index": 0,
+   "framing": "real",
+   "proj_incontext_backtracking": 11.690646171569824,
+   "proj_incontext_uncertainty-estimation": 7.983387470245361,
+   "proj_incontext_probe": -4.7364726066589355
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/0/hypothetical",
+   "index": 0,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 14.031054496765137,
+   "proj_incontext_uncertainty-estimation": 8.953306198120117,
+   "proj_incontext_probe": -3.415626049041748
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/1/real",
+   "index": 1,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.035383224487305,
+   "proj_incontext_uncertainty-estimation": 8.200602531433105,
+   "proj_incontext_probe": -4.607627868652344
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/1/hypothetical",
+   "index": 1,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.428707122802734,
+   "proj_incontext_uncertainty-estimation": 9.17587947845459,
+   "proj_incontext_probe": -4.823727607727051
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/2/real",
+   "index": 2,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.887545585632324,
+   "proj_incontext_uncertainty-estimation": 8.573342323303223,
+   "proj_incontext_probe": -4.3183441162109375
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/2/hypothetical",
+   "index": 2,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.545694351196289,
+   "proj_incontext_uncertainty-estimation": 15.172951698303223,
+   "proj_incontext_probe": -5.7837066650390625
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/3/real",
+   "index": 3,
+   "framing": "real",
+   "proj_incontext_backtracking": 11.35324764251709,
+   "proj_incontext_uncertainty-estimation": 8.16994857788086,
+   "proj_incontext_probe": -5.232456207275391
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/3/hypothetical",
+   "index": 3,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.791234970092773,
+   "proj_incontext_uncertainty-estimation": 8.624884605407715,
+   "proj_incontext_probe": -4.811858177185059
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/4/real",
+   "index": 4,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.98000431060791,
+   "proj_incontext_uncertainty-estimation": 9.512181282043457,
+   "proj_incontext_probe": -3.339935779571533
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/4/hypothetical",
+   "index": 4,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 15.445348739624023,
+   "proj_incontext_uncertainty-estimation": 9.88666820526123,
+   "proj_incontext_probe": -1.5264555215835571
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/5/real",
+   "index": 5,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.360960006713867,
+   "proj_incontext_uncertainty-estimation": 9.91281509399414,
+   "proj_incontext_probe": -2.7950565814971924
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/5/hypothetical",
+   "index": 5,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.51466178894043,
+   "proj_incontext_uncertainty-estimation": 12.445930480957031,
+   "proj_incontext_probe": -5.213648796081543
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/6/real",
+   "index": 6,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.37563705444336,
+   "proj_incontext_uncertainty-estimation": 8.156330108642578,
+   "proj_incontext_probe": -4.58079719543457
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/6/hypothetical",
+   "index": 6,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.575555801391602,
+   "proj_incontext_uncertainty-estimation": 13.473672866821289,
+   "proj_incontext_probe": -5.1230292320251465
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/7/real",
+   "index": 7,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.211160659790039,
+   "proj_incontext_uncertainty-estimation": 8.246047973632812,
+   "proj_incontext_probe": -3.4170424938201904
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/7/hypothetical",
+   "index": 7,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 10.496180534362793,
+   "proj_incontext_uncertainty-estimation": 8.27359676361084,
+   "proj_incontext_probe": -3.790242910385132
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/8/real",
+   "index": 8,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.612831115722656,
+   "proj_incontext_uncertainty-estimation": 12.7222900390625,
+   "proj_incontext_probe": -5.449265480041504
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/8/hypothetical",
+   "index": 8,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.627068519592285,
+   "proj_incontext_uncertainty-estimation": 6.975566864013672,
+   "proj_incontext_probe": -3.929403781890869
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/9/real",
+   "index": 9,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.836148262023926,
+   "proj_incontext_uncertainty-estimation": 9.453502655029297,
+   "proj_incontext_probe": -4.28945779800415
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/9/hypothetical",
+   "index": 9,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 16.118453979492188,
+   "proj_incontext_uncertainty-estimation": 9.472199440002441,
+   "proj_incontext_probe": -2.883120059967041
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/10/real",
+   "index": 10,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.496051788330078,
+   "proj_incontext_uncertainty-estimation": 7.979029655456543,
+   "proj_incontext_probe": -3.1492397785186768
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/10/hypothetical",
+   "index": 10,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.180822372436523,
+   "proj_incontext_uncertainty-estimation": 12.915953636169434,
+   "proj_incontext_probe": -4.577401161193848
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/11/real",
+   "index": 11,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.743682861328125,
+   "proj_incontext_uncertainty-estimation": 14.108342170715332,
+   "proj_incontext_probe": -6.163141250610352
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/11/hypothetical",
+   "index": 11,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 14.083817481994629,
+   "proj_incontext_uncertainty-estimation": 13.809334754943848,
+   "proj_incontext_probe": -5.5518951416015625
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/12/real",
+   "index": 12,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.110358238220215,
+   "proj_incontext_uncertainty-estimation": 8.51622200012207,
+   "proj_incontext_probe": -4.880107879638672
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/12/hypothetical",
+   "index": 12,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.265275001525879,
+   "proj_incontext_uncertainty-estimation": 8.686899185180664,
+   "proj_incontext_probe": -4.6508564949035645
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/13/real",
+   "index": 13,
+   "framing": "real",
+   "proj_incontext_backtracking": 15.272168159484863,
+   "proj_incontext_uncertainty-estimation": 8.899600982666016,
+   "proj_incontext_probe": -3.868910074234009
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/13/hypothetical",
+   "index": 13,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.410820960998535,
+   "proj_incontext_uncertainty-estimation": 8.186359405517578,
+   "proj_incontext_probe": -5.28584623336792
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/14/real",
+   "index": 14,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.278717994689941,
+   "proj_incontext_uncertainty-estimation": 8.755064010620117,
+   "proj_incontext_probe": -3.450873613357544
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/14/hypothetical",
+   "index": 14,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 16.09693717956543,
+   "proj_incontext_uncertainty-estimation": 10.608013153076172,
+   "proj_incontext_probe": -2.1403558254241943
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/15/real",
+   "index": 15,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.10196590423584,
+   "proj_incontext_uncertainty-estimation": 9.072541236877441,
+   "proj_incontext_probe": -3.6058783531188965
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/15/hypothetical",
+   "index": 15,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.754344940185547,
+   "proj_incontext_uncertainty-estimation": 9.753464698791504,
+   "proj_incontext_probe": -3.5429718494415283
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/16/real",
+   "index": 16,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.740181922912598,
+   "proj_incontext_uncertainty-estimation": 13.57437801361084,
+   "proj_incontext_probe": -5.631013870239258
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/16/hypothetical",
+   "index": 16,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.22441291809082,
+   "proj_incontext_uncertainty-estimation": 13.185872077941895,
+   "proj_incontext_probe": -5.698239326477051
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/17/real",
+   "index": 17,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.759288787841797,
+   "proj_incontext_uncertainty-estimation": 8.538809776306152,
+   "proj_incontext_probe": -5.132282733917236
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/17/hypothetical",
+   "index": 17,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.506844520568848,
+   "proj_incontext_uncertainty-estimation": 8.481855392456055,
+   "proj_incontext_probe": -4.981941223144531
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/18/real",
+   "index": 18,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.727344512939453,
+   "proj_incontext_uncertainty-estimation": 9.396968841552734,
+   "proj_incontext_probe": -4.096336841583252
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/18/hypothetical",
+   "index": 18,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.717546463012695,
+   "proj_incontext_uncertainty-estimation": 12.25123405456543,
+   "proj_incontext_probe": -3.730999708175659
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/19/real",
+   "index": 19,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.455276489257812,
+   "proj_incontext_uncertainty-estimation": 12.040169715881348,
+   "proj_incontext_probe": -4.731693744659424
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/19/hypothetical",
+   "index": 19,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.117314338684082,
+   "proj_incontext_uncertainty-estimation": 11.525840759277344,
+   "proj_incontext_probe": -4.120055198669434
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/20/real",
+   "index": 20,
+   "framing": "real",
+   "proj_incontext_backtracking": 15.37839126586914,
+   "proj_incontext_uncertainty-estimation": 8.88414192199707,
+   "proj_incontext_probe": -3.6974172592163086
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/20/hypothetical",
+   "index": 20,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.426755905151367,
+   "proj_incontext_uncertainty-estimation": 15.450729370117188,
+   "proj_incontext_probe": -5.420485019683838
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/21/real",
+   "index": 21,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.340860366821289,
+   "proj_incontext_uncertainty-estimation": 7.758357048034668,
+   "proj_incontext_probe": -3.1292810440063477
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/21/hypothetical",
+   "index": 21,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.48238468170166,
+   "proj_incontext_uncertainty-estimation": 8.125654220581055,
+   "proj_incontext_probe": -4.969640731811523
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/22/real",
+   "index": 22,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.74956226348877,
+   "proj_incontext_uncertainty-estimation": 8.647313117980957,
+   "proj_incontext_probe": -4.197912216186523
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/22/hypothetical",
+   "index": 22,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.2166748046875,
+   "proj_incontext_uncertainty-estimation": 7.97588586807251,
+   "proj_incontext_probe": -3.987722158432007
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/23/real",
+   "index": 23,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.414606094360352,
+   "proj_incontext_uncertainty-estimation": 8.400374412536621,
+   "proj_incontext_probe": -4.267769813537598
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/23/hypothetical",
+   "index": 23,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 10.019157409667969,
+   "proj_incontext_uncertainty-estimation": 7.358598232269287,
+   "proj_incontext_probe": -4.484798431396484
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/24/real",
+   "index": 24,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.81627368927002,
+   "proj_incontext_uncertainty-estimation": 7.841337203979492,
+   "proj_incontext_probe": -4.758398532867432
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/24/hypothetical",
+   "index": 24,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.802910804748535,
+   "proj_incontext_uncertainty-estimation": 12.008570671081543,
+   "proj_incontext_probe": -5.070606231689453
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/25/real",
+   "index": 25,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.09624195098877,
+   "proj_incontext_uncertainty-estimation": 7.214110374450684,
+   "proj_incontext_probe": -5.379209041595459
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/25/hypothetical",
+   "index": 25,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.571011543273926,
+   "proj_incontext_uncertainty-estimation": 7.186894416809082,
+   "proj_incontext_probe": -4.547506332397461
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/26/real",
+   "index": 26,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.608896255493164,
+   "proj_incontext_uncertainty-estimation": 8.480672836303711,
+   "proj_incontext_probe": -4.765268802642822
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/26/hypothetical",
+   "index": 26,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 15.752368927001953,
+   "proj_incontext_uncertainty-estimation": 10.351495742797852,
+   "proj_incontext_probe": -2.9764292240142822
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/27/real",
+   "index": 27,
+   "framing": "real",
+   "proj_incontext_backtracking": 17.385683059692383,
+   "proj_incontext_uncertainty-estimation": 9.6773099899292,
+   "proj_incontext_probe": -2.7048590183258057
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/27/hypothetical",
+   "index": 27,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 15.144034385681152,
+   "proj_incontext_uncertainty-estimation": 9.410833358764648,
+   "proj_incontext_probe": -3.1025240421295166
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/28/real",
+   "index": 28,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.295536994934082,
+   "proj_incontext_uncertainty-estimation": 9.097726821899414,
+   "proj_incontext_probe": -4.282345771789551
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/28/hypothetical",
+   "index": 28,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 14.739997863769531,
+   "proj_incontext_uncertainty-estimation": 9.248199462890625,
+   "proj_incontext_probe": -4.103708267211914
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/29/real",
+   "index": 29,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.308606147766113,
+   "proj_incontext_uncertainty-estimation": 8.267085075378418,
+   "proj_incontext_probe": -4.2839674949646
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/29/hypothetical",
+   "index": 29,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 15.696342468261719,
+   "proj_incontext_uncertainty-estimation": 9.318493843078613,
+   "proj_incontext_probe": -3.121720314025879
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/30/real",
+   "index": 30,
+   "framing": "real",
+   "proj_incontext_backtracking": 7.391413688659668,
+   "proj_incontext_uncertainty-estimation": 5.968377590179443,
+   "proj_incontext_probe": -4.771330833435059
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/30/hypothetical",
+   "index": 30,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 10.570829391479492,
+   "proj_incontext_uncertainty-estimation": 7.883913516998291,
+   "proj_incontext_probe": -4.67315673828125
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/31/real",
+   "index": 31,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.049461364746094,
+   "proj_incontext_uncertainty-estimation": 7.990701198577881,
+   "proj_incontext_probe": -4.487189292907715
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/31/hypothetical",
+   "index": 31,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.279714584350586,
+   "proj_incontext_uncertainty-estimation": 8.012441635131836,
+   "proj_incontext_probe": -5.494136810302734
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/32/real",
+   "index": 32,
+   "framing": "real",
+   "proj_incontext_backtracking": 16.45319938659668,
+   "proj_incontext_uncertainty-estimation": 10.232176780700684,
+   "proj_incontext_probe": -2.0334575176239014
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/32/hypothetical",
+   "index": 32,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.057825088500977,
+   "proj_incontext_uncertainty-estimation": 8.147147178649902,
+   "proj_incontext_probe": -4.316915512084961
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/33/real",
+   "index": 33,
+   "framing": "real",
+   "proj_incontext_backtracking": 16.731910705566406,
+   "proj_incontext_uncertainty-estimation": 16.17099380493164,
+   "proj_incontext_probe": -4.224902153015137
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/33/hypothetical",
+   "index": 33,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 14.662632942199707,
+   "proj_incontext_uncertainty-estimation": 15.120184898376465,
+   "proj_incontext_probe": -5.665498733520508
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/34/real",
+   "index": 34,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.334526062011719,
+   "proj_incontext_uncertainty-estimation": 8.86497974395752,
+   "proj_incontext_probe": -4.4921064376831055
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/34/hypothetical",
+   "index": 34,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 11.559089660644531,
+   "proj_incontext_uncertainty-estimation": 8.54228401184082,
+   "proj_incontext_probe": -4.637526988983154
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/35/real",
+   "index": 35,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.754264831542969,
+   "proj_incontext_uncertainty-estimation": 10.63296127319336,
+   "proj_incontext_probe": -4.812027931213379
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/35/hypothetical",
+   "index": 35,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.29520034790039,
+   "proj_incontext_uncertainty-estimation": 12.150588035583496,
+   "proj_incontext_probe": -5.314718246459961
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/36/real",
+   "index": 36,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.613384246826172,
+   "proj_incontext_uncertainty-estimation": 15.771048545837402,
+   "proj_incontext_probe": -6.080091953277588
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/36/hypothetical",
+   "index": 36,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.497967720031738,
+   "proj_incontext_uncertainty-estimation": 11.837945938110352,
+   "proj_incontext_probe": -5.410828590393066
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/37/real",
+   "index": 37,
+   "framing": "real",
+   "proj_incontext_backtracking": 15.251327514648438,
+   "proj_incontext_uncertainty-estimation": 9.44564151763916,
+   "proj_incontext_probe": -2.5103936195373535
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/37/hypothetical",
+   "index": 37,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 14.007734298706055,
+   "proj_incontext_uncertainty-estimation": 8.417153358459473,
+   "proj_incontext_probe": -3.727576732635498
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/38/real",
+   "index": 38,
+   "framing": "real",
+   "proj_incontext_backtracking": 10.57492733001709,
+   "proj_incontext_uncertainty-estimation": 13.710860252380371,
+   "proj_incontext_probe": -6.534305095672607
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/38/hypothetical",
+   "index": 38,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.530125617980957,
+   "proj_incontext_uncertainty-estimation": 8.99028491973877,
+   "proj_incontext_probe": -3.5225982666015625
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/39/real",
+   "index": 39,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.553654670715332,
+   "proj_incontext_uncertainty-estimation": 13.875945091247559,
+   "proj_incontext_probe": -5.059972286224365
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/39/hypothetical",
+   "index": 39,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 14.655592918395996,
+   "proj_incontext_uncertainty-estimation": 9.086553573608398,
+   "proj_incontext_probe": -3.693737030029297
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/40/real",
+   "index": 40,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.108402252197266,
+   "proj_incontext_uncertainty-estimation": 13.753148078918457,
+   "proj_incontext_probe": -5.1678314208984375
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/40/hypothetical",
+   "index": 40,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 15.321330070495605,
+   "proj_incontext_uncertainty-estimation": 9.00887680053711,
+   "proj_incontext_probe": -2.9465229511260986
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/41/real",
+   "index": 41,
+   "framing": "real",
+   "proj_incontext_backtracking": 15.44344711303711,
+   "proj_incontext_uncertainty-estimation": 9.539937973022461,
+   "proj_incontext_probe": -2.2434496879577637
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/41/hypothetical",
+   "index": 41,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.982523918151855,
+   "proj_incontext_uncertainty-estimation": 7.449886322021484,
+   "proj_incontext_probe": -4.058382987976074
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/42/real",
+   "index": 42,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.844353675842285,
+   "proj_incontext_uncertainty-estimation": 12.49730396270752,
+   "proj_incontext_probe": -5.332603931427002
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/42/hypothetical",
+   "index": 42,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 11.24520492553711,
+   "proj_incontext_uncertainty-estimation": 14.083907127380371,
+   "proj_incontext_probe": -6.182679653167725
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/43/real",
+   "index": 43,
+   "framing": "real",
+   "proj_incontext_backtracking": 15.005419731140137,
+   "proj_incontext_uncertainty-estimation": 14.176690101623535,
+   "proj_incontext_probe": -4.882785320281982
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/43/hypothetical",
+   "index": 43,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.849257469177246,
+   "proj_incontext_uncertainty-estimation": 8.872373580932617,
+   "proj_incontext_probe": -4.168400287628174
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/44/real",
+   "index": 44,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.39697551727295,
+   "proj_incontext_uncertainty-estimation": 8.541789054870605,
+   "proj_incontext_probe": -4.172460079193115
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/44/hypothetical",
+   "index": 44,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 15.148401260375977,
+   "proj_incontext_uncertainty-estimation": 15.1387300491333,
+   "proj_incontext_probe": -5.305764675140381
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/45/real",
+   "index": 45,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.654102325439453,
+   "proj_incontext_uncertainty-estimation": 8.847373008728027,
+   "proj_incontext_probe": -4.877920627593994
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/45/hypothetical",
+   "index": 45,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 11.795862197875977,
+   "proj_incontext_uncertainty-estimation": 13.376561164855957,
+   "proj_incontext_probe": -4.6985979080200195
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/46/real",
+   "index": 46,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.356228828430176,
+   "proj_incontext_uncertainty-estimation": 13.948309898376465,
+   "proj_incontext_probe": -5.609981536865234
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/46/hypothetical",
+   "index": 46,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.165226936340332,
+   "proj_incontext_uncertainty-estimation": 14.7264986038208,
+   "proj_incontext_probe": -6.142730712890625
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/47/real",
+   "index": 47,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.668839454650879,
+   "proj_incontext_uncertainty-estimation": 17.96819496154785,
+   "proj_incontext_probe": -6.373261451721191
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/47/hypothetical",
+   "index": 47,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 16.663557052612305,
+   "proj_incontext_uncertainty-estimation": 10.373798370361328,
+   "proj_incontext_probe": -2.918778896331787
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/48/real",
+   "index": 48,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.385316848754883,
+   "proj_incontext_uncertainty-estimation": 8.444268226623535,
+   "proj_incontext_probe": -5.0633440017700195
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/48/hypothetical",
+   "index": 48,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 14.726018905639648,
+   "proj_incontext_uncertainty-estimation": 14.088343620300293,
+   "proj_incontext_probe": -5.444023132324219
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/49/real",
+   "index": 49,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.57404899597168,
+   "proj_incontext_uncertainty-estimation": 15.718753814697266,
+   "proj_incontext_probe": -5.8492021560668945
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/49/hypothetical",
+   "index": 49,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.31380558013916,
+   "proj_incontext_uncertainty-estimation": 8.681341171264648,
+   "proj_incontext_probe": -5.368154048919678
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/50/real",
+   "index": 50,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.110068321228027,
+   "proj_incontext_uncertainty-estimation": 8.640386581420898,
+   "proj_incontext_probe": -3.3488106727600098
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/50/hypothetical",
+   "index": 50,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.660091400146484,
+   "proj_incontext_uncertainty-estimation": 8.11909294128418,
+   "proj_incontext_probe": -3.6835179328918457
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/51/real",
+   "index": 51,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.204354286193848,
+   "proj_incontext_uncertainty-estimation": 11.66139030456543,
+   "proj_incontext_probe": -5.475134372711182
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/51/hypothetical",
+   "index": 51,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.611595153808594,
+   "proj_incontext_uncertainty-estimation": 8.255505561828613,
+   "proj_incontext_probe": -4.190145969390869
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/52/real",
+   "index": 52,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.324641227722168,
+   "proj_incontext_uncertainty-estimation": 8.287397384643555,
+   "proj_incontext_probe": -4.170438766479492
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/52/hypothetical",
+   "index": 52,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.898260116577148,
+   "proj_incontext_uncertainty-estimation": 10.161767959594727,
+   "proj_incontext_probe": -4.0871076583862305
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/53/real",
+   "index": 53,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.989991188049316,
+   "proj_incontext_uncertainty-estimation": 9.329339981079102,
+   "proj_incontext_probe": -4.728104591369629
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/53/hypothetical",
+   "index": 53,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.863473892211914,
+   "proj_incontext_uncertainty-estimation": 7.656630516052246,
+   "proj_incontext_probe": -3.220437526702881
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/54/real",
+   "index": 54,
+   "framing": "real",
+   "proj_incontext_backtracking": 14.303296089172363,
+   "proj_incontext_uncertainty-estimation": 8.579797744750977,
+   "proj_incontext_probe": -4.229851245880127
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/54/hypothetical",
+   "index": 54,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 12.772130966186523,
+   "proj_incontext_uncertainty-estimation": 7.909719944000244,
+   "proj_incontext_probe": -4.028226375579834
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/55/real",
+   "index": 55,
+   "framing": "real",
+   "proj_incontext_backtracking": 15.293798446655273,
+   "proj_incontext_uncertainty-estimation": 9.31485366821289,
+   "proj_incontext_probe": -3.7161307334899902
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/55/hypothetical",
+   "index": 55,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 16.758899688720703,
+   "proj_incontext_uncertainty-estimation": 9.054509162902832,
+   "proj_incontext_probe": -2.4062819480895996
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/56/real",
+   "index": 56,
+   "framing": "real",
+   "proj_incontext_backtracking": 17.655467987060547,
+   "proj_incontext_uncertainty-estimation": 10.999701499938965,
+   "proj_incontext_probe": -3.895463228225708
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/56/hypothetical",
+   "index": 56,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 14.333856582641602,
+   "proj_incontext_uncertainty-estimation": 9.600876808166504,
+   "proj_incontext_probe": -3.4586756229400635
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/57/real",
+   "index": 57,
+   "framing": "real",
+   "proj_incontext_backtracking": 12.232450485229492,
+   "proj_incontext_uncertainty-estimation": 8.193399429321289,
+   "proj_incontext_probe": -5.133174419403076
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/57/hypothetical",
+   "index": 57,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.142622947692871,
+   "proj_incontext_uncertainty-estimation": 8.612931251525879,
+   "proj_incontext_probe": -5.057415962219238
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/58/real",
+   "index": 58,
+   "framing": "real",
+   "proj_incontext_backtracking": 13.990757942199707,
+   "proj_incontext_uncertainty-estimation": 7.9735870361328125,
+   "proj_incontext_probe": -5.2786736488342285
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/58/hypothetical",
+   "index": 58,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 13.445427894592285,
+   "proj_incontext_uncertainty-estimation": 8.008899688720703,
+   "proj_incontext_probe": -5.925734996795654
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/59/real",
+   "index": 59,
+   "framing": "real",
+   "proj_incontext_backtracking": 16.065889358520508,
+   "proj_incontext_uncertainty-estimation": 12.64787769317627,
+   "proj_incontext_probe": -3.7873482704162598
+  },
+  {
+   "id": "qwen3_4b/followup_triggers/unc_nontest_neg/59/hypothetical",
+   "index": 59,
+   "framing": "hypothetical",
+   "proj_incontext_backtracking": 14.0845308303833,
+   "proj_incontext_uncertainty-estimation": 9.075927734375,
+   "proj_incontext_probe": -4.295137405395508
+  }
+ ]
+}

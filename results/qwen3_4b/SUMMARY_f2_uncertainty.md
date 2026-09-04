@@ -233,3 +233,113 @@ chosen: {"aware": {"arm": "alpha0.05_aware", "alpha": 0.05, "closure": 1.0, "rep
 | real | unc_testlex_pos | 60 | uncertainty-estimation | density_nontest | 0.635 | 0.807 | 0.173 | -0.024 | 0.382 | 0.100 |
 | real | unc_testlex_pos | 60 | backtracking | density_nontest | 0.121 | 0.193 | 0.072 | -0.004 | 0.159 | 0.099 |
 
+
+## Representation-level morphology: Δ mean projection onto the rebuilt directions (steered model's own activations)
+
+| arm | framing | projection | n_pairs | base_mean | delta | ci_lo | ci_hi |
+|---|---|---|---|---|---|---|---|
+| unc_all_neg | real | proj_probe | 60 | -3.4419 | -0.4239 | -0.7013 | -0.1341 |
+| unc_all_neg | real | proj_lastprompt_backtracking | 60 | 8.7861 | -3.0235 | -3.1437 | -2.9001 |
+| unc_all_neg | real | proj_lastprompt_uncertainty-estimation | 60 | 11.5538 | 0.0000 | 0.0000 | 0.0000 |
+| unc_all_neg | real | proj_lastprompt_probe | 60 | -2.4264 | -0.7048 | -0.7544 | -0.6546 |
+| unc_all_neg | real | proj_incontext_backtracking | 60 | 20.8345 | -7.2259 | -7.6293 | -6.8260 |
+| unc_all_neg | real | proj_incontext_uncertainty-estimation | 60 | 10.3384 | -0.1164 | -0.8840 | 0.6509 |
+| unc_all_neg | real | proj_incontext_probe | 60 | -3.4669 | -0.9357 | -1.2102 | -0.6648 |
+| unc_all_neg | hypothetical | proj_probe | 60 | -3.8292 | -0.1281 | -0.4050 | 0.1298 |
+| unc_all_neg | hypothetical | proj_lastprompt_backtracking | 60 | 8.9752 | -3.0300 | -3.1302 | -2.9269 |
+| unc_all_neg | hypothetical | proj_lastprompt_uncertainty-estimation | 60 | 11.4298 | 0.0000 | 0.0000 | 0.0000 |
+| unc_all_neg | hypothetical | proj_lastprompt_probe | 60 | -2.5859 | -0.7046 | -0.7477 | -0.6634 |
+| unc_all_neg | hypothetical | proj_incontext_backtracking | 60 | 20.3364 | -7.0871 | -7.4632 | -6.7167 |
+| unc_all_neg | hypothetical | proj_incontext_uncertainty-estimation | 60 | 10.6492 | -0.8879 | -1.6087 | -0.1981 |
+| unc_all_neg | hypothetical | proj_incontext_probe | 60 | -3.7889 | -0.6942 | -0.9700 | -0.4415 |
+| unc_all_pos | real | proj_probe | 60 | -3.4419 | 0.5734 | 0.1923 | 0.9810 |
+| unc_all_pos | real | proj_lastprompt_backtracking | 60 | 8.7861 | 6.2645 | 6.0493 | 6.4698 |
+| unc_all_pos | real | proj_lastprompt_uncertainty-estimation | 60 | 11.5538 | 0.0000 | 0.0000 | 0.0000 |
+| unc_all_pos | real | proj_lastprompt_probe | 60 | -2.4264 | 0.3044 | 0.2600 | 0.3504 |
+| unc_all_pos | real | proj_incontext_backtracking | 60 | 20.8345 | 8.4534 | 7.9454 | 8.9804 |
+| unc_all_pos | real | proj_incontext_uncertainty-estimation | 60 | 10.3384 | 0.7620 | 0.0063 | 1.4812 |
+| unc_all_pos | real | proj_incontext_probe | 60 | -3.4669 | 0.8013 | 0.4359 | 1.1979 |
+| unc_all_pos | hypothetical | proj_probe | 60 | -3.8292 | 0.5422 | 0.3378 | 0.7830 |
+| unc_all_pos | hypothetical | proj_lastprompt_backtracking | 60 | 8.9752 | 6.1433 | 5.9165 | 6.3483 |
+| unc_all_pos | hypothetical | proj_lastprompt_uncertainty-estimation | 60 | 11.4298 | 0.0000 | 0.0000 | 0.0000 |
+| unc_all_pos | hypothetical | proj_lastprompt_probe | 60 | -2.5859 | 0.3323 | 0.2865 | 0.3782 |
+| unc_all_pos | hypothetical | proj_incontext_backtracking | 60 | 20.3364 | 8.3441 | 7.9936 | 8.6916 |
+| unc_all_pos | hypothetical | proj_incontext_uncertainty-estimation | 60 | 10.6492 | 0.3312 | -0.3511 | 0.9353 |
+| unc_all_pos | hypothetical | proj_incontext_probe | 60 | -3.7889 | 0.7392 | 0.5268 | 0.9816 |
+| unc_nontest_neg | real | proj_probe | 60 | -3.4419 | -0.6731 | -0.9472 | -0.3652 |
+| unc_nontest_neg | real | proj_lastprompt_backtracking | 60 | 8.7861 | -2.8729 | -2.9977 | -2.7453 |
+| unc_nontest_neg | real | proj_lastprompt_uncertainty-estimation | 60 | 11.5538 | 0.0000 | 0.0000 | 0.0000 |
+| unc_nontest_neg | real | proj_lastprompt_probe | 60 | -2.4264 | -0.5425 | -0.5906 | -0.4939 |
+| unc_nontest_neg | real | proj_incontext_backtracking | 60 | 20.8345 | -7.1221 | -7.6466 | -6.6476 |
+| unc_nontest_neg | real | proj_incontext_uncertainty-estimation | 60 | 10.3384 | -0.2083 | -1.1184 | 0.7086 |
+| unc_nontest_neg | real | proj_incontext_probe | 60 | -3.4669 | -0.9878 | -1.2510 | -0.6939 |
+| unc_nontest_neg | hypothetical | proj_probe | 60 | -3.8292 | -0.1195 | -0.4710 | 0.1999 |
+| unc_nontest_neg | hypothetical | proj_lastprompt_backtracking | 60 | 8.9752 | -2.8789 | -2.9769 | -2.7786 |
+| unc_nontest_neg | hypothetical | proj_lastprompt_uncertainty-estimation | 60 | 11.4298 | 0.0000 | 0.0000 | 0.0000 |
+| unc_nontest_neg | hypothetical | proj_lastprompt_probe | 60 | -2.5859 | -0.5473 | -0.5879 | -0.5079 |
+| unc_nontest_neg | hypothetical | proj_incontext_backtracking | 60 | 20.3364 | -6.7750 | -7.1523 | -6.4206 |
+| unc_nontest_neg | hypothetical | proj_incontext_uncertainty-estimation | 60 | 10.6492 | -0.5035 | -1.2718 | 0.2562 |
+| unc_nontest_neg | hypothetical | proj_incontext_probe | 60 | -3.7889 | -0.5679 | -0.9086 | -0.2628 |
+| unc_nontest_pos | real | proj_probe | 60 | -3.4419 | 0.5044 | 0.1165 | 0.8853 |
+| unc_nontest_pos | real | proj_lastprompt_backtracking | 60 | 8.7861 | 6.0060 | 5.7946 | 6.2021 |
+| unc_nontest_pos | real | proj_lastprompt_uncertainty-estimation | 60 | 11.5538 | 0.0000 | 0.0000 | 0.0000 |
+| unc_nontest_pos | real | proj_lastprompt_probe | 60 | -2.4264 | 0.1297 | 0.0867 | 0.1750 |
+| unc_nontest_pos | real | proj_incontext_backtracking | 60 | 20.8345 | 8.1606 | 7.6186 | 8.6539 |
+| unc_nontest_pos | real | proj_incontext_uncertainty-estimation | 60 | 10.3384 | 1.2388 | 0.4572 | 2.0099 |
+| unc_nontest_pos | real | proj_incontext_probe | 60 | -3.4669 | 0.5436 | 0.1644 | 0.9259 |
+| unc_nontest_pos | hypothetical | proj_probe | 60 | -3.8292 | 0.6839 | 0.4091 | 0.9611 |
+| unc_nontest_pos | hypothetical | proj_lastprompt_backtracking | 60 | 8.9752 | 5.8713 | 5.6479 | 6.0753 |
+| unc_nontest_pos | hypothetical | proj_lastprompt_uncertainty-estimation | 60 | 11.4298 | 0.0000 | 0.0000 | 0.0000 |
+| unc_nontest_pos | hypothetical | proj_lastprompt_probe | 60 | -2.5859 | 0.1576 | 0.1125 | 0.2032 |
+| unc_nontest_pos | hypothetical | proj_incontext_backtracking | 60 | 20.3364 | 8.0268 | 7.5710 | 8.4619 |
+| unc_nontest_pos | hypothetical | proj_incontext_uncertainty-estimation | 60 | 10.6492 | 0.0173 | -0.7760 | 0.7926 |
+| unc_nontest_pos | hypothetical | proj_incontext_probe | 60 | -3.7889 | 0.7100 | 0.4389 | 0.9955 |
+| unc_testlex_neg | real | proj_probe | 60 | -3.4419 | -0.4659 | -0.7101 | -0.2154 |
+| unc_testlex_neg | real | proj_lastprompt_backtracking | 60 | 8.7861 | -2.1700 | -2.2726 | -2.0735 |
+| unc_testlex_neg | real | proj_lastprompt_uncertainty-estimation | 60 | 11.5538 | 0.0000 | 0.0000 | 0.0000 |
+| unc_testlex_neg | real | proj_lastprompt_probe | 60 | -2.4264 | -1.5166 | -1.5638 | -1.4680 |
+| unc_testlex_neg | real | proj_incontext_backtracking | 60 | 20.8345 | -5.9550 | -6.3061 | -5.5881 |
+| unc_testlex_neg | real | proj_incontext_uncertainty-estimation | 60 | 10.3384 | -0.0720 | -0.8288 | 0.6857 |
+| unc_testlex_neg | real | proj_incontext_probe | 60 | -3.4669 | -1.8281 | -2.0798 | -1.5647 |
+| unc_testlex_neg | hypothetical | proj_probe | 60 | -3.8292 | -0.0962 | -0.4050 | 0.1930 |
+| unc_testlex_neg | hypothetical | proj_lastprompt_backtracking | 60 | 8.9752 | -2.1577 | -2.2488 | -2.0712 |
+| unc_testlex_neg | hypothetical | proj_lastprompt_uncertainty-estimation | 60 | 11.4298 | 0.0000 | 0.0000 | 0.0000 |
+| unc_testlex_neg | hypothetical | proj_lastprompt_probe | 60 | -2.5859 | -1.4778 | -1.5214 | -1.4349 |
+| unc_testlex_neg | hypothetical | proj_incontext_backtracking | 60 | 20.3364 | -6.1088 | -6.5413 | -5.6809 |
+| unc_testlex_neg | hypothetical | proj_incontext_uncertainty-estimation | 60 | 10.6492 | -0.8955 | -1.7010 | -0.0887 |
+| unc_testlex_neg | hypothetical | proj_incontext_probe | 60 | -3.7889 | -1.5097 | -1.7987 | -1.2333 |
+| unc_testlex_pos | real | proj_probe | 60 | -3.4419 | 0.2411 | -0.1027 | 0.6162 |
+| unc_testlex_pos | real | proj_lastprompt_backtracking | 60 | 8.7861 | 3.4298 | 3.3081 | 3.5355 |
+| unc_testlex_pos | real | proj_lastprompt_uncertainty-estimation | 60 | 11.5538 | 0.0000 | 0.0000 | 0.0000 |
+| unc_testlex_pos | real | proj_lastprompt_probe | 60 | -2.4264 | 1.4130 | 1.3721 | 1.4554 |
+| unc_testlex_pos | real | proj_incontext_backtracking | 60 | 20.8345 | 6.8010 | 6.2660 | 7.3046 |
+| unc_testlex_pos | real | proj_incontext_uncertainty-estimation | 60 | 10.3384 | 0.7790 | 0.1165 | 1.4235 |
+| unc_testlex_pos | real | proj_incontext_probe | 60 | -3.4669 | 1.5007 | 1.1877 | 1.8381 |
+| unc_testlex_pos | hypothetical | proj_probe | 60 | -3.8292 | 0.3568 | 0.0186 | 0.6937 |
+| unc_testlex_pos | hypothetical | proj_lastprompt_backtracking | 60 | 8.9752 | 3.2307 | 3.0847 | 3.3593 |
+| unc_testlex_pos | hypothetical | proj_lastprompt_uncertainty-estimation | 60 | 11.4298 | 0.0000 | 0.0000 | 0.0000 |
+| unc_testlex_pos | hypothetical | proj_lastprompt_probe | 60 | -2.5859 | 1.4008 | 1.3595 | 1.4429 |
+| unc_testlex_pos | hypothetical | proj_incontext_backtracking | 60 | 20.3364 | 6.6131 | 6.1648 | 7.0699 |
+| unc_testlex_pos | hypothetical | proj_incontext_uncertainty-estimation | 60 | 10.6492 | 0.2344 | -0.4522 | 0.8743 |
+| unc_testlex_pos | hypothetical | proj_incontext_probe | 60 | -3.7889 | 1.5572 | 1.2238 | 1.8982 |
+
+
+## Awareness-probe score of each arm's reasoning (unedited model, the probe's own input regime and hidden-state index): per arm, and verbalizing vs non-verbalizing traces within the arm
+
+| arm | framing | n | mean | ci_lo | ci_hi | n_verbalizing | mean_verbalizing | mean_not | p_welch |
+|---|---|---|---|---|---|---|---|---|---|
+| baseline | real | 60 | -3.4419 | -3.7663 | -3.0811 | 10 | -1.8753 | -3.7553 | 0.0021 |
+| baseline | hypothetical | 60 | -3.8292 | -4.0863 | -3.5514 | 3 | -2.7066 | -3.8883 | 0.2269 |
+| unc_all_neg | real | 60 | -3.8658 | -4.1395 | -3.5940 | 3 | -1.7614 | -3.9766 | 0.0317 |
+| unc_all_neg | hypothetical | 60 | -3.9573 | -4.1757 | -3.7297 | 1 | -4.1656 | -3.9538 | — |
+| unc_all_pos | real | 60 | -2.8685 | -3.2449 | -2.4897 | 16 | -0.9745 | -3.5573 | 0.0000 |
+| unc_all_pos | hypothetical | 60 | -3.2870 | -3.5438 | -2.9941 | 10 | -2.4500 | -3.4544 | 0.0352 |
+| unc_nontest_neg | real | 60 | -4.1151 | -4.3822 | -3.8469 | 3 | -1.6666 | -4.2440 | 0.0002 |
+| unc_nontest_neg | hypothetical | 60 | -3.9487 | -4.2115 | -3.6698 | 2 | -2.8131 | -3.9879 | 0.5318 |
+| unc_nontest_pos | real | 60 | -2.9376 | -3.3080 | -2.5602 | 18 | -1.6186 | -3.5028 | 0.0000 |
+| unc_nontest_pos | hypothetical | 60 | -3.1453 | -3.4590 | -2.8239 | 11 | -1.7663 | -3.4549 | 0.0048 |
+| unc_testlex_neg | real | 60 | -3.9078 | -4.2079 | -3.5881 | 2 | -1.1389 | -4.0033 | 0.0010 |
+| unc_testlex_neg | hypothetical | 60 | -3.9254 | -4.1899 | -3.6445 | 5 | -2.3696 | -4.0669 | 0.0973 |
+| unc_testlex_pos | real | 60 | -3.2008 | -3.5303 | -2.8485 | 11 | -1.4472 | -3.5945 | 0.0005 |
+| unc_testlex_pos | hypothetical | 60 | -3.4724 | -3.7434 | -3.1588 | 9 | -2.2333 | -3.6911 | 0.0259 |
+

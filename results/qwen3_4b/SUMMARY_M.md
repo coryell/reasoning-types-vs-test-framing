@@ -900,38 +900,190 @@ chosen: {"aware": {"arm": "alpha0.05_aware", "alpha": 0.05, "closure": 1.0, "rep
 |---|---|---|---|---|---|---|---|
 | baseline_seed1 | real | proj_backtracking | 149 | 20.3383 | 0.0840 | -0.3104 | 0.4595 |
 | baseline_seed1 | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.1679 | -0.4809 | 0.1340 |
+| baseline_seed1 | real | proj_probe | 149 | -2.4006 | 0.0435 | -0.1405 | 0.2261 |
+| baseline_seed1 | real | proj_lastprompt_backtracking | 149 | 11.9075 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | real | proj_lastprompt_probe | 149 | -1.9825 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | real | proj_incontext_backtracking | 149 | 18.8387 | 0.0492 | -0.3461 | 0.4324 |
+| baseline_seed1 | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.3027 | -0.7517 | 0.1046 |
+| baseline_seed1 | real | proj_incontext_probe | 149 | -2.9817 | 0.0752 | -0.0959 | 0.2403 |
 | baseline_seed1 | fake | proj_backtracking | 149 | 19.4140 | 0.1414 | -0.2317 | 0.4960 |
 | baseline_seed1 | fake | proj_uncertainty-estimation | 149 | 8.3488 | 0.0931 | -0.2649 | 0.4594 |
+| baseline_seed1 | fake | proj_probe | 149 | -2.7419 | -0.0196 | -0.2233 | 0.1764 |
+| baseline_seed1 | fake | proj_lastprompt_backtracking | 149 | 11.7580 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | fake | proj_lastprompt_probe | 149 | -2.0660 | 0.0000 | 0.0000 | 0.0000 |
+| baseline_seed1 | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.1430 | -0.2352 | 0.4983 |
+| baseline_seed1 | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.1819 | -0.2166 | 0.6130 |
+| baseline_seed1 | fake | proj_incontext_probe | 149 | -3.2032 | -0.0272 | -0.2094 | 0.1516 |
 | unaware | real | proj_backtracking | 149 | 20.3383 | 0.0738 | -0.3265 | 0.4613 |
 | unaware | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.1917 | -0.4737 | 0.0663 |
+| unaware | real | proj_probe | 149 | -2.4006 | -0.0138 | -0.2208 | 0.1861 |
+| unaware | real | proj_lastprompt_backtracking | 149 | 11.9075 | -0.0075 | -0.0212 | 0.0067 |
+| unaware | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | 0.0202 | 0.0093 | 0.0306 |
+| unaware | real | proj_lastprompt_probe | 149 | -1.9825 | -0.0169 | -0.0203 | -0.0134 |
+| unaware | real | proj_incontext_backtracking | 149 | 18.8387 | 0.0454 | -0.3462 | 0.4497 |
+| unaware | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.3906 | -0.8079 | 0.0231 |
+| unaware | real | proj_incontext_probe | 149 | -2.9817 | 0.0352 | -0.1426 | 0.2104 |
 | unaware | fake | proj_backtracking | 149 | 19.4140 | 0.5111 | 0.1546 | 0.8579 |
 | unaware | fake | proj_uncertainty-estimation | 149 | 8.3488 | 0.0155 | -0.3418 | 0.3586 |
+| unaware | fake | proj_probe | 149 | -2.7419 | 0.1374 | -0.0522 | 0.3286 |
+| unaware | fake | proj_lastprompt_backtracking | 149 | 11.7580 | -0.0144 | -0.0305 | 0.0017 |
+| unaware | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | 0.0162 | 0.0063 | 0.0259 |
+| unaware | fake | proj_lastprompt_probe | 149 | -2.0660 | -0.0134 | -0.0173 | -0.0095 |
+| unaware | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.4978 | 0.1412 | 0.8402 |
+| unaware | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.2438 | -0.1359 | 0.6553 |
+| unaware | fake | proj_incontext_probe | 149 | -3.2032 | 0.0957 | -0.0733 | 0.2549 |
 | aware | real | proj_backtracking | 149 | 20.3383 | 0.0363 | -0.3974 | 0.4522 |
 | aware | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.0424 | -0.3629 | 0.2806 |
+| aware | real | proj_probe | 149 | -2.4006 | -0.0027 | -0.2170 | 0.2061 |
+| aware | real | proj_lastprompt_backtracking | 149 | 11.9075 | 0.0112 | -0.0026 | 0.0241 |
+| aware | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | -0.0062 | -0.0175 | 0.0053 |
+| aware | real | proj_lastprompt_probe | 149 | -1.9825 | 0.0024 | -0.0022 | 0.0071 |
+| aware | real | proj_incontext_backtracking | 149 | 18.8387 | -0.0040 | -0.4419 | 0.4188 |
+| aware | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.4416 | -0.8367 | -0.0667 |
+| aware | real | proj_incontext_probe | 149 | -2.9817 | 0.0780 | -0.1076 | 0.2504 |
 | aware | fake | proj_backtracking | 149 | 19.4140 | 0.2334 | -0.1813 | 0.6305 |
 | aware | fake | proj_uncertainty-estimation | 149 | 8.3488 | -0.0449 | -0.4064 | 0.3017 |
+| aware | fake | proj_probe | 149 | -2.7419 | 0.0852 | -0.1245 | 0.2844 |
+| aware | fake | proj_lastprompt_backtracking | 149 | 11.7580 | 0.0035 | -0.0107 | 0.0181 |
+| aware | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | -0.0157 | -0.0260 | -0.0051 |
+| aware | fake | proj_lastprompt_probe | 149 | -2.0660 | 0.0073 | 0.0035 | 0.0111 |
+| aware | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.2297 | -0.1779 | 0.6328 |
+| aware | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.0745 | -0.2717 | 0.4118 |
+| aware | fake | proj_incontext_probe | 149 | -3.2032 | 0.0697 | -0.1034 | 0.2416 |
 | unaware_strong | real | proj_backtracking | 149 | 20.3383 | -0.2015 | -0.6415 | 0.2226 |
 | unaware_strong | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.2086 | -0.5435 | 0.1407 |
+| unaware_strong | real | proj_probe | 149 | -2.4006 | -0.1054 | -0.3160 | 0.0869 |
+| unaware_strong | real | proj_lastprompt_backtracking | 149 | 11.9075 | 0.0470 | 0.0315 | 0.0625 |
+| unaware_strong | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | 0.0210 | 0.0095 | 0.0333 |
+| unaware_strong | real | proj_lastprompt_probe | 149 | -1.9825 | -0.0136 | -0.0178 | -0.0096 |
+| unaware_strong | real | proj_incontext_backtracking | 149 | 18.8387 | -0.2330 | -0.6857 | 0.1976 |
+| unaware_strong | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.5278 | -0.9797 | -0.1037 |
+| unaware_strong | real | proj_incontext_probe | 149 | -2.9817 | -0.0182 | -0.1916 | 0.1498 |
 | unaware_strong | fake | proj_backtracking | 149 | 19.4140 | 0.2064 | -0.1496 | 0.5597 |
 | unaware_strong | fake | proj_uncertainty-estimation | 149 | 8.3488 | -0.1481 | -0.5172 | 0.2241 |
+| unaware_strong | fake | proj_probe | 149 | -2.7419 | 0.0039 | -0.1832 | 0.1851 |
+| unaware_strong | fake | proj_lastprompt_backtracking | 149 | 11.7580 | 0.0481 | 0.0331 | 0.0625 |
+| unaware_strong | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | 0.0233 | 0.0124 | 0.0346 |
+| unaware_strong | fake | proj_lastprompt_probe | 149 | -2.0660 | -0.0097 | -0.0134 | -0.0060 |
+| unaware_strong | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.1894 | -0.1709 | 0.5423 |
+| unaware_strong | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | -0.0862 | -0.4246 | 0.2569 |
+| unaware_strong | fake | proj_incontext_probe | 149 | -3.2032 | 0.0066 | -0.1538 | 0.1614 |
 | aware_strong | real | proj_backtracking | 149 | 20.3383 | -0.1800 | -0.6088 | 0.2246 |
 | aware_strong | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.2790 | -0.5283 | -0.0587 |
+| aware_strong | real | proj_probe | 149 | -2.4006 | -0.0935 | -0.2892 | 0.1018 |
+| aware_strong | real | proj_lastprompt_backtracking | 149 | 11.9075 | -0.0172 | -0.0332 | -0.0021 |
+| aware_strong | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | -0.0313 | -0.0419 | -0.0200 |
+| aware_strong | real | proj_lastprompt_probe | 149 | -1.9825 | -0.0005 | -0.0042 | 0.0036 |
+| aware_strong | real | proj_incontext_backtracking | 149 | 18.8387 | -0.2289 | -0.6630 | 0.1777 |
+| aware_strong | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.5750 | -0.9798 | -0.1971 |
+| aware_strong | real | proj_incontext_probe | 149 | -2.9817 | 0.0006 | -0.1856 | 0.1822 |
 | aware_strong | fake | proj_backtracking | 149 | 19.4140 | 0.5754 | 0.1815 | 0.9753 |
 | aware_strong | fake | proj_uncertainty-estimation | 149 | 8.3488 | -0.1149 | -0.4379 | 0.1666 |
+| aware_strong | fake | proj_probe | 149 | -2.7419 | 0.2801 | 0.0832 | 0.4771 |
+| aware_strong | fake | proj_lastprompt_backtracking | 149 | 11.7580 | -0.0229 | -0.0387 | -0.0061 |
+| aware_strong | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | -0.0469 | -0.0584 | -0.0358 |
+| aware_strong | fake | proj_lastprompt_probe | 149 | -2.0660 | 0.0052 | 0.0008 | 0.0094 |
+| aware_strong | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.5941 | 0.2173 | 0.9865 |
+| aware_strong | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.2816 | -0.0847 | 0.6640 |
+| aware_strong | fake | proj_incontext_probe | 149 | -3.2032 | 0.2155 | 0.0508 | 0.3857 |
 | random_aware | real | proj_backtracking | 149 | 20.3383 | 0.0358 | -0.3247 | 0.3976 |
 | random_aware | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.1826 | -0.4695 | 0.0680 |
+| random_aware | real | proj_probe | 149 | -2.4006 | 0.0081 | -0.1816 | 0.1954 |
+| random_aware | real | proj_lastprompt_backtracking | 149 | 11.9075 | -0.0136 | -0.0286 | 0.0013 |
+| random_aware | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | -0.0039 | -0.0142 | 0.0065 |
+| random_aware | real | proj_lastprompt_probe | 149 | -1.9825 | -0.0073 | -0.0111 | -0.0034 |
+| random_aware | real | proj_incontext_backtracking | 149 | 18.8387 | 0.0269 | -0.3378 | 0.3953 |
+| random_aware | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.2753 | -0.6230 | 0.0926 |
+| random_aware | real | proj_incontext_probe | 149 | -2.9817 | 0.0613 | -0.0989 | 0.2247 |
 | random_aware | fake | proj_backtracking | 149 | 19.4140 | 0.3837 | -0.0187 | 0.7963 |
 | random_aware | fake | proj_uncertainty-estimation | 149 | 8.3488 | 0.0539 | -0.2786 | 0.3799 |
+| random_aware | fake | proj_probe | 149 | -2.7419 | 0.0732 | -0.1452 | 0.2786 |
+| random_aware | fake | proj_lastprompt_backtracking | 149 | 11.7580 | -0.0151 | -0.0306 | 0.0006 |
+| random_aware | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | -0.0228 | -0.0333 | -0.0117 |
+| random_aware | fake | proj_lastprompt_probe | 149 | -2.0660 | -0.0001 | -0.0038 | 0.0035 |
+| random_aware | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.4367 | 0.0320 | 0.8364 |
+| random_aware | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.1522 | -0.2010 | 0.5107 |
+| random_aware | fake | proj_incontext_probe | 149 | -3.2032 | 0.0687 | -0.1138 | 0.2426 |
 | shuffled_aware | real | proj_backtracking | 149 | 20.3383 | -0.0454 | -0.4383 | 0.3263 |
 | shuffled_aware | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.0524 | -0.3768 | 0.2715 |
+| shuffled_aware | real | proj_probe | 149 | -2.4006 | -0.0619 | -0.2367 | 0.1202 |
+| shuffled_aware | real | proj_lastprompt_backtracking | 149 | 11.9075 | 0.0230 | 0.0075 | 0.0388 |
+| shuffled_aware | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | 0.0153 | 0.0032 | 0.0277 |
+| shuffled_aware | real | proj_lastprompt_probe | 149 | -1.9825 | -0.0122 | -0.0163 | -0.0082 |
+| shuffled_aware | real | proj_incontext_backtracking | 149 | 18.8387 | -0.0789 | -0.4828 | 0.3024 |
+| shuffled_aware | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.4447 | -0.9090 | -0.0013 |
+| shuffled_aware | real | proj_incontext_probe | 149 | -2.9817 | 0.0407 | -0.1250 | 0.2098 |
 | shuffled_aware | fake | proj_backtracking | 149 | 19.4140 | 0.3024 | -0.0785 | 0.6861 |
 | shuffled_aware | fake | proj_uncertainty-estimation | 149 | 8.3488 | -0.0678 | -0.4337 | 0.2969 |
+| shuffled_aware | fake | proj_probe | 149 | -2.7419 | 0.0004 | -0.1828 | 0.1840 |
+| shuffled_aware | fake | proj_lastprompt_backtracking | 149 | 11.7580 | 0.0087 | -0.0065 | 0.0244 |
+| shuffled_aware | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | 0.0074 | -0.0038 | 0.0187 |
+| shuffled_aware | fake | proj_lastprompt_probe | 149 | -2.0660 | -0.0067 | -0.0102 | -0.0032 |
+| shuffled_aware | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.2706 | -0.1175 | 0.6837 |
+| shuffled_aware | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.0157 | -0.3349 | 0.3602 |
+| shuffled_aware | fake | proj_incontext_probe | 149 | -3.2032 | 0.0207 | -0.1363 | 0.1807 |
 | random_samerows_aware | real | proj_backtracking | 149 | 20.3383 | 0.0433 | -0.4130 | 0.4683 |
 | random_samerows_aware | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.0851 | -0.4045 | 0.2655 |
+| random_samerows_aware | real | proj_probe | 149 | -2.4006 | -0.0258 | -0.2393 | 0.1641 |
+| random_samerows_aware | real | proj_lastprompt_backtracking | 149 | 11.9075 | 0.0151 | 0.0007 | 0.0289 |
+| random_samerows_aware | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | -0.0062 | -0.0173 | 0.0046 |
+| random_samerows_aware | real | proj_lastprompt_probe | 149 | -1.9825 | -0.0082 | -0.0125 | -0.0038 |
+| random_samerows_aware | real | proj_incontext_backtracking | 149 | 18.8387 | 0.0014 | -0.4628 | 0.4417 |
+| random_samerows_aware | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.3565 | -0.7606 | 0.0176 |
+| random_samerows_aware | real | proj_incontext_probe | 149 | -2.9817 | 0.0641 | -0.1334 | 0.2523 |
 | random_samerows_aware | fake | proj_backtracking | 149 | 19.4140 | 0.2471 | -0.1638 | 0.6414 |
 | random_samerows_aware | fake | proj_uncertainty-estimation | 149 | 8.3488 | -0.0559 | -0.4254 | 0.2714 |
+| random_samerows_aware | fake | proj_probe | 149 | -2.7419 | 0.0412 | -0.1686 | 0.2454 |
+| random_samerows_aware | fake | proj_lastprompt_backtracking | 149 | 11.7580 | 0.0050 | -0.0088 | 0.0191 |
+| random_samerows_aware | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | -0.0093 | -0.0187 | 0.0006 |
+| random_samerows_aware | fake | proj_lastprompt_probe | 149 | -2.0660 | -0.0028 | -0.0060 | 0.0006 |
+| random_samerows_aware | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.2523 | -0.1582 | 0.6571 |
+| random_samerows_aware | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.1754 | -0.2116 | 0.5383 |
+| random_samerows_aware | fake | proj_incontext_probe | 149 | -3.2032 | -0.0021 | -0.1830 | 0.1752 |
 | shuffled_samerows_aware | real | proj_backtracking | 149 | 20.3383 | 0.1240 | -0.2874 | 0.5346 |
 | shuffled_samerows_aware | real | proj_uncertainty-estimation | 149 | 8.7282 | -0.2131 | -0.5101 | 0.0665 |
+| shuffled_samerows_aware | real | proj_probe | 149 | -2.4006 | 0.0386 | -0.1815 | 0.2456 |
+| shuffled_samerows_aware | real | proj_lastprompt_backtracking | 149 | 11.9075 | -0.0247 | -0.0400 | -0.0100 |
+| shuffled_samerows_aware | real | proj_lastprompt_uncertainty-estimation | 149 | 9.7791 | 0.0002 | -0.0104 | 0.0100 |
+| shuffled_samerows_aware | real | proj_lastprompt_probe | 149 | -1.9825 | 0.0006 | -0.0035 | 0.0050 |
+| shuffled_samerows_aware | real | proj_incontext_backtracking | 149 | 18.8387 | 0.0516 | -0.3732 | 0.4832 |
+| shuffled_samerows_aware | real | proj_incontext_uncertainty-estimation | 149 | 8.5692 | -0.3893 | -0.7761 | -0.0054 |
+| shuffled_samerows_aware | real | proj_incontext_probe | 149 | -2.9817 | 0.0996 | -0.0917 | 0.2946 |
 | shuffled_samerows_aware | fake | proj_backtracking | 149 | 19.4140 | 0.3374 | -0.0259 | 0.7170 |
 | shuffled_samerows_aware | fake | proj_uncertainty-estimation | 149 | 8.3488 | 0.1126 | -0.2863 | 0.5109 |
+| shuffled_samerows_aware | fake | proj_probe | 149 | -2.7419 | 0.0622 | -0.1416 | 0.2548 |
+| shuffled_samerows_aware | fake | proj_lastprompt_backtracking | 149 | 11.7580 | -0.0172 | -0.0334 | -0.0007 |
+| shuffled_samerows_aware | fake | proj_lastprompt_uncertainty-estimation | 149 | 9.6792 | -0.0115 | -0.0225 | -0.0011 |
+| shuffled_samerows_aware | fake | proj_lastprompt_probe | 149 | -2.0660 | 0.0051 | 0.0011 | 0.0091 |
+| shuffled_samerows_aware | fake | proj_incontext_backtracking | 149 | 17.9669 | 0.3411 | -0.0296 | 0.7161 |
+| shuffled_samerows_aware | fake | proj_incontext_uncertainty-estimation | 149 | 7.7193 | 0.0602 | -0.2906 | 0.4357 |
+| shuffled_samerows_aware | fake | proj_incontext_probe | 149 | -3.2032 | 0.0406 | -0.1292 | 0.1984 |
+
+
+## Awareness-probe score of each arm's reasoning (unedited model, the probe's own input regime and hidden-state index): per arm, and verbalizing vs non-verbalizing traces within the arm
+
+| arm | framing | n | mean | ci_lo | ci_hi | n_verbalizing | mean_verbalizing | mean_not | p_welch |
+|---|---|---|---|---|---|---|---|---|---|
+| baseline | real | 149 | -2.4006 | -2.5992 | -2.1838 | 28 | -1.1496 | -2.6900 | 0.0000 |
+| baseline | fake | 149 | -2.7419 | -2.9424 | -2.5154 | 13 | -1.2038 | -2.8878 | 0.0000 |
+| baseline_seed1 | real | 149 | -2.3571 | -2.5585 | -2.1620 | 22 | -1.4930 | -2.5068 | 0.0004 |
+| baseline_seed1 | fake | 149 | -2.7615 | -2.9646 | -2.5511 | 9 | -0.5367 | -2.9046 | 0.0010 |
+| unaware | real | 149 | -2.4144 | -2.6202 | -2.2084 | 20 | -1.4128 | -2.5818 | 0.0002 |
+| unaware | fake | 149 | -2.6045 | -2.8138 | -2.3871 | 16 | -1.1456 | -2.7800 | 0.0000 |
+| aware | real | 149 | -2.4033 | -2.6347 | -2.1736 | 14 | -0.5443 | -2.5961 | 0.0000 |
+| aware | fake | 149 | -2.6567 | -2.8516 | -2.4588 | 15 | -1.3989 | -2.8126 | 0.0002 |
+| unaware_strong | real | 149 | -2.5060 | -2.7079 | -2.3075 | 16 | -1.3294 | -2.6475 | 0.0000 |
+| unaware_strong | fake | 149 | -2.7381 | -2.9267 | -2.5422 | 10 | -1.9481 | -2.7949 | 0.0040 |
+| aware_strong | real | 149 | -2.4941 | -2.6946 | -2.2860 | 27 | -1.0875 | -2.7973 | 0.0000 |
+| aware_strong | fake | 149 | -2.4618 | -2.6434 | -2.2568 | 20 | -1.4412 | -2.6324 | 0.0003 |
+| random_aware | real | 149 | -2.3924 | -2.5851 | -2.1894 | 24 | -1.4942 | -2.5649 | 0.0004 |
+| random_aware | fake | 149 | -2.6688 | -2.8699 | -2.4583 | 15 | -1.1073 | -2.8436 | 0.0000 |
+| shuffled_aware | real | 149 | -2.4625 | -2.6651 | -2.2554 | 16 | -1.0042 | -2.6357 | 0.0000 |
+| shuffled_aware | fake | 149 | -2.7416 | -2.9240 | -2.5420 | 12 | -1.3200 | -2.8661 | 0.0007 |
+| random_samerows_aware | real | 149 | -2.4264 | -2.6421 | -2.2088 | 29 | -1.3405 | -2.6888 | 0.0000 |
+| random_samerows_aware | fake | 149 | -2.7008 | -2.9038 | -2.4799 | 10 | -1.4794 | -2.8052 | 0.0025 |
+| shuffled_samerows_aware | real | 149 | -2.3620 | -2.5630 | -2.1507 | 31 | -1.2445 | -2.6532 | 0.0000 |
+| shuffled_samerows_aware | fake | 149 | -2.6798 | -2.8683 | -2.4701 | 18 | -1.2671 | -2.8734 | 0.0000 |
 

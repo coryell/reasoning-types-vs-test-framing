@@ -479,3 +479,229 @@
 [2026-09-04 12:56:22]   100/120 done, 0 errors, 295,319 tokens, ~$1.04 this run
 [2026-09-04 12:56:26]   120/120 done, 0 errors, 353,340 tokens, ~$1.24 this run
 [2026-09-04 12:56:26] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_testlex_pos.json.awareness.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 305461, "completion_tokens": 47879, "est_cost_usd": 1.2424}
+[2026-09-04 12:57:22] arms: ['baseline', 'unc_all_neg', 'unc_all_pos', 'unc_nontest_neg', 'unc_nontest_pos', 'unc_testlex_neg', 'unc_testlex_pos']
+[2026-09-04 12:57:40] baseline: condition none {}; system prompt none
+[2026-09-04 12:57:47]   baseline: 50 in-context projections
+[2026-09-04 12:57:52]   baseline: 100 in-context projections
+[2026-09-04 12:57:54] baseline: wrote 120 in-context projections
+[2026-09-04 12:57:54] unc_all_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 12:57:58]   unc_all_neg: 50 in-context projections
+[2026-09-04 12:58:03]   unc_all_neg: 100 in-context projections
+[2026-09-04 12:58:05] unc_all_neg: wrote 120 in-context projections
+[2026-09-04 12:58:05] unc_all_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 12:58:11]   unc_all_pos: 50 in-context projections
+[2026-09-04 12:58:17]   unc_all_pos: 100 in-context projections
+[2026-09-04 12:58:19] unc_all_pos: wrote 120 in-context projections
+[2026-09-04 12:58:19] unc_nontest_neg: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 12:58:24]   unc_nontest_neg: 50 in-context projections
+[2026-09-04 12:58:29]   unc_nontest_neg: 100 in-context projections
+[2026-09-04 12:58:31] unc_nontest_neg: wrote 120 in-context projections
+[2026-09-04 12:58:31] unc_nontest_pos: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 12:58:36]   unc_nontest_pos: 50 in-context projections
+[2026-09-04 12:58:42]   unc_nontest_pos: 100 in-context projections
+[2026-09-04 12:58:45] unc_nontest_pos: wrote 120 in-context projections
+[2026-09-04 12:58:45] unc_testlex_neg: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 12:58:49]   unc_testlex_neg: 50 in-context projections
+[2026-09-04 12:58:54]   unc_testlex_neg: 100 in-context projections
+[2026-09-04 12:58:56] unc_testlex_neg: wrote 120 in-context projections
+[2026-09-04 12:58:56] unc_testlex_pos: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 12:59:03]   unc_testlex_pos: 50 in-context projections
+[2026-09-04 12:59:10]   unc_testlex_pos: 100 in-context projections
+[2026-09-04 12:59:12] unc_testlex_pos: wrote 120 in-context projections
+[2026-09-04 12:59:19] arms: ['baseline', 'unc_all_neg', 'unc_all_pos', 'unc_nontest_neg', 'unc_nontest_pos', 'unc_testlex_neg', 'unc_testlex_pos']
+[2026-09-04 12:59:34] baseline: condition none {}; system prompt none
+[2026-09-04 12:59:43]   baseline: 100 prompt states
+[2026-09-04 12:59:44] baseline: wrote 120 prompt states
+[2026-09-04 12:59:44] unc_all_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 12:59:50]   unc_all_neg: 100 prompt states
+[2026-09-04 12:59:52] unc_all_neg: wrote 120 prompt states
+[2026-09-04 12:59:52] unc_all_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 12:59:58]   unc_all_pos: 100 prompt states
+[2026-09-04 12:59:59] unc_all_pos: wrote 120 prompt states
+[2026-09-04 12:59:59] unc_nontest_neg: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 13:00:05]   unc_nontest_neg: 100 prompt states
+[2026-09-04 13:00:06] unc_nontest_neg: wrote 120 prompt states
+[2026-09-04 13:00:06] unc_nontest_pos: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 13:00:13]   unc_nontest_pos: 100 prompt states
+[2026-09-04 13:00:14] unc_nontest_pos: wrote 120 prompt states
+[2026-09-04 13:00:14] unc_testlex_neg: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 13:00:20]   unc_testlex_neg: 100 prompt states
+[2026-09-04 13:00:21] unc_testlex_neg: wrote 120 prompt states
+[2026-09-04 13:00:21] unc_testlex_pos: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 13:00:27]   unc_testlex_pos: 100 prompt states
+[2026-09-04 13:00:29] unc_testlex_pos: wrote 120 prompt states
+[2026-09-04 13:00:36] arms: ['baseline', 'unc_all_neg', 'unc_all_pos', 'unc_nontest_neg', 'unc_nontest_pos', 'unc_testlex_neg', 'unc_testlex_pos']
+[2026-09-04 13:01:05]   baseline: 100 probe projections
+[2026-09-04 13:01:07] baseline: wrote 120 probe projections
+[2026-09-04 13:01:23]   unc_all_neg: 100 probe projections
+[2026-09-04 13:01:25] unc_all_neg: wrote 120 probe projections
+[2026-09-04 13:01:38]   unc_all_pos: 100 probe projections
+[2026-09-04 13:01:41] unc_all_pos: wrote 120 probe projections
+[2026-09-04 13:01:51]   unc_nontest_neg: 100 probe projections
+[2026-09-04 13:01:53] unc_nontest_neg: wrote 120 probe projections
+[2026-09-04 13:02:04]   unc_nontest_pos: 100 probe projections
+[2026-09-04 13:02:07] unc_nontest_pos: wrote 120 probe projections
+[2026-09-04 13:02:16]   unc_testlex_neg: 100 probe projections
+[2026-09-04 13:02:18] unc_testlex_neg: wrote 120 probe projections
+[2026-09-04 13:02:32]   unc_testlex_pos: 100 probe projections
+[2026-09-04 13:02:35] unc_testlex_pos: wrote 120 probe projections
+[2026-09-04 13:02:42] arms: ['prompt_test']
+[2026-09-04 13:03:01] prompt_test: condition prompt {}; system prompt present
+[2026-09-04 13:03:10]   prompt_test: 50 in-context projections
+[2026-09-04 13:03:15]   prompt_test: 100 in-context projections
+[2026-09-04 13:03:20]   prompt_test: 150 in-context projections
+[2026-09-04 13:03:26]   prompt_test: 200 in-context projections
+[2026-09-04 13:03:32]   prompt_test: 250 in-context projections
+[2026-09-04 13:03:38] prompt_test: wrote 298 in-context projections
+[2026-09-04 13:03:48] arms: ['prompt_test']
+[2026-09-04 13:04:08] prompt_test: condition prompt {}; system prompt present
+[2026-09-04 13:04:17]   prompt_test: 100 prompt states
+[2026-09-04 13:04:23]   prompt_test: 200 prompt states
+[2026-09-04 13:04:29] prompt_test: wrote 298 prompt states
+[2026-09-04 13:04:40] arms: ['prompt_test']
+[2026-09-04 13:05:09]   prompt_test: 100 probe projections
+[2026-09-04 13:05:17]   prompt_test: 200 probe projections
+[2026-09-04 13:05:27] prompt_test: wrote 298 probe projections
+[2026-09-04 13:05:38] arms: ['aware', 'aware_strong', 'baseline', 'baseline_seed1', 'random_aware', 'random_samerows_aware', 'shuffled_aware', 'shuffled_samerows_aware', 'unaware', 'unaware_strong']
+[2026-09-04 13:05:55] aware: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.036872994154691696, "vector_norm": 0.8914512395858765, "rows_edited": 800}; system prompt present
+[2026-09-04 13:06:03]   aware: 50 in-context projections
+[2026-09-04 13:06:08]   aware: 100 in-context projections
+[2026-09-04 13:06:13]   aware: 150 in-context projections
+[2026-09-04 13:06:19]   aware: 200 in-context projections
+[2026-09-04 13:06:25]   aware: 250 in-context projections
+[2026-09-04 13:06:32] aware: wrote 298 in-context projections
+[2026-09-04 13:06:32] aware_strong: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.14749197661876678, "vector_norm": 0.8914512395858765, "rows_edited": 800}; system prompt present
+[2026-09-04 13:06:37]   aware_strong: 50 in-context projections
+[2026-09-04 13:06:42]   aware_strong: 100 in-context projections
+[2026-09-04 13:06:47]   aware_strong: 150 in-context projections
+[2026-09-04 13:06:53]   aware_strong: 200 in-context projections
+[2026-09-04 13:06:59]   aware_strong: 250 in-context projections
+[2026-09-04 13:07:05] aware_strong: wrote 298 in-context projections
+[2026-09-04 13:07:05] baseline: condition none {}; system prompt present
+[2026-09-04 13:07:10]   baseline: 50 in-context projections
+[2026-09-04 13:07:16]   baseline: 100 in-context projections
+[2026-09-04 13:07:21]   baseline: 150 in-context projections
+[2026-09-04 13:07:26]   baseline: 200 in-context projections
+[2026-09-04 13:07:32]   baseline: 250 in-context projections
+[2026-09-04 13:07:38] baseline: wrote 298 in-context projections
+[2026-09-04 13:07:38] baseline_seed1: condition none {}; system prompt present
+[2026-09-04 13:07:43]   baseline_seed1: 50 in-context projections
+[2026-09-04 13:07:48]   baseline_seed1: 100 in-context projections
+[2026-09-04 13:07:53]   baseline_seed1: 150 in-context projections
+[2026-09-04 13:07:58]   baseline_seed1: 200 in-context projections
+[2026-09-04 13:08:04]   baseline_seed1: 250 in-context projections
+[2026-09-04 13:08:10] baseline_seed1: wrote 298 in-context projections
+[2026-09-04 13:08:11] random_aware: condition weight_edit {"layer_histogram": {"0": 19, "1": 22, "2": 9, "3": 18, "4": 27, "5": 34, "6": 19, "7": 26, "8": 21, "9": 16, "10": 27, "11": 41, "12": 35, "13": 22, "14": 17, "15": 10, "16": 25, "17": 17, "18": 17, "19": 21, "20": 20, "21": 25, "22": 19, "23": 18, "24": 23, "25": 23, "26": 19, "27": 11, "28": 20, "29": 22, "30": 27, "31": 17, "32": 23, "33": 33, "34": 27, "35": 30}, "relative_edit": 0.03490990027785301, "vector_norm": 0.8914511203765869, "rows_edited": 800}; system prompt present
+[2026-09-04 13:08:16]   random_aware: 50 in-context projections
+[2026-09-04 13:08:21]   random_aware: 100 in-context projections
+[2026-09-04 13:08:27]   random_aware: 150 in-context projections
+[2026-09-04 13:08:32]   random_aware: 200 in-context projections
+[2026-09-04 13:08:37]   random_aware: 250 in-context projections
+[2026-09-04 13:08:44] random_aware: wrote 298 in-context projections
+[2026-09-04 13:08:44] random_samerows_aware: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.0368729904294014, "vector_norm": 0.8914511203765869, "rows_edited": 800}; system prompt present
+[2026-09-04 13:08:49]   random_samerows_aware: 50 in-context projections
+[2026-09-04 13:08:54]   random_samerows_aware: 100 in-context projections
+[2026-09-04 13:08:59]   random_samerows_aware: 150 in-context projections
+[2026-09-04 13:09:05]   random_samerows_aware: 200 in-context projections
+[2026-09-04 13:09:11]   random_samerows_aware: 250 in-context projections
+[2026-09-04 13:09:17] random_samerows_aware: wrote 298 in-context projections
+[2026-09-04 13:09:17] shuffled_aware: condition weight_edit {"layer_histogram": {"0": 2, "1": 705, "2": 12, "5": 3, "6": 1, "7": 1, "8": 3, "9": 1, "10": 2, "11": 3, "12": 1, "13": 2, "14": 5, "15": 4, "16": 5, "17": 8, "18": 6, "19": 7, "20": 6, "21": 3, "22": 5, "23": 5, "24": 1, "25": 2, "27": 1, "32": 1, "33": 1, "34": 2, "35": 2}, "relative_edit": 0.12714453041553497, "vector_norm": 0.8914511799812317, "rows_edited": 800}; system prompt present
+[2026-09-04 13:09:23]   shuffled_aware: 50 in-context projections
+[2026-09-04 13:09:28]   shuffled_aware: 100 in-context projections
+[2026-09-04 13:09:33]   shuffled_aware: 150 in-context projections
+[2026-09-04 13:09:38]   shuffled_aware: 200 in-context projections
+[2026-09-04 13:09:44]   shuffled_aware: 250 in-context projections
+[2026-09-04 13:09:50] shuffled_aware: wrote 298 in-context projections
+[2026-09-04 13:09:50] shuffled_samerows_aware: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.0368729904294014, "vector_norm": 0.8914511799812317, "rows_edited": 800}; system prompt present
+[2026-09-04 13:09:56]   shuffled_samerows_aware: 50 in-context projections
+[2026-09-04 13:10:00]   shuffled_samerows_aware: 100 in-context projections
+[2026-09-04 13:10:06]   shuffled_samerows_aware: 150 in-context projections
+[2026-09-04 13:10:11]   shuffled_samerows_aware: 200 in-context projections
+[2026-09-04 13:10:17]   shuffled_samerows_aware: 250 in-context projections
+[2026-09-04 13:10:22] shuffled_samerows_aware: wrote 298 in-context projections
+[2026-09-04 13:10:22] unaware: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.07374598830938339, "vector_norm": 0.8914512395858765, "rows_edited": 800}; system prompt present
+[2026-09-04 13:10:28]   unaware: 50 in-context projections
+[2026-09-04 13:10:33]   unaware: 100 in-context projections
+[2026-09-04 13:10:38]   unaware: 150 in-context projections
+[2026-09-04 13:10:43]   unaware: 200 in-context projections
+[2026-09-04 13:10:50]   unaware: 250 in-context projections
+[2026-09-04 13:10:55] unaware: wrote 298 in-context projections
+[2026-09-04 13:10:56] unaware_strong: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.14749197661876678, "vector_norm": 0.8914512395858765, "rows_edited": 800}; system prompt present
+[2026-09-04 13:11:01]   unaware_strong: 50 in-context projections
+[2026-09-04 13:11:06]   unaware_strong: 100 in-context projections
+[2026-09-04 13:11:11]   unaware_strong: 150 in-context projections
+[2026-09-04 13:11:17]   unaware_strong: 200 in-context projections
+[2026-09-04 13:11:23]   unaware_strong: 250 in-context projections
+[2026-09-04 13:11:29] unaware_strong: wrote 298 in-context projections
+[2026-09-04 13:11:41] arms: ['aware', 'aware_strong', 'baseline', 'baseline_seed1', 'random_aware', 'random_samerows_aware', 'shuffled_aware', 'shuffled_samerows_aware', 'unaware', 'unaware_strong']
+[2026-09-04 13:11:55] aware: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.036872994154691696, "vector_norm": 0.8914512395858765, "rows_edited": 800}; system prompt present
+[2026-09-04 13:12:02]   aware: 100 prompt states
+[2026-09-04 13:12:09]   aware: 200 prompt states
+[2026-09-04 13:12:15] aware: wrote 298 prompt states
+[2026-09-04 13:12:15] aware_strong: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.14749197661876678, "vector_norm": 0.8914512395858765, "rows_edited": 800}; system prompt present
+[2026-09-04 13:12:21]   aware_strong: 100 prompt states
+[2026-09-04 13:12:28]   aware_strong: 200 prompt states
+[2026-09-04 13:12:34] aware_strong: wrote 298 prompt states
+[2026-09-04 13:12:34] baseline: condition none {}; system prompt present
+[2026-09-04 13:12:40]   baseline: 100 prompt states
+[2026-09-04 13:12:46]   baseline: 200 prompt states
+[2026-09-04 13:12:53] baseline: wrote 298 prompt states
+[2026-09-04 13:12:53] baseline_seed1: condition none {}; system prompt present
+[2026-09-04 13:12:59]   baseline_seed1: 100 prompt states
+[2026-09-04 13:13:05]   baseline_seed1: 200 prompt states
+[2026-09-04 13:13:11] baseline_seed1: wrote 298 prompt states
+[2026-09-04 13:13:12] random_aware: condition weight_edit {"layer_histogram": {"0": 19, "1": 22, "2": 9, "3": 18, "4": 27, "5": 34, "6": 19, "7": 26, "8": 21, "9": 16, "10": 27, "11": 41, "12": 35, "13": 22, "14": 17, "15": 10, "16": 25, "17": 17, "18": 17, "19": 21, "20": 20, "21": 25, "22": 19, "23": 18, "24": 23, "25": 23, "26": 19, "27": 11, "28": 20, "29": 22, "30": 27, "31": 17, "32": 23, "33": 33, "34": 27, "35": 30}, "relative_edit": 0.03490990027785301, "vector_norm": 0.8914511203765869, "rows_edited": 800}; system prompt present
+[2026-09-04 13:13:18]   random_aware: 100 prompt states
+[2026-09-04 13:13:24]   random_aware: 200 prompt states
+[2026-09-04 13:13:30] random_aware: wrote 298 prompt states
+[2026-09-04 13:13:31] random_samerows_aware: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.0368729904294014, "vector_norm": 0.8914511203765869, "rows_edited": 800}; system prompt present
+[2026-09-04 13:13:37]   random_samerows_aware: 100 prompt states
+[2026-09-04 13:13:43]   random_samerows_aware: 200 prompt states
+[2026-09-04 13:13:49] random_samerows_aware: wrote 298 prompt states
+[2026-09-04 13:13:50] shuffled_aware: condition weight_edit {"layer_histogram": {"0": 2, "1": 705, "2": 12, "5": 3, "6": 1, "7": 1, "8": 3, "9": 1, "10": 2, "11": 3, "12": 1, "13": 2, "14": 5, "15": 4, "16": 5, "17": 8, "18": 6, "19": 7, "20": 6, "21": 3, "22": 5, "23": 5, "24": 1, "25": 2, "27": 1, "32": 1, "33": 1, "34": 2, "35": 2}, "relative_edit": 0.12714453041553497, "vector_norm": 0.8914511799812317, "rows_edited": 800}; system prompt present
+[2026-09-04 13:13:56]   shuffled_aware: 100 prompt states
+[2026-09-04 13:14:03]   shuffled_aware: 200 prompt states
+[2026-09-04 13:14:09] shuffled_aware: wrote 298 prompt states
+[2026-09-04 13:14:09] shuffled_samerows_aware: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.0368729904294014, "vector_norm": 0.8914511799812317, "rows_edited": 800}; system prompt present
+[2026-09-04 13:14:16]   shuffled_samerows_aware: 100 prompt states
+[2026-09-04 13:14:22]   shuffled_samerows_aware: 200 prompt states
+[2026-09-04 13:14:28] shuffled_samerows_aware: wrote 298 prompt states
+[2026-09-04 13:14:29] unaware: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.07374598830938339, "vector_norm": 0.8914512395858765, "rows_edited": 800}; system prompt present
+[2026-09-04 13:14:35]   unaware: 100 prompt states
+[2026-09-04 13:14:41]   unaware: 200 prompt states
+[2026-09-04 13:14:48] unaware: wrote 298 prompt states
+[2026-09-04 13:14:48] unaware_strong: condition weight_edit {"layer_histogram": {"0": 9, "2": 9, "3": 7, "4": 5, "5": 10, "6": 10, "7": 10, "8": 23, "9": 18, "10": 15, "11": 26, "12": 35, "13": 27, "14": 29, "15": 24, "16": 31, "17": 35, "18": 51, "19": 44, "20": 32, "21": 21, "22": 38, "23": 32, "24": 30, "25": 18, "26": 29, "27": 25, "28": 27, "29": 29, "30": 18, "31": 22, "32": 10, "33": 14, "34": 13, "35": 24}, "relative_edit": 0.14749197661876678, "vector_norm": 0.8914512395858765, "rows_edited": 800}; system prompt present
+[2026-09-04 13:14:54]   unaware_strong: 100 prompt states
+[2026-09-04 13:15:02]   unaware_strong: 200 prompt states
+[2026-09-04 13:15:08] unaware_strong: wrote 298 prompt states
+[2026-09-04 13:15:18] arms: ['aware', 'aware_strong', 'baseline', 'baseline_seed1', 'random_aware', 'random_samerows_aware', 'shuffled_aware', 'shuffled_samerows_aware', 'unaware', 'unaware_strong']
+[2026-09-04 13:15:41]   aware: 100 probe projections
+[2026-09-04 13:15:51]   aware: 200 probe projections
+[2026-09-04 13:16:02] aware: wrote 298 probe projections
+[2026-09-04 13:16:10]   aware_strong: 100 probe projections
+[2026-09-04 13:16:19]   aware_strong: 200 probe projections
+[2026-09-04 13:16:30] aware_strong: wrote 298 probe projections
+[2026-09-04 13:16:38]   baseline: 100 probe projections
+[2026-09-04 13:16:46]   baseline: 200 probe projections
+[2026-09-04 13:16:56] baseline: wrote 298 probe projections
+[2026-09-04 13:17:04]   baseline_seed1: 100 probe projections
+[2026-09-04 13:17:12]   baseline_seed1: 200 probe projections
+[2026-09-04 13:17:22] baseline_seed1: wrote 298 probe projections
+[2026-09-04 13:17:30]   random_aware: 100 probe projections
+[2026-09-04 13:17:39]   random_aware: 200 probe projections
+[2026-09-04 13:17:49] random_aware: wrote 298 probe projections
+[2026-09-04 13:17:56]   random_samerows_aware: 100 probe projections
+[2026-09-04 13:18:05]   random_samerows_aware: 200 probe projections
+[2026-09-04 13:18:15] random_samerows_aware: wrote 298 probe projections
+[2026-09-04 13:18:23]   shuffled_aware: 100 probe projections
+[2026-09-04 13:18:32]   shuffled_aware: 200 probe projections
+[2026-09-04 13:18:42] shuffled_aware: wrote 298 probe projections
+[2026-09-04 13:18:49]   shuffled_samerows_aware: 100 probe projections
+[2026-09-04 13:18:58]   shuffled_samerows_aware: 200 probe projections
+[2026-09-04 13:19:07] shuffled_samerows_aware: wrote 298 probe projections
+[2026-09-04 13:19:15]   unaware: 100 probe projections
+[2026-09-04 13:19:23]   unaware: 200 probe projections
+[2026-09-04 13:19:33] unaware: wrote 298 probe projections
+[2026-09-04 13:19:41]   unaware_strong: 100 probe projections
+[2026-09-04 13:19:50]   unaware_strong: 200 probe projections
+[2026-09-04 13:19:59] unaware_strong: wrote 298 probe projections
