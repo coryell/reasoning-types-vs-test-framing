@@ -1,0 +1,8 @@
+[2026-09-03 14:53:41] 1199 judged sides with usable judgments
+[2026-09-03 14:54:20]   800 spans from 250 sides
+[2026-09-03 14:54:47]   1600 spans from 497 sides
+[2026-09-03 14:55:01]   2000 spans from 627 sides
+[2026-09-03 14:55:07]   2200 spans from 688 sides
+[2026-09-03 14:55:24] features (2719, 37, 2560); sides pos=183 neg=657; spans pos=257 neg=2462; quotes not relocated=32
+[2026-09-03 14:56:45] direction diagnostics: {"norm_w1": 0.8915, "norm_w1_minus_w0": 1.5981, "cos_w1_vs_w1_minus_w0": 0.8941, "norm_shuffled_w1": 2.1234, "cos_w1_vs_shuffled": 0.2783, "init_row_norm_expected": 0.5774}
+[2026-09-03 14:56:45] best layer 20: acc 0.977 auroc 0.997 (sklearn 0.971/0.998); shuffled acc 0.509; layer-0 acc 0.480

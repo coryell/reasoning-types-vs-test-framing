@@ -1,0 +1,149 @@
+[2026-09-03 14:56:53] loading Qwen/Qwen3-4B
+[2026-09-03 14:57:06] generating 500 Venhoff-task traces
+[2026-09-03 14:58:11]   gen 8/500  1.1 min  eta 67.2 min  unfinished so far 8
+[2026-09-03 14:59:14]   gen 16/500  2.1 min  eta 64.6 min  unfinished so far 16
+[2026-09-03 15:00:18]   gen 24/500  3.2 min  eta 63.4 min  unfinished so far 23
+[2026-09-03 15:01:21]   gen 32/500  4.3 min  eta 62.2 min  unfinished so far 29
+[2026-09-03 15:02:24]   gen 40/500  5.3 min  eta 60.9 min  unfinished so far 34
+[2026-09-03 15:03:26]   gen 48/500  6.3 min  eta 59.7 min  unfinished so far 38
+[2026-09-03 15:04:29]   gen 56/500  7.4 min  eta 58.6 min  unfinished so far 44
+[2026-09-03 15:05:32]   gen 64/500  8.4 min  eta 57.4 min  unfinished so far 52
+[2026-09-03 15:06:35]   gen 72/500  9.5 min  eta 56.4 min  unfinished so far 59
+[2026-09-03 15:07:38]   gen 80/500  10.5 min  eta 55.3 min  unfinished so far 67
+[2026-09-03 15:08:41]   gen 88/500  11.6 min  eta 54.2 min  unfinished so far 73
+[2026-09-03 15:09:44]   gen 96/500  12.6 min  eta 53.2 min  unfinished so far 80
+[2026-09-03 15:10:47]   gen 104/500  13.7 min  eta 52.1 min  unfinished so far 87
+[2026-09-03 15:11:50]   gen 112/500  14.7 min  eta 51.0 min  unfinished so far 95
+[2026-09-03 15:12:53]   gen 120/500  15.8 min  eta 50.0 min  unfinished so far 102
+[2026-09-03 15:13:55]   gen 128/500  16.8 min  eta 48.9 min  unfinished so far 110
+[2026-09-03 15:14:58]   gen 136/500  17.9 min  eta 47.8 min  unfinished so far 117
+[2026-09-03 15:16:02]   gen 144/500  18.9 min  eta 46.8 min  unfinished so far 121
+[2026-09-03 15:17:05]   gen 152/500  20.0 min  eta 45.8 min  unfinished so far 127
+[2026-09-03 15:18:08]   gen 160/500  21.0 min  eta 44.7 min  unfinished so far 135
+[2026-09-03 15:19:11]   gen 168/500  22.1 min  eta 43.6 min  unfinished so far 143
+[2026-09-03 15:20:14]   gen 176/500  23.1 min  eta 42.6 min  unfinished so far 149
+[2026-09-03 15:21:17]   gen 184/500  24.2 min  eta 41.5 min  unfinished so far 156
+[2026-09-03 15:22:20]   gen 192/500  25.2 min  eta 40.5 min  unfinished so far 164
+[2026-09-03 15:23:23]   gen 200/500  26.3 min  eta 39.4 min  unfinished so far 171
+[2026-09-03 15:24:26]   gen 208/500  27.3 min  eta 38.4 min  unfinished so far 178
+[2026-09-03 15:25:29]   gen 216/500  28.4 min  eta 37.3 min  unfinished so far 185
+[2026-09-03 15:26:32]   gen 224/500  29.4 min  eta 36.3 min  unfinished so far 192
+[2026-09-03 15:27:35]   gen 232/500  30.5 min  eta 35.2 min  unfinished so far 200
+[2026-09-03 15:28:38]   gen 240/500  31.5 min  eta 34.2 min  unfinished so far 207
+[2026-09-03 15:29:41]   gen 248/500  32.6 min  eta 33.1 min  unfinished so far 213
+[2026-09-03 15:30:44]   gen 256/500  33.6 min  eta 32.1 min  unfinished so far 221
+[2026-09-03 15:31:48]   gen 264/500  34.7 min  eta 31.0 min  unfinished so far 229
+[2026-09-03 15:32:51]   gen 272/500  35.8 min  eta 30.0 min  unfinished so far 237
+[2026-09-03 15:33:54]   gen 280/500  36.8 min  eta 28.9 min  unfinished so far 243
+[2026-09-03 15:34:57]   gen 288/500  37.9 min  eta 27.9 min  unfinished so far 251
+[2026-09-03 15:36:00]   gen 296/500  38.9 min  eta 26.8 min  unfinished so far 258
+[2026-09-03 15:37:03]   gen 304/500  40.0 min  eta 25.8 min  unfinished so far 266
+[2026-09-03 15:38:06]   gen 312/500  41.0 min  eta 24.7 min  unfinished so far 273
+[2026-09-03 15:39:10]   gen 320/500  42.1 min  eta 23.7 min  unfinished so far 279
+[2026-09-03 15:40:12]   gen 328/500  43.1 min  eta 22.6 min  unfinished so far 286
+[2026-09-03 15:41:16]   gen 336/500  44.2 min  eta 21.6 min  unfinished so far 294
+[2026-09-03 15:42:19]   gen 344/500  45.2 min  eta 20.5 min  unfinished so far 300
+[2026-09-03 15:43:23]   gen 352/500  46.3 min  eta 19.5 min  unfinished so far 307
+[2026-09-03 15:44:26]   gen 360/500  47.3 min  eta 18.4 min  unfinished so far 312
+[2026-09-03 15:45:30]   gen 368/500  48.4 min  eta 17.4 min  unfinished so far 319
+[2026-09-03 15:46:33]   gen 376/500  49.5 min  eta 16.3 min  unfinished so far 326
+[2026-09-03 15:47:37]   gen 384/500  50.5 min  eta 15.3 min  unfinished so far 332
+[2026-09-03 15:48:40]   gen 392/500  51.6 min  eta 14.2 min  unfinished so far 338
+[2026-09-03 15:49:43]   gen 400/500  52.6 min  eta 13.2 min  unfinished so far 342
+[2026-09-03 15:50:47]   gen 408/500  53.7 min  eta 12.1 min  unfinished so far 346
+[2026-09-03 15:51:50]   gen 416/500  54.7 min  eta 11.1 min  unfinished so far 352
+[2026-09-03 15:52:54]   gen 424/500  55.8 min  eta 10.0 min  unfinished so far 359
+[2026-09-03 15:53:57]   gen 432/500  56.9 min  eta 9.0 min  unfinished so far 362
+[2026-09-03 15:55:01]   gen 440/500  57.9 min  eta 7.9 min  unfinished so far 366
+[2026-09-03 15:56:04]   gen 448/500  59.0 min  eta 6.8 min  unfinished so far 369
+[2026-09-03 15:57:08]   gen 456/500  60.0 min  eta 5.8 min  unfinished so far 375
+[2026-09-03 15:58:11]   gen 464/500  61.1 min  eta 4.7 min  unfinished so far 382
+[2026-09-03 15:59:15]   gen 472/500  62.2 min  eta 3.7 min  unfinished so far 389
+[2026-09-03 16:00:18]   gen 480/500  63.2 min  eta 2.6 min  unfinished so far 396
+[2026-09-03 16:01:22]   gen 488/500  64.3 min  eta 1.6 min  unfinished so far 402
+[2026-09-03 16:02:26]   gen 496/500  65.3 min  eta 0.5 min  unfinished so far 409
+[2026-09-03 16:03:30]   gen 500/500  66.4 min  eta 0.0 min  unfinished so far 410
+[2026-09-03 16:03:30] wrote /home/cutter/d10/results/qwen3_4b/vectors/responses.json; 90 finished, 209 closed </think>
+[2026-09-03 16:03:30] /home/cutter/d10/results/qwen3_4b/vectors/annotations.jsonl: 500 jobs, 0 cached, 0 truncated (kept), 500 to run
+[2026-09-03 16:04:01]   50/500 done, 0 errors, 107,826 tokens, ~$0.70 this run
+[2026-09-03 16:04:27]   100/500 done, 0 errors, 225,450 tokens, ~$1.47 this run
+[2026-09-03 16:04:46]   150/500 done, 0 errors, 332,161 tokens, ~$2.15 this run
+[2026-09-03 16:05:05]   200/500 done, 0 errors, 445,003 tokens, ~$2.89 this run
+[2026-09-03 16:05:27]   250/500 done, 0 errors, 556,839 tokens, ~$3.62 this run
+[2026-09-03 16:05:46]   300/500 done, 0 errors, 668,548 tokens, ~$4.35 this run
+[2026-09-03 16:06:08]   350/500 done, 0 errors, 776,722 tokens, ~$5.05 this run
+[2026-09-03 16:06:28]   400/500 done, 0 errors, 885,306 tokens, ~$5.76 this run
+[2026-09-03 16:06:51]   450/500 done, 0 errors, 999,188 tokens, ~$6.50 this run
+[2026-09-03 16:07:16]   500/500 done, 0 errors, 1,117,787 tokens, ~$7.28 this run
+[2026-09-03 16:07:16] {"path": "/home/cutter/d10/results/qwen3_4b/vectors/annotations.jsonl", "jobs": 500, "cached": 0, "truncated_kept": 0, "run": 500, "errors": 0, "prompt_tokens": 519931, "completion_tokens": 597856, "est_cost_usd": 7.2784}
+[2026-09-03 16:07:16] annotated 500/500
+[2026-09-03 16:07:34]   extracted 50/500 traces, 2285 spans
+[2026-09-03 16:07:51]   extracted 100/500 traces, 4293 spans
+[2026-09-03 16:08:09]   extracted 150/500 traces, 6207 spans
+[2026-09-03 16:08:27]   extracted 200/500 traces, 8368 spans
+[2026-09-03 16:08:45]   extracted 250/500 traces, 10653 spans
+[2026-09-03 16:09:02]   extracted 300/500 traces, 12800 spans
+[2026-09-03 16:09:19]   extracted 350/500 traces, 14918 spans
+[2026-09-03 16:09:36]   extracted 400/500 traces, 16858 spans
+[2026-09-03 16:09:53]   extracted 450/500 traces, 19018 spans
+[2026-09-03 16:10:11]   extracted 500/500 traces, 21308 spans
+[2026-09-03 16:10:11] mean vectors: {'initializing': 985, 'deduction': 10478, 'adding-knowledge': 3048, 'uncertainty-estimation': 3081, 'example-testing': 2340, 'backtracking': 1376, 'overall': 499}
+[2026-09-03 16:11:15]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 6
+[2026-09-03 16:12:20]   gen 16/20  2.1 min  eta 0.5 min  unfinished so far 13
+[2026-09-03 16:13:25]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 16
+[2026-09-03 16:14:30]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:15:35]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:16:40]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:16:40] steered backtracking layer 13 pos
+[2026-09-03 16:17:46]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:18:51]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:19:55]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:19:55] steered backtracking layer 13 neg
+[2026-09-03 16:21:00]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:22:05]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:23:09]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:23:09] steered backtracking layer 18 pos
+[2026-09-03 16:24:14]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:25:19]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:26:24]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:26:24] steered backtracking layer 18 neg
+[2026-09-03 16:27:29]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:28:34]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:29:39]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:29:39] steered backtracking layer 23 pos
+[2026-09-03 16:30:44]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 5
+[2026-09-03 16:31:49]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 11
+[2026-09-03 16:32:53]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 13
+[2026-09-03 16:32:53] steered backtracking layer 23 neg
+[2026-09-03 16:33:58]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:35:03]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:36:08]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:36:08] steered uncertainty-estimation layer 13 pos
+[2026-09-03 16:37:13]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:38:18]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:39:23]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:39:23] steered uncertainty-estimation layer 13 neg
+[2026-09-03 16:40:28]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:41:32]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:42:38]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:42:38] steered uncertainty-estimation layer 18 pos
+[2026-09-03 16:43:42]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:44:48]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:45:53]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:45:53] steered uncertainty-estimation layer 18 neg
+[2026-09-03 16:46:57]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:48:02]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 16
+[2026-09-03 16:49:07]   gen 20/20  3.2 min  eta 0.0 min  unfinished so far 20
+[2026-09-03 16:49:07] steered uncertainty-estimation layer 23 pos
+[2026-09-03 16:50:12]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 8
+[2026-09-03 16:51:17]   gen 16/20  2.2 min  eta 0.5 min  unfinished so far 12
+[2026-09-03 16:52:23]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 15
+[2026-09-03 16:52:23] steered uncertainty-estimation layer 23 neg
+[2026-09-03 16:52:23] /home/cutter/d10/results/qwen3_4b/vectors/layer_annotations.jsonl: 243 jobs, 0 cached, 0 truncated (kept), 243 to run
+[2026-09-03 16:52:45]   50/243 done, 0 errors, 92,540 tokens, ~$0.51 this run
+[2026-09-03 16:53:23]   100/243 done, 0 errors, 206,070 tokens, ~$1.22 this run
+[2026-09-03 16:54:44]   150/243 done, 4 errors, 372,296 tokens, ~$2.47 this run
+[2026-09-03 16:55:31]   200/243 done, 20 errors, 729,698 tokens, ~$5.61 this run
+[2026-09-03 16:57:58]   243/243 done, 37 errors, 1,081,111 tokens, ~$8.78 this run
+[2026-09-03 16:57:58] {"path": "/home/cutter/d10/results/qwen3_4b/vectors/layer_annotations.jsonl", "jobs": 243, "cached": 0, "truncated_kept": 0, "run": 243, "errors": 37, "prompt_tokens": 271228, "completion_tokens": 809883, "est_cost_usd": 8.7769}
+[2026-09-03 16:57:58] chosen layers: {"backtracking": {"layer": 23, "pos_minus_neg": 0.39312480454923826, "original": 0.09487793838480676, "pos": 0.45734274119697055, "neg": 0.06421793664773227}, "uncertainty-estimation": {"layer": 18, "pos_minus_neg": 0.7246277163175558, "original": 0.25639246953557826, "pos": 0.7912943829842225, "neg": 0.06666666666666667}}
