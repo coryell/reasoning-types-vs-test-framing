@@ -1,0 +1,124 @@
+{
+ "arms": [
+  {
+   "arm": "alpha0.02",
+   "alpha": 0.02,
+   "aware": false,
+   "n": 40,
+   "closure": 1.0,
+   "repetition": 0.027115621079512674,
+   "n_judged": 40,
+   "verbalization": 0.125
+  },
+  {
+   "arm": "alpha0.02_aware",
+   "alpha": 0.02,
+   "aware": true,
+   "n": 40,
+   "closure": 0.925,
+   "repetition": 0.06664364079782885,
+   "n_judged": 40,
+   "verbalization": 0.175
+  },
+  {
+   "arm": "alpha0.05",
+   "alpha": 0.05,
+   "aware": false,
+   "n": 40,
+   "closure": 1.0,
+   "repetition": 0.04432584805554494,
+   "n_judged": 40,
+   "verbalization": 0.15
+  },
+  {
+   "arm": "alpha0.05_aware",
+   "alpha": 0.05,
+   "aware": true,
+   "n": 40,
+   "closure": 1.0,
+   "repetition": 0.02745229144949729,
+   "n_judged": 40,
+   "verbalization": 0.1
+  },
+  {
+   "arm": "alpha0.1",
+   "alpha": 0.1,
+   "aware": false,
+   "n": 40,
+   "closure": 1.0,
+   "repetition": 0.02783636057145275,
+   "n_judged": 40,
+   "verbalization": 0.1
+  },
+  {
+   "arm": "alpha0.1_aware",
+   "alpha": 0.1,
+   "aware": true,
+   "n": 40,
+   "closure": 1.0,
+   "repetition": 0.04522939777838643,
+   "n_judged": 40,
+   "verbalization": 0.2
+  },
+  {
+   "arm": "alpha0.2",
+   "alpha": 0.2,
+   "aware": false,
+   "n": 40,
+   "closure": 1.0,
+   "repetition": 0.032831266630890955,
+   "n_judged": 40,
+   "verbalization": 0.1
+  },
+  {
+   "arm": "alpha0.2_aware",
+   "alpha": 0.2,
+   "aware": true,
+   "n": 40,
+   "closure": 0.95,
+   "repetition": 0.03978823822387745,
+   "n_judged": 40,
+   "verbalization": 0.2
+  },
+  {
+   "arm": "baseline",
+   "alpha": 0.0,
+   "aware": null,
+   "n": 40,
+   "closure": 1.0,
+   "repetition": 0.02602602061077597,
+   "n_judged": 40,
+   "verbalization": 0.025
+  }
+ ],
+ "chosen": {
+  "aware": {
+   "arm": "alpha0.05_aware",
+   "alpha": 0.05,
+   "aware": true,
+   "n": 40,
+   "closure": 1.0,
+   "repetition": 0.02745229144949729,
+   "n_judged": 40,
+   "verbalization": 0.1,
+   "flagged_no_qualifying_arm": false,
+   "baseline_verbalization": 0.025
+  },
+  "unaware": {
+   "arm": "alpha0.1",
+   "alpha": 0.1,
+   "aware": false,
+   "n": 40,
+   "closure": 1.0,
+   "repetition": 0.02783636057145275,
+   "n_judged": 40,
+   "verbalization": 0.1,
+   "flagged_no_qualifying_arm": false,
+   "baseline_verbalization": 0.025
+  }
+ },
+ "rule": {
+  "min_closure": 0.9,
+  "max_repetition": 0.03
+ }
+}

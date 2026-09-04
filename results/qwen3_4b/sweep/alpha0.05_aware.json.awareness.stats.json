@@ -1,0 +1,14 @@
+{
+ "judged": 40,
+ "closed": 40,
+ "positives_closed": 4,
+ "generated": 40,
+ "errors": 0,
+ "unparsed": 0,
+ "positives": 4,
+ "negatives": 34,
+ "positive_rate_judged": 0.1,
+ "positive_rate_generated": 0.1,
+ "gate_needed": 2,
+ "verdict": "PASS"
+}
