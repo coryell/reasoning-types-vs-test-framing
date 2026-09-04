@@ -1,0 +1,39 @@
+{
+ "config": {
+  "model_name": "Qwen/Qwen3-4B",
+  "dtype": "bfloat16",
+  "max_new_tokens": 1536,
+  "do_sample": true,
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "batch_size": 6,
+  "seed": 1,
+  "enable_thinking": true,
+  "system_prompt": "agentMetaPrompt.txt",
+  "notes": {
+   "arm": "baseline_seed1",
+   "alpha": 0.0,
+   "aware": true,
+   "layer_histogram": {},
+   "probe_layer": 20,
+   "relative_edit": null,
+   "vector_norm": null,
+   "rows_from": "edit direction"
+  }
+ },
+ "git_commit": "44aa068",
+ "torch": "2.14.0+cu130",
+ "transformers": "5.16.1",
+ "cuda_device": "NVIDIA GeForce RTX 4070 Ti",
+ "written": "2026-09-04 00:30:45",
+ "arm": "baseline_seed1",
+ "alpha": 0.0,
+ "aware": true,
+ "layer_histogram": {},
+ "n_items": 149,
+ "framings": [
+  "real",
+  "fake"
+ ]
+}

@@ -1,0 +1,23 @@
+[2026-09-04 03:48:42] arms: ['aware', 'aware_strong', 'baseline', 'baseline_seed1', 'random_aware', 'shuffled_aware', 'unaware', 'unaware_strong']
+[2026-09-04 03:48:42] /home/cutter/d10/results/qwen3_4b/steering/aware.json.awareness.jsonl: 298 jobs, 296 cached, 2 truncated (kept), 0 to run
+[2026-09-04 03:48:42] {"path": "/home/cutter/d10/results/qwen3_4b/steering/aware.json.awareness.jsonl", "jobs": 298, "cached": 296, "truncated_kept": 2, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 03:48:42] /home/cutter/d10/results/qwen3_4b/steering/aware_strong.json.awareness.jsonl: 298 jobs, 296 cached, 2 truncated (kept), 0 to run
+[2026-09-04 03:48:42] {"path": "/home/cutter/d10/results/qwen3_4b/steering/aware_strong.json.awareness.jsonl", "jobs": 298, "cached": 296, "truncated_kept": 2, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 03:48:42] /home/cutter/d10/results/qwen3_4b/steering/baseline.json.awareness.jsonl: 298 jobs, 297 cached, 1 truncated (kept), 0 to run
+[2026-09-04 03:48:42] {"path": "/home/cutter/d10/results/qwen3_4b/steering/baseline.json.awareness.jsonl", "jobs": 298, "cached": 297, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 03:48:42] /home/cutter/d10/results/qwen3_4b/steering/baseline_seed1.json.awareness.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 03:48:42] {"path": "/home/cutter/d10/results/qwen3_4b/steering/baseline_seed1.json.awareness.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 03:48:42] /home/cutter/d10/results/qwen3_4b/steering/random_aware.json.awareness.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 03:48:42] {"path": "/home/cutter/d10/results/qwen3_4b/steering/random_aware.json.awareness.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 03:48:42] /home/cutter/d10/results/qwen3_4b/steering/shuffled_aware.json.awareness.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 03:48:50]   50/298 done, 0 errors, 108,240 tokens, ~$0.42 this run
+[2026-09-04 03:48:56]   100/298 done, 0 errors, 219,247 tokens, ~$0.86 this run
+[2026-09-04 03:49:02]   150/298 done, 0 errors, 330,340 tokens, ~$1.31 this run
+[2026-09-04 03:49:08]   200/298 done, 0 errors, 439,992 tokens, ~$1.75 this run
+[2026-09-04 03:49:13]   250/298 done, 0 errors, 551,910 tokens, ~$2.18 this run
+[2026-09-04 03:49:19]   298/298 done, 1 errors, 668,346 tokens, ~$2.64 this run
+[2026-09-04 03:49:19] {"path": "/home/cutter/d10/results/qwen3_4b/steering/shuffled_aware.json.awareness.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 1, "prompt_tokens": 539200, "completion_tokens": 129146, "est_cost_usd": 2.6395}
+[2026-09-04 03:49:19] /home/cutter/d10/results/qwen3_4b/steering/unaware.json.awareness.jsonl: 298 jobs, 297 cached, 1 truncated (kept), 0 to run
+[2026-09-04 03:49:19] {"path": "/home/cutter/d10/results/qwen3_4b/steering/unaware.json.awareness.jsonl", "jobs": 298, "cached": 297, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 03:49:19] /home/cutter/d10/results/qwen3_4b/steering/unaware_strong.json.awareness.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 03:49:19] {"path": "/home/cutter/d10/results/qwen3_4b/steering/unaware_strong.json.awareness.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}

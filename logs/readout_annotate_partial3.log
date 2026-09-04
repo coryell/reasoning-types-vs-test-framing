@@ -1,0 +1,15 @@
+[2026-09-03 23:28:42] arms: ['aware', 'baseline', 'random_aware', 'unaware']
+[2026-09-03 23:28:42] /home/cutter/d10/results/qwen3_4b/steering/aware.json.annotations.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 23:28:42] {"path": "/home/cutter/d10/results/qwen3_4b/steering/aware.json.annotations.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 23:28:42] /home/cutter/d10/results/qwen3_4b/steering/baseline.json.annotations.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 23:28:42] {"path": "/home/cutter/d10/results/qwen3_4b/steering/baseline.json.annotations.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 23:28:42] /home/cutter/d10/results/qwen3_4b/steering/random_aware.json.annotations.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-03 23:28:56]   50/298 done, 0 errors, 52,126 tokens, ~$0.32 this run
+[2026-09-03 23:29:04]   100/298 done, 0 errors, 111,423 tokens, ~$0.69 this run
+[2026-09-03 23:29:15]   150/298 done, 0 errors, 164,613 tokens, ~$1.01 this run
+[2026-09-03 23:29:25]   200/298 done, 0 errors, 232,063 tokens, ~$1.44 this run
+[2026-09-03 23:29:34]   250/298 done, 0 errors, 299,389 tokens, ~$1.86 this run
+[2026-09-03 23:29:56]   298/298 done, 0 errors, 387,033 tokens, ~$2.42 this run
+[2026-09-03 23:29:56] {"path": "/home/cutter/d10/results/qwen3_4b/steering/random_aware.json.annotations.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 193729, "completion_tokens": 193304, "est_cost_usd": 2.4174}
+[2026-09-03 23:29:56] /home/cutter/d10/results/qwen3_4b/steering/unaware.json.annotations.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-03 23:29:56] {"path": "/home/cutter/d10/results/qwen3_4b/steering/unaware.json.annotations.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}

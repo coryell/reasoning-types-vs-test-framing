@@ -97,6 +97,16 @@ def main() -> None:
         pl = pd.DataFrame(m["per_layer"])
         pl.to_csv(args.root / "probe_per_layer.csv", index=False)
         parts.append(md(pl.iloc[::3], ["layer", "n_train", "n_test", "acc", "auroc", "sk_acc", "sk_auroc"]))
+    pool_rows = []
+    for pooling in ("span", "whole", "last"):
+        f = args.root / ("probe" if pooling == "span" else f"probe_{pooling}") / "probe_metrics.json"
+        if f.exists():
+            m = json.loads(f.read_text())
+            c = m["controls"]
+            pool_rows.append({"pooling": pooling, "best_layer": m["best_layer"], "acc": m["best_acc"], "auroc": m["best_auroc"], "shuffled_auroc": c.get("shuffled_auroc"), "layer0_auroc": c.get("layer0_auroc"), "n_pos": c.get("n_pos"), "n_neg": c.get("n_neg")})
+    if len(pool_rows) > 1:
+        parts.append("\n## Probe token-position ablation (their §4.2): span mean vs whole-reasoning mean vs last token\n")
+        parts.append(md(pd.DataFrame(pool_rows), ["pooling", "best_layer", "acc", "auroc", "shuffled_auroc", "layer0_auroc", "n_pos", "n_neg"]))
     geo = args.root / "geometry.json"
     if geo.exists():
         g = json.loads(geo.read_text())

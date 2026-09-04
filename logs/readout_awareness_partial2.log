@@ -1,0 +1,19 @@
+[2026-09-03 22:35:55] arms: ['aware', 'baseline', 'unaware']
+[2026-09-03 22:35:55] /home/cutter/d10/results/qwen3_4b/steering/aware.json.awareness.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-03 22:36:03]   50/298 done, 0 errors, 105,529 tokens, ~$0.42 this run
+[2026-09-03 22:36:09]   100/298 done, 0 errors, 220,809 tokens, ~$0.89 this run
+[2026-09-03 22:36:14]   150/298 done, 0 errors, 329,906 tokens, ~$1.32 this run
+[2026-09-03 22:36:20]   200/298 done, 0 errors, 442,422 tokens, ~$1.77 this run
+[2026-09-03 22:36:25]   250/298 done, 0 errors, 561,258 tokens, ~$2.22 this run
+[2026-09-03 22:36:30]   298/298 done, 2 errors, 677,755 tokens, ~$2.69 this run
+[2026-09-03 22:36:30] {"path": "/home/cutter/d10/results/qwen3_4b/steering/aware.json.awareness.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 2, "prompt_tokens": 545552, "completion_tokens": 132203, "est_cost_usd": 2.6859}
+[2026-09-03 22:36:30] /home/cutter/d10/results/qwen3_4b/steering/baseline.json.awareness.jsonl: 298 jobs, 297 cached, 1 truncated (kept), 0 to run
+[2026-09-03 22:36:30] {"path": "/home/cutter/d10/results/qwen3_4b/steering/baseline.json.awareness.jsonl", "jobs": 298, "cached": 297, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-03 22:36:30] /home/cutter/d10/results/qwen3_4b/steering/unaware.json.awareness.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-03 22:36:37]   50/298 done, 0 errors, 104,763 tokens, ~$0.41 this run
+[2026-09-03 22:36:42]   100/298 done, 0 errors, 216,890 tokens, ~$0.86 this run
+[2026-09-03 22:36:48]   150/298 done, 0 errors, 326,727 tokens, ~$1.30 this run
+[2026-09-03 22:36:52]   200/298 done, 0 errors, 439,869 tokens, ~$1.74 this run
+[2026-09-03 22:36:58]   250/298 done, 0 errors, 558,656 tokens, ~$2.19 this run
+[2026-09-03 22:37:06]   298/298 done, 1 errors, 670,722 tokens, ~$2.65 this run
+[2026-09-03 22:37:06] {"path": "/home/cutter/d10/results/qwen3_4b/steering/unaware.json.awareness.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 1, "prompt_tokens": 540498, "completion_tokens": 130224, "est_cost_usd": 2.6535}
