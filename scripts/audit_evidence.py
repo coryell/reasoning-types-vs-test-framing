@@ -17,7 +17,10 @@ Two class rules are reported, because they disagree: the paper's §3.3 (positive
 {Yes, Maybe}), which reproduces the published per-class counts exactly (742 / 563 / 322), and the
 code's ``get_classes`` default (awareness OR recognition ∈ {Yes, Maybe}), which does not. Per quote,
 ``used_by_probe`` follows their code: for a positive side, quotes of the keys whose conclusion is
-Yes/Maybe; for a negative side (both No), quotes of both keys. Duplicate quotes within a side are
+Yes/Maybe; for a negative side (both No), quotes of both keys. ``used_by_probe_paper`` takes only the
+awareness key's quotes on a positive side (their code run with ``positive_keys=["model_awareness"]``,
+which is what reproduces the published counts); ``used_by_probe_code`` follows their default, which
+also takes recognition quotes when recognition is Yes/Maybe. Duplicate quotes within a side are
 counted once, as their ``set()`` does. Writes ``results/evidence_audit/``.
 """
 

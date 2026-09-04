@@ -31,7 +31,7 @@ ORDER = ["baseline", "baseline_seed1", "unaware", "aware", "random_aware", "shuf
 def build_trace_table(steering_dir: Path, model_name: str) -> pd.DataFrame:
     rows = []
     for p in sorted(steering_dir.glob("*.json")):
-        if p.name.endswith((".gen.json", ".stats.json")):
+        if p.name.count(".") != 1:  # sidecars: .gen.json, .stats.json, .projections.json
             continue
         arm = p.stem
         side = json.loads(p.with_suffix(p.suffix + ".gen.json").read_text())
@@ -139,10 +139,17 @@ def main() -> None:
         parts.append(md(pd.DataFrame(rows), ["arm", "framing", "n", "exec_rate_closed", "exec_rate_all", "lost", "gained", "p_mcnemar", "verbalization", "closure", "repetition", "words"]))
         # morphology contrasts (reuse Tier 1 machinery): arm vs baseline paired by item
         contrasts = A.paired_contrasts(df, baseline="baseline")
+        two, by_class = A.flips(df, baseline="baseline")
+        two.to_csv(args.root / "steering_flips_2x2.csv", index=False)
+        by_class.to_csv(args.root / "steering_flips_by_class.csv", index=False)
         contrasts.to_csv(args.root / "steering_contrasts.csv", index=False)
         c = contrasts[contrasts.metric.isin(["density", "density_testlex", "density_nontest"]) & contrasts.behaviour.isin(["uncertainty-estimation", "deduction", "adding-knowledge", "backtracking"])] if not contrasts.empty else contrasts
         parts.append("\n## Morphology: Δ spans per 100 words vs baseline, paired by item\n")
         parts.append(md(c, ["framing", "arm", "n_pairs", "behaviour", "metric", "base_mean", "arm_mean", "delta", "ci_lo", "ci_hi", "p_paired_t"]))
+        if not by_class.empty:
+            bc = by_class[by_class.behaviour.isin(["uncertainty-estimation", "deduction", "backtracking"]) & by_class.flip_class.isin(["gained", "lost", "comply_both", "refuse_both"])]
+            parts.append("\n## Morphology Δ by compliance class (decision-change confound): `refuse_both` / `comply_both` hold the decision fixed\n")
+            parts.append(md(bc, ["framing", "arm", "flip_class", "n", "behaviour", "metric", "delta_density", "ci_lo", "ci_hi"]))
         # projections
         pcols = [c for c in df.columns if c.startswith("proj_")]
         if pcols:

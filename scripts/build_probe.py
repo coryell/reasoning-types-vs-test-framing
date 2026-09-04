@@ -13,7 +13,9 @@ layer-0 controls), ``probe_directions.pt`` (fc.weight[1] per layer; gitignored) 
 
 ``--pooling`` reproduces their token-position ablation (§4.2): ``span`` (default, average over the
 judge's evidence span — what the steering direction uses), ``whole`` (average over every reasoning
-token; one datapoint per side), ``last`` (the last reasoning token before ``</think>``). The last two
+token including the opening ``<think>``, excluding the closing ``</think>``; one datapoint per side),
+``last`` (the last reasoning token before ``</think>``). Traces longer than ``--max-len`` tokens are
+clipped for ``whole`` and dropped for ``last``; the count is logged. The last two
 test whether awareness is decodable away from the words the judge selected; if only ``span`` works,
 the probe reads the quote's vocabulary. Use a different ``--out-dir`` per pooling.
 """
@@ -90,11 +92,16 @@ def main() -> None:
             n_quotes_dropped += len([q for q in quotes if isinstance(q, str)]) - len(cspans)
             tspans = char_spans_to_token_spans(tok, text, cspans, add_special_tokens=True)
         else:
-            # the reasoning region: from the end of the chat-template prefix to the end of the text
-            prefix_len = len(text) - len(t.raw.rsplit("</think>", 1)[0].lower() + "</think>")
-            (rs, re_), = char_spans_to_token_spans(tok, text, [(prefix_len, len(text))], add_special_tokens=True) or [(0, 0)]
-            tspans = [(rs, re_)] if args.pooling == "whole" else [(max(rs, re_ - 1), re_)]
+            # the reasoning region: from the end of the chat-template prefix to just before the appended </think>
+            reasoning_lower = t.raw.rsplit("</think>", 1)[0].lower()
+            prefix_len = len(text) - len(reasoning_lower + "</think>")
+            (rs, re_), = char_spans_to_token_spans(tok, text, [(prefix_len, prefix_len + len(reasoning_lower))], add_special_tokens=True) or [(0, 0)]
+            tspans = [(rs, re_)] if args.pooling == "whole" else [(re_ - 1, re_)]  # 'last' = last reasoning token before </think>
             tspans = [s for s in tspans if s[1] > s[0]]
+            if tspans and tspans[0][1] > args.max_len:
+                n_clipped = locals().get("n_clipped", 0) + 1
+            else:
+                n_clipped = locals().get("n_clipped", 0)
         if not tspans:
             continue
         pooled = pooled_states(model, tok, text, tspans, add_special_tokens=True, max_len=args.max_len)
@@ -114,7 +121,7 @@ def main() -> None:
     X = torch.stack(feats)
     y = np.array(labels)
     g = np.array(groups)
-    log(f"features {tuple(X.shape)}; sides pos={n_pos} neg={n_neg}; spans pos={int(y.sum())} neg={int((1 - y).sum())}; quotes not relocated={n_quotes_dropped}")
+    log(f"features {tuple(X.shape)}; sides pos={n_pos} neg={n_neg}; spans pos={int(y.sum())} neg={int((1 - y).sum())}; quotes not relocated={n_quotes_dropped}; windows beyond max_len={locals().get('n_clipped', 0)}")
     torch.save({"X": X, "y": torch.tensor(y), "groups": torch.tensor(g)}, args.out_dir / "probe_features.pt")
     (args.out_dir / "probe_feature_ids.json").write_text(json.dumps(meta))
 

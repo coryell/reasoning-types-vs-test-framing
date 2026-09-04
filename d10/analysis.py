@@ -299,7 +299,7 @@ def sign_symmetry(contrasts: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def flips(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+def flips(df: pd.DataFrame, baseline: str = BASELINE) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Actions only: compliance 2×2 vs baseline (McNemar) and Δdensity by flip class.
 
     The 2×2 is over every item whose execution is known in both arms (the Table 4 population,
@@ -307,12 +307,12 @@ def flips(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     successfully in both arms.
     """
     two_by_two, by_class = [], []
-    known = df[df.family.str.startswith("actions") & df.executed.notna()]
+    known = df[df.family.str.contains("actions") & df.executed.notna()]
     for keys, sub in known.groupby(GROUP, sort=True):
-        base_all = sub[sub.arm == BASELINE].set_index("index")
+        base_all = sub[sub.arm == baseline].set_index("index")
         if base_all.empty:
             continue
-        for (arm, sa), arm_all in sub[sub.arm != BASELINE].groupby(["arm", "signed_alpha"]):
+        for (arm, sa), arm_all in sub[sub.arm != baseline].groupby(["arm", "signed_alpha"]):
             arm_all = arm_all.set_index("index")
             common = base_all.index.intersection(arm_all.index)
             if len(common) < MIN_N:

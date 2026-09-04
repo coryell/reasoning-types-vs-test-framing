@@ -42,7 +42,8 @@ def make_logger(path: Path):
 
 
 def arm_files(d: Path) -> list[Path]:
-    return [p for p in sorted(d.glob("*.json")) if not p.name.endswith(".gen.json") and not p.name.endswith(".stats.json")]
+    """Generation files only (``<arm>.json``); every sidecar has a second dot in its name."""
+    return [p for p in sorted(d.glob("*.json")) if p.name.count(".") == 1]
 
 
 def main() -> None:
@@ -76,10 +77,12 @@ def main() -> None:
         judge = Judge(concurrency=args.concurrency, max_tokens=2048, provider=args.provider)
         for p in arms:
             side = json.loads(p.with_suffix(p.suffix + ".gen.json").read_text())
-            traces = [t for t in load_generations(p, args.model_name, "steer_actions", p.stem, side.get("alpha", 0.0), bool(side.get("aware"))) if t.has_think_close]
+            traces = load_generations(p, args.model_name, "steer_actions", p.stem, side.get("alpha", 0.0), bool(side.get("aware")))
             jobs = []
             for t in traces:
-                r, a = abdelnabi_split(t.raw)
+                # unclosed traces are judged too (whole text as reasoning), the Tier M convention set in
+                # judge_awareness.py, so the sweep, the probe set and the main run share one population
+                r, a = abdelnabi_split(t.raw) if t.has_think_close else (t.raw, "")
                 jobs.append(Job(id=t.id, prompt=abdelnabi_judge_prompt(template, task=t.task, reasoning=r, answer=a), meta=t.meta(), json_mode=True))
             log(json.dumps(run_jobs(judge, jobs, p.with_suffix(p.suffix + ".awareness.jsonl"), log=log)))
 
