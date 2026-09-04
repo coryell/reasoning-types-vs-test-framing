@@ -105,3 +105,53 @@ shed so far 12
 [2026-09-04 07:46:46]   gen 298/298  64.4 min  eta 0.0 min  unfinished so far 12
 [2026-09-04 07:46:46] prompt_test: wrote /home/cutter/d10/results/qwen3_4b/followups/f1_prompt/prompt_test.json; closed </think> 289/298
 F1_DONE
+[2026-09-04 07:52:54] f2_uncertainty: task triggers, 60 items × ['real', 'hypothetical'], arms ['baseline', 'unc_all_pos', 'unc_all_neg', 'unc_nontest_pos', 'unc_nontest_neg', 'unc_testlex_pos', 'unc_testlex_neg']
+[2026-09-04 07:53:03] baseline: kind=none {}
+[2026-09-04 07:54:42]   gen 6/120  1.7 min  eta 31.4 min  unfinished so far 1
+[2026-09-04 07:56:19]   gen 12/120  3.3 min  eta 29.4 min  unfinished so far 4
+[2026-09-04 07:57:57]   gen 18/120  4.9 min  eta 27.8 min  unfinished so far 7
+[2026-09-04 07:59:35]   gen 24/120  6.5 min  eta 26.1 min  unfinished so far 9
+[2026-09-04 08:01:13]   gen 30/120  8.2 min  eta 24.5 min  unfinished so far 13
+[2026-09-04 08:02:51]   gen 36/120  9.8 min  eta 22.9 min  unfinished so far 16
+[2026-09-04 08:04:30]   gen 42/120  11.4 min  eta 21.3 min  unfinished so far 17
+[2026-09-04 08:06:10]   gen 48/120  13.1 min  eta 19.7 min  unfinished so far 18
+[2026-09-04 08:07:36]   gen 54/120  14.6 min  eta 17.8 min  unfinished so far 18
+[2026-09-04 08:09:16]   gen 60/120  16.2 min  eta 16.2 min  unfinished so far 19
+[2026-09-04 08:10:56]   gen 66/120  17.9 min  eta 14.6 min  unfinished so far 20
+[2026-09-04 08:12:37]   gen 72/120  19.6 min  eta 13.0 min  unfinished so far 21
+[2026-09-04 08:14:17]   gen 78/120  21.2 min  eta 11.4 min  unfinished so far 23
+[2026-09-04 08:15:57]   gen 84/120  22.9 min  eta 9.8 min  unfinished so far 26
+[2026-09-04 08:17:16]   gen 90/120  24.2 min  eta 8.1 min  unfinished so far 26
+[2026-09-04 08:18:57]   gen 96/120  25.9 min  eta 6.5 min  unfinished so far 29
+[2026-09-04 08:20:37]   gen 102/120  27.6 min  eta 4.9 min  unfinished so far 29
+[2026-09-04 08:22:19]   gen 108/120  29.3 min  eta 3.3 min  unfinished so far 30
+[2026-09-04 08:23:59]   gen 114/120  30.9 min  eta 1.6 min  unfinished so far 32
+[2026-09-04 08:25:10]   gen 120/120  32.1 min  eta 0.0 min  unfinished so far 32
+[2026-09-04 08:25:10] baseline: wrote /home/cutter/d10/results/qwen3_4b/followups/f2_uncertainty/baseline.json; closed </think> 114/120
+[2026-09-04 08:25:10] unc_all_pos: kind=residual_add {"vector_norm": 40.615848541259766, "layer": 18}
+[2026-09-04 08:26:51]   gen 6/120  1.7 min  eta 32.0 min  unfinished so far 6
+[2026-09-04 08:28:31]   gen 12/120  3.4 min  eta 30.2 min  unfinished so far 12
+[2026-09-04 08:30:12]   gen 18/120  5.0 min  eta 28.6 min  unfinished so far 18
+[2026-09-04 08:31:53]   gen 24/120  6.7 min  eta 26.9 min  unfinished so far 24
+[2026-09-04 08:33:34]   gen 30/120  8.4 min  eta 25.2 min  unfinished so far 30
+[2026-09-04 08:35:15]   gen 36/120  10.1 min  eta 23.5 min  unfinished so far 36
+[2026-09-04 08:36:56]   gen 42/120  11.8 min  eta 21.8 min  unfinished so far 42
+[2026-09-04 08:38:37]   gen 48/120  13.5 min  eta 20.2 min  unfinished so far 48
+[2026-09-04 08:40:17]   gen 54/120  15.1 min  eta 18.5 min  unfinished so far 54
+[2026-09-04 08:41:58]   gen 60/120  16.8 min  eta 16.8 min  unfinished so far 60
+[2026-09-04 08:43:39]   gen 66/120  18.5 min  eta 15.1 min  unfinished so far 66
+[2026-09-04 08:45:20]   gen 72/120  20.2 min  eta 13.4 min  unfinished so far 72
+[2026-09-04 08:47:00]   gen 78/120  21.8 min  eta 11.8 min  unfinished so far 78
+[2026-09-04 08:48:41]   gen 84/120  23.5 min  eta 10.1 min  unfinished so far 84
+[2026-09-04 08:50:23]   gen 90/120  25.2 min  eta 8.4 min  unfinished so far 90
+[2026-09-04 08:52:04]   gen 96/120  26.9 min  eta 6.7 min  unfinished so far 96
+[2026-09-04 08:54:05]   gen 102/120  28.9 min  eta 5.1 min  unfinished so far 102
+[2026-09-04 08:55:50]   gen 108/120  30.7 min  eta 3.4 min  unfinished so far 108
+[2026-09-04 08:57:36]   gen 114/120  32.4 min  eta 1.7 min  unfinished so far 114
+[2026-09-04 08:59:20]   gen 120/120  34.2 min  eta 0.0 min  unfinished so far 120
+[2026-09-04 08:59:20] unc_all_pos: wrote /home/cutter/d10/results/qwen3_4b/followups/f2_uncertainty/unc_all_pos.json; closed </think> 17/120
+[2026-09-04 08:59:20] unc_all_neg: kind=residual_add {"vector_norm": 40.615848541259766, "layer": 18}
+[2026-09-04 09:00:04] F2 halted: coefficient 1.0 uncertainty(+) degenerate (closure 17/120, repetition 0.90); calibrating coefficient
+[2026-09-04 09:22:12] f2_uncertainty: task triggers, 60 items × ['real', 'hypothetical'], arms ['baseline', 'unc_all_pos', 'unc_all_neg', 'unc_nontest_pos', 'unc_nontest_neg', 'unc_testlex_pos', 'unc_testlex_neg']
+[2026-09-04 09:22:27] baseline: exists, skipping
+[2026-09-04 09:22:27] unc_all_pos: kind=residual_add {"vector_norm": 10.153962135314941, "layer": 18}

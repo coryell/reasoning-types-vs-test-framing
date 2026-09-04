@@ -1,0 +1,40 @@
+[2026-09-04 09:00:44] f2_uncertainty: task triggers, 8 items × ['real', 'hypothetical'], arms ['unc_all_pos', 'unc_all_neg']
+[2026-09-04 09:01:00] unc_all_pos: kind=residual_add {"vector_norm": 20.307924270629883, "layer": 18}
+[2026-09-04 09:02:09]   gen 6/16  1.1 min  eta 1.9 min  unfinished so far 6
+[2026-09-04 09:03:15]   gen 12/16  2.2 min  eta 0.7 min  unfinished so far 12
+[2026-09-04 09:04:20]   gen 16/16  3.3 min  eta 0.0 min  unfinished so far 16
+[2026-09-04 09:04:20] unc_all_pos: wrote results/qwen3_4b/followups/coef_sweep/unc_0.5/unc_all_pos.json; closed </think> 2/16
+[2026-09-04 09:04:20] unc_all_neg: kind=residual_add {"vector_norm": 20.307924270629883, "layer": 18}
+[2026-09-04 09:05:27]   gen 6/16  1.1 min  eta 1.9 min  unfinished so far 5
+[2026-09-04 09:06:33]   gen 12/16  2.2 min  eta 0.7 min  unfinished so far 8
+[2026-09-04 09:07:39]   gen 16/16  3.3 min  eta 0.0 min  unfinished so far 12
+[2026-09-04 09:07:39] unc_all_neg: wrote results/qwen3_4b/followups/coef_sweep/unc_0.5/unc_all_neg.json; closed </think> 16/16
+[2026-09-04 09:07:49] f4_reverse: task actions, 8 items × ['real'], arms ['bt_pos', 'bt_neg']
+[2026-09-04 09:08:04] bt_pos: kind=residual_add {"vector_norm": 36.57005310058594, "layer": 23}
+[2026-09-04 09:09:12]   gen 6/8  1.1 min  eta 0.4 min  unfinished so far 5
+[2026-09-04 09:10:18]   gen 8/8  2.2 min  eta 0.0 min  unfinished so far 7
+[2026-09-04 09:10:18] bt_pos: wrote results/qwen3_4b/followups/coef_sweep/bt_0.5/bt_pos.json; closed </think> 1/8
+[2026-09-04 09:10:18] bt_neg: kind=residual_add {"vector_norm": 36.57005310058594, "layer": 23}
+[2026-09-04 09:10:43]   gen 6/8  0.4 min  eta 0.1 min  unfinished so far 0
+[2026-09-04 09:11:02]   gen 8/8  0.7 min  eta 0.0 min  unfinished so far 0
+[2026-09-04 09:11:02] bt_neg: wrote results/qwen3_4b/followups/coef_sweep/bt_0.5/bt_neg.json; closed </think> 8/8
+[2026-09-04 09:11:07] f2_uncertainty: task triggers, 8 items × ['real', 'hypothetical'], arms ['unc_all_pos', 'unc_all_neg']
+[2026-09-04 09:11:16] unc_all_pos: kind=residual_add {"vector_norm": 10.153962135314941, "layer": 18}
+[2026-09-04 09:12:25]   gen 6/16  1.1 min  eta 1.9 min  unfinished so far 5
+[2026-09-04 09:13:32]   gen 12/16  2.3 min  eta 0.8 min  unfinished so far 8
+[2026-09-04 09:14:40]   gen 16/16  3.4 min  eta 0.0 min  unfinished so far 10
+[2026-09-04 09:14:40] unc_all_pos: wrote results/qwen3_4b/followups/coef_sweep/unc_0.25/unc_all_pos.json; closed </think> 13/16
+[2026-09-04 09:14:40] unc_all_neg: kind=residual_add {"vector_norm": 10.153962135314941, "layer": 18}
+[2026-09-04 09:15:48]   gen 6/16  1.1 min  eta 1.9 min  unfinished so far 6
+[2026-09-04 09:16:56]   gen 12/16  2.3 min  eta 0.8 min  unfinished so far 8
+[2026-09-04 09:18:04]   gen 16/16  3.4 min  eta 0.0 min  unfinished so far 10
+[2026-09-04 09:18:04] unc_all_neg: wrote results/qwen3_4b/followups/coef_sweep/unc_0.25/unc_all_neg.json; closed </think> 15/16
+[2026-09-04 09:18:14] f4_reverse: task actions, 8 items × ['real'], arms ['bt_pos', 'bt_neg']
+[2026-09-04 09:18:28] bt_pos: kind=residual_add {"vector_norm": 18.28502655029297, "layer": 23}
+[2026-09-04 09:19:39]   gen 6/8  1.2 min  eta 0.4 min  unfinished so far 1
+[2026-09-04 09:20:34]   gen 8/8  2.1 min  eta 0.0 min  unfinished so far 1
+[2026-09-04 09:20:34] bt_pos: wrote results/qwen3_4b/followups/coef_sweep/bt_0.25/bt_pos.json; closed </think> 7/8
+[2026-09-04 09:20:34] bt_neg: kind=residual_add {"vector_norm": 18.28502655029297, "layer": 23}
+[2026-09-04 09:20:59]   gen 6/8  0.4 min  eta 0.1 min  unfinished so far 0
+[2026-09-04 09:21:27]   gen 8/8  0.9 min  eta 0.0 min  unfinished so far 0
+[2026-09-04 09:21:27] bt_neg: wrote results/qwen3_4b/followups/coef_sweep/bt_0.25/bt_neg.json; closed </think> 8/8
