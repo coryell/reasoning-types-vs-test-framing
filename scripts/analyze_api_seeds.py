@@ -40,13 +40,15 @@ def load(dirpath: Path, model_name: str, arm: str, tag: str) -> pd.DataFrame:
     rows = []
     for t in traces:
         a = ann.get(t.id)
-        rec = {"tag": tag, "index": t.index, "framing": t.framing, "executed": t.executed, "closed": t.has_think_close, "words": t.reasoning_words}
+        rec = {"tag": tag, "index": t.index, "framing": t.framing, "task": t.task, "executed": t.executed, "closed": t.has_think_close, "words": t.reasoning_words}
         j = aw.get(t.id)
         rec["verbal"] = is_positive(parse_judgment(j["text"])) if j and record_ok(j) else np.nan
         if a and record_ok(a):
             spans = parse_annotation(a["text"], t.reasoning)
             m = trace_metrics(spans, t.reasoning)
-            if m["n_spans_counted"] == 0:
+            if m["n_spans_counted"] == 0:  # judge failure: keep the trace for execution / words, no morphology
+                rec["ok"] = False
+                rows.append(rec)
                 continue
             rec.update({k: v for k, v in m.items() if k.startswith("density_") or k.startswith("n_") or k == "words"})
             counted = [s for s in spans if s.counted]
@@ -74,6 +76,7 @@ def compare(A: pd.DataFrame, B: pd.DataFrame, name: str, lines: list, cells: lis
         a = A[A.framing == fr].set_index("index"); b = B[B.framing == fr].set_index("index")
         idx = a.index.intersection(b.index)
         a, b = a.loc[idx], b.loc[idx]
+        assert (a.task == b.task).all(), "items are paired by index; the two arms enumerate different tasks"
         known = a.executed.notna() & b.executed.notna()
         ea, eb = a.executed[known].astype(bool), b.executed[known].astype(bool)
         lost, gained = int((ea & ~eb).sum()), int((~ea & eb).sum())

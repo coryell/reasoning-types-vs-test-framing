@@ -84,7 +84,7 @@ def span_texts(tok, generations: Path, judgments: Path, model_name: str, family:
         for cs, ce in cspans:
             idx = [i for i, (s, e) in enumerate(offsets) if e > cs and s < ce and e > s]
             if idx and min(idx[-1] + 1, T) > idx[0]:
-                kept.append(text[cs:ce])
+                kept.append((text[cs:ce], cs / max(len(text), 1)))
         out[tid] = kept
     return out
 
@@ -130,7 +130,19 @@ def main() -> None:
     keep = np.array([t is not None for t in row_text])
     X, y, ids = X[keep], y[keep], [t for t, k in zip(ids, keep) if k]
     row_text = [t for t in row_text if t is not None]
+    pos_rel = np.array([p for _, p in row_text]); row_text = [t for t, _ in row_text]
     norm = np.array([is_norm_span(t) for t in row_text]); test = np.array([is_test_span(t) for t in row_text])
+    # alignment check beyond counts: the re-derived awareness label per row must equal the cached y
+    side_label = {}
+    for tid in set(ids):
+        side_label[tid] = None
+    judged_labels = {}
+    for tid, rec in load_results(args.judgments).items():
+        if record_ok(rec):
+            j = parse_judgment(rec["text"]); judged_labels[tid] = 1 if is_positive(j) else (0 if is_negative(j) else None)
+    mism = sum(judged_labels.get(t) != int(yy) for t, yy in zip(ids, y))
+    print(f"row-label check: {mism} of {len(ids)} rows disagree with the re-derived awareness label", flush=True)
+    assert mism == 0
     proc = np.array([bool(PROC_LEXICON.search(t)) for t in row_text])
     neg = y == 0
     n_layers = X.shape[1]
@@ -152,11 +164,39 @@ def main() -> None:
         # shuffled-norm-label null within negatives
         shuf = []
         idx_neg = np.where(neg)[0]
-        for s in range(20):
+        for s in range(200):
             lab = rng.permutation(norm[idx_neg])
             d = Xk[idx_neg][lab].mean(0) - Xk[idx_neg][~lab].mean(0)
             shuf.append(cos(aw_md, d))
+        # cosines after removing the top-m principal components of the negative-class spans: the shared
+        # high-variance subspace that any "subset vs rest" contrast loads on (reviewer's check, 4 Sep)
+        Xn = Xk[neg] - Xk[neg].mean(0)
+        _, S, Vt = np.linalg.svd(Xn, full_matrices=False)
+        pc_rows = {}
+        for m_pcs in (1, 2, 5, 10, 20, 50):
+            P = Vt[:m_pcs]
+            strip = lambda v: v - P.T @ (P @ v)
+            pc_rows[f"cos_awMD_normMD_minus{m_pcs}pc"] = cos(strip(aw_md), strip(norm_md))
+            pc_rows[f"cos_awW1_normMD_minus{m_pcs}pc"] = cos(strip(aw_w1), strip(norm_md)) if aw_w1 is not None else math.nan
+            pc_rows[f"cos_awMD_testMD_minus{m_pcs}pc"] = cos(strip(aw_md), strip(test_md))
+        pc_rows["neg_var_top5pc"] = float((S[:5] ** 2).sum() / (S ** 2).sum())
+        P5 = Vt[:5]
+        strip5 = lambda v: v - P5.T @ (P5 @ v)
+        # position-matched null: shuffle norm labels within bins of relative span position in the trace
+        pos_null, pos_null5 = [], []
+        if pos_rel is not None:
+            bins = np.digitize(pos_rel[idx_neg], np.quantile(pos_rel[idx_neg], [0.2, 0.4, 0.6, 0.8]))
+            for s in range(200):
+                lab = norm[idx_neg].copy()
+                for bnum in np.unique(bins):
+                    sel = np.where(bins == bnum)[0]
+                    lab[sel] = rng.permutation(lab[sel])
+                d = Xk[idx_neg][lab].mean(0) - Xk[idx_neg][~lab].mean(0)
+                pos_null.append(cos(aw_md, d))
+                pos_null5.append(cos(strip5(aw_md), strip5(d)))
         row = {"hs_index": k, "cos_awW1_normMD": cos(aw_w1, norm_md) if aw_w1 is not None else math.nan, "cos_awMD_normMD": cos(aw_md, norm_md),
+               **pc_rows, "posmatched_null_mean": float(np.mean(pos_null)) if pos_null else math.nan, "posmatched_null_sd": float(np.std(pos_null)) if pos_null else math.nan,
+               "posmatched_null5pc_mean": float(np.mean(pos_null5)) if pos_null5 else math.nan, "posmatched_null5pc_sd": float(np.std(pos_null5)) if pos_null5 else math.nan,
                "cos_awW1_testMD": cos(aw_w1, test_md) if aw_w1 is not None else math.nan, "cos_awMD_testMD": cos(aw_md, test_md),
                "cos_normMD_testMD": cos(norm_md, test_md), "shuffled_mean": float(np.mean(shuf)), "shuffled_sd": float(np.std(shuf)),
                "cos_awMD_random": cos(aw_md, rand_unit), "cos_normMD_random": cos(norm_md, rand_unit),
@@ -165,6 +205,7 @@ def main() -> None:
         if (norm & (y == 1)).sum() >= 10:
             norm_md_pos = Xk[(y == 1) & norm].mean(0) - Xk[(y == 1) & ~norm].mean(0)
             row["cos_awMD_normMD_withinPos"] = cos(aw_md, norm_md_pos)
+            row["cos_awMD_normMD_withinPos_minus5pc"] = cos(strip5(aw_md), strip5(norm_md_pos))
             row["cos_normMD_normMD_withinPos"] = cos(norm_md, norm_md_pos)
         if k >= 1:
             for b in BEHAVIOURS:
@@ -200,7 +241,7 @@ def main() -> None:
             row["z_cos_awLR_testLR"] = cos(lr_aw.coef_[0], lr_test_z.coef_[0])
             row["z_cos_normLR_testLR"] = cos(lr_norm_z.coef_[0], lr_test_z.coef_[0])
         rows.append(row)
-        print(f"hs {k:2d}: cos(aw_w1, norm) {row['cos_awW1_normMD']:+.3f}  cos(aw_md, norm) {row['cos_awMD_normMD']:+.3f}  "
+        print(f"hs {k:2d}: w1·norm {row['cos_awW1_normMD']:+.3f} (−5pc {row['cos_awW1_normMD_minus5pc']:+.3f}, −20pc {row['cos_awW1_normMD_minus20pc']:+.3f})  md·norm {row['cos_awMD_normMD']:+.3f} (−1pc {row['cos_awMD_normMD_minus1pc']:+.3f}, −5pc {row['cos_awMD_normMD_minus5pc']:+.3f}, −20pc {row['cos_awMD_normMD_minus20pc']:+.3f}; md·test −5pc {row['cos_awMD_testMD_minus5pc']:+.3f})  pos-null {row['posmatched_null_mean']:+.3f}±{row['posmatched_null_sd']:.3f} (−5pc {row['posmatched_null5pc_mean']:+.3f}±{row['posmatched_null5pc_sd']:.3f})  top5pc var {row['neg_var_top5pc']:.2f}  "
               f"shuffled {row['shuffled_mean']:+.3f}±{row['shuffled_sd']:.3f}  cos(aw, test) {row['cos_awMD_testMD']:+.3f}  cos(norm, test) {row['cos_normMD_testMD']:+.3f}"
               + f"  | z-space md {row['z_cos_awMD_normMD']:+.3f} (null {row['z_shuffled_mean']:+.3f}±{row['z_shuffled_sd']:.3f}, aw·test {row['z_cos_awMD_testMD']:+.3f}) | proc: aw·proc raw {row['cos_awMD_procMD']:+.3f} z {row['z_cos_awMD_procMD']:+.3f}, norm·proc z {row['z_cos_normMD_procMD']:+.3f}"
               + (f"  LR raw {row['cos_awMD_normLR']:+.3f}; z LR·LR aw·norm {row['z_cos_awLR_normLR']:+.3f} aw·test {row['z_cos_awLR_testLR']:+.3f} norm·test {row['z_cos_normLR_testLR']:+.3f}" if "cos_awMD_normLR" in row else ""), flush=True)
@@ -214,6 +255,8 @@ def main() -> None:
     import matplotlib.pyplot as plt
     fig, ax = plt.subplots(figsize=(9, 4.5))
     ks = [r["hs_index"] for r in rows]
+    ax.plot(ks, [r["cos_awMD_normMD_minus5pc"] for r in rows], "d-", color="k", label="awareness · norm after removing top-5 PCs of the negatives")
+    ax.plot(ks, [r["cos_awW1_normMD_minus5pc"] for r in rows], "d--", color="gray", label="probe row w1 · norm after removing top-5 PCs")
     ax.plot(ks, [r["cos_awMD_normMD"] for r in rows], "o-", label="awareness (mean-diff) · norm (within negatives)")
     ax.plot(ks, [r["cos_awW1_normMD"] for r in rows], "s--", label="awareness (probe row w1) · norm")
     ax.plot(ks, [r["cos_awMD_testMD"] for r in rows], "^-", label="awareness · test-lexicon direction (reference)")
@@ -229,15 +272,16 @@ def main() -> None:
     rb = next(r for r in rows if r["hs_index"] == best)
     lines = [f"# Norm direction vs awareness direction (Qwen3-4B, cached probe-set span features)", "",
              f"Generated by `scripts/norm_direction_geometry.py`. Rows {len(X)} spans ({int(y.sum())} awareness-positive); norm-span share {norm[y == 1].mean():.2f} in positives, {norm[neg].mean():.2f} in negatives. "
-             f"Norm direction = mean(norm spans) − mean(other spans) **within the negative class**. Chance |cos| at d = 2560 ≈ {1 / math.sqrt(X.shape[2]):.3f}.", "",
+             f"Norm direction = mean(norm spans) − mean(other spans) **within the negative class**. The reference is the shuffled-label null, not 1/√d: random partitions of these spans reach |cos| ≈ 0.2 because a few principal components dominate the space (top-5 share of negative-class variance at hs {best}: {rb['neg_var_top5pc']:.2f}).", "",
              f"At the probe's layer (hs {best}): cos(awareness w1, norm) = {rb['cos_awW1_normMD']:+.3f}; cos(awareness mean-diff, norm) = {rb['cos_awMD_normMD']:+.3f}; "
              f"shuffled-label null {rb['shuffled_mean']:+.3f} ± {rb['shuffled_sd']:.3f}; cos(awareness, test-lexicon direction) = {rb['cos_awMD_testMD']:+.3f}; cos(norm, test-lexicon) = {rb['cos_normMD_testMD']:+.3f}; "
              f"random unit vector {rb['cos_awMD_random']:+.3f}.", "",
-             "| hs | aw_w1·norm | aw_md·norm | shuffled null | aw·test | norm·test | z: aw·norm | z: null | z: aw·test | z LR·LR aw·norm | aw_md·normLR | " + " | ".join(f"norm·{b}" for b in BEHAVIOURS) + " |",
-             "|---|---|---|---|---|---|---|---|---|---|---|" + "---|" * len(BEHAVIOURS)]
+             "Columns: w1 = the trained probe row (the steering direction); md = mean-difference awareness direction; −m pc = after projecting out the top-m principal components of the negative-class spans; null = shuffled norm labels (200 draws), pos-null = shuffled within relative-position quintiles; within-pos = norm direction built inside the positive class instead.", "",
+             "| hs | w1·norm | w1·norm −5pc | md·norm | md·norm −1pc | −5pc | −20pc | null | pos-null | pos-null −5pc | md·test −5pc | within-pos md·norm | within-pos −5pc | z LR·LR aw·norm | " + " | ".join(f"norm·{b}" for b in BEHAVIOURS) + " |",
+             "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|" + "---|" * len(BEHAVIOURS)]
     for r in rows:
-        lines.append(f"| {r['hs_index']} | {r['cos_awW1_normMD']:+.3f} | {r['cos_awMD_normMD']:+.3f} | {r['shuffled_mean']:+.3f}±{r['shuffled_sd']:.3f} | {r['cos_awMD_testMD']:+.3f} | {r['cos_normMD_testMD']:+.3f} | {r['z_cos_awMD_normMD']:+.3f} | {r['z_shuffled_mean']:+.3f}±{r['z_shuffled_sd']:.3f} | {r['z_cos_awMD_testMD']:+.3f} | "
-                     + (f"{r['z_cos_awLR_normLR']:+.3f}" if "z_cos_awLR_normLR" in r else "—") + " | " + (f"{r['cos_awMD_normLR']:+.3f}" if "cos_awMD_normLR" in r else "—") + " | " + " | ".join(f"{r[f'cos_normMD_{b}']:+.3f}" if f"cos_normMD_{b}" in r else "—" for b in BEHAVIOURS) + " |")
+        lines.append(f"| {r['hs_index']} | {r['cos_awW1_normMD']:+.3f} | {r['cos_awW1_normMD_minus5pc']:+.3f} | {r['cos_awMD_normMD']:+.3f} | {r['cos_awMD_normMD_minus1pc']:+.3f} | {r['cos_awMD_normMD_minus5pc']:+.3f} | {r['cos_awMD_normMD_minus20pc']:+.3f} | {r['shuffled_mean']:+.3f}±{r['shuffled_sd']:.3f} | {r['posmatched_null_mean']:+.3f}±{r['posmatched_null_sd']:.3f} | {r['posmatched_null5pc_mean']:+.3f}±{r['posmatched_null5pc_sd']:.3f} | {r['cos_awMD_testMD_minus5pc']:+.3f} | "
+                     + (f"{r['cos_awMD_normMD_withinPos']:+.3f}" if "cos_awMD_normMD_withinPos" in r else "—") + " | " + (f"{r['cos_awMD_normMD_withinPos_minus5pc']:+.3f}" if "cos_awMD_normMD_withinPos_minus5pc" in r else "—") + " | " + (f"{r['z_cos_awLR_normLR']:+.3f}" if "z_cos_awLR_normLR" in r else "—") + " | " + " | ".join(f"{r[f'cos_normMD_{b}']:+.3f}" if f"cos_normMD_{b}" in r else "—" for b in BEHAVIOURS) + " |")
     (args.out_dir / "SUMMARY.md").write_text("\n".join(lines) + "\n")
     print(f"wrote {args.out_dir}")
 

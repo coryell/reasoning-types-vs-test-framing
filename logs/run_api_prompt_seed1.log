@@ -1,0 +1,29 @@
+[2026-09-04 14:29:22] qwen3_32b_api_seed1: 149 items × ['real', 'fake'] × ['baseline', 'prompt_test']; cached 0
+[2026-09-04 14:29:22] 596 generations to run
+[2026-09-04 14:30:43]   25/596 done in 1.3 min; usable 25; errors this run 0
+[2026-09-04 14:32:03]   50/596 done in 2.7 min; usable 50; errors this run 0
+[2026-09-04 14:33:16]   75/596 done in 3.9 min; usable 75; errors this run 0
+[2026-09-04 14:34:16]   100/596 done in 4.9 min; usable 100; errors this run 0
+[2026-09-04 14:35:27]   125/596 done in 6.1 min; usable 125; errors this run 0
+[2026-09-04 14:36:39]   150/596 done in 7.3 min; usable 150; errors this run 0
+[2026-09-04 14:38:02]   175/596 done in 8.7 min; usable 175; errors this run 0
+[2026-09-04 14:39:10]   200/596 done in 9.8 min; usable 200; errors this run 0
+[2026-09-04 14:40:17]   225/596 done in 10.9 min; usable 225; errors this run 0
+[2026-09-04 14:41:43]   250/596 done in 12.3 min; usable 250; errors this run 0
+[2026-09-04 14:42:50]   275/596 done in 13.5 min; usable 275; errors this run 0
+[2026-09-04 14:44:00]   300/596 done in 14.6 min; usable 300; errors this run 0
+[2026-09-04 14:45:08]   325/596 done in 15.8 min; usable 325; errors this run 0
+[2026-09-04 14:46:12]   350/596 done in 16.8 min; usable 350; errors this run 0
+[2026-09-04 14:47:46]   375/596 done in 18.4 min; usable 375; errors this run 0
+[2026-09-04 14:48:50]   400/596 done in 19.5 min; usable 400; errors this run 0
+[2026-09-04 14:50:47]   425/596 done in 21.4 min; usable 425; errors this run 0
+[2026-09-04 14:52:23]   450/596 done in 23.0 min; usable 450; errors this run 0
+[2026-09-04 14:53:46]   475/596 done in 24.4 min; usable 475; errors this run 0
+[2026-09-04 14:55:06]   500/596 done in 25.7 min; usable 500; errors this run 0
+[2026-09-04 14:56:10]   525/596 done in 26.8 min; usable 525; errors this run 0
+[2026-09-04 14:57:04]   550/596 done in 27.7 min; usable 550; errors this run 0
+[2026-09-04 14:58:00]   575/596 done in 28.6 min; usable 575; errors this run 0
+[2026-09-04 15:01:13]   596/596 done in 31.8 min; usable 596; errors this run 0
+[2026-09-04 15:01:13] baseline: wrote /home/cutter/d10_copy/results/api_prompt/qwen3_32b_api_seed1/baseline.json; closed </think> 298/298; missing 0; no reasoning returned 0
+[2026-09-04 15:01:13] prompt_test: wrote /home/cutter/d10_copy/results/api_prompt/qwen3_32b_api_seed1/prompt_test.json; closed </think> 297/298; missing 0; no reasoning returned 0
+GEN_DONE
