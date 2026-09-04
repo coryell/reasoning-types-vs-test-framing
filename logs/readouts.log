@@ -371,3 +371,29 @@
 [2026-09-04 06:19:05]   unaware_strong: 200 projections
 [2026-09-04 06:19:15]   unaware_strong: 250 projections
 [2026-09-04 06:19:22] unaware_strong: wrote 298 projections
+[2026-09-04 07:48:20] arms: ['prompt_test']
+[2026-09-04 07:48:20] results/qwen3_4b/followups/f1_prompt/prompt_test.json.annotations.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 07:48:39]   50/298 done, 0 errors, 50,033 tokens, ~$0.30 this run
+[2026-09-04 07:48:50]   100/298 done, 0 errors, 106,646 tokens, ~$0.65 this run
+[2026-09-04 07:49:03]   150/298 done, 0 errors, 164,821 tokens, ~$1.01 this run
+[2026-09-04 07:49:18]   200/298 done, 0 errors, 223,771 tokens, ~$1.38 this run
+[2026-09-04 07:49:33]   250/298 done, 0 errors, 287,547 tokens, ~$1.78 this run
+[2026-09-04 07:50:00]   298/298 done, 0 errors, 385,560 tokens, ~$2.41 this run
+[2026-09-04 07:50:00] {"path": "results/qwen3_4b/followups/f1_prompt/prompt_test.json.annotations.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 192456, "completion_tokens": 193104, "est_cost_usd": 2.4122}
+[2026-09-04 07:50:06] arms: ['prompt_test']
+[2026-09-04 07:50:06] results/qwen3_4b/followups/f1_prompt/prompt_test.json.awareness.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 07:50:20]   50/298 done, 0 errors, 105,855 tokens, ~$0.42 this run
+[2026-09-04 07:50:29]   100/298 done, 0 errors, 220,317 tokens, ~$0.88 this run
+[2026-09-04 07:50:40]   150/298 done, 0 errors, 332,095 tokens, ~$1.32 this run
+[2026-09-04 07:50:50]   200/298 done, 0 errors, 444,751 tokens, ~$1.77 this run
+[2026-09-04 07:50:59]   250/298 done, 1 errors, 564,596 tokens, ~$2.25 this run
+[2026-09-04 07:51:14]   298/298 done, 1 errors, 677,591 tokens, ~$2.69 this run
+[2026-09-04 07:51:14] {"path": "results/qwen3_4b/followups/f1_prompt/prompt_test.json.awareness.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 1, "prompt_tokens": 544529, "completion_tokens": 133062, "est_cost_usd": 2.6919}
+[2026-09-04 07:51:20] arms: ['prompt_test']
+[2026-09-04 07:51:36] prompt_test: condition prompt {}
+[2026-09-04 07:51:45]   prompt_test: 50 projections
+[2026-09-04 07:51:52]   prompt_test: 100 projections
+[2026-09-04 07:51:59]   prompt_test: 150 projections
+[2026-09-04 07:52:07]   prompt_test: 200 projections
+[2026-09-04 07:52:16]   prompt_test: 250 projections
+[2026-09-04 07:52:25] prompt_test: wrote 298 projections
