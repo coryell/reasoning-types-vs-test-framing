@@ -397,3 +397,85 @@
 [2026-09-04 07:52:07]   prompt_test: 200 projections
 [2026-09-04 07:52:16]   prompt_test: 250 projections
 [2026-09-04 07:52:25] prompt_test: wrote 298 projections
+[2026-09-04 12:33:34] arms: ['baseline', 'prompt_test']
+[2026-09-04 12:33:34] results/api_prompt/qwen3_32b_api/baseline.json.annotations.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 12:33:34] {"path": "results/api_prompt/qwen3_32b_api/baseline.json.annotations.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 12:33:34] results/api_prompt/qwen3_32b_api/prompt_test.json.annotations.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 12:33:34] {"path": "results/api_prompt/qwen3_32b_api/prompt_test.json.annotations.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 12:33:40] arms: ['baseline', 'prompt_test']
+[2026-09-04 12:33:40] results/api_prompt/qwen3_32b_api/baseline.json.awareness.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 12:33:40] {"path": "results/api_prompt/qwen3_32b_api/baseline.json.awareness.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 12:33:40] results/api_prompt/qwen3_32b_api/prompt_test.json.awareness.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 12:33:40] {"path": "results/api_prompt/qwen3_32b_api/prompt_test.json.awareness.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 12:47:51] arms: ['baseline', 'unc_all_neg', 'unc_all_pos', 'unc_nontest_neg', 'unc_nontest_pos', 'unc_testlex_neg', 'unc_testlex_pos']
+[2026-09-04 12:47:51] results/qwen3_4b/followups/f2_uncertainty/baseline.json.annotations.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:48:21]   50/120 done, 0 errors, 76,897 tokens, ~$0.49 this run
+[2026-09-04 12:48:38]   100/120 done, 0 errors, 161,875 tokens, ~$1.04 this run
+[2026-09-04 12:48:53]   120/120 done, 0 errors, 207,202 tokens, ~$1.33 this run
+[2026-09-04 12:48:53] {"path": "results/qwen3_4b/followups/f2_uncertainty/baseline.json.annotations.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 98512, "completion_tokens": 108690, "est_cost_usd": 1.3332}
+[2026-09-04 12:48:53] results/qwen3_4b/followups/f2_uncertainty/unc_all_neg.json.annotations.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:49:09]   50/120 done, 0 errors, 67,497 tokens, ~$0.42 this run
+[2026-09-04 12:49:23]   100/120 done, 0 errors, 140,375 tokens, ~$0.88 this run
+[2026-09-04 12:49:37]   120/120 done, 0 errors, 185,817 tokens, ~$1.18 this run
+[2026-09-04 12:49:37] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_all_neg.json.annotations.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 90535, "completion_tokens": 95282, "est_cost_usd": 1.1792}
+[2026-09-04 12:49:37] results/qwen3_4b/followups/f2_uncertainty/unc_all_pos.json.annotations.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:49:58]   50/120 done, 0 errors, 84,351 tokens, ~$0.54 this run
+[2026-09-04 12:50:22]   100/120 done, 0 errors, 192,858 tokens, ~$1.25 this run
+[2026-09-04 12:50:36]   120/120 done, 0 errors, 238,024 tokens, ~$1.55 this run
+[2026-09-04 12:50:36] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_all_pos.json.annotations.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 110406, "completion_tokens": 127618, "est_cost_usd": 1.5522}
+[2026-09-04 12:50:36] results/qwen3_4b/followups/f2_uncertainty/unc_nontest_neg.json.annotations.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:50:50]   50/120 done, 0 errors, 66,454 tokens, ~$0.42 this run
+[2026-09-04 12:51:02]   100/120 done, 0 errors, 143,350 tokens, ~$0.90 this run
+[2026-09-04 12:51:16]   120/120 done, 0 errors, 187,130 tokens, ~$1.19 this run
+[2026-09-04 12:51:16] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_nontest_neg.json.annotations.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 90892, "completion_tokens": 96238, "est_cost_usd": 1.1896}
+[2026-09-04 12:51:16] results/qwen3_4b/followups/f2_uncertainty/unc_nontest_pos.json.annotations.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:51:34]   50/120 done, 0 errors, 80,508 tokens, ~$0.52 this run
+[2026-09-04 12:51:49]   100/120 done, 0 errors, 184,707 tokens, ~$1.20 this run
+[2026-09-04 12:52:02]   120/120 done, 0 errors, 232,589 tokens, ~$1.51 this run
+[2026-09-04 12:52:02] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_nontest_pos.json.annotations.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 108298, "completion_tokens": 124291, "est_cost_usd": 1.5137}
+[2026-09-04 12:52:02] results/qwen3_4b/followups/f2_uncertainty/unc_testlex_neg.json.annotations.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:52:22]   50/120 done, 0 errors, 58,498 tokens, ~$0.36 this run
+[2026-09-04 12:52:33]   100/120 done, 0 errors, 123,684 tokens, ~$0.77 this run
+[2026-09-04 12:52:53]   120/120 done, 0 errors, 162,106 tokens, ~$1.02 this run
+[2026-09-04 12:52:53] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_testlex_neg.json.annotations.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 79647, "completion_tokens": 82459, "est_cost_usd": 1.0237}
+[2026-09-04 12:52:53] results/qwen3_4b/followups/f2_uncertainty/unc_testlex_pos.json.annotations.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:53:16]   50/120 done, 0 errors, 111,514 tokens, ~$0.73 this run
+[2026-09-04 12:53:35]   100/120 done, 0 errors, 232,551 tokens, ~$1.53 this run
+[2026-09-04 12:53:54]   120/120 done, 0 errors, 290,839 tokens, ~$1.91 this run
+[2026-09-04 12:53:54] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_testlex_pos.json.annotations.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 132638, "completion_tokens": 158201, "est_cost_usd": 1.9136}
+[2026-09-04 12:54:00] arms: ['baseline', 'unc_all_neg', 'unc_all_pos', 'unc_nontest_neg', 'unc_nontest_pos', 'unc_testlex_neg', 'unc_testlex_pos']
+[2026-09-04 12:54:00] results/qwen3_4b/followups/f2_uncertainty/baseline.json.awareness.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:54:10]   50/120 done, 0 errors, 136,062 tokens, ~$0.49 this run
+[2026-09-04 12:54:17]   100/120 done, 0 errors, 273,570 tokens, ~$0.98 this run
+[2026-09-04 12:54:20]   120/120 done, 0 errors, 328,152 tokens, ~$1.18 this run
+[2026-09-04 12:54:20] {"path": "results/qwen3_4b/followups/f2_uncertainty/baseline.json.awareness.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 279782, "completion_tokens": 48370, "est_cost_usd": 1.1832}
+[2026-09-04 12:54:20] results/qwen3_4b/followups/f2_uncertainty/unc_all_neg.json.awareness.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:54:30]   50/120 done, 0 errors, 133,332 tokens, ~$0.48 this run
+[2026-09-04 12:54:36]   100/120 done, 0 errors, 267,434 tokens, ~$0.96 this run
+[2026-09-04 12:54:42]   120/120 done, 0 errors, 326,590 tokens, ~$1.18 this run
+[2026-09-04 12:54:42] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_all_neg.json.awareness.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 278446, "completion_tokens": 48144, "est_cost_usd": 1.1776}
+[2026-09-04 12:54:42] results/qwen3_4b/followups/f2_uncertainty/unc_all_pos.json.awareness.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:54:51]   50/120 done, 0 errors, 133,425 tokens, ~$0.48 this run
+[2026-09-04 12:54:57]   100/120 done, 0 errors, 272,593 tokens, ~$0.97 this run
+[2026-09-04 12:55:02]   120/120 done, 0 errors, 327,643 tokens, ~$1.17 this run
+[2026-09-04 12:55:02] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_all_pos.json.awareness.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 281131, "completion_tokens": 46512, "est_cost_usd": 1.1679}
+[2026-09-04 12:55:02] results/qwen3_4b/followups/f2_uncertainty/unc_nontest_neg.json.awareness.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:55:11]   50/120 done, 0 errors, 137,024 tokens, ~$0.49 this run
+[2026-09-04 12:55:19]   100/120 done, 0 errors, 272,579 tokens, ~$0.99 this run
+[2026-09-04 12:55:23]   120/120 done, 0 errors, 329,040 tokens, ~$1.19 this run
+[2026-09-04 12:55:23] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_nontest_neg.json.awareness.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 279475, "completion_tokens": 49565, "est_cost_usd": 1.1943}
+[2026-09-04 12:55:23] results/qwen3_4b/followups/f2_uncertainty/unc_nontest_pos.json.awareness.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:55:34]   50/120 done, 0 errors, 134,555 tokens, ~$0.48 this run
+[2026-09-04 12:55:42]   100/120 done, 0 errors, 274,226 tokens, ~$0.98 this run
+[2026-09-04 12:55:44]   120/120 done, 0 errors, 327,772 tokens, ~$1.17 this run
+[2026-09-04 12:55:44] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_nontest_pos.json.awareness.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 280986, "completion_tokens": 46786, "est_cost_usd": 1.1703}
+[2026-09-04 12:55:44] results/qwen3_4b/followups/f2_uncertainty/unc_testlex_neg.json.awareness.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:55:54]   50/120 done, 0 errors, 127,671 tokens, ~$0.47 this run
+[2026-09-04 12:56:01]   100/120 done, 0 errors, 255,527 tokens, ~$0.95 this run
+[2026-09-04 12:56:05]   120/120 done, 0 errors, 307,162 tokens, ~$1.15 this run
+[2026-09-04 12:56:05] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_testlex_neg.json.awareness.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 256432, "completion_tokens": 50730, "est_cost_usd": 1.1484}
+[2026-09-04 12:56:05] results/qwen3_4b/followups/f2_uncertainty/unc_testlex_pos.json.awareness.jsonl: 120 jobs, 0 cached, 0 truncated (kept), 120 to run
+[2026-09-04 12:56:15]   50/120 done, 0 errors, 146,675 tokens, ~$0.51 this run
+[2026-09-04 12:56:22]   100/120 done, 0 errors, 295,319 tokens, ~$1.04 this run
+[2026-09-04 12:56:26]   120/120 done, 0 errors, 353,340 tokens, ~$1.24 this run
+[2026-09-04 12:56:26] {"path": "results/qwen3_4b/followups/f2_uncertainty/unc_testlex_pos.json.awareness.jsonl", "jobs": 120, "cached": 0, "truncated_kept": 0, "run": 120, "errors": 0, "prompt_tokens": 305461, "completion_tokens": 47879, "est_cost_usd": 1.2424}
