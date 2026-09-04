@@ -18,7 +18,8 @@ import pandas as pd
 
 from d10 import analysis as A
 from d10 import parse
-from d10.awareness import is_positive, parse_judgment
+from d10.awareness import conclusion, is_positive, parse_judgment
+from d10.conditions import condition_from_sidecar
 from d10.judge import load_results, record_ok
 from d10.parse import LABELS
 from d10.shipped import execution_rate, load_generations
@@ -28,22 +29,27 @@ ROOT = REPO / "results" / "qwen3_4b"
 ORDER = ["baseline", "baseline_seed1", "unaware", "aware", "unaware_strong", "aware_strong", "random_aware", "shuffled_aware", "random_samerows_aware", "shuffled_samerows_aware"]
 
 
-def build_trace_table(steering_dir: Path, model_name: str) -> pd.DataFrame:
+def arm_files(d: Path) -> list[Path]:
+    return [p for p in sorted(d.glob("*.json")) if p.name.count(".") == 1]  # sidecars have a second dot
+
+
+def build_trace_table(files: list[Path], model_name: str, family: str | None = None) -> pd.DataFrame:
+    """``family`` overrides the sidecar's label (legacy sidecars have none: steer_actions)."""
     rows = []
-    for p in sorted(steering_dir.glob("*.json")):
-        if p.name.count(".") != 1:  # sidecars: .gen.json, .stats.json, .projections.json
-            continue
+    for p in files:
         arm = p.stem
         side = json.loads(p.with_suffix(p.suffix + ".gen.json").read_text())
-        alpha, aware = side.get("alpha", 0.0), bool(side.get("aware"))
+        fam = family or side.get("family") or "steer_actions"
+        cond = condition_from_sidecar(p, side)
+        alpha, aware = cond.signed
         ann = load_results(p.with_suffix(p.suffix + ".annotations.jsonl"))
         aw = load_results(p.with_suffix(p.suffix + ".awareness.jsonl"))
         projf = p.with_suffix(p.suffix + ".projections.json")
         proj = {r["id"]: r for r in json.loads(projf.read_text())["rows"]} if projf.exists() else {}
-        for t in load_generations(p, model_name, "steer_actions", arm, alpha, aware):
+        for t in load_generations(p, model_name, fam, arm, alpha, aware):
             rec = ann.get(t.id)
             usable = bool(rec and record_ok(rec))
-            row = {"id": t.id, "model": model_name, "family": "steer_actions", "arm": arm, "alpha": alpha, "aware": aware,
+            row = {"id": t.id, "model": model_name, "family": fam, "arm": arm, "alpha": alpha, "aware": aware, "kind": cond.kind,
                    "signed_alpha": (alpha if aware else -alpha) if arm != "baseline" else 0.0, "index": t.index, "framing": t.framing,
                    "has_think_close": t.has_think_close, "executed": t.executed, "annotated": usable, "error": None if usable else "missing",
                    "finish_reason": rec.get("finish_reason") if rec else None, "served_model": rec.get("served_model") if rec else None,
@@ -52,6 +58,8 @@ def build_trace_table(steering_dir: Path, model_name: str) -> pd.DataFrame:
             if j and record_ok(j):
                 pj = parse_judgment(j["text"])
                 row["aware_judged"] = "Yes" if is_positive(pj) else "No"
+                row["recog_judged"] = conclusion(pj, "hypothetical_recognition")
+                row["task_judged"] = conclusion(pj, "task_performance")  # the judge's own compliance verdict
             ok = False
             if usable:
                 spans = parse.parse_annotation(rec["text"], t.reasoning)
@@ -81,8 +89,13 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--root", type=Path, default=ROOT)
     ap.add_argument("--model-name", default="qwen3_4b")
+    ap.add_argument("--steering-dir", type=Path, default=None, help="arm directory (default <root>/steering); with --out-prefix, a follow-up directory")
+    ap.add_argument("--reference", type=Path, nargs="*", default=[], help="arm files from another directory to include (e.g. the main run's baseline.json for a follow-up)")
+    ap.add_argument("--family", default=None, help="override the sidecar's trace-family label (must match what readouts.py used; the ids carry it)")
+    ap.add_argument("--out-prefix", default="", help="prefix for SUMMARY/CSV names (follow-ups); empty = the main run's SUMMARY_M.md")
     args = ap.parse_args()
-    parts = ["# Mechanistic arm (Qwen3-4B) — first-pass analysis\n"]
+    parts = [f"# Mechanistic arm (Qwen3-4B) — first-pass analysis{': ' + args.out_prefix if args.out_prefix else ''}\n"]
+    pre = f"{args.out_prefix}_" if args.out_prefix else ""
 
     # gate + probe
     for name in ("triggers_gate.json.awareness.stats.json", "triggers_probe.json.awareness.stats.json"):
@@ -122,23 +135,30 @@ def main() -> None:
         parts.append(md(pd.DataFrame(s["arms"]), ["arm", "alpha", "aware", "n", "closure", "repetition", "n_judged", "verbalization"]))
         parts.append(f"chosen: {json.dumps({k: {kk: vv for kk, vv in v.items() if kk in ('arm', 'alpha', 'verbalization', 'closure', 'repetition', 'flagged_no_qualifying_arm')} for k, v in s['chosen'].items()})}\n")
 
-    sd = args.root / "steering"
-    if sd.exists() and any(sd.glob("*.json")):
-        df = build_trace_table(sd, args.model_name)
-        df.to_csv(args.root / "steering_traces.csv", index=False)
-        parts.append(f"\n## Main run: {len(df)} traces, {int(df.ok.sum())} with usable morphology annotation\n")
+    sd = args.steering_dir or (args.root / "steering")
+    files = list(args.reference) + arm_files(sd) if sd.exists() else list(args.reference)
+    if files:
+        df = build_trace_table(files, args.model_name, args.family)
+        df.to_csv(args.root / f"{pre}steering_traces.csv", index=False)
+        parts.append(f"\n## {'Main run' if not pre else args.out_prefix}: {len(df)} traces, {int(df.ok.sum())} with usable morphology annotation\n")
+        framings = [f for f in ("real", "fake", "hypothetical") if f in set(df.framing)]
+        order = [a for a in ORDER if a in set(df.arm)] + sorted(a for a in set(df.arm) if a not in ORDER)
         # compliance + verbalization per arm
         rows = []
         base = df[df.arm == "baseline"].set_index(["index", "framing"])
-        for arm in [a for a in ORDER if a in set(df.arm)]:
+        for arm in order:
             sub = df[df.arm == arm]
-            for fr in ("real", "fake"):
+            for fr in framings:
                 s = sub[sub.framing == fr]
                 ex = s.executed.tolist()
+                judged = s[s.task_judged.isin(["Yes", "No", "Maybe"])]  # parsed verdicts only; Maybe counts as not performed
                 r = {"arm": arm, "framing": fr, "n": len(s), "exec_rate_closed": execution_rate(ex, "closed"), "exec_rate_all": execution_rate(ex, "all"), "closure": float(s.has_think_close.mean()),
-                     "verbalization": float((s.aware_judged[s.aware_judged.notna()] == "Yes").mean()) if s.aware_judged.notna().any() else math.nan, "repetition": float(s.repetition_4gram.mean()), "words": float(s.words.mean()),
+                     "verbalization": float((s.aware_judged[s.aware_judged.notna()] == "Yes").mean()) if s.aware_judged.notna().any() else math.nan,
+                     "task_judged_yes": float((judged.task_judged == "Yes").mean()) if len(judged) else math.nan,
+                     "judge_vs_string_agree": float(((judged.task_judged == "Yes") == judged.executed.astype(bool))[judged.executed.notna()].mean()) if len(judged) and judged.executed.notna().any() else math.nan,
+                     "repetition": float(s.repetition_4gram.mean()), "words": float(s.words.mean()),
                      "lost": math.nan, "gained": math.nan, "p_mcnemar": math.nan}
-                if arm != "baseline":
+                if arm != "baseline" and not base.empty:
                     b = base.loc[[(i, fr) for i in s["index"] if (i, fr) in base.index]]
                     ss = s.set_index(["index", "framing"]).loc[b.index]
                     be, ae = b.executed, ss.executed
@@ -147,13 +167,13 @@ def main() -> None:
                     gained = int((~be[known].astype(bool) & ae[known].astype(bool)).sum())
                     r.update({"lost": lost, "gained": gained, "p_mcnemar": A.mcnemar_exact(lost, gained)})
                 rows.append(r)
-        parts.append(md(pd.DataFrame(rows), ["arm", "framing", "n", "exec_rate_closed", "exec_rate_all", "lost", "gained", "p_mcnemar", "verbalization", "closure", "repetition", "words"]))
+        parts.append(md(pd.DataFrame(rows), ["arm", "framing", "n", "exec_rate_closed", "exec_rate_all", "lost", "gained", "p_mcnemar", "task_judged_yes", "judge_vs_string_agree", "verbalization", "closure", "repetition", "words"]))
         # morphology contrasts (reuse Tier 1 machinery): arm vs baseline paired by item
         contrasts = A.paired_contrasts(df, baseline="baseline")
         two, by_class = A.flips(df, baseline="baseline")
-        two.to_csv(args.root / "steering_flips_2x2.csv", index=False)
-        by_class.to_csv(args.root / "steering_flips_by_class.csv", index=False)
-        contrasts.to_csv(args.root / "steering_contrasts.csv", index=False)
+        two.to_csv(args.root / f"{pre}steering_flips_2x2.csv", index=False)
+        by_class.to_csv(args.root / f"{pre}steering_flips_by_class.csv", index=False)
+        contrasts.to_csv(args.root / f"{pre}steering_contrasts.csv", index=False)
         c = contrasts[contrasts.metric.isin(["density", "density_testlex", "density_nontest"]) & contrasts.behaviour.isin(["uncertainty-estimation", "deduction", "adding-knowledge", "backtracking"])] if not contrasts.empty else contrasts
         parts.append("\n## Morphology: Δ spans per 100 words vs baseline, paired by item\n")
         parts.append(md(c, ["framing", "arm", "n_pairs", "behaviour", "metric", "base_mean", "arm_mean", "delta", "ci_lo", "ci_hi", "p_paired_t"]))
@@ -165,8 +185,8 @@ def main() -> None:
         pcols = [c for c in df.columns if c.startswith("proj_")]
         if pcols:
             rows = []
-            for arm in [a for a in ORDER if a in set(df.arm) and a != "baseline"]:
-                for fr in ("real", "fake"):
+            for arm in [a for a in order if a != "baseline" and not base.empty]:
+                for fr in framings:
                     a = df[(df.arm == arm) & (df.framing == fr)].set_index("index")
                     b = df[(df.arm == "baseline") & (df.framing == fr)].set_index("index")
                     idx = a.index.intersection(b.index)
@@ -176,11 +196,12 @@ def main() -> None:
                         lo, hi = A.boot_ci(d)
                         rows.append({"arm": arm, "framing": fr, "projection": pc, "n_pairs": len(d), "base_mean": float(np.nanmean(b.loc[idx, pc])), "delta": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi})
             pr = pd.DataFrame(rows)
-            pr.to_csv(args.root / "steering_projections.csv", index=False)
+            pr.to_csv(args.root / f"{pre}steering_projections.csv", index=False)
             parts.append("\n## Representation-level morphology: Δ mean projection onto the rebuilt directions (steered model's own activations)\n")
             parts.append(md(pr, ["arm", "framing", "projection", "n_pairs", "base_mean", "delta", "ci_lo", "ci_hi"], 4))
-    (args.root / "SUMMARY_M.md").write_text("\n".join(parts) + "\n")
-    print(f"wrote {args.root / 'SUMMARY_M.md'}")
+    out = args.root / (f"SUMMARY_{args.out_prefix}.md" if args.out_prefix else "SUMMARY_M.md")
+    out.write_text("\n".join(parts) + "\n")
+    print(f"wrote {out}")
 
 
 if __name__ == "__main__":

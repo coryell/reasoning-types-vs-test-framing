@@ -19,11 +19,11 @@ from pathlib import Path
 import torch
 
 from d10.activations import mean_projection
+from d10.conditions import applied, condition_from_sidecar
 from d10.generate import load_model
 from d10.judge import Job, Judge, run_jobs
 from d10.prompts import abdelnabi_judge_prompt, load_abdelnabi_template, venhoff_annotation_prompt
 from d10.shipped import abdelnabi_split, load_generations
-from d10.steer import apply_edit, random_direction_like, rank_rows, undo_edit
 from d10.venhoff import feature_vectors
 
 REPO = Path(__file__).resolve().parents[1]
@@ -46,6 +46,15 @@ def arm_files(d: Path) -> list[Path]:
     return [p for p in sorted(d.glob("*.json")) if p.name.count(".") == 1]
 
 
+def load_arm(p: Path, model_name: str, family: str | None):
+    """Traces plus the condition the arm was generated under (legacy sidecars are mapped by arm name;
+    the family label comes from the sidecar unless overridden)."""
+    side = json.loads(p.with_suffix(p.suffix + ".gen.json").read_text())
+    cond = condition_from_sidecar(p, side)
+    alpha, aware = cond.signed
+    return load_generations(p, model_name, family or side.get("family") or "steer_actions", p.stem, alpha, aware), cond
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--stage", choices=["annotate", "awareness", "project"], required=True)
@@ -54,9 +63,9 @@ def main() -> None:
     ap.add_argument("--probe", type=Path, default=REPO / "results" / "qwen3_4b" / "probe" / "probe_best.json")
     ap.add_argument("--model", default="Qwen/Qwen3-4B")
     ap.add_argument("--model-name", default="qwen3_4b")
+    ap.add_argument("--family", default=None, help="trace family label (part of every trace id); default: the sidecar's `family`, else steer_actions")
     ap.add_argument("--provider", default="openai")
     ap.add_argument("--concurrency", type=int, default=32)
-    ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--log", type=Path, default=REPO / "logs" / "readouts.log")
     args = ap.parse_args()
     log = make_logger(args.log)
@@ -67,8 +76,7 @@ def main() -> None:
     if args.stage == "annotate":
         judge = Judge(concurrency=args.concurrency, provider=args.provider)
         for p in arms:
-            side = json.loads(p.with_suffix(p.suffix + ".gen.json").read_text())
-            traces = load_generations(p, args.model_name, "steer_actions", p.stem, side.get("alpha", 0.0), bool(side.get("aware")))
+            traces, _ = load_arm(p, args.model_name, args.family)
             jobs = [Job(id=t.id, prompt=venhoff_annotation_prompt(t.reasoning), meta=t.meta()) for t in traces if t.reasoning.strip()]
             log(json.dumps(run_jobs(judge, jobs, p.with_suffix(p.suffix + ".annotations.jsonl"), log=log)))
 
@@ -76,8 +84,7 @@ def main() -> None:
         template = load_abdelnabi_template()
         judge = Judge(concurrency=args.concurrency, max_tokens=2048, provider=args.provider)
         for p in arms:
-            side = json.loads(p.with_suffix(p.suffix + ".gen.json").read_text())
-            traces = load_generations(p, args.model_name, "steer_actions", p.stem, side.get("alpha", 0.0), bool(side.get("aware")))
+            traces, _ = load_arm(p, args.model_name, args.family)
             jobs = []
             for t in traces:
                 # unclosed traces are judged too (whole text as reasoning), the Tier M convention set in
@@ -91,25 +98,20 @@ def main() -> None:
         fv = feature_vectors(torch.load(args.vectors_dir / "mean_vectors.pt"))
         layers = json.loads((args.vectors_dir / "layers.json").read_text())["chosen"]
         probe = json.loads(args.probe.read_text())
-        v_pos = torch.tensor(probe["direction"], dtype=torch.float32)
-        v_shuf = torch.tensor(probe["shuffled_direction"], dtype=torch.float32)
         dirs = {b: (layers[b]["layer"], fv[b][layers[b]["layer"]]) for b in layers}
         for p in arms:
             out = p.with_suffix(p.suffix + ".projections.json")
             if out.exists():
                 log(f"{p.stem}: projections exist, skipping")
                 continue
-            side = json.loads(p.with_suffix(p.suffix + ".gen.json").read_text())
-            alpha, aware = side.get("alpha", 0.0), bool(side.get("aware"))
-            gen_seed = int(side.get("config", {}).get("seed", args.seed))
-            v_shuf_scaled = v_shuf / v_shuf.norm() * v_pos.norm()
-            rnd = random_direction_like(v_pos, seed=gen_seed)
-            vec = {"aware": v_pos, "unaware": v_pos, "aware_strong": v_pos, "unaware_strong": v_pos, "random_aware": rnd, "random_samerows_aware": rnd, "shuffled_aware": v_shuf_scaled, "shuffled_samerows_aware": v_shuf_scaled}.get(p.stem)
-            fixed_rows = rank_rows(model, v_pos) if p.stem.endswith("_samerows_aware") else None
-            edit = apply_edit(model, vec, alpha, aware, rows=fixed_rows) if vec is not None and alpha else None
+            traces, cond = load_arm(p, args.model_name, args.family)
+            alpha, aware = cond.signed
             rows = []
-            try:
-                for t in load_generations(p, args.model_name, "steer_actions", p.stem, alpha, aware):
+            # the arm's own manipulation is re-applied (weight edit or residual add), so the projections
+            # are of the steered model's activations; prompt conditions leave the model untouched
+            with applied(model, cond, probe=probe, vectors_dir=args.vectors_dir):
+                log(f"{p.stem}: condition {cond.kind} {json.dumps(cond.info)}")
+                for t in traces:
                     if not t.reasoning.strip():
                         continue
                     row = {"id": t.id, "index": t.index, "framing": t.framing, "executed": t.executed}
@@ -121,10 +123,7 @@ def main() -> None:
                     rows.append(row)
                     if len(rows) % 50 == 0:
                         log(f"  {p.stem}: {len(rows)} projections")
-            finally:
-                if edit is not None:
-                    undo_edit(model, edit)
-            out.write_text(json.dumps({"arm": p.stem, "alpha": alpha, "aware": aware, "directions": {b: {"layer": l} for b, (l, _) in dirs.items()}, "rows": rows}, indent=1))
+            out.write_text(json.dumps({"arm": p.stem, "alpha": alpha, "aware": aware, "condition": cond.to_dict(), "directions": {b: {"layer": l} for b, (l, _) in dirs.items()}, "rows": rows}, indent=1))
             log(f"{p.stem}: wrote {len(rows)} projections")
 
 
