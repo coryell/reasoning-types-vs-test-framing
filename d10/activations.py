@@ -108,7 +108,13 @@ class ResidualAdd:
         return output + v.to(output.dtype)
 
     def __enter__(self):
-        self.handle = self.layer.register_forward_hook(self._hook)
+        # prepend=True: run before any hook registered earlier on this layer. transformers 5 collects
+        # ``output_hidden_states`` through its own forward hooks, registered at the first recorded
+        # forward pass; without prepending, whether ``hidden_states[layer + 1]`` includes the addition
+        # depends on whether such a pass happened before this hook was installed (it did in some
+        # readout processes and not in others). Prepending makes the recorded state at layer + 1 the
+        # post-addition one — the residual stream the next layer actually receives — every time.
+        self.handle = self.layer.register_forward_hook(self._hook, prepend=True)
         return self
 
     def __exit__(self, *exc):

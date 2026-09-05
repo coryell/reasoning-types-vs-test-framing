@@ -359,3 +359,19 @@ def test_main_conditions_order_and_strong_arms():
     fresh = rs.main_conditions(v, v * 2, v * 3, 0.05, 0.1, strong_alpha=0.2, arms=["aware_strong_seed1", "baseline_seed1"])
     assert fresh[0][0] == "aware_strong_seed1" and fresh[0][1] is v and fresh[0][2] == 0.2 and fresh[0][3] is True
     assert fresh[1] == ("baseline_seed1", None, 0.0, True)
+
+
+def test_residual_add_runs_before_earlier_hooks():
+    """A recorder hook registered *before* ResidualAdd (as transformers' hidden-state recorder is,
+    when a recorded forward pass preceded the steering) must still see the post-addition output."""
+    layer = nn.Linear(3, 3)
+    model = nn.Module(); model.model = nn.Module(); model.model.layers = nn.ModuleList([layer])
+    seen = {}
+    layer.register_forward_hook(lambda m, a, out: seen.__setitem__("out", out.detach().clone()))
+    x = torch.zeros(1, 3)
+    plain = layer(x).detach()
+    with activations.ResidualAdd(model, 0, torch.tensor([1.0, 2.0, 3.0])):
+        steered = layer(x).detach()
+    assert torch.allclose(steered - plain, torch.tensor([[1.0, 2.0, 3.0]]))
+    assert torch.allclose(seen["out"], steered), "earlier hook saw the pre-addition output"
+    assert torch.allclose(layer(x).detach(), plain)  # hook removed
