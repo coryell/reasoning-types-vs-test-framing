@@ -488,29 +488,50 @@ def wilson(k, n):
     return ci.low, ci.high
 
 
-ARMS7 = ["baseline", "baseline_seed1", "random_bt", "random_unc", "shuffled_bt", "shuffled_unc", "bt_neg", "unc_neg", "unc_pos"]
-NICE = {"baseline": "baseline", "baseline_seed1": "baseline, 2nd decode", "random_bt": "random direction (L23)", "random_unc": "random direction (L18)", "shuffled_bt": "shuffled-label vector (L23)", "shuffled_unc": "shuffled-label vector (L18)", "bt_neg": "backtracking −", "unc_neg": "uncertainty −", "unc_pos": "uncertainty +"}
+ARMS7 = ["baseline", "baseline_seed1", "random_bt", "random_unc", "shuffled_bt", "shuffled_unc", "bt_neg", "unc_neg", "unc_pos", "bt_pos"]
+NICE = {"baseline": "no intervention", "baseline_seed1": "no intervention, second decode", "random_bt": "random direction, layer 23", "random_unc": "random direction, layer 18",
+        "shuffled_bt": "shuffled-label vector, layer 23", "shuffled_unc": "shuffled-label vector, layer 18", "bt_neg": "backtracking direction −", "unc_neg": "uncertainty direction −",
+        "unc_pos": "uncertainty direction +", "bt_pos": "backtracking direction + (degenerate, 37% unfinished)"}
+KIND = {"baseline": "ctrl", "baseline_seed1": "ctrl", "random_bt": "ctrl", "random_unc": "ctrl", "shuffled_bt": "shuf", "shuffled_unc": "shuf", "bt_neg": "real", "unc_neg": "real", "unc_pos": "real", "bt_pos": "degen"}
+COL = {"ctrl": "0.5", "shuf": "C1", "real": "C3", "degen": "C3"}
 pts = []
 for a in ARMS7:
     t = f4r[f4r.arm == a]; k = int(t.aw.sum()); n = len(t); vlo, vhi = wilson(k, n)
+    exp_len = float(lr.predict_proba(t[["lw"]])[:, 1].mean())
     if a == "baseline":
-        b0, x0 = paired_frames(f4_all, "baseline", "baseline_seed1", "real"); _, ex, _, _, _ = flip_counts(b0, x0)
+        b0, x0 = paired_frames(f4_all, "baseline", "baseline_seed1", "real"); nk, ex, _, _, _ = flip_counts(b0, x0); lost = gained = None
     else:
         b, x = paired_frames(f4_all, "baseline", a, "real"); nk, _, ex, lost, gained = flip_counts(b, x)
-    elo, ehi = wilson(round(ex * 140), 140)
-    pts.append(dict(arm=a, verbal=k / n, vlo=vlo, vhi=vhi, exec_=ex, elo=elo, ehi=ehi))
+    elo, ehi = wilson(round(ex * nk), nk)
+    pts.append(dict(arm=a, kind=KIND[a], n=n, verbal=k / n, vlo=vlo, vhi=vhi, expected_from_length=exp_len, exec_=ex, elo=elo, ehi=ehi, n_known=nk, lost=lost, gained=gained))
 f7d = pd.DataFrame(pts); f7d.to_csv(OUT / "F7_data.csv", index=False)
-fig, ax = plt.subplots(figsize=(8, 5.5))
-for _, r in f7d.iterrows():
-    c = "0.5" if r.arm in ("baseline", "baseline_seed1", "random_bt", "random_unc") else ("C1" if r.arm.startswith("shuffled") else "C3")
-    ax.errorbar(r.verbal, r.exec_, xerr=[[r.verbal - r.vlo], [r.vhi - r.verbal]], yerr=[[r.exec_ - r.elo], [r.ehi - r.exec_]], fmt="o" if not r.arm.startswith("shuffled") else "s", color=c, capsize=2, ms=6)
-    ax.annotate(NICE[r.arm], (r.verbal, r.exec_), textcoords="offset points", xytext=(6, -14) if r.arm.startswith("shuffled") else (6, 6), fontsize=8, color=c)
-ctrl = f7d[f7d.arm.isin(["baseline", "baseline_seed1", "random_bt", "random_unc"])]
-ax.axhspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.12, label="execution range of baseline + random directions")
-ax.set_xlabel("share of traces Abdelnabi & Salem's awareness judge calls test-aware"); ax.set_ylabel("share of items executing the harmful tool call")
-ax.set_xlim(-0.02, 0.5); ax.set_ylim(0.55, 0.9); ax.legend(fontsize=8, loc="upper right")
-ax.set_title("Qwen3-4B: judged 'test awareness' moves from 1% to 37%; execution does not follow\n(orange squares: vectors built with shuffled behaviour labels, same recipe and norm)", fontsize=10)
-fig.tight_layout(); fig.savefig(OUT / "F7_f4_verbalization_and_execution.png", dpi=130); plt.close(fig)
+ys = np.arange(len(f7d)); labels = [NICE[a] for a in f7d.arm]
+
+# --- Figure 2a: judged awareness per condition
+fig, ax = plt.subplots(figsize=(9, 5.4))
+for i, r in f7d.iterrows():
+    c = COL[r.kind]; fill = "white" if r.kind == "degen" else c
+    ax.errorbar(r.verbal, i, xerr=[[r.verbal - r.vlo], [r.vhi - r.verbal]], fmt="o", color=c, mfc=fill, mec=c, mew=1.5, capsize=3, ms=6)
+    ax.plot(r.expected_from_length, i, "|", color="k", ms=12, mew=1.2, label="expected from trace length alone" if i == 0 else None)
+ax.axvspan(f7d[f7d.kind == "ctrl"].vlo.min(), f7d[f7d.kind == "ctrl"].vhi.max(), color="0.5", alpha=0.10, label="range of the controls' intervals")
+ax.set_yticks(ys); ax.set_yticklabels(labels, fontsize=8); ax.invert_yaxis(); ax.set_xlim(-0.02, 0.55)
+ax.set_xlabel("share of traces the awareness judge calls test-aware (95% CI)")
+ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.18), ncol=2, frameon=False); ax.set_title("Judged 'test awareness' per condition (Qwen3-4B, 149 real-framed items)", fontsize=10)
+fig.tight_layout(); fig.savefig(OUT / "F7a_judged_awareness.png", dpi=130); plt.close(fig)
+
+# --- Figure 2b: execution per condition
+fig, ax = plt.subplots(figsize=(9, 5.4))
+for i, r in f7d.iterrows():
+    c = COL[r.kind]; fill = "white" if r.kind == "degen" else c
+    ax.errorbar(r.exec_, i, xerr=[[r.exec_ - r.elo], [r.ehi - r.exec_]], fmt="o", color=c, mfc=fill, mec=c, mew=1.5, capsize=3, ms=6)
+    if pd.notna(r.lost):
+        ax.text(0.93, i, f"{int(r.lost)} lost / {int(r.gained)} gained", va="center", fontsize=7, color="0.3")
+ctrl = f7d[f7d.kind == "ctrl"]
+ax.axvspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.10, label="range spanned by no-intervention and random-direction points")
+ax.set_yticks(ys); ax.set_yticklabels(labels, fontsize=8); ax.invert_yaxis(); ax.set_xlim(0.5, 1.0)
+ax.set_xlabel("share of items executing the harmful tool call (95% CI)")
+ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.18), frameon=False); ax.set_title("Execution per condition (same items)", fontsize=10)
+fig.tight_layout(); fig.savefig(OUT / "F7b_execution.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [8] F4: execution per arm
