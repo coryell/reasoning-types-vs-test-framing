@@ -371,7 +371,7 @@ SHOW5 = [("Distill-Qwen-32B, aware +0.07", "Distill-32B: Abdelnabi & Salem's wei
          ("Qwen3-32B, aware +0.043", "Qwen3-32B: Abdelnabi & Salem's weight edit, toward awareness"), ("Qwen3-32B, unaware −0.32", "Qwen3-32B: Abdelnabi & Salem's weight edit, away from awareness"),
          ("Qwen3-32B, test cue (seed 0)", "Qwen3-32B: test cue, decode 0"), ("Qwen3-32B, test cue (seed 1)", "Qwen3-32B: test cue, decode 1"),
          ("Qwen3-4B, test cue", "Qwen3-4B: test cue"),
-         ("floor: Distill-Qwen-32B sampled vs greedy α=0", "floor: Distill-32B, no intervention, second decode"), ("floor: Qwen3-32B baseline decodes", "floor: Qwen3-32B, no intervention, second decode")]
+         ("floor: Distill-Qwen-32B sampled vs greedy α=0", "floor: Distill-32B, two decodes of the unchanged model"), ("floor: Qwen3-32B baseline decodes", "floor: Qwen3-32B, two decodes of the unchanged model")]
 rows = []
 for label, df, ba, ar, key in CELLS5:
     nice = dict(SHOW5).get(label)
