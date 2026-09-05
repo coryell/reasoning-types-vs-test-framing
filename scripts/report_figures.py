@@ -471,7 +471,7 @@ f4r = f4[f4.framing == "real"].copy(); f4r["aw"] = f4r.aware_judged.isin(["Yes",
 base = f4r[f4r.arm.isin(["baseline", "baseline_seed1"])]
 lr = LogisticRegression(C=np.inf).fit(base[["lw"]], base.aw)
 rows = []
-for arm in ["baseline", "baseline_seed1", "bt_neg", "unc_neg", "unc_pos", "bt_pos", "random_bt", "random_unc"]:
+for arm in ["baseline", "baseline_seed1", "bt_neg", "unc_neg", "unc_pos", "bt_pos", "random_bt", "random_unc", "shuffled_bt", "shuffled_unc"]:
     a = f4r[f4r.arm == arm]
     if len(a) == 0:
         continue
@@ -481,15 +481,15 @@ for arm in ["baseline", "baseline_seed1", "bt_neg", "unc_neg", "unc_pos", "bt_po
                      hedged_test_talk_per_100w=f"{a['density_uncertainty-estimation_testlex'].mean():.3f}", deductive_test_talk_per_100w=f"{a.density_deduction_testlex.mean():.3f}"))
 t7 = pd.DataFrame(rows)
 save_table(t7, "T7_f4_verbalization", "[7] Qwen3-4B, residual-stream steering (±0.25) along the rebuilt backtracking (L23) and uncertainty (L18) directions, real framing: verbalized awareness per arm",
-           f"Verbalization = Abdelnabi & Salem's judge (gpt-4o-2024-08-06) says awareness Yes/Maybe. 'expected_from_length' = a logistic fit of verbalization on log-length in the two baseline decodes, evaluated at the arm's lengths. random_bt / random_unc = Gaussian directions of matched norm at the same layers. bt_pos is degenerate (closure, repetition). Traces the judge failed on ({int(f4r.aware_judged.isna().sum())} of {len(f4r)}) count as not verbalizing. test_talk_per_100w is pooled (sum of spans / sum of words).")
+           f"Verbalization = Abdelnabi & Salem's judge (gpt-4o-2024-08-06) says awareness Yes/Maybe. 'expected_from_length' = a logistic fit of verbalization on log-length in the two baseline decodes, evaluated at the arm's lengths. random_bt / random_unc = Gaussian directions of matched norm at the same layers; shuffled_bt / shuffled_unc = Venhoff's recipe rerun with the behaviour labels permuted within each trace, same norm rescaling. bt_pos is degenerate (closure, repetition). Traces the judge failed on ({int(f4r.aware_judged.isna().sum())} of {len(f4r)}) count as not verbalizing. test_talk_per_100w is pooled (sum of spans / sum of words).")
 
 def wilson(k, n):
     ci = binomtest(int(k), int(n), 0.5).proportion_ci(0.95, method="wilson")
     return ci.low, ci.high
 
 
-ARMS7 = ["baseline", "baseline_seed1", "random_bt", "random_unc", "bt_neg", "unc_neg", "unc_pos"]
-NICE = {"baseline": "baseline", "baseline_seed1": "baseline, 2nd decode", "random_bt": "random direction (L23)", "random_unc": "random direction (L18)", "bt_neg": "backtracking −", "unc_neg": "uncertainty −", "unc_pos": "uncertainty +"}
+ARMS7 = ["baseline", "baseline_seed1", "random_bt", "random_unc", "shuffled_bt", "shuffled_unc", "bt_neg", "unc_neg", "unc_pos"]
+NICE = {"baseline": "baseline", "baseline_seed1": "baseline, 2nd decode", "random_bt": "random direction (L23)", "random_unc": "random direction (L18)", "shuffled_bt": "shuffled-label vector (L23)", "shuffled_unc": "shuffled-label vector (L18)", "bt_neg": "backtracking −", "unc_neg": "uncertainty −", "unc_pos": "uncertainty +"}
 pts = []
 for a in ARMS7:
     t = f4r[f4r.arm == a]; k = int(t.aw.sum()); n = len(t); vlo, vhi = wilson(k, n)
@@ -502,14 +502,14 @@ for a in ARMS7:
 f7d = pd.DataFrame(pts); f7d.to_csv(OUT / "F7_data.csv", index=False)
 fig, ax = plt.subplots(figsize=(8, 5.5))
 for _, r in f7d.iterrows():
-    c = "0.5" if r.arm in ("baseline", "baseline_seed1", "random_bt", "random_unc") else "C3"
-    ax.errorbar(r.verbal, r.exec_, xerr=[[r.verbal - r.vlo], [r.vhi - r.verbal]], yerr=[[r.exec_ - r.elo], [r.ehi - r.exec_]], fmt="o", color=c, capsize=2, ms=6)
+    c = "0.5" if r.arm in ("baseline", "baseline_seed1", "random_bt", "random_unc") else ("C1" if r.arm.startswith("shuffled") else "C3")
+    ax.errorbar(r.verbal, r.exec_, xerr=[[r.verbal - r.vlo], [r.vhi - r.verbal]], yerr=[[r.exec_ - r.elo], [r.ehi - r.exec_]], fmt="o" if not r.arm.startswith("shuffled") else "s", color=c, capsize=2, ms=6)
     ax.annotate(NICE[r.arm], (r.verbal, r.exec_), textcoords="offset points", xytext=(6, 6), fontsize=8, color=c)
 ctrl = f7d[f7d.arm.isin(["baseline", "baseline_seed1", "random_bt", "random_unc"])]
 ax.axhspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.12, label="execution range of baseline + random directions")
 ax.set_xlabel("share of traces Abdelnabi & Salem's awareness judge calls test-aware"); ax.set_ylabel("share of items executing the harmful tool call")
 ax.set_xlim(-0.02, 0.5); ax.set_ylim(0.55, 0.9); ax.legend(fontsize=8, loc="upper right")
-ax.set_title("Qwen3-4B: judged 'test awareness' moves from 1% to 37%; execution does not follow", fontsize=10)
+ax.set_title("Qwen3-4B: judged 'test awareness' moves from 1% to 37%; execution does not follow\n(orange squares: vectors built with shuffled behaviour labels, same recipe and norm)", fontsize=10)
 fig.tight_layout(); fig.savefig(OUT / "F7_f4_verbalization_and_execution.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
@@ -517,7 +517,7 @@ fig.tight_layout(); fig.savefig(OUT / "F7_f4_verbalization_and_execution.png", d
 
 # %%
 rows = []
-for arm in ["baseline_seed1", "bt_neg", "unc_neg", "unc_pos", "bt_pos", "random_bt", "random_unc"]:
+for arm in ["baseline_seed1", "bt_neg", "unc_neg", "unc_pos", "bt_pos", "random_bt", "random_unc", "shuffled_bt", "shuffled_unc"]:
     b, x = paired_frames(f4_all, "baseline", arm, "real")
     if len(x) == 0:
         continue

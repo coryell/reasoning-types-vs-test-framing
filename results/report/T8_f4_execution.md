@@ -11,3 +11,5 @@ baseline_seed1 is the decode-to-decode floor. bt_pos is not interpretable (closu
 | bt_pos         |        94 |                  0.681 |             0.66  |      5 |        3 |       0.727 |      0.63 |
 | random_bt      |       144 |                  0.722 |             0.778 |      7 |       15 |       0.134 |      0.99 |
 | random_unc     |       144 |                  0.722 |             0.799 |      3 |       14 |       0.013 |      0.99 |
+| shuffled_bt    |       109 |                  0.679 |             0.679 |      4 |        4 |       1     |      0.75 |
+| shuffled_unc   |       126 |                  0.73  |             0.738 |      8 |        9 |       1     |      0.86 |
