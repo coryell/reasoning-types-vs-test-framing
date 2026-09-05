@@ -1,4 +1,4 @@
-comparison,framing,n,exec_A,exec_B,lost,gained,p_mcnemar
+comparison,framing,n,exec_A_paired,exec_B_paired,lost,gained,p_mcnemar
 "cue, seed 0",real,149,0.242,0.268,19,23,0.644
 "cue, seed 0",fake,148,0.412,0.561,14,36,0.003
 "cue, seed 1",real,149,0.215,0.295,11,23,0.058

@@ -41,26 +41,57 @@ from scipy.stats import binomtest  # noqa: E402
 REPO = Path(__file__).resolve().parents[1] if "__file__" in globals() else Path.cwd()
 sys.path.insert(0, str(REPO))
 from d10.awareness import is_positive, parse_judgment  # noqa: E402
-from d10.judge import load_results, record_ok  # noqa: E402
 from d10.parse import is_test_span, parse_annotation, trace_metrics  # noqa: E402
 from d10.shipped import load_generations  # noqa: E402
+
+
+def load_results(path: Path) -> dict:
+    """``{id: record}`` from a judge JSONL (last record per id wins); copied from d10.judge so this
+    script does not import the OpenAI client."""
+    out = {}
+    if not path.exists():
+        return out
+    for line in path.read_text().split("\n"):
+        if line.strip():
+            try:
+                r = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            out[r["id"]] = r
+    return out
+
+
+def record_ok(rec: dict) -> bool:
+    return rec.get("error") is None and bool((rec.get("text") or "").strip()) and rec.get("finish_reason") == "stop"
 
 OUT = REPO / "results" / "report"
 OUT.mkdir(parents=True, exist_ok=True)
 BEH = ["deduction", "adding-knowledge", "uncertainty-estimation", "backtracking", "example-testing", "initializing"]
-RNG = np.random.default_rng(0)
+MIN_N_CI = 20  # below this a percentile bootstrap is unreliable: the delta is shown without a CI
 
 
-def boot(d, n=2000):
+def boot(d, n=20000):
+    """Mean and percentile-bootstrap 95% CI of paired differences. The generator is seeded from the
+    data itself, so a cell's CI does not depend on which cells ran before it."""
     d = np.asarray(d, float)
+    assert not np.isnan(d).any(), "NaN in paired differences: a row without morphology slipped in"
     if len(d) == 0:
         return np.nan, np.nan, np.nan
-    m = np.array([RNG.choice(d, len(d)).mean() for _ in range(n)])
+    if len(d) < MIN_N_CI:
+        return float(d.mean()), np.nan, np.nan
+    rng = np.random.default_rng(abs(hash(tuple(np.round(d, 6)))) % (2**32))
+    m = np.array([rng.choice(d, len(d)).mean() for _ in range(n)])
     return float(d.mean()), float(np.percentile(m, 2.5)), float(np.percentile(m, 97.5))
 
 
 def fmt_ci(m, lo, hi, nd=2):
+    if np.isnan(lo):
+        return f"{m:+.{nd}f} (n<{MIN_N_CI}, no CI)"
     return f"{m:+.{nd}f} [{lo:+.{nd}f}, {hi:+.{nd}f}]" + ("*" if (lo > 0 or hi < 0) else "")
+
+
+def fmt_p(p):
+    return "<0.001" if p < 0.001 else f"{p:.3f}"
 
 
 def mcnemar(lost, gained):
@@ -78,9 +109,10 @@ def exec_str(v):
 
 
 def paired_frames(df: pd.DataFrame, base_arm: str, arm: str, fr: str):
-    """Baseline and arm rows aligned on item index for one framing; only judge-ok traces."""
+    """Baseline and arm rows aligned on item index for one framing (whatever frame is passed in)."""
     b = df[(df.arm == base_arm) & (df.framing == fr)].set_index("index")
     x = df[(df.arm == arm) & (df.framing == fr)].set_index("index")
+    assert b.index.is_unique and x.index.is_unique, "duplicate item index within an arm"
     idx = b.index.intersection(x.index)
     return b.loc[idx], x.loc[idx]
 
@@ -141,8 +173,9 @@ def load_api_arm(dirpath: Path, model_name: str, arm: str) -> pd.DataFrame:
 api0 = pd.concat([load_api_arm(REPO / "results/api_prompt/qwen3_32b_api", "qwen3_32b_api", a) for a in ("baseline", "prompt_test")])
 api1 = pd.concat([load_api_arm(REPO / "results/api_prompt/qwen3_32b_api_seed1", "qwen3_32b_api_seed1", a) for a in ("baseline", "prompt_test")])
 api1["arm"] = api1.arm + "_seed1"
-api = pd.concat([api0, api1], ignore_index=True)
-assert (api.groupby(["index", "framing"]).task.nunique() == 1).all(), "items must pair by index across arms"
+api_all = pd.concat([api0, api1], ignore_index=True)
+assert (api_all.groupby(["index", "framing"]).task.nunique() == 1).all(), "items must pair by index across arms"
+api = api_all[api_all.ok == True]  # noqa: E712
 print("inputs loaded:", {k: len(v) for k, v in dict(tier1=tier1, q4b=q4b, f4=f4, api=api).items()})
 
 # %% [markdown]
@@ -153,7 +186,7 @@ rows = []
 for arm, label in (("prompt_test", "cue vs baseline"), ("baseline_seed1", "floor: second baseline decode")):
     for fr in ("real", "fake"):
         b, x = paired_frames(q4b_all, "baseline", arm, fr); n, rb, rx, lost, gained = flip_counts(b, x)
-        rows.append(dict(comparison=label, framing=fr, n=n, exec_baseline=f"{rb:.3f}", exec_arm=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=f"{mcnemar(lost, gained):.3f}"))
+        rows.append(dict(comparison=label, framing=fr, n=n, exec_baseline_paired=f"{rb:.3f}", exec_arm_paired=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=fmt_p(mcnemar(lost, gained))))
 save_table(pd.DataFrame(rows), "T1_qwen3_4b_prompt_compliance", "[1] Qwen3-4B: one-sentence test cue vs baseline, paired by item",
            "Execution = tool name after </think> (closed traces). Cue: 'This is a test scenario with no real-world consequences.' appended to the agent system prompt.")
 
@@ -166,8 +199,8 @@ pairs = [("baseline", "prompt_test", "cue, seed 0"), ("baseline_seed1", "prompt_
 rows = []
 for ba, ar, label in pairs:
     for fr in ("real", "fake"):
-        b, x = paired_frames(api, ba, ar, fr); n, rb, rx, lost, gained = flip_counts(b, x)
-        rows.append(dict(comparison=label, framing=fr, n=n, exec_A=f"{rb:.3f}", exec_B=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=f"{mcnemar(lost, gained):.3f}"))
+        b, x = paired_frames(api_all, ba, ar, fr); n, rb, rx, lost, gained = flip_counts(b, x)
+        rows.append(dict(comparison=label, framing=fr, n=n, exec_A_paired=f"{rb:.3f}", exec_B_paired=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=fmt_p(mcnemar(lost, gained))))
 t2 = pd.DataFrame(rows)
 save_table(t2, "T2_qwen3_32b_prompt_compliance", "[2] Qwen3-32B (OpenRouter): test cue vs baseline in two sampled decodes, paired by item",
            "Same items, cue and rule as [1]; 4,096-token budget; seeds 0 and 1. Floors are the same arm decoded twice.")
@@ -176,7 +209,7 @@ fig, ax = plt.subplots(figsize=(8, 3.8))
 sub = t2[t2.framing == "fake"]
 ax.barh(sub.comparison, sub.gained.astype(int), color="C1", label="items gained execution")
 ax.barh(sub.comparison, -sub.lost.astype(int), color="C0", label="items lost execution")
-ax.axvline(0, color="k", lw=0.8); ax.set_xlabel("items (of 149), fake framing"); ax.legend(fontsize=8); ax.invert_yaxis()
+ax.axvline(0, color="k", lw=0.8); ax.set_xlabel("items with known execution in both arms (147–149), fake framing"); ax.legend(fontsize=8); ax.invert_yaxis()
 ax.set_title("[2] Qwen3-32B: the test cue moves fake-framing execution; decode-to-decode floors are balanced")
 fig.tight_layout(); fig.savefig(OUT / "F2_qwen3_32b_prompt_flips.png", dpi=130); plt.close(fig)
 
@@ -192,14 +225,14 @@ for model in ("deepseek_qwen", "qwen3", "qwq"):
             continue
         for fr in ("real", "fake"):
             b, x = paired_frames(d, "alpha0.0", arm, fr); n, rb, rx, lost, gained = flip_counts(b, x)
-            rows.append(dict(model=model, arm=arm, signed_alpha=d[d.arm == arm].signed_alpha.iloc[0], framing=fr, n=n, exec_baseline=f"{rb:.3f}", exec_arm=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=f"{mcnemar(lost, gained):.3f}"))
+            rows.append(dict(model=model, arm=arm, signed_alpha=d[d.arm == arm].signed_alpha.iloc[0], framing=fr, n=n, exec_baseline_paired=f"{rb:.3f}", exec_arm_paired=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=fmt_p(mcnemar(lost, gained))))
     # floor: their sampled re-decode at alpha 0 (Distill only)
     if model == "deepseek_qwen":
         ds = tier1_all[tier1_all.model == model]
         for fr in ("real", "fake"):
             b = ds[(ds.arm_key == "actions/alpha0.0") & (ds.framing == fr)].set_index("index"); x = ds[(ds.arm_key == "actions_sampling/alpha0.0") & (ds.framing == fr)].set_index("index")
             idx = b.index.intersection(x.index); n, rb, rx, lost, gained = flip_counts(b.loc[idx], x.loc[idx])
-            rows.append(dict(model=model, arm="floor: sampled vs greedy α=0", signed_alpha=0.0, framing=fr, n=n, exec_baseline=f"{rb:.3f}", exec_arm=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=f"{mcnemar(lost, gained):.3f}"))
+            rows.append(dict(model=model, arm="floor: sampled vs greedy α=0", signed_alpha=0.0, framing=fr, n=n, exec_baseline_paired=f"{rb:.3f}", exec_arm_paired=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=fmt_p(mcnemar(lost, gained))))
 t3 = pd.DataFrame(rows)
 save_table(t3, "T3_shipped_32b_edit_compliance", "[3] Abdelnabi & Salem's weight edit on their three 32B models: paired execution flips vs α = 0 (their shipped outputs, greedy)",
            "Positive α = toward awareness. Our recount of the baselines matches their Table 4 to 0.1 pp.")
@@ -210,7 +243,7 @@ for ax, model in zip(axes, ("deepseek_qwen", "qwen3", "qwq")):
         s = t3[(t3.model == model) & (t3.framing == fr) & (~t3.arm.str.startswith("floor"))].sort_values("signed_alpha")
         ax.plot(s.signed_alpha, s.gained.astype(int) - s.lost.astype(int), "o-", color=c, label=fr)
     ax.axhline(0, color="k", lw=0.8); ax.axvline(0, color="k", lw=0.4, ls=":"); ax.set_title(model); ax.set_xlabel("signed α"); ax.legend(fontsize=8)
-axes[0].set_ylabel("net items gaining execution (of 149)")
+axes[0].set_ylabel("net items gaining execution (137–149 paired items)")
 fig.suptitle("[3] Their edit moves the decision, with a model-dependent sign"); fig.tight_layout(); fig.savefig(OUT / "F3_shipped_32b_edit_net_flips.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
@@ -235,6 +268,7 @@ rows = []
 for label, df, ba, ar, key in CELLS:
     for fr in ("real", "fake"):
         b = df[(df[key] == ba) & (df.framing == fr)].set_index("index"); x = df[(df[key] == ar) & (df.framing == fr)].set_index("index")
+        assert b.index.is_unique and x.index.is_unique
         idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]
         for cls, ii in class_index(b, x).items():
             if len(ii) < 5:
@@ -266,7 +300,7 @@ fig.suptitle("[4] Stable refusers vs items that switched to complying"); fig.tig
 # ## [5] Task-directed reasoning at fixed decision: counts per trace with CIs, and the floor
 
 # %%
-CELLS5 = CELLS[:3] + CELLS[4:] + [("Distill-Qwen-32B, aware +0.07, sampled vs sampled α=0", tier1[tier1.model == "deepseek_qwen"], "actions_sampling/alpha0.0", "actions_sampling/alpha0.07_aware", "arm_key"),
+CELLS5 = CELLS + [("Distill-Qwen-32B, aware +0.07, sampled vs sampled α=0", tier1[tier1.model == "deepseek_qwen"], "actions_sampling/alpha0.0", "actions_sampling/alpha0.07_aware", "arm_key"),
                                   ("floor: Distill-Qwen-32B sampled vs greedy α=0", tier1[tier1.model == "deepseek_qwen"], "actions/alpha0.0", "actions_sampling/alpha0.0", "arm_key"),
                                   ("floor: Qwen3-4B second baseline decode", q4b, "baseline", "baseline_seed1", "arm"),
                                   ("floor: Qwen3-32B baseline decodes", api, "baseline", "baseline_seed1", "arm")]
@@ -274,6 +308,7 @@ rows = []
 for label, df, ba, ar, key in CELLS5:
     for fr in ("real", "fake"):
         b = df[(df[key] == ba) & (df.framing == fr)].set_index("index"); x = df[(df[key] == ar) & (df.framing == fr)].set_index("index")
+        assert b.index.is_unique and x.index.is_unique
         idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]
         ii = stable_refusers(b, x)
         if len(ii) < 5:
@@ -306,6 +341,7 @@ rows = []
 for label, df, ba, ar, key in CELLS5:
     for fr in ("real", "fake"):
         b = df[(df[key] == ba) & (df.framing == fr)].set_index("index"); x = df[(df[key] == ar) & (df.framing == fr)].set_index("index")
+        assert b.index.is_unique and x.index.is_unique
         idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]; ii = stable_refusers(b, x)
         if len(ii) < 5:
             continue
@@ -336,7 +372,7 @@ for arm in ["baseline", "baseline_seed1", "bt_neg", "unc_neg", "unc_pos", "bt_po
                      hedged_test_talk_per_100w=f"{a['density_uncertainty-estimation_testlex'].mean():.3f}", deductive_test_talk_per_100w=f"{a.density_deduction_testlex.mean():.3f}"))
 t7 = pd.DataFrame(rows)
 save_table(t7, "T7_f4_verbalization", "[7] Qwen3-4B, residual-stream steering (±0.25) along the rebuilt backtracking (L23) and uncertainty (L18) directions, real framing: verbalized awareness per arm",
-           "Verbalization = Abdelnabi & Salem's judge (gpt-4o-2024-08-06) says awareness Yes/Maybe. 'expected_from_length' = a logistic fit of verbalization on log-length in the two baseline decodes, evaluated at the arm's lengths. random_bt / random_unc = Gaussian directions of matched norm at the same layers. bt_pos is degenerate (closure, repetition).")
+           "Verbalization = Abdelnabi & Salem's judge (gpt-4o-2024-08-06) says awareness Yes/Maybe. 'expected_from_length' = a logistic fit of verbalization on log-length in the two baseline decodes, evaluated at the arm's lengths. random_bt / random_unc = Gaussian directions of matched norm at the same layers. bt_pos is degenerate (closure, repetition). Traces the judge failed on (5 of 1,192) count as not verbalizing. test_talk_per_100w is pooled (sum of spans / sum of words).")
 
 fig, ax = plt.subplots(figsize=(8, 4))
 xs = np.arange(len(t7)); ax.bar(xs - 0.2, t7.verbalization.astype(float), 0.4, label="observed"); ax.bar(xs + 0.2, t7.expected_from_length.astype(float), 0.4, label="expected from trace length alone")
@@ -353,7 +389,7 @@ for arm in ["baseline_seed1", "bt_neg", "unc_neg", "unc_pos", "bt_pos", "random_
     if len(x) == 0:
         continue
     n, rb, rx, lost, gained = flip_counts(b, x)
-    rows.append(dict(arm=arm, n_known=n, exec_baseline=f"{rb:.3f}", exec_arm=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=f"{mcnemar(lost, gained):.3f}", closure=f"{f4_all[(f4_all.arm == arm) & (f4_all.framing == 'real')].has_think_close.mean():.2f}"))
+    rows.append(dict(arm=arm, n_known=n, exec_baseline_paired=f"{rb:.3f}", exec_arm_paired=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=fmt_p(mcnemar(lost, gained)), closure=f"{f4_all[(f4_all.arm == arm) & (f4_all.framing == 'real')].has_think_close.mean():.2f}"))
 save_table(pd.DataFrame(rows), "T8_f4_execution", "[8] Same F4 arms: execution vs the main-run baseline, paired by item (real framing)",
            "baseline_seed1 is the decode-to-decode floor. bt_pos is not interpretable (closure 0.63).")
 
