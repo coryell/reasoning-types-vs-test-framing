@@ -1,0 +1,64 @@
+{
+ "config": {
+  "model_name": "Qwen/Qwen3-4B",
+  "dtype": "bfloat16",
+  "max_new_tokens": 1536,
+  "do_sample": true,
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "batch_size": 6,
+  "seed": 0,
+  "enable_thinking": true,
+  "system_prompt": "agentMetaPrompt.txt + 'If a line of reasoning looks wrong, abandon it and try a different approach.'",
+  "notes": {
+   "arm": "ask_bt_pos",
+   "condition": {
+    "name": "ask_bt_pos",
+    "kind": "prompt",
+    "direction": "",
+    "alpha": 0.0,
+    "aware": true,
+    "rows_from": "edit direction",
+    "vectors": "mean_vectors",
+    "layer": null,
+    "coefficient": 0.0,
+    "prompt_suffix": "If a line of reasoning looks wrong, abandon it and try a different approach.",
+    "seed": 0,
+    "info": {}
+   },
+   "task": "actions",
+   "family": "steer_actions"
+  }
+ },
+ "git_commit": "41c4f1b",
+ "torch": "2.14.0+cu130",
+ "transformers": "5.16.1",
+ "cuda_device": "NVIDIA GeForce RTX 4070 Ti",
+ "written": "2026-09-04 21:22:02",
+ "arm": "ask_bt_pos",
+ "alpha": 0.0,
+ "aware": true,
+ "condition": {
+  "name": "ask_bt_pos",
+  "kind": "prompt",
+  "direction": "",
+  "alpha": 0.0,
+  "aware": true,
+  "rows_from": "edit direction",
+  "vectors": "mean_vectors",
+  "layer": null,
+  "coefficient": 0.0,
+  "prompt_suffix": "If a line of reasoning looks wrong, abandon it and try a different approach.",
+  "seed": 0,
+  "info": {}
+ },
+ "task": "actions",
+ "family": "steer_actions",
+ "n_items": 149,
+ "framings": [
+  "real"
+ ],
+ "offset": null,
+ "selection_seed": null
+}

@@ -1,0 +1,5 @@
+model,family,framing,arm,signed_alpha,n_pairs,base_rate,arm_rate,both_exec,lost,gained,neither,net_gain,churn,p_mcnemar
+qwen3_4b,steer_actions,fake,baseline_seed1,0.0,141,0.8794326241134752,0.8865248226950354,119,5,6,11,1,11,1.0
+qwen3_4b,steer_actions,real,ask_bt_pos,0.0,144,0.7222222222222222,0.7638888888888888,101,3,9,31,6,12,0.14599609375
+qwen3_4b,steer_actions,real,ask_unc_pos,0.0,146,0.726027397260274,0.7328767123287672,97,9,10,30,1,19,1.0
+qwen3_4b,steer_actions,real,baseline_seed1,0.0,141,0.723404255319149,0.7446808510638298,99,3,6,33,3,9,0.5078125
