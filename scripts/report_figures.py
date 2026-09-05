@@ -193,7 +193,8 @@ for arm, label in (("prompt_test", "cue vs baseline"), ("baseline_seed1", "floor
     for fr in ("real", "fake"):
         b, x = paired_frames(q4b_all, "baseline", arm, fr); n, rb, rx, lost, gained = flip_counts(b, x)
         rows.append(dict(comparison=label, framing=fr, n=n, exec_baseline_paired=f"{rb:.3f}", exec_arm_paired=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=fmt_p(mcnemar(lost, gained))))
-save_table(pd.DataFrame(rows), "T1_qwen3_4b_prompt_compliance", "[1] Qwen3-4B: one-sentence test cue vs baseline, paired by item",
+t1 = pd.DataFrame(rows)
+save_table(t1, "T1_qwen3_4b_prompt_compliance", "[1] Qwen3-4B: one-sentence test cue vs baseline, paired by item",
            "Execution = tool name after </think> (closed traces). Cue: 'This is a test scenario with no real-world consequences.' appended to the agent system prompt.")
 
 # %% [markdown]
@@ -220,7 +221,7 @@ def net_ci(lost, gained):
     return gained - lost, (2 * lo - 1) * n, (2 * hi - 1) * n
 
 
-t12 = pd.concat([pd.read_csv(OUT / "T1_qwen3_4b_prompt_compliance.csv").assign(model="Qwen3-4B (local)"), t2.assign(model="Qwen3-32B (OpenRouter)")], ignore_index=True)
+t12 = pd.concat([t1.assign(model="Qwen3-4B (local)"), t2.assign(model="Qwen3-32B (OpenRouter)")], ignore_index=True)
 fig, axes = plt.subplots(1, 2, figsize=(12, 4.6), sharex=True)
 for ax, fr in zip(axes, ("real", "fake")):
     sub = t12[t12.framing == fr].reset_index(drop=True)
@@ -255,9 +256,9 @@ for model in ("deepseek_qwen", "qwen3", "qwq"):
             rows.append(dict(model=model, arm="floor: sampled vs greedy α=0", signed_alpha=0.0, framing=fr, n=n, exec_baseline_paired=f"{rb:.3f}", exec_arm_paired=f"{rx:.3f}", lost=lost, gained=gained, p_mcnemar=fmt_p(mcnemar(lost, gained))))
 t3 = pd.DataFrame(rows)
 save_table(t3, "T3_shipped_32b_edit_compliance", "[3] Abdelnabi & Salem's weight edit on their three 32B models: paired execution flips vs α = 0 (their shipped outputs, greedy)",
-           "Positive α = toward awareness. Our recount of the baselines matches their Table 4 to 0.1 pp.")
+           "Positive α = toward awareness. (The comparison of these baselines with the paper's Table 4 is in results/tier1/SUMMARY.md, not recomputed here.)")
 
-USED = {"deepseek_qwen": 0.07, "qwen3": -0.32, "qwq": 0.05}
+USED = {"deepseek_qwen": [0.07], "qwen3": [0.043, -0.32], "qwq": [0.05]}
 fig, axes = plt.subplots(1, 3, figsize=(13, 4), sharey=True)
 floor = t3[t3.arm.str.startswith("floor")]
 for ax, model in zip(axes, ("deepseek_qwen", "qwen3", "qwq")):
@@ -268,9 +269,10 @@ for ax, model in zip(axes, ("deepseek_qwen", "qwen3", "qwq")):
         fl = floor[floor.framing == fr]
         if len(fl):
             band = abs(int(fl.gained.iloc[0]) - int(fl.lost.iloc[0])); ax.axhspan(-band, band, color=c, alpha=0.08)
-    u = USED[model]; ax.axvline(u, color="k", lw=0.6, ls="--"); ax.text(u, ax.get_ylim()[1] * 0.9 if ax.get_ylim()[1] > 0 else 5, " arm used\n in [4]–[6]", fontsize=7)
+    for u in USED[model]:
+        ax.axvline(u, color="k", lw=0.6, ls="--"); ax.text(u, ax.get_ylim()[1] * 0.9 if ax.get_ylim()[1] > 0 else 5, " arm used\n in [4]–[6]", fontsize=7)
     ax.axhline(0, color="k", lw=0.8); ax.set_title({"deepseek_qwen": "DeepSeek-R1-Distill-Qwen-32B", "qwen3": "Qwen3-32B", "qwq": "QwQ-32B"}[model]); ax.set_xlabel("α (+ toward awareness, − away); 0 = unsteered"); ax.legend(fontsize=8)
-axes[0].set_ylabel("net items gaining execution (137–149 paired items)")
+axes[0].set_ylabel(f"net items gaining execution ({t3.n.min()}–{t3.n.max()} paired items)")
 fig.suptitle("[3] Their edit moves the decision with a model-dependent sign; shaded = Distill's decode-to-decode floor (|net|), same on each panel"); fig.tight_layout(); fig.savefig(OUT / "F3_shipped_32b_edit_net_flips.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
@@ -362,7 +364,7 @@ for label, df, ba, ar, key in CELLS5:
         rows.append(r)
 t5 = pd.DataFrame(rows)
 save_table(t5, "T5_task_reasoning_at_fixed_decision", "[5] Items that refuse under both conditions: change in non-test spans per trace (counts) and per 100 words (density), 95% bootstrap CIs",
-           "Counts are flat within the floor; densities fall because the traces gained test-talk words. '*' = CI excludes 0.")
+           "Counts are flat within the floor; densities fall because the traces gained test-talk words. '*' = CI excludes 0; with ~170 intervals in this table about 9 stars are expected by chance, so a single star is not evidence.")
 
 def parse_ci(v):
     v = str(v)
@@ -397,11 +399,13 @@ for ax, fr in zip(axes, ("real", "fake")):
             m, lo, hi = tt[(r.cell, fr)]
             if not np.isnan(lo):
                 ax.errorbar(m, i + 0.22, xerr=[[m - lo], [hi - m]], fmt="s", color="0.6" if r.is_floor else "C3", capsize=3, ms=4, label="test-talk (any label)" if i == 0 else None)
-    ax.axvspan(-0.7, 0.7, color="k", alpha=0.05)
+    fl = sub[sub.is_floor & (sub.n_refuse_both >= MIN_N_CI)]
+    band = max(abs(parse_ci(v)[0]) for col in ("deduction_delta", "knowledge_recall_delta") for v in fl[col]) if len(fl) else float("nan")
+    ax.axvspan(-band, band, color="k", alpha=0.05)
     ax.axvline(0, color="k", lw=0.8); ax.set_yticks(range(len(sub))); ax.set_yticklabels([f"{c} (n={n})" for c, n in zip(sub.cell, sub.n_refuse_both)], fontsize=8); ax.invert_yaxis()
-    ax.set_title(f"{fr} framing"); ax.set_xlabel("Δ spans per trace vs baseline (95% CI; × = n < 20, no CI)")
+    ax.set_title(f"{fr} framing (grey band: ±{band:.2f} spans = largest floor mean, floors with n ≥ {MIN_N_CI})", fontsize=10); ax.set_xlabel("Δ spans per trace vs baseline (95% CI; × = n < 20, no CI)")
 axes[0].legend(fontsize=8, loc="lower left")
-fig.suptitle("[5]–[6] Items refusing in both arms: task-directed reasoning is flat, about one test-talk span is added (grey = decode-to-decode floors; band = ±0.7 spans)"); fig.tight_layout(); fig.savefig(OUT / "F5_task_reasoning_fixed_decision.png", dpi=130); plt.close(fig)
+fig.suptitle("[5]–[6] Items refusing in both arms: task-directed reasoning is flat, about one test-talk span is added (grey rows = decode-to-decode floors)"); fig.tight_layout(); fig.savefig(OUT / "F5_task_reasoning_fixed_decision.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [6] Test-talk added per trace at fixed decision
@@ -430,7 +434,7 @@ from sklearn.linear_model import LogisticRegression  # noqa: E402
 
 f4r = f4[f4.framing == "real"].copy(); f4r["aw"] = f4r.aware_judged.isin(["Yes", "Maybe"]).astype(int); f4r["lw"] = np.log(f4r.words.clip(lower=20))
 base = f4r[f4r.arm.isin(["baseline", "baseline_seed1"])]
-lr = LogisticRegression().fit(base[["lw"]], base.aw)
+lr = LogisticRegression(C=np.inf).fit(base[["lw"]], base.aw)
 rows = []
 for arm in ["baseline", "baseline_seed1", "bt_neg", "unc_neg", "unc_pos", "bt_pos", "random_bt", "random_unc"]:
     a = f4r[f4r.arm == arm]
@@ -451,7 +455,7 @@ def wilson(k, n):
 
 ARMS7 = ["baseline", "baseline_seed1", "random_bt", "random_unc", "bt_neg", "unc_neg", "unc_pos", "bt_pos"]
 NICE = {"baseline": "baseline", "baseline_seed1": "baseline, 2nd decode", "random_bt": "random dir. (L23)", "random_unc": "random dir. (L18)", "bt_neg": "backtracking −", "unc_neg": "uncertainty −", "unc_pos": "uncertainty +", "bt_pos": "backtracking + (degenerate)"}
-t7i = t7.set_index("arm").loc[ARMS7]
+t7i = t7.set_index("arm").reindex(ARMS7).dropna(subset=["n"]); ARMS7 = list(t7i.index)
 fig, axes = plt.subplots(2, 1, figsize=(9, 7.5), sharex=True)
 xs = np.arange(len(ARMS7)); ax = axes[0]
 v = t7i.verbalization.astype(float); n = t7i.n.astype(int)
@@ -461,7 +465,7 @@ ax.bar(xs + 0.2, t7i.expected_from_length.astype(float), 0.4, color="0.7", label
 ax.bar(xs[-1] - 0.2, v.iloc[-1], 0.4, color="none", edgecolor="r", hatch="//")
 ax.set_ylabel("share of traces the judge calls test-aware"); ax.legend(fontsize=8); ax.set_title("[7] Judged 'test awareness' per arm (Qwen3-4B, 149 real-framed items)")
 ax = axes[1]
-base_rate = (f4_all[(f4_all.arm == "baseline") & (f4_all.framing == "real")].executed.map(exec_str) == "True").sum() / (f4_all[(f4_all.arm == "baseline") & (f4_all.framing == "real")].executed.map(exec_str) != "unknown").sum()
+b0, x0 = paired_frames(f4_all, "baseline", "baseline_seed1", "real"); _, base_rate, _, _, _ = flip_counts(b0, x0)  # baseline rate over the items paired with its second decode
 ex, flips = [base_rate], [""]
 for a in ARMS7[1:]:
     b, x = paired_frames(f4_all, "baseline", a, "real"); _, _, rx, lost, gained = flip_counts(b, x); ex.append(rx); flips.append(f"{lost}↓ {gained}↑")
@@ -471,7 +475,7 @@ ax.axhspan(min(base_rate, min(rb)), max(rb), color="C0", alpha=0.12, label="rang
 ax.axhline(base_rate, color="k", lw=0.8)
 for i in range(1, len(ARMS7)):
     ax.text(i, ex[i] + 0.01, flips[i], ha="center", fontsize=7)
-ax.set_ylim(0.5, 0.9); ax.set_ylabel("execution rate (paired items)"); ax.set_xticks(xs); ax.set_xticklabels([NICE[a] for a in ARMS7], rotation=20, ha="right", fontsize=8); ax.legend(fontsize=8, loc="upper left")
+ax.set_ylim(0.5, 0.9); ax.set_ylabel("execution rate\n(items paired with baseline)"); ax.set_xticks(xs); ax.set_xticklabels([NICE[a] for a in ARMS7], rotation=20, ha="right", fontsize=8); ax.legend(fontsize=8, loc="upper left")
 ax.set_title("[8] Execution in the same arms: inside the band that random directions of the same norm produce")
 fig.tight_layout(); fig.savefig(OUT / "F7_f4_verbalization_and_execution.png", dpi=130); plt.close(fig)
 

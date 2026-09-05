@@ -1,6 +1,6 @@
 # [3] Abdelnabi & Salem's weight edit on their three 32B models: paired execution flips vs α = 0 (their shipped outputs, greedy)
 
-Positive α = toward awareness. Our recount of the baselines matches their Table 4 to 0.1 pp.
+Positive α = toward awareness. (The comparison of these baselines with the paper's Table 4 is in results/tier1/SUMMARY.md, not recomputed here.)
 
 | model         | arm                          |   signed_alpha | framing   |   n |   exec_baseline_paired |   exec_arm_paired |   lost |   gained | p_mcnemar   |
 |:--------------|:-----------------------------|---------------:|:----------|----:|-----------------------:|------------------:|-------:|---------:|:------------|

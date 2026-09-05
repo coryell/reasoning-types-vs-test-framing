@@ -1,6 +1,6 @@
 # [5] Items that refuse under both conditions: change in non-test spans per trace (counts) and per 100 words (density), 95% bootstrap CIs
 
-Counts are flat within the floor; densities fall because the traces gained test-talk words. '*' = CI excludes 0.
+Counts are flat within the floor; densities fall because the traces gained test-talk words. '*' = CI excludes 0; with ~170 intervals in this table about 9 stars are expected by chance, so a single star is not evidence.
 
 | cell                                                  | framing   |   n_refuse_both | words     |   deduction_base | deduction_delta       | deduction_density_delta   |   knowledge_recall_base | knowledge_recall_delta   | knowledge_recall_density_delta   |   hedging_base | hedging_delta         | hedging_density_delta   |   backtracking_base | backtracking_delta    | backtracking_density_delta   |
 |:------------------------------------------------------|:----------|----------------:|:----------|-----------------:|:----------------------|:--------------------------|------------------------:|:-------------------------|:---------------------------------|---------------:|:----------------------|:------------------------|--------------------:|:----------------------|:-----------------------------|
