@@ -482,6 +482,31 @@ for sp in ("top", "right"):
 fig.tight_layout(); fig.savefig(OUT / "F5b_composition.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
+# ## [5b-task] Composition of task-directed reasoning only (test-talk removed, shares renormalised)
+
+# %%
+fig, ax = plt.subplots(figsize=(11, 0.62 * len(order) + 1.6))
+y = 0; yticks, ylabels = [], []
+for lab in order:
+    for which, off in (("without", 0.0), ("with", 0.42)):
+        r = comp[(comp.label == lab) & (comp.which == which)].iloc[0]
+        left = 0.0
+        for beh in BEH:
+            ax.barh(y + off, r[f"taskonly_{beh}"], left=left, height=0.38, color=BEH_COL[beh], edgecolor="white", linewidth=0.5, label=BEH_NICE[beh] if (y == 0 and off == 0) else None)
+            left += r[f"taskonly_{beh}"]
+        tag = ("second decode" if which == "with" else "first decode") if r.is_floor else ("with intervention" if which == "with" else "without intervention")
+        n_task = r.total_per_trace * (1 - r["test-talk"])
+        ax.text(1.005, y + off, f"{tag}, {n_task:.0f} task sentences/trace", va="center", fontsize=7, color="0.3")
+    yticks.append(y + 0.21); ylabels.append(f"{lab}  (n={int(r.n)})")
+    y += 1.2
+ax.set_yticks(yticks); ax.set_yticklabels(ylabels, fontsize=8); ax.invert_yaxis(); ax.set_xlim(0, 1); ax.set_xlabel("share of task-directed reasoning sentences (test-talk removed), items refusing in both conditions (real framing)", fontsize=9)
+ax.legend(fontsize=7, ncol=6, loc="lower center", bbox_to_anchor=(0.5, 1.0), frameon=False)
+ax.set_title("With test-talk set aside, the mix of task-directed reasoning is unchanged: no share moves by more than 2.8 points", fontsize=10, pad=28)
+for sp in ("top", "right"):
+    ax.spines[sp].set_visible(False)
+fig.tight_layout(); fig.savefig(OUT / "F5b_composition_taskonly.png", dpi=130); plt.close(fig)
+
+# %% [markdown]
 # ## [5c] Per-item count differences by behaviour: box plots per condition
 
 # %%
