@@ -367,6 +367,7 @@ t5 = pd.DataFrame(rows)
 save_table(t5, "T5_task_reasoning_at_fixed_decision", "[5] Items that refuse under both conditions: change in non-test spans per trace (counts) and per 100 words (density), 95% bootstrap CIs",
            "Counts are flat within the floor; densities fall because the traces gained test-talk words. '*' = CI excludes 0; with ~170 intervals in this table about 9 stars are expected by chance, so a single star is not evidence.")
 
+BEH_NICE_EARLY = {"deduction": "deduction", "adding-knowledge": "knowledge recall", "uncertainty-estimation": "hedging", "backtracking": "backtracking", "example-testing": "example-testing", "initializing": "initializing"}
 SHOW5 = [("Distill-Qwen-32B, aware +0.07", "Distill-32B: Abdelnabi & Salem's weight edit, toward awareness"), ("QwQ-32B, aware +0.05", "QwQ-32B: Abdelnabi & Salem's weight edit, toward awareness"),
          ("Qwen3-32B, aware +0.043", "Qwen3-32B: Abdelnabi & Salem's weight edit, toward awareness"), ("Qwen3-32B, unaware −0.32", "Qwen3-32B: Abdelnabi & Salem's weight edit, away from awareness"),
          ("Qwen3-32B, test cue (seed 0)", "Qwen3-32B: test cue, decode 0"), ("Qwen3-32B, test cue (seed 1)", "Qwen3-32B: test cue, decode 1"),
@@ -399,6 +400,33 @@ axes[0].set_xlim(-4, 4); axes[1].set_xlim(-1, 2.5)
 axes[0].set_title(f"change in task-directed sentences per trace (baseline ≈ {f5d.task_base.mean():.0f})", fontsize=11)
 fig.suptitle("Items the model refuses both with and without the intervention: task reasoning stays put, about one test-talk sentence is added", fontsize=11)
 fig.tight_layout(); fig.savefig(OUT / "F5_task_reasoning_fixed_decision.png", dpi=130); plt.close(fig)
+
+# %% [markdown]
+# ## [5a] The same quantities among items that comply both with and without the intervention
+
+# %%
+def comply_both(b, x):
+    be, xe = b.executed.map(exec_str), x.executed.map(exec_str)
+    return b.index[(be == "True") & (xe == "True")]
+
+
+rows = []
+for label, df, ba, ar, key in CELLS5:
+    nice = dict(SHOW5).get(label)
+    if nice is None:
+        continue
+    b = df[(df[key] == ba) & (df.framing == "real")].set_index("index"); x = df[(df[key] == ar) & (df.framing == "real")].set_index("index")
+    idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]; ii = comply_both(b, x)
+    if len(ii) < 10:
+        rows.append(dict(condition=nice, n=len(ii), words="", task_sentences_base="", task_sentences_change="too few items", test_talk_change="", largest_task_share_change_pts=""))
+        continue
+    tb = sum(nontest_count(b.loc[ii], beh) for beh in BEH); tx = sum(nontest_count(x.loc[ii], beh) for beh in BEH)
+    m, lo, hi = boot(tx - tb); mt, tlo, thi = boot(testlex_total(x.loc[ii]) - testlex_total(b.loc[ii]))
+    sw = {beh: nontest_count(b.loc[ii], beh).sum() / tb.sum() for beh in BEH}; sx = {beh: nontest_count(x.loc[ii], beh).sum() / tx.sum() for beh in BEH}
+    d = {beh: 100 * (sx[beh] - sw[beh]) for beh in BEH}; mb = max(d, key=lambda k: abs(d[k]))
+    rows.append(dict(condition=nice, n=len(ii), words=f"{b.loc[ii].words.mean():.0f} → {x.loc[ii].words.mean():.0f}", task_sentences_base=f"{tb.mean():.1f}", task_sentences_change=fmt_ci(m, lo, hi), test_talk_change=fmt_ci(mt, tlo, thi), largest_task_share_change_pts=f"{d[mb]:+.1f} ({BEH_NICE_EARLY[mb]})"))
+save_table(pd.DataFrame(rows), "T5c_comply_both", "[5a] Items that execute the tool call both with and without the intervention (real framing): task-directed sentences, test-talk, and the largest change in any task-directed type's share",
+           "Same definitions as T5; the 32B models execute few real-framed requests, so most cells are small. Below 20 items no interval is given.")
 
 # %% [markdown]
 # ## [5b] Composition of reasoning among stable refusers: baseline vs intervention, per condition
