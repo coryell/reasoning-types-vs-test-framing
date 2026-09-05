@@ -504,7 +504,7 @@ fig, ax = plt.subplots(figsize=(8, 5.5))
 for _, r in f7d.iterrows():
     c = "0.5" if r.arm in ("baseline", "baseline_seed1", "random_bt", "random_unc") else ("C1" if r.arm.startswith("shuffled") else "C3")
     ax.errorbar(r.verbal, r.exec_, xerr=[[r.verbal - r.vlo], [r.vhi - r.verbal]], yerr=[[r.exec_ - r.elo], [r.ehi - r.exec_]], fmt="o" if not r.arm.startswith("shuffled") else "s", color=c, capsize=2, ms=6)
-    ax.annotate(NICE[r.arm], (r.verbal, r.exec_), textcoords="offset points", xytext=(6, 6), fontsize=8, color=c)
+    ax.annotate(NICE[r.arm], (r.verbal, r.exec_), textcoords="offset points", xytext=(6, -14) if r.arm.startswith("shuffled") else (6, 6), fontsize=8, color=c)
 ctrl = f7d[f7d.arm.isin(["baseline", "baseline_seed1", "random_bt", "random_unc"])]
 ax.axhspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.12, label="execution range of baseline + random directions")
 ax.set_xlabel("share of traces Abdelnabi & Salem's awareness judge calls test-aware"); ax.set_ylabel("share of items executing the harmful tool call")
