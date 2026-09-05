@@ -1098,3 +1098,86 @@
 [2026-09-04 21:24:42]   100/149 done, 0 errors, 216,760 tokens, ~$0.84 this run
 [2026-09-04 21:24:48]   149/149 done, 0 errors, 331,504 tokens, ~$1.29 this run
 [2026-09-04 21:24:48] {"path": "results/qwen3_4b/followups/f4_prompt/ask_unc_pos.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 269911, "completion_tokens": 61593, "est_cost_usd": 1.2907}
+[2026-09-04 22:08:14] arms: ['ask_bt_pos', 'ask_unc_neg', 'ask_unc_pos']
+[2026-09-04 22:08:14] results/qwen3_4b/followups/f4_prompt/ask_bt_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 22:08:14] {"path": "results/qwen3_4b/followups/f4_prompt/ask_bt_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:08:14] results/qwen3_4b/followups/f4_prompt/ask_unc_neg.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 22:08:27]   50/149 done, 0 errors, 51,345 tokens, ~$0.31 this run
+[2026-09-04 22:08:34]   100/149 done, 0 errors, 108,753 tokens, ~$0.67 this run
+[2026-09-04 22:08:47]   149/149 done, 0 errors, 186,649 tokens, ~$1.17 this run
+[2026-09-04 22:08:47] {"path": "results/qwen3_4b/followups/f4_prompt/ask_unc_neg.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 93233, "completion_tokens": 93416, "est_cost_usd": 1.1672}
+[2026-09-04 22:08:47] results/qwen3_4b/followups/f4_prompt/ask_unc_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 22:08:47] {"path": "results/qwen3_4b/followups/f4_prompt/ask_unc_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:08:55] arms: ['ask_bt_pos', 'ask_unc_neg', 'ask_unc_pos']
+[2026-09-04 22:08:55] results/qwen3_4b/followups/f4_prompt/ask_bt_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 22:08:55] {"path": "results/qwen3_4b/followups/f4_prompt/ask_bt_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:08:55] results/qwen3_4b/followups/f4_prompt/ask_unc_neg.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 22:09:03]   50/149 done, 0 errors, 109,441 tokens, ~$0.44 this run
+[2026-09-04 22:09:09]   100/149 done, 0 errors, 218,938 tokens, ~$0.88 this run
+[2026-09-04 22:09:20]   149/149 done, 1 errors, 337,172 tokens, ~$1.35 this run
+[2026-09-04 22:09:21] {"path": "results/qwen3_4b/followups/f4_prompt/ask_unc_neg.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 1, "prompt_tokens": 269088, "completion_tokens": 68084, "est_cost_usd": 1.3536}
+[2026-09-04 22:09:21] results/qwen3_4b/followups/f4_prompt/ask_unc_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 22:09:21] {"path": "results/qwen3_4b/followups/f4_prompt/ask_unc_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:36:15] arms: ['ask_bt_neg', 'ask_bt_pos', 'ask_unc_neg', 'ask_unc_pos']
+[2026-09-04 22:36:15] results/qwen3_4b/followups/f4_prompt/ask_bt_neg.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 22:36:26]   50/149 done, 0 errors, 49,868 tokens, ~$0.30 this run
+[2026-09-04 22:36:34]   100/149 done, 0 errors, 109,766 tokens, ~$0.68 this run
+[2026-09-04 22:36:48]   149/149 done, 0 errors, 194,249 tokens, ~$1.21 this run
+[2026-09-04 22:36:48] {"path": "results/qwen3_4b/followups/f4_prompt/ask_bt_neg.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 97266, "completion_tokens": 96983, "est_cost_usd": 1.213}
+[2026-09-04 22:36:48] results/qwen3_4b/followups/f4_prompt/ask_bt_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 22:36:48] {"path": "results/qwen3_4b/followups/f4_prompt/ask_bt_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:36:48] results/qwen3_4b/followups/f4_prompt/ask_unc_neg.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 22:36:48] {"path": "results/qwen3_4b/followups/f4_prompt/ask_unc_neg.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:36:48] results/qwen3_4b/followups/f4_prompt/ask_unc_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 22:36:48] {"path": "results/qwen3_4b/followups/f4_prompt/ask_unc_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:36:54] arms: ['ask_bt_neg', 'ask_bt_pos', 'ask_unc_neg', 'ask_unc_pos']
+[2026-09-04 22:36:54] results/qwen3_4b/followups/f4_prompt/ask_bt_neg.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 22:37:01]   50/149 done, 0 errors, 110,968 tokens, ~$0.43 this run
+[2026-09-04 22:37:06]   100/149 done, 0 errors, 223,353 tokens, ~$0.88 this run
+[2026-09-04 22:37:18]   149/149 done, 2 errors, 339,714 tokens, ~$1.35 this run
+[2026-09-04 22:37:18] {"path": "results/qwen3_4b/followups/f4_prompt/ask_bt_neg.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 2, "prompt_tokens": 273422, "completion_tokens": 66292, "est_cost_usd": 1.3465}
+[2026-09-04 22:37:18] results/qwen3_4b/followups/f4_prompt/ask_bt_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 22:37:18] {"path": "results/qwen3_4b/followups/f4_prompt/ask_bt_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:37:18] results/qwen3_4b/followups/f4_prompt/ask_unc_neg.json.awareness.jsonl: 149 jobs, 148 cached, 1 truncated (kept), 0 to run
+[2026-09-04 22:37:18] {"path": "results/qwen3_4b/followups/f4_prompt/ask_unc_neg.json.awareness.jsonl", "jobs": 149, "cached": 148, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:37:18] results/qwen3_4b/followups/f4_prompt/ask_unc_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 22:37:18] {"path": "results/qwen3_4b/followups/f4_prompt/ask_unc_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 22:37:24] arms: ['ask_bt_neg', 'ask_bt_pos', 'ask_unc_neg', 'ask_unc_pos']
+[2026-09-04 22:37:42] ask_bt_neg: condition prompt {}; system prompt present
+[2026-09-04 22:37:50]   ask_bt_neg: 100 prompt states
+[2026-09-04 22:37:54] ask_bt_neg: wrote 149 prompt states
+[2026-09-04 22:37:54] ask_bt_pos: condition prompt {}; system prompt present
+[2026-09-04 22:38:00]   ask_bt_pos: 100 prompt states
+[2026-09-04 22:38:03] ask_bt_pos: wrote 149 prompt states
+[2026-09-04 22:38:03] ask_unc_neg: condition prompt {}; system prompt present
+[2026-09-04 22:38:09]   ask_unc_neg: 100 prompt states
+[2026-09-04 22:38:12] ask_unc_neg: wrote 149 prompt states
+[2026-09-04 22:38:12] ask_unc_pos: condition prompt {}; system prompt present
+[2026-09-04 22:38:19]   ask_unc_pos: 100 prompt states
+[2026-09-04 22:38:22] ask_unc_pos: wrote 149 prompt states
+[2026-09-04 22:38:30] arms: ['ask_bt_neg', 'ask_bt_pos', 'ask_unc_neg', 'ask_unc_pos']
+[2026-09-04 22:38:47] ask_bt_neg: condition prompt {}; system prompt present
+[2026-09-04 22:38:55]   ask_bt_neg: 50 in-context projections
+[2026-09-04 22:39:01]   ask_bt_neg: 100 in-context projections
+[2026-09-04 22:39:07] ask_bt_neg: wrote 149 in-context projections
+[2026-09-04 22:39:07] ask_bt_pos: condition prompt {}; system prompt present
+[2026-09-04 22:39:12]   ask_bt_pos: 50 in-context projections
+[2026-09-04 22:39:18]   ask_bt_pos: 100 in-context projections
+[2026-09-04 22:39:24] ask_bt_pos: wrote 149 in-context projections
+[2026-09-04 22:39:24] ask_unc_neg: condition prompt {}; system prompt present
+[2026-09-04 22:39:29]   ask_unc_neg: 50 in-context projections
+[2026-09-04 22:39:35]   ask_unc_neg: 100 in-context projections
+[2026-09-04 22:39:40] ask_unc_neg: wrote 149 in-context projections
+[2026-09-04 22:39:40] ask_unc_pos: condition prompt {}; system prompt present
+[2026-09-04 22:39:45]   ask_unc_pos: 50 in-context projections
+[2026-09-04 22:39:51]   ask_unc_pos: 100 in-context projections
+[2026-09-04 22:39:57] ask_unc_pos: wrote 149 in-context projections
+[2026-09-04 22:40:06] arms: ['ask_bt_neg', 'ask_bt_pos', 'ask_unc_neg', 'ask_unc_pos']
+[2026-09-04 22:40:35]   ask_bt_neg: 100 probe projections
+[2026-09-04 22:40:40] ask_bt_neg: wrote 149 probe projections
+[2026-09-04 22:40:49]   ask_bt_pos: 100 probe projections
+[2026-09-04 22:40:53] ask_bt_pos: wrote 149 probe projections
+[2026-09-04 22:41:01]   ask_unc_neg: 100 probe projections
+[2026-09-04 22:41:06] ask_unc_neg: wrote 149 probe projections
+[2026-09-04 22:41:14]   ask_unc_pos: 100 probe projections
+[2026-09-04 22:41:19] ask_unc_pos: wrote 149 probe projections
