@@ -401,6 +401,48 @@ fig.suptitle("Items the model refuses both with and without the intervention: ta
 fig.tight_layout(); fig.savefig(OUT / "F5_task_reasoning_fixed_decision.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
+# ## [5b] Composition of reasoning among stable refusers: baseline vs intervention, per condition
+
+# %%
+BEH_NICE = {"deduction": "deduction", "adding-knowledge": "knowledge recall", "uncertainty-estimation": "hedging", "backtracking": "backtracking", "example-testing": "example-testing", "initializing": "initializing"}
+BEH_COL = {"deduction": "#4477AA", "adding-knowledge": "#66CCEE", "uncertainty-estimation": "#228833", "backtracking": "#CCBB44", "example-testing": "#EE6677", "initializing": "#AA3377"}  # Tol bright
+comp_rows = []
+for label, df, ba, ar, key in CELLS5:
+    nice = dict(SHOW5).get(label)
+    if nice is None:
+        continue
+    b = df[(df[key] == ba) & (df.framing == "real")].set_index("index"); x = df[(df[key] == ar) & (df.framing == "real")].set_index("index")
+    idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]; ii = stable_refusers(b, x)
+    if len(ii) < MIN_N_CI:
+        continue
+    for which, fr_ in (("without", b.loc[ii]), ("with", x.loc[ii])):
+        counts = {beh: float(nontest_count(fr_, beh).sum()) for beh in BEH}; counts["test-talk"] = float(testlex_total(fr_).sum())
+        total = sum(counts.values())
+        comp_rows.append(dict(label=nice, which=which, n=len(ii), is_floor=label.startswith("floor"), total_per_trace=total / len(ii), **{k: v / total for k, v in counts.items()}))
+comp = pd.DataFrame(comp_rows); comp.to_csv(OUT / "F5b_composition.csv", index=False)
+order = [n for _, n in SHOW5 if n in set(comp.label)]
+fig, ax = plt.subplots(figsize=(11, 0.62 * len(order) + 1.6))
+y = 0; yticks, ylabels = [], []
+for lab in order:
+    for which, off in (("without", 0.0), ("with", 0.42)):
+        r = comp[(comp.label == lab) & (comp.which == which)].iloc[0]
+        left = 0.0
+        for beh in BEH:
+            ax.barh(y + off, r[beh], left=left, height=0.38, color=BEH_COL[beh], edgecolor="white", linewidth=0.5, label=BEH_NICE[beh] if (y == 0 and off == 0) else None)
+            left += r[beh]
+        ax.barh(y + off, r["test-talk"], left=left, height=0.38, color="white", edgecolor="C3", hatch="////", linewidth=0.8, label="test-talk (any behaviour)" if (y == 0 and off == 0) else None)
+        tag = ("second decode" if which == "with" else "first decode") if r.is_floor else ("with intervention" if which == "with" else "without intervention")
+        ax.text(1.005, y + off, f"{tag}, {r.total_per_trace:.0f} sentences/trace", va="center", fontsize=7, color="0.3")
+    yticks.append(y + 0.21); ylabels.append(f"{lab}  (n={int(r.n)})")
+    y += 1.2
+ax.set_yticks(yticks); ax.set_yticklabels(ylabels, fontsize=8); ax.invert_yaxis(); ax.set_xlim(0, 1); ax.set_xlabel("share of reasoning sentences, items refusing in both conditions (real framing)", fontsize=9)
+ax.legend(fontsize=7, ncol=7, loc="lower center", bbox_to_anchor=(0.5, 1.0), frameon=False)
+ax.set_title("The mix of reasoning behaviours does not change; only the hatched test-talk slice does", fontsize=10, pad=28)
+for sp in ("top", "right"):
+    ax.spines[sp].set_visible(False)
+fig.tight_layout(); fig.savefig(OUT / "F5b_composition.png", dpi=130); plt.close(fig)
+
+# %% [markdown]
 # ## [6] Test-talk added per trace at fixed decision
 
 # %%
