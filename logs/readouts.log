@@ -905,3 +905,77 @@
 [2026-09-04 18:29:15] {"path": "results/qwen3_4b/followups/f4_reverse/unc_neg.json.awareness.jsonl", "jobs": 149, "cached": 148, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
 [2026-09-04 18:29:15] results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
 [2026-09-04 18:29:15] {"path": "results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:55:20] arms: ['ask_bt_neg', 'ask_bt_pos', 'ask_unc_neg', 'ask_unc_pos', 'baseline', 'prompt_test']
+[2026-09-04 18:55:20] results/api_prompt/qwen3_32b_api/ask_bt_neg.json.annotations.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 18:55:29]   50/298 done, 0 errors, 47,580 tokens, ~$0.29 this run
+[2026-09-04 18:55:38]   100/298 done, 0 errors, 105,001 tokens, ~$0.64 this run
+[2026-09-04 18:55:45]   150/298 done, 0 errors, 161,829 tokens, ~$1.00 this run
+[2026-09-04 18:55:52]   200/298 done, 0 errors, 222,945 tokens, ~$1.38 this run
+[2026-09-04 18:55:59]   250/298 done, 0 errors, 285,682 tokens, ~$1.77 this run
+[2026-09-04 18:56:22]   298/298 done, 0 errors, 363,224 tokens, ~$2.27 this run
+[2026-09-04 18:56:22] {"path": "results/api_prompt/qwen3_32b_api/ask_bt_neg.json.annotations.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 181830, "completion_tokens": 181394, "est_cost_usd": 2.2685}
+[2026-09-04 18:56:22] results/api_prompt/qwen3_32b_api/ask_bt_pos.json.annotations.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 18:56:29]   50/298 done, 0 errors, 49,654 tokens, ~$0.30 this run
+[2026-09-04 18:56:35]   100/298 done, 0 errors, 102,926 tokens, ~$0.63 this run
+[2026-09-04 18:56:41]   150/298 done, 0 errors, 153,923 tokens, ~$0.94 this run
+[2026-09-04 18:56:47]   200/298 done, 0 errors, 206,451 tokens, ~$1.26 this run
+[2026-09-04 18:56:53]   250/298 done, 0 errors, 264,922 tokens, ~$1.63 this run
+[2026-09-04 18:57:13]   298/298 done, 0 errors, 340,988 tokens, ~$2.11 this run
+[2026-09-04 18:57:13] {"path": "results/api_prompt/qwen3_32b_api/ask_bt_pos.json.annotations.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 173130, "completion_tokens": 167858, "est_cost_usd": 2.1114}
+[2026-09-04 18:57:13] results/api_prompt/qwen3_32b_api/ask_unc_neg.json.annotations.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 18:57:20]   50/298 done, 0 errors, 48,805 tokens, ~$0.30 this run
+[2026-09-04 18:57:27]   100/298 done, 0 errors, 104,911 tokens, ~$0.64 this run
+[2026-09-04 18:57:33]   150/298 done, 0 errors, 162,737 tokens, ~$1.00 this run
+[2026-09-04 18:57:39]   200/298 done, 0 errors, 219,806 tokens, ~$1.35 this run
+[2026-09-04 18:57:46]   250/298 done, 0 errors, 282,432 tokens, ~$1.75 this run
+[2026-09-04 18:58:01]   298/298 done, 0 errors, 356,580 tokens, ~$2.22 this run
+[2026-09-04 18:58:01] {"path": "results/api_prompt/qwen3_32b_api/ask_unc_neg.json.annotations.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 179678, "completion_tokens": 176902, "est_cost_usd": 2.2182}
+[2026-09-04 18:58:01] results/api_prompt/qwen3_32b_api/ask_unc_pos.json.annotations.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 18:58:10]   50/298 done, 0 errors, 52,283 tokens, ~$0.32 this run
+[2026-09-04 18:58:16]   100/298 done, 0 errors, 113,495 tokens, ~$0.70 this run
+[2026-09-04 18:58:22]   150/298 done, 0 errors, 170,687 tokens, ~$1.06 this run
+[2026-09-04 18:58:29]   200/298 done, 0 errors, 232,321 tokens, ~$1.44 this run
+[2026-09-04 18:58:36]   250/298 done, 0 errors, 294,200 tokens, ~$1.83 this run
+[2026-09-04 18:58:54]   298/298 done, 0 errors, 370,304 tokens, ~$2.31 this run
+[2026-09-04 18:58:54] {"path": "results/api_prompt/qwen3_32b_api/ask_unc_pos.json.annotations.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 185383, "completion_tokens": 184921, "est_cost_usd": 2.3127}
+[2026-09-04 18:58:54] results/api_prompt/qwen3_32b_api/baseline.json.annotations.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:58:54] {"path": "results/api_prompt/qwen3_32b_api/baseline.json.annotations.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:58:55] results/api_prompt/qwen3_32b_api/prompt_test.json.annotations.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:58:55] {"path": "results/api_prompt/qwen3_32b_api/prompt_test.json.annotations.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:59:01] arms: ['ask_bt_neg', 'ask_bt_pos', 'ask_unc_neg', 'ask_unc_pos', 'baseline', 'prompt_test']
+[2026-09-04 18:59:01] results/api_prompt/qwen3_32b_api/ask_bt_neg.json.awareness.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 18:59:09]   50/298 done, 0 errors, 101,938 tokens, ~$0.39 this run
+[2026-09-04 18:59:14]   100/298 done, 0 errors, 208,261 tokens, ~$0.81 this run
+[2026-09-04 18:59:18]   150/298 done, 0 errors, 312,869 tokens, ~$1.21 this run
+[2026-09-04 18:59:23]   200/298 done, 0 errors, 419,659 tokens, ~$1.62 this run
+[2026-09-04 18:59:28]   250/298 done, 0 errors, 525,472 tokens, ~$2.02 this run
+[2026-09-04 18:59:34]   298/298 done, 0 errors, 630,247 tokens, ~$2.43 this run
+[2026-09-04 18:59:34] {"path": "results/api_prompt/qwen3_32b_api/ask_bt_neg.json.awareness.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 516705, "completion_tokens": 113542, "est_cost_usd": 2.4272}
+[2026-09-04 18:59:34] results/api_prompt/qwen3_32b_api/ask_bt_pos.json.awareness.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 18:59:40]   50/298 done, 0 errors, 96,825 tokens, ~$0.37 this run
+[2026-09-04 18:59:45]   100/298 done, 0 errors, 202,510 tokens, ~$0.78 this run
+[2026-09-04 18:59:50]   150/298 done, 0 errors, 302,658 tokens, ~$1.17 this run
+[2026-09-04 18:59:55]   200/298 done, 0 errors, 404,399 tokens, ~$1.56 this run
+[2026-09-04 19:00:00]   250/298 done, 0 errors, 512,969 tokens, ~$1.99 this run
+[2026-09-04 19:00:06]   298/298 done, 0 errors, 616,296 tokens, ~$2.38 this run
+[2026-09-04 19:00:06] {"path": "results/api_prompt/qwen3_32b_api/ask_bt_pos.json.awareness.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 504170, "completion_tokens": 112126, "est_cost_usd": 2.3817}
+[2026-09-04 19:00:06] results/api_prompt/qwen3_32b_api/ask_unc_neg.json.awareness.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 19:00:13]   50/298 done, 0 errors, 101,174 tokens, ~$0.39 this run
+[2026-09-04 19:00:18]   100/298 done, 0 errors, 208,719 tokens, ~$0.82 this run
+[2026-09-04 19:00:25]   150/298 done, 0 errors, 317,180 tokens, ~$1.25 this run
+[2026-09-04 19:00:33]   200/298 done, 0 errors, 422,630 tokens, ~$1.66 this run
+[2026-09-04 19:00:40]   250/298 done, 0 errors, 529,008 tokens, ~$2.06 this run
+[2026-09-04 19:00:46]   298/298 done, 0 errors, 634,248 tokens, ~$2.47 this run
+[2026-09-04 19:00:46] {"path": "results/api_prompt/qwen3_32b_api/ask_unc_neg.json.awareness.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 516256, "completion_tokens": 117992, "est_cost_usd": 2.4706}
+[2026-09-04 19:00:46] results/api_prompt/qwen3_32b_api/ask_unc_pos.json.awareness.jsonl: 298 jobs, 0 cached, 0 truncated (kept), 298 to run
+[2026-09-04 19:00:53]   50/298 done, 0 errors, 103,568 tokens, ~$0.39 this run
+[2026-09-04 19:00:58]   100/298 done, 0 errors, 209,731 tokens, ~$0.81 this run
+[2026-09-04 19:01:03]   150/298 done, 0 errors, 314,332 tokens, ~$1.22 this run
+[2026-09-04 19:01:09]   200/298 done, 0 errors, 420,082 tokens, ~$1.62 this run
+[2026-09-04 19:01:13]   250/298 done, 0 errors, 527,937 tokens, ~$2.03 this run
+[2026-09-04 19:01:22]   298/298 done, 0 errors, 631,175 tokens, ~$2.43 this run
+[2026-09-04 19:01:22] {"path": "results/api_prompt/qwen3_32b_api/ask_unc_pos.json.awareness.jsonl", "jobs": 298, "cached": 0, "truncated_kept": 0, "run": 298, "errors": 0, "prompt_tokens": 517791, "completion_tokens": 113384, "est_cost_usd": 2.4283}
+[2026-09-04 19:01:22] results/api_prompt/qwen3_32b_api/baseline.json.awareness.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 19:01:22] {"path": "results/api_prompt/qwen3_32b_api/baseline.json.awareness.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 19:01:22] results/api_prompt/qwen3_32b_api/prompt_test.json.awareness.jsonl: 298 jobs, 298 cached, 0 truncated (kept), 0 to run
+[2026-09-04 19:01:22] {"path": "results/api_prompt/qwen3_32b_api/prompt_test.json.awareness.jsonl", "jobs": 298, "cached": 298, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}

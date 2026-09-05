@@ -53,3 +53,59 @@
 [2026-09-04 12:32:46]   575/596 done in 9.0 min; usable 0; errors this run 575
 [2026-09-04 12:32:46]   596/596 done in 9.0 min; usable 0; errors this run 596
 API_DONE
+[2026-09-04 17:58:50] qwen3_32b_api: 149 items × ['real', 'fake'] × ['baseline', 'ask_unc_pos', 'ask_bt_pos', 'ask_unc_neg', 'ask_bt_neg']; cached 596
+[2026-09-04 17:58:50] 1192 generations to run
+[2026-09-04 17:59:54]   25/1192 done in 1.1 min; usable 621; errors this run 0
+[2026-09-04 18:00:56]   50/1192 done in 2.1 min; usable 646; errors this run 0
+[2026-09-04 18:01:59]   75/1192 done in 3.1 min; usable 671; errors this run 0
+[2026-09-04 18:03:12]   100/1192 done in 4.4 min; usable 696; errors this run 0
+[2026-09-04 18:04:37]   125/1192 done in 5.8 min; usable 721; errors this run 0
+[2026-09-04 18:05:27]   150/1192 done in 6.6 min; usable 746; errors this run 0
+[2026-09-04 18:06:27]   175/1192 done in 7.6 min; usable 771; errors this run 0
+[2026-09-04 18:07:24]   200/1192 done in 8.6 min; usable 796; errors this run 0
+[2026-09-04 18:09:02]   225/1192 done in 10.2 min; usable 821; errors this run 0
+[2026-09-04 18:10:08]   250/1192 done in 11.3 min; usable 846; errors this run 0
+[2026-09-04 18:11:05]   275/1192 done in 12.3 min; usable 871; errors this run 0
+[2026-09-04 18:12:21]   300/1192 done in 13.5 min; usable 896; errors this run 0
+[2026-09-04 18:13:42]   325/1192 done in 14.9 min; usable 921; errors this run 0
+[2026-09-04 18:14:46]   350/1192 done in 15.9 min; usable 946; errors this run 0
+[2026-09-04 18:15:50]   375/1192 done in 17.0 min; usable 971; errors this run 0
+[2026-09-04 18:16:54]   400/1192 done in 18.1 min; usable 996; errors this run 0
+[2026-09-04 18:17:47]   425/1192 done in 18.9 min; usable 1021; errors this run 0
+[2026-09-04 18:18:51]   450/1192 done in 20.0 min; usable 1046; errors this run 0
+[2026-09-04 18:19:56]   475/1192 done in 21.1 min; usable 1071; errors this run 0
+[2026-09-04 18:21:09]   500/1192 done in 22.3 min; usable 1096; errors this run 0
+[2026-09-04 18:22:01]   525/1192 done in 23.2 min; usable 1121; errors this run 0
+[2026-09-04 18:23:23]   550/1192 done in 24.5 min; usable 1146; errors this run 0
+[2026-09-04 18:24:23]   575/1192 done in 25.5 min; usable 1171; errors this run 0
+[2026-09-04 18:25:30]   600/1192 done in 26.7 min; usable 1196; errors this run 0
+[2026-09-04 18:26:28]   625/1192 done in 27.6 min; usable 1221; errors this run 0
+[2026-09-04 18:27:34]   650/1192 done in 28.7 min; usable 1246; errors this run 0
+[2026-09-04 18:28:36]   675/1192 done in 29.8 min; usable 1271; errors this run 0
+[2026-09-04 18:29:39]   700/1192 done in 30.8 min; usable 1296; errors this run 0
+[2026-09-04 18:30:50]   725/1192 done in 32.0 min; usable 1321; errors this run 0
+[2026-09-04 18:32:03]   750/1192 done in 33.2 min; usable 1346; errors this run 0
+[2026-09-04 18:33:13]   775/1192 done in 34.4 min; usable 1371; errors this run 0
+[2026-09-04 18:34:28]   800/1192 done in 35.6 min; usable 1396; errors this run 0
+[2026-09-04 18:35:39]   825/1192 done in 36.8 min; usable 1421; errors this run 0
+[2026-09-04 18:37:01]   850/1192 done in 38.2 min; usable 1446; errors this run 0
+[2026-09-04 18:38:03]   875/1192 done in 39.2 min; usable 1471; errors this run 0
+[2026-09-04 18:39:16]   900/1192 done in 40.4 min; usable 1496; errors this run 0
+[2026-09-04 18:40:34]   925/1192 done in 41.7 min; usable 1521; errors this run 0
+[2026-09-04 18:41:47]   950/1192 done in 42.9 min; usable 1546; errors this run 0
+[2026-09-04 18:43:10]   975/1192 done in 44.3 min; usable 1571; errors this run 0
+[2026-09-04 18:44:20]   1000/1192 done in 45.5 min; usable 1596; errors this run 0
+[2026-09-04 18:45:33]   1025/1192 done in 46.7 min; usable 1621; errors this run 0
+[2026-09-04 18:46:37]   1050/1192 done in 47.8 min; usable 1646; errors this run 0
+[2026-09-04 18:47:44]   1075/1192 done in 48.9 min; usable 1671; errors this run 0
+[2026-09-04 18:49:04]   1100/1192 done in 50.2 min; usable 1696; errors this run 0
+[2026-09-04 18:50:07]   1125/1192 done in 51.3 min; usable 1721; errors this run 0
+[2026-09-04 18:51:29]   1150/1192 done in 52.7 min; usable 1746; errors this run 0
+[2026-09-04 18:52:28]   1175/1192 done in 53.6 min; usable 1771; errors this run 0
+[2026-09-04 18:53:37]   1192/1192 done in 54.8 min; usable 1788; errors this run 0
+[2026-09-04 18:53:37] baseline: wrote /home/cutter/d10/results/api_prompt/qwen3_32b_api/baseline.json; closed </think> 298/298; missing 0; no reasoning returned 0
+[2026-09-04 18:53:37] ask_unc_pos: wrote /home/cutter/d10/results/api_prompt/qwen3_32b_api/ask_unc_pos.json; closed </think> 298/298; missing 0; no reasoning returned 0
+[2026-09-04 18:53:37] ask_bt_pos: wrote /home/cutter/d10/results/api_prompt/qwen3_32b_api/ask_bt_pos.json; closed </think> 298/298; missing 0; no reasoning returned 0
+[2026-09-04 18:53:37] ask_unc_neg: wrote /home/cutter/d10/results/api_prompt/qwen3_32b_api/ask_unc_neg.json; closed </think> 298/298; missing 0; no reasoning returned 0
+[2026-09-04 18:53:37] ask_bt_neg: wrote /home/cutter/d10/results/api_prompt/qwen3_32b_api/ask_bt_neg.json; closed </think> 296/298; missing 0; no reasoning returned 0
+API2_DONE
