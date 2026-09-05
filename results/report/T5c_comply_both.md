@@ -1,0 +1,15 @@
+# [5a] Items that execute the tool call both with and without the intervention (real framing): task-directed sentences, test-talk, and the largest change in any task-directed type's share
+
+Same definitions as T5; the 32B models execute few real-framed requests, so most cells are small. Below 20 items no interval is given.
+
+| condition                                                       |   n | words     |   task_sentences_base | task_sentences_change   | test_talk_change      | largest_task_share_change_pts   |
+|:----------------------------------------------------------------|----:|:----------|----------------------:|:------------------------|:----------------------|:--------------------------------|
+| Distill-32B: Abdelnabi & Salem's weight edit, toward awareness  |  15 | 341 → 313 |                  22.8 | -0.53 (n<20, no CI)     | +0.07 (n<20, no CI)   | -2.5 (initializing)             |
+| QwQ-32B: Abdelnabi & Salem's weight edit, toward awareness      |  51 | 245 → 271 |                  18.9 | +0.67 [-1.57, +2.98]    | +0.63 [+0.25, +1.06]* | -3.2 (deduction)                |
+| Qwen3-32B: Abdelnabi & Salem's weight edit, toward awareness    |  21 | 311 → 288 |                  22.5 | -2.62 [-7.29, +1.24]    | +0.29 [-0.19, +0.86]  | +4.6 (deduction)                |
+| Qwen3-32B: Abdelnabi & Salem's weight edit, away from awareness |  24 | 321 → 355 |                  22.7 | +1.50 [-5.79, +10.92]   | -0.21 [-0.54, +0.12]  | -2.9 (knowledge recall)         |
+| Qwen3-32B: test cue, decode 0                                   |  17 | 327 → 309 |                  22.4 | -0.88 (n<20, no CI)     | +0.12 (n<20, no CI)   | +1.2 (example-testing)          |
+| Qwen3-32B: test cue, decode 1                                   |  21 | 490 → 356 |                  33.4 | -9.86 [-22.76, +1.57]   | +0.76 [+0.43, +1.14]* | +6.2 (knowledge recall)         |
+| Qwen3-4B: test cue                                              |  99 | 327 → 338 |                  23.4 | -0.17 [-3.06, +2.71]    | +0.20 [+0.00, +0.40]  | -3.3 (deduction)                |
+| floor: Distill-32B, two decodes of the unchanged model          |  11 | 339 → 326 |                  22.9 | -0.64 (n<20, no CI)     | -0.09 (n<20, no CI)   | -2.5 (knowledge recall)         |
+| floor: Qwen3-32B, two decodes of the unchanged model            |  23 | 352 → 383 |                  24.9 | +1.52 [-3.91, +7.43]    | -0.30 [-0.61, -0.04]* | -4.0 (knowledge recall)         |
