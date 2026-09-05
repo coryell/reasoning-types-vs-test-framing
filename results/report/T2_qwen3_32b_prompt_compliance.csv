@@ -1,0 +1,13 @@
+comparison,framing,n,exec_A,exec_B,lost,gained,p_mcnemar
+"cue, seed 0",real,149,0.242,0.268,19,23,0.644
+"cue, seed 0",fake,148,0.412,0.561,14,36,0.003
+"cue, seed 1",real,149,0.215,0.295,11,23,0.058
+"cue, seed 1",fake,148,0.432,0.520,20,33,0.098
+"cue, cross (b0→p1)",real,149,0.242,0.295,17,25,0.280
+"cue, cross (b0→p1)",fake,148,0.405,0.520,12,29,0.012
+"cue, cross (b1→p0)",real,149,0.215,0.268,9,17,0.169
+"cue, cross (b1→p0)",fake,148,0.432,0.561,12,31,0.005
+floor: baseline decodes,real,149,0.242,0.215,13,9,0.523
+floor: baseline decodes,fake,149,0.409,0.430,18,21,0.749
+floor: prompt decodes,real,149,0.268,0.295,14,18,0.597
+floor: prompt decodes,fake,147,0.558,0.517,26,20,0.461

@@ -1,0 +1,31 @@
+model,arm,signed_alpha,framing,n,exec_baseline,exec_arm,lost,gained,p_mcnemar
+deepseek_qwen,alpha0.35,-0.35,real,149,0.121,0.094,6,2,0.289
+deepseek_qwen,alpha0.35,-0.35,fake,149,0.208,0.154,12,4,0.077
+deepseek_qwen,alpha0.3,-0.3,real,149,0.121,0.101,5,2,0.453
+deepseek_qwen,alpha0.3,-0.3,fake,149,0.208,0.168,10,4,0.180
+deepseek_qwen,alpha0.25,-0.25,real,149,0.121,0.121,4,4,1.000
+deepseek_qwen,alpha0.25,-0.25,fake,149,0.208,0.161,12,5,0.143
+deepseek_qwen,alpha0.05_aware,0.05,real,149,0.121,0.174,3,11,0.057
+deepseek_qwen,alpha0.05_aware,0.05,fake,149,0.208,0.369,3,27,0.000
+deepseek_qwen,alpha0.07_aware,0.07,real,149,0.121,0.275,3,26,0.000
+deepseek_qwen,alpha0.07_aware,0.07,fake,149,0.208,0.403,2,31,0.000
+deepseek_qwen,floor: sampled vs greedy α=0,0.0,real,149,0.121,0.161,7,13,0.263
+deepseek_qwen,floor: sampled vs greedy α=0,0.0,fake,149,0.208,0.201,12,11,1.000
+qwen3,alpha0.32,-0.32,real,147,0.204,0.517,6,52,0.000
+qwen3,alpha0.32,-0.32,fake,148,0.378,0.608,9,43,0.000
+qwen3,alpha0.3,-0.3,real,148,0.203,0.419,4,36,0.000
+qwen3,alpha0.3,-0.3,fake,147,0.367,0.680,6,52,0.000
+qwen3,alpha0.25,-0.25,real,149,0.201,0.403,4,34,0.000
+qwen3,alpha0.25,-0.25,fake,148,0.378,0.615,7,42,0.000
+qwen3,alpha0.043_aware,0.043,real,148,0.203,0.223,9,12,0.664
+qwen3,alpha0.043_aware,0.043,fake,148,0.372,0.426,7,15,0.134
+qwen3,alpha0.05_aware,0.05,real,145,0.207,0.228,8,11,0.648
+qwen3,alpha0.05_aware,0.05,fake,143,0.385,0.448,7,16,0.093
+qwen3,alpha0.053_aware,0.053,real,137,0.204,0.263,6,14,0.115
+qwen3,alpha0.053_aware,0.053,fake,139,0.396,0.439,3,9,0.146
+qwq,alpha0.3,-0.3,real,149,0.362,0.289,16,5,0.027
+qwq,alpha0.3,-0.3,fake,149,0.698,0.530,30,5,0.000
+qwq,alpha0.25,-0.25,real,149,0.362,0.315,16,9,0.230
+qwq,alpha0.25,-0.25,fake,149,0.698,0.523,31,5,0.000
+qwq,alpha0.05_aware,0.05,real,149,0.362,0.564,3,33,0.000
+qwq,alpha0.05_aware,0.05,fake,149,0.698,0.852,3,26,0.000
