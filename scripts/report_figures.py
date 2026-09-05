@@ -312,32 +312,33 @@ t4 = pd.DataFrame(rows)
 save_table(t4, "T4_morphology_by_compliance_class", "[4] Per-trace counts of non-test spans by compliance class: the aggregate rises live in the items that switched to complying",
            "Counts per trace (Venhoff annotation, gpt-4o-2024-08-06; spans matching the test-talk pattern excluded). Classes: refuse_both / comply_both hold the decision fixed; gained = refused at baseline, executed in the arm.")
 
+SHOW4 = ["Distill-Qwen-32B, aware +0.07", "QwQ-32B, aware +0.05", "Qwen3-32B, unaware −0.32", "Qwen3-32B, test cue (seed 0)"]
 rows = []
 for label, df, ba, ar, key in CELLS:
-    for fr in ("real", "fake"):
-        b = df[(df[key] == ba) & (df.framing == fr)].set_index("index"); x = df[(df[key] == ar) & (df.framing == fr)].set_index("index")
-        idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]
-        for cls, ii in class_index(b, x).items():
-            if cls == "all" or len(ii) < MIN_N_CI:
-                continue
-            for beh in ("backtracking", "example-testing", "uncertainty-estimation"):
-                m, lo, hi = boot(nontest_count(x.loc[ii], beh) - nontest_count(b.loc[ii], beh))
-                md, dlo, dhi = boot(x.loc[ii][f"density_{beh}_nontest"] - b.loc[ii][f"density_{beh}_nontest"])
-                rows.append(dict(cell=label, framing=fr, flip_class=cls, n=len(ii), behaviour=beh, d_count=m, lo=lo, hi=hi, d_density=md, dlo=dlo, dhi=dhi))
+    if label not in SHOW4:
+        continue
+    b = df[(df[key] == ba) & (df.framing == "real")].set_index("index"); x = df[(df[key] == ar) & (df.framing == "real")].set_index("index")
+    idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]
+    for cls, ii in class_index(b, x).items():
+        if cls in ("all", "comply_both") or len(ii) < MIN_N_CI:
+            continue
+        m, lo, hi = boot(x.loc[ii].words - b.loc[ii].words)
+        allspans_b = sum(nontest_count(b.loc[ii], beh) for beh in BEH); allspans_x = sum(nontest_count(x.loc[ii], beh) for beh in BEH)
+        m2, lo2, hi2 = boot(allspans_x - allspans_b)
+        rows.append(dict(cell=label.replace(", ", "\n"), cls=cls, n=len(ii), d_words=m, w_lo=lo, w_hi=hi, d_spans=m2, s_lo=lo2, s_hi=hi2))
 f4d = pd.DataFrame(rows)
-fig, axes = plt.subplots(2, 3, figsize=(14, 8), sharey="row")
-for col, beh in enumerate(("backtracking", "example-testing", "uncertainty-estimation")):
-    for row, (metric, lo_c, hi_c, unit) in enumerate((("d_count", "lo", "hi", "Δ spans per trace"), ("d_density", "dlo", "dhi", "Δ spans per 100 words"))):
-        ax = axes[row, col]; sub = f4d[f4d.behaviour == beh]
-        labels = [f"{c} [{fr}]" for c, fr in zip(sub.cell, sub.framing)]; uniq = list(dict.fromkeys(labels)); ypos = {l: i for i, l in enumerate(uniq)}
-        for cls, c, off in (("refuse_both", "C0", -0.2), ("comply_both", "C2", 0.0), ("gained", "C3", 0.2)):
-            ss = sub[sub.flip_class == cls]
-            ys = [ypos[f"{c_} [{fr}]"] + off for c_, fr in zip(ss.cell, ss.framing)]
-            ax.errorbar(ss[metric], ys, xerr=[ss[metric] - ss[lo_c], ss[hi_c] - ss[metric]], fmt="o", color=c, capsize=2, ms=4, label=cls if (row == 0 and col == 0) else None)
-        ax.axvline(0, color="k", lw=0.8); ax.set_yticks(range(len(uniq))); ax.set_yticklabels(uniq, fontsize=7); ax.tick_params(labelleft=(col == 0)); ax.invert_yaxis()
-        ax.set_title(f"{beh} (non-test spans)", fontsize=10); ax.set_xlabel(unit, fontsize=9)
-axes[0, 0].legend(fontsize=8, loc="lower right")
-fig.suptitle("[4] Change vs baseline by compliance class (95% bootstrap CI; classes with < 20 items omitted): the rises sit in items that switched to complying"); fig.tight_layout(); fig.savefig(OUT / "F4_flipped_items_carry_the_rise.png", dpi=130); plt.close(fig)
+fig, axes = plt.subplots(1, 2, figsize=(11, 4.2))
+cells = list(dict.fromkeys(f4d.cell)); xs = np.arange(len(cells))
+for ax, (metric, lo_c, hi_c, ylabel) in zip(axes, (("d_words", "w_lo", "w_hi", "change in reasoning length (words per trace)"), ("d_spans", "s_lo", "s_hi", "change in task-directed sentences per trace"))):
+    for cls, c, off, name in (("refuse_both", "0.35", -0.17, "items that kept refusing"), ("gained", "C3", 0.17, "items that switched to complying")):
+        ss = f4d[f4d.cls == cls].set_index("cell").reindex(cells)
+        ax.bar(xs + off, ss[metric], 0.32, yerr=[ss[metric] - ss[lo_c], ss[hi_c] - ss[metric]], color=c, capsize=3, label=name)
+        for xi, (v, n) in enumerate(zip(ss[metric], ss.n)):
+            ax.text(xi + off, v + (3 if metric == "d_words" else 0.15) * (1 if v >= 0 else -1), f"n={int(n)}", ha="center", va="bottom" if v >= 0 else "top", fontsize=7)
+    ax.axhline(0, color="k", lw=0.8); ax.set_xticks(xs); ax.set_xticklabels(cells, fontsize=8); ax.set_ylabel(ylabel, fontsize=9)
+axes[0].legend(fontsize=8, loc="upper left")
+fig.suptitle("Under an awareness intervention, the reasoning that changes belongs to the items whose decision changed (real framing, 95% CI)", fontsize=11)
+fig.tight_layout(); fig.savefig(OUT / "F4_flipped_items_carry_the_rise.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [5] Task-directed reasoning at fixed decision: counts per trace with CIs, and the floor
@@ -366,46 +367,38 @@ t5 = pd.DataFrame(rows)
 save_table(t5, "T5_task_reasoning_at_fixed_decision", "[5] Items that refuse under both conditions: change in non-test spans per trace (counts) and per 100 words (density), 95% bootstrap CIs",
            "Counts are flat within the floor; densities fall because the traces gained test-talk words. '*' = CI excludes 0; with ~170 intervals in this table about 9 stars are expected by chance, so a single star is not evidence.")
 
-def parse_ci(v):
-    v = str(v)
-    if "no CI" in v:
-        return float(v.split()[0]), np.nan, np.nan
-    a = [float(x) for x in v.replace("[", "").replace("]", "").replace(",", "").replace("*", "").split()]
-    return a[0], a[1], a[2]
-
-
-# test-talk Δ per cell (same items), for the third marker
-tt = {}
+SHOW5 = [("Distill-Qwen-32B, aware +0.07", "Distill-32B: their edit (aware)"), ("QwQ-32B, aware +0.05", "QwQ-32B: their edit (aware)"),
+         ("Qwen3-32B, aware +0.043", "Qwen3-32B: their edit (aware)"), ("Qwen3-32B, unaware −0.32", "Qwen3-32B: their edit (unaware)"),
+         ("Qwen3-32B, test cue (seed 0)", "Qwen3-32B: test cue, decode 0"), ("Qwen3-32B, test cue (seed 1)", "Qwen3-32B: test cue, decode 1"),
+         ("Qwen3-4B, test cue", "Qwen3-4B: test cue"),
+         ("floor: Distill-Qwen-32B sampled vs greedy α=0", "floor: Distill-32B, no intervention, second decode"), ("floor: Qwen3-32B baseline decodes", "floor: Qwen3-32B, no intervention, second decode")]
+rows = []
 for label, df, ba, ar, key in CELLS5:
-    for fr in ("real", "fake"):
-        b = df[(df[key] == ba) & (df.framing == fr)].set_index("index"); x = df[(df[key] == ar) & (df.framing == fr)].set_index("index")
-        idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]; ii = stable_refusers(b, x)
-        if len(ii) >= 5:
-            tt[(label, fr)] = boot(testlex_total(x.loc[ii]) - testlex_total(b.loc[ii]))
-fig, axes = plt.subplots(1, 2, figsize=(16, 6.5))
-for ax, fr in zip(axes, ("real", "fake")):
-    sub = t5[t5.framing == fr].copy(); sub["is_floor"] = sub.cell.str.startswith("floor")
-    sub = pd.concat([sub[~sub.is_floor], sub[sub.is_floor]]).reset_index(drop=True)
-    for j, (col, c, name) in enumerate((("deduction_delta", "C0", "task deduction"), ("knowledge_recall_delta", "C2", "task knowledge recall"))):
-        vals = [parse_ci(v) for v in sub[col]]
-        for i, (m, lo, hi) in enumerate(vals):
-            colr = "0.6" if sub.is_floor[i] else c
-            if np.isnan(lo):
-                ax.plot(m, i + (j - 1) * 0.22, "x", color=colr)
-            else:
-                ax.errorbar(m, i + (j - 1) * 0.22, xerr=[[m - lo], [hi - m]], fmt="o", color=colr, capsize=3, ms=4, label=name if i == 0 else None)
-    for i, r in sub.iterrows():
-        if (r.cell, fr) in tt:
-            m, lo, hi = tt[(r.cell, fr)]
-            if not np.isnan(lo):
-                ax.errorbar(m, i + 0.22, xerr=[[m - lo], [hi - m]], fmt="s", color="0.6" if r.is_floor else "C3", capsize=3, ms=4, label="test-talk (any label)" if i == 0 else None)
-    fl = sub[sub.is_floor & (sub.n_refuse_both >= MIN_N_CI)]
-    band = max(abs(parse_ci(v)[0]) for col in ("deduction_delta", "knowledge_recall_delta") for v in fl[col]) if len(fl) else float("nan")
-    ax.axvspan(-band, band, color="k", alpha=0.05)
-    ax.axvline(0, color="k", lw=0.8); ax.set_yticks(range(len(sub))); ax.set_yticklabels([f"{c} (n={n})" for c, n in zip(sub.cell, sub.n_refuse_both)], fontsize=8); ax.invert_yaxis()
-    ax.set_title(f"{fr} framing (grey band: ±{band:.2f} spans = largest floor mean, floors with n ≥ {MIN_N_CI})", fontsize=10); ax.set_xlabel("Δ spans per trace vs baseline (95% CI; × = n < 20, no CI)")
-axes[0].legend(fontsize=8, loc="lower left")
-fig.suptitle("[5]–[6] Items refusing in both arms: task-directed reasoning is flat, about one test-talk span is added (grey rows = decode-to-decode floors)"); fig.tight_layout(); fig.savefig(OUT / "F5_task_reasoning_fixed_decision.png", dpi=130); plt.close(fig)
+    nice = dict(SHOW5).get(label)
+    if nice is None:
+        continue
+    b = df[(df[key] == ba) & (df.framing == "real")].set_index("index"); x = df[(df[key] == ar) & (df.framing == "real")].set_index("index")
+    idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]; ii = stable_refusers(b, x)
+    task_b = sum(nontest_count(b.loc[ii], beh) for beh in BEH); task_x = sum(nontest_count(x.loc[ii], beh) for beh in BEH)
+    m, lo, hi = boot(task_x - task_b); mt, tlo, thi = boot(testlex_total(x.loc[ii]) - testlex_total(b.loc[ii]))
+    rows.append(dict(label=nice, n=len(ii), is_floor=label.startswith("floor"), task_base=float(task_b.mean()), d_task=m, t_lo=lo, t_hi=hi, d_test=mt, tt_lo=tlo, tt_hi=thi))
+f5d = pd.DataFrame(rows).set_index("label").reindex([n for _, n in SHOW5]).dropna(subset=["n"]).reset_index()
+f5d.to_csv(OUT / "F5_data.csv", index=False)
+fig, axes = plt.subplots(1, 2, figsize=(12, 4.8), sharey=True)
+ys = np.arange(len(f5d))
+for ax, (m_c, lo_c, hi_c, title) in zip(axes, (("d_task", "t_lo", "t_hi", "task-directed sentences per trace"), ("d_test", "tt_lo", "tt_hi", "test-talk sentences per trace"))):
+    for i, r in f5d.iterrows():
+        c = "0.55" if r.is_floor else ("C3" if m_c == "d_test" else "C0")
+        if np.isnan(r[lo_c]):
+            ax.plot(r[m_c], i, "x", color=c)
+        else:
+            ax.errorbar(r[m_c], i, xerr=[[r[m_c] - r[lo_c]], [r[hi_c] - r[m_c]]], fmt="o", color=c, capsize=3, ms=5)
+    ax.axvline(0, color="k", lw=0.8); ax.set_title(f"change in {title}", fontsize=11); ax.set_xlabel("arm minus baseline, 95% CI", fontsize=9)
+axes[0].set_yticks(ys); axes[0].set_yticklabels([f"{l}  (n={int(n)})" for l, n in zip(f5d.label, f5d.n)], fontsize=8); axes[0].invert_yaxis()
+axes[0].set_xlim(-4, 4); axes[1].set_xlim(-1, 2.5)
+axes[0].set_title(f"change in task-directed sentences per trace (baseline ≈ {f5d.task_base.mean():.0f})", fontsize=11)
+fig.suptitle("Items the model refuses both with and without the intervention: task reasoning stays put, about one test-talk sentence is added", fontsize=11)
+fig.tight_layout(); fig.savefig(OUT / "F5_task_reasoning_fixed_decision.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [6] Test-talk added per trace at fixed decision
@@ -453,30 +446,28 @@ def wilson(k, n):
     return ci.low, ci.high
 
 
-ARMS7 = ["baseline", "baseline_seed1", "random_bt", "random_unc", "bt_neg", "unc_neg", "unc_pos", "bt_pos"]
-NICE = {"baseline": "baseline", "baseline_seed1": "baseline, 2nd decode", "random_bt": "random dir. (L23)", "random_unc": "random dir. (L18)", "bt_neg": "backtracking −", "unc_neg": "uncertainty −", "unc_pos": "uncertainty +", "bt_pos": "backtracking + (degenerate)"}
-t7i = t7.set_index("arm").reindex(ARMS7).dropna(subset=["n"]); ARMS7 = list(t7i.index)
-fig, axes = plt.subplots(2, 1, figsize=(9, 7.5), sharex=True)
-xs = np.arange(len(ARMS7)); ax = axes[0]
-v = t7i.verbalization.astype(float); n = t7i.n.astype(int)
-cis = [wilson(round(vv * nn), nn) for vv, nn in zip(v, n)]; lo = np.array([c[0] for c in cis]); hi = np.array([c[1] for c in cis])
-ax.bar(xs - 0.2, v, 0.4, yerr=[v - lo, hi - v], capsize=3, label="observed (Wilson 95% CI)")
-ax.bar(xs + 0.2, t7i.expected_from_length.astype(float), 0.4, color="0.7", label="expected from trace length alone (logistic fit on the two baseline decodes)")
-ax.bar(xs[-1] - 0.2, v.iloc[-1], 0.4, color="none", edgecolor="r", hatch="//")
-ax.set_ylabel("share of traces the judge calls test-aware"); ax.legend(fontsize=8); ax.set_title("[7] Judged 'test awareness' per arm (Qwen3-4B, 149 real-framed items)")
-ax = axes[1]
-b0, x0 = paired_frames(f4_all, "baseline", "baseline_seed1", "real"); _, base_rate, _, _, _ = flip_counts(b0, x0)  # baseline rate over the items paired with its second decode
-ex, flips = [base_rate], [""]
-for a in ARMS7[1:]:
-    b, x = paired_frames(f4_all, "baseline", a, "real"); _, _, rx, lost, gained = flip_counts(b, x); ex.append(rx); flips.append(f"{lost}↓ {gained}↑")
-ax.bar(xs, ex, 0.6, color=["0.4"] + ["0.6"] * 3 + ["C1"] * 4)
-rb = [ex[ARMS7.index("random_bt")], ex[ARMS7.index("random_unc")]]
-ax.axhspan(min(base_rate, min(rb)), max(rb), color="C0", alpha=0.12, label="range spanned by baseline and the two random directions")
-ax.axhline(base_rate, color="k", lw=0.8)
-for i in range(1, len(ARMS7)):
-    ax.text(i, ex[i] + 0.01, flips[i], ha="center", fontsize=7)
-ax.set_ylim(0.5, 0.9); ax.set_ylabel("execution rate\n(items paired with baseline)"); ax.set_xticks(xs); ax.set_xticklabels([NICE[a] for a in ARMS7], rotation=20, ha="right", fontsize=8); ax.legend(fontsize=8, loc="upper left")
-ax.set_title("[8] Execution in the same arms: inside the band that random directions of the same norm produce")
+ARMS7 = ["baseline", "baseline_seed1", "random_bt", "random_unc", "bt_neg", "unc_neg", "unc_pos"]
+NICE = {"baseline": "baseline", "baseline_seed1": "baseline, 2nd decode", "random_bt": "random direction (L23)", "random_unc": "random direction (L18)", "bt_neg": "backtracking −", "unc_neg": "uncertainty −", "unc_pos": "uncertainty +"}
+pts = []
+for a in ARMS7:
+    t = f4r[f4r.arm == a]; k = int(t.aw.sum()); n = len(t); vlo, vhi = wilson(k, n)
+    if a == "baseline":
+        b0, x0 = paired_frames(f4_all, "baseline", "baseline_seed1", "real"); _, ex, _, _, _ = flip_counts(b0, x0)
+    else:
+        b, x = paired_frames(f4_all, "baseline", a, "real"); nk, _, ex, lost, gained = flip_counts(b, x)
+    elo, ehi = wilson(round(ex * 140), 140)
+    pts.append(dict(arm=a, verbal=k / n, vlo=vlo, vhi=vhi, exec_=ex, elo=elo, ehi=ehi))
+f7d = pd.DataFrame(pts); f7d.to_csv(OUT / "F7_data.csv", index=False)
+fig, ax = plt.subplots(figsize=(8, 5.5))
+for _, r in f7d.iterrows():
+    c = "0.5" if r.arm in ("baseline", "baseline_seed1", "random_bt", "random_unc") else "C3"
+    ax.errorbar(r.verbal, r.exec_, xerr=[[r.verbal - r.vlo], [r.vhi - r.verbal]], yerr=[[r.exec_ - r.elo], [r.ehi - r.exec_]], fmt="o", color=c, capsize=2, ms=6)
+    ax.annotate(NICE[r.arm], (r.verbal, r.exec_), textcoords="offset points", xytext=(6, 6), fontsize=8, color=c)
+ctrl = f7d[f7d.arm.isin(["baseline", "baseline_seed1", "random_bt", "random_unc"])]
+ax.axhspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.12, label="execution range of baseline + random directions")
+ax.set_xlabel("share of traces the awareness judge calls test-aware"); ax.set_ylabel("share of items executing the harmful tool call")
+ax.set_xlim(-0.02, 0.5); ax.set_ylim(0.55, 0.9); ax.legend(fontsize=8, loc="upper right")
+ax.set_title("Qwen3-4B: judged 'test awareness' moves from 1% to 37%; execution does not follow", fontsize=10)
 fig.tight_layout(); fig.savefig(OUT / "F7_f4_verbalization_and_execution.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
