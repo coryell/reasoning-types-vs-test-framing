@@ -12,6 +12,7 @@ condition kind in :mod:`d10.conditions`, on either task set.
                  strong coefficient, both signs, plus the random-direction control.
   f4_reverse     actions × real; residual-add of the backtracking and uncertainty directions, both
                  signs — does steering a reasoning behaviour move test-awareness or compliance?
+                 Plus the norm-matched controls: a seeded Gaussian at each direction's norm and layer.
 
 Outputs ``<out-dir>/<arm>.json`` in the layouts ``d10.shipped.load_generations`` reads (actions:
 ``data_item`` + ``steered_result_{real,fake}``; triggers: ``real``/``hypothetical`` +
@@ -89,6 +90,8 @@ def experiment(name: str, layers: dict[str, int], strong_alpha: float, coefficie
         for b, layer, tag in (("backtracking", bt, "bt"), ("uncertainty-estimation", unc, "unc")):
             for coef, sign in ((c, "pos"), (-c, "neg")):
                 conds.append(Condition(f"{tag}_{sign}", kind="residual_add", direction=b, vectors="mean_vectors", layer=layer, coefficient=coef))
+        for b, layer, tag in (("backtracking", bt, "bt"), ("uncertainty-estimation", unc, "unc")):
+            conds.append(Condition(f"random_{tag}", kind="residual_add", direction=b, vectors="random", layer=layer, coefficient=c))
         return {"task": "actions", "framings": ["real"], "conds": conds}
     raise SystemExit(f"unknown experiment {name}")
 

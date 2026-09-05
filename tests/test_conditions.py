@@ -91,6 +91,12 @@ def test_residual_vector_matches_venhoff_recipe(tmp_path):
     # (mean - overall) rescaled to ||overall|| at layer 1, times the coefficient
     expected = -torch.tensor([1.0, 0.0, 0.0]) * overall[1].norm()
     assert torch.allclose(v, expected)
+    # the norm-matched random control: same norm as the behaviour direction at that layer, seeded, scaled by the coefficient
+    r = C.Condition("random_bt", kind="residual_add", direction="backtracking", vectors="random", layer=1, coefficient=0.5, seed=3)
+    rv = C.residual_vector(r, tmp_path)
+    assert torch.isclose(rv.norm(), expected.norm() * 0.5) and torch.equal(rv, C.residual_vector(r, tmp_path))
+    r2 = C.Condition("random_bt", kind="residual_add", direction="backtracking", vectors="random", layer=1, coefficient=0.5, seed=4)
+    assert not torch.equal(rv, C.residual_vector(r2, tmp_path))
 
 
 def test_followup_experiment_specs():
@@ -113,6 +119,7 @@ def test_followup_experiment_specs():
     assert f3["conds"][2].aware is False and f3["conds"][3].direction == "random" and f3["conds"][1].alpha == 0.2
     f4 = rf.experiment("f4_reverse", layers, 0.2)
     assert f4["framings"] == ["real"] and f4["conds"][0].layer == 23 and f4["conds"][2].direction == "uncertainty-estimation"
+    assert [c.name for c in f4["conds"][4:]] == ["random_bt", "random_unc"] and f4["conds"][4].vectors == "random" and f4["conds"][4].layer == 23
     half = rf.experiment("f2_uncertainty", layers, 0.2, coefficient=0.5)
     assert [c.coefficient for c in half["conds"][1:]] == [0.5, -0.5] * 3
     assert rf.experiment("f4_reverse", layers, 0.2, coefficient=-0.25)["conds"][1].coefficient == -0.25
