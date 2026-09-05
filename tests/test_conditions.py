@@ -187,6 +187,10 @@ def test_api_prompt_serialisation():
     assert ra.serialise(alt)[1] == "reasoning_field"
     names = [c.name for c in ra.conditions()]
     assert names == ["baseline", "prompt_test"] and ra.conditions()[1].system_prompt("AGENT").endswith(ra.TEST_SCENARIO_SENTENCE)
+    f4 = ra.conditions("f4_prompt")
+    assert [c.name for c in f4] == ["baseline", "ask_unc_pos", "ask_bt_pos", "ask_unc_neg", "ask_bt_neg"] and f4[1].prompt_suffix == ra.F4_PROMPTS["ask_unc_pos"]
+    with pytest.raises(SystemExit):
+        ra.conditions("nope")
 
 
 def test_shipped_probe_geometry_stats():
