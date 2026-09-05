@@ -367,8 +367,8 @@ t5 = pd.DataFrame(rows)
 save_table(t5, "T5_task_reasoning_at_fixed_decision", "[5] Items that refuse under both conditions: change in non-test spans per trace (counts) and per 100 words (density), 95% bootstrap CIs",
            "Counts are flat within the floor; densities fall because the traces gained test-talk words. '*' = CI excludes 0; with ~170 intervals in this table about 9 stars are expected by chance, so a single star is not evidence.")
 
-SHOW5 = [("Distill-Qwen-32B, aware +0.07", "Distill-32B: their edit (aware)"), ("QwQ-32B, aware +0.05", "QwQ-32B: their edit (aware)"),
-         ("Qwen3-32B, aware +0.043", "Qwen3-32B: their edit (aware)"), ("Qwen3-32B, unaware −0.32", "Qwen3-32B: their edit (unaware)"),
+SHOW5 = [("Distill-Qwen-32B, aware +0.07", "Distill-32B: authors' weight edit, toward awareness"), ("QwQ-32B, aware +0.05", "QwQ-32B: authors' weight edit, toward awareness"),
+         ("Qwen3-32B, aware +0.043", "Qwen3-32B: authors' weight edit, toward awareness"), ("Qwen3-32B, unaware −0.32", "Qwen3-32B: authors' weight edit, away from awareness"),
          ("Qwen3-32B, test cue (seed 0)", "Qwen3-32B: test cue, decode 0"), ("Qwen3-32B, test cue (seed 1)", "Qwen3-32B: test cue, decode 1"),
          ("Qwen3-4B, test cue", "Qwen3-4B: test cue"),
          ("floor: Distill-Qwen-32B sampled vs greedy α=0", "floor: Distill-32B, no intervention, second decode"), ("floor: Qwen3-32B baseline decodes", "floor: Qwen3-32B, no intervention, second decode")]
@@ -393,7 +393,7 @@ for ax, (m_c, lo_c, hi_c, title) in zip(axes, (("d_task", "t_lo", "t_hi", "task-
             ax.plot(r[m_c], i, "x", color=c)
         else:
             ax.errorbar(r[m_c], i, xerr=[[r[m_c] - r[lo_c]], [r[hi_c] - r[m_c]]], fmt="o", color=c, capsize=3, ms=5)
-    ax.axvline(0, color="k", lw=0.8); ax.set_title(f"change in {title}", fontsize=11); ax.set_xlabel("arm minus baseline, 95% CI", fontsize=9)
+    ax.axvline(0, color="k", lw=0.8); ax.set_title(f"change in {title}", fontsize=11); ax.set_xlabel("change vs. the same items with no intervention (95% CI)", fontsize=9)
 axes[0].set_yticks(ys); axes[0].set_yticklabels([f"{l}  (n={int(n)})" for l, n in zip(f5d.label, f5d.n)], fontsize=8); axes[0].invert_yaxis()
 axes[0].set_xlim(-4, 4); axes[1].set_xlim(-1, 2.5)
 axes[0].set_title(f"change in task-directed sentences per trace (baseline ≈ {f5d.task_base.mean():.0f})", fontsize=11)
