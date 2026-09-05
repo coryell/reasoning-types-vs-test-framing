@@ -443,6 +443,43 @@ for sp in ("top", "right"):
 fig.tight_layout(); fig.savefig(OUT / "F5b_composition.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
+# ## [5c] Per-item count differences by behaviour: box plots per condition
+
+# %%
+diff_rows = []
+for label, df, ba, ar, key in CELLS5:
+    nice = dict(SHOW5).get(label)
+    if nice is None:
+        continue
+    b = df[(df[key] == ba) & (df.framing == "real")].set_index("index"); x = df[(df[key] == ar) & (df.framing == "real")].set_index("index")
+    idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]; ii = stable_refusers(b, x)
+    if len(ii) < MIN_N_CI:
+        continue
+    for beh in BEH:
+        for i, d in (nontest_count(x.loc[ii], beh) - nontest_count(b.loc[ii], beh)).items():
+            diff_rows.append(dict(label=nice, n=len(ii), is_floor=label.startswith("floor"), behaviour=BEH_NICE[beh], d=d))
+    for i, d in (testlex_total(x.loc[ii]) - testlex_total(b.loc[ii])).items():
+        diff_rows.append(dict(label=nice, n=len(ii), is_floor=label.startswith("floor"), behaviour="test-talk", d=d))
+dd = pd.DataFrame(diff_rows); dd.to_csv(OUT / "F5c_count_differences.csv", index=False)
+order = [n for _, n in SHOW5 if n in set(dd.label)]
+cats = [BEH_NICE[b] for b in BEH] + ["test-talk"]
+fig, axes = plt.subplots(len(order), 1, figsize=(11, 1.15 * len(order) + 1.2), sharex=True)
+for ax, lab in zip(axes, order):
+    sub = dd[dd.label == lab]
+    data = [sub[sub.behaviour == c].d.values for c in cats]
+    bp = ax.boxplot(data, vert=False, widths=0.6, showfliers=True, flierprops=dict(marker=".", ms=3, alpha=0.4), medianprops=dict(color="k"), patch_artist=True)
+    for patch, c in zip(bp["boxes"], [BEH_COL[b] for b in BEH] + ["white"]):
+        patch.set_facecolor(c); patch.set_alpha(0.55 if c != "white" else 1.0)
+    bp["boxes"][-1].set_hatch("////"); bp["boxes"][-1].set_edgecolor("C3")
+    ax.axvline(0, color="k", lw=0.8); ax.set_yticks(range(1, len(cats) + 1)); ax.set_yticklabels(cats, fontsize=7); ax.invert_yaxis()
+    ax.set_title(f"{lab}  (n={int(sub.n.iloc[0])} items)", fontsize=8, loc="left", color="0.3" if sub.is_floor.iloc[0] else "k")
+    ax.tick_params(axis="x", labelsize=8)
+axes[-1].set_xlabel("difference in sentences per trace, with minus without the intervention, one value per item", fontsize=9)
+axes[-1].set_xlim(-12, 12)
+fig.suptitle("Per-item count differences by reasoning type, items refusing under both conditions (real framing); box = quartiles, line = median", fontsize=10)
+fig.tight_layout(); fig.savefig(OUT / "F5c_count_difference_boxplots.png", dpi=130); plt.close(fig)
+
+# %% [markdown]
 # ## [6] Test-talk added per trace at fixed decision
 
 # %%
