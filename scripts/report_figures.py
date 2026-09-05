@@ -367,8 +367,8 @@ t5 = pd.DataFrame(rows)
 save_table(t5, "T5_task_reasoning_at_fixed_decision", "[5] Items that refuse under both conditions: change in non-test spans per trace (counts) and per 100 words (density), 95% bootstrap CIs",
            "Counts are flat within the floor; densities fall because the traces gained test-talk words. '*' = CI excludes 0; with ~170 intervals in this table about 9 stars are expected by chance, so a single star is not evidence.")
 
-SHOW5 = [("Distill-Qwen-32B, aware +0.07", "Distill-32B: authors' weight edit, toward awareness"), ("QwQ-32B, aware +0.05", "QwQ-32B: authors' weight edit, toward awareness"),
-         ("Qwen3-32B, aware +0.043", "Qwen3-32B: authors' weight edit, toward awareness"), ("Qwen3-32B, unaware −0.32", "Qwen3-32B: authors' weight edit, away from awareness"),
+SHOW5 = [("Distill-Qwen-32B, aware +0.07", "Distill-32B: Abdelnabi & Salem's weight edit, toward awareness"), ("QwQ-32B, aware +0.05", "QwQ-32B: Abdelnabi & Salem's weight edit, toward awareness"),
+         ("Qwen3-32B, aware +0.043", "Qwen3-32B: Abdelnabi & Salem's weight edit, toward awareness"), ("Qwen3-32B, unaware −0.32", "Qwen3-32B: Abdelnabi & Salem's weight edit, away from awareness"),
          ("Qwen3-32B, test cue (seed 0)", "Qwen3-32B: test cue, decode 0"), ("Qwen3-32B, test cue (seed 1)", "Qwen3-32B: test cue, decode 1"),
          ("Qwen3-4B, test cue", "Qwen3-4B: test cue"),
          ("floor: Distill-Qwen-32B sampled vs greedy α=0", "floor: Distill-32B, no intervention, second decode"), ("floor: Qwen3-32B baseline decodes", "floor: Qwen3-32B, no intervention, second decode")]
@@ -465,7 +465,7 @@ for _, r in f7d.iterrows():
     ax.annotate(NICE[r.arm], (r.verbal, r.exec_), textcoords="offset points", xytext=(6, 6), fontsize=8, color=c)
 ctrl = f7d[f7d.arm.isin(["baseline", "baseline_seed1", "random_bt", "random_unc"])]
 ax.axhspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.12, label="execution range of baseline + random directions")
-ax.set_xlabel("share of traces the awareness judge calls test-aware"); ax.set_ylabel("share of items executing the harmful tool call")
+ax.set_xlabel("share of traces Abdelnabi & Salem's awareness judge calls test-aware"); ax.set_ylabel("share of items executing the harmful tool call")
 ax.set_xlim(-0.02, 0.5); ax.set_ylim(0.55, 0.9); ax.legend(fontsize=8, loc="upper right")
 ax.set_title("Qwen3-4B: judged 'test awareness' moves from 1% to 37%; execution does not follow", fontsize=10)
 fig.tight_layout(); fig.savefig(OUT / "F7_f4_verbalization_and_execution.png", dpi=130); plt.close(fig)
