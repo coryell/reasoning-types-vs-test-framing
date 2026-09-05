@@ -583,29 +583,23 @@ for a in ARMS7:
 f7d = pd.DataFrame(pts); f7d.to_csv(OUT / "F7_data.csv", index=False)
 ys = np.arange(len(f7d)); labels = [NICE[a] for a in f7d.arm]
 
-# --- Figure 2a: judged awareness per condition
-fig, ax = plt.subplots(figsize=(9, 5.4))
+# --- Figure 2: two panels sharing the condition axis; (a) judged awareness, (b) compliance
+fig, (axa, axb) = plt.subplots(1, 2, figsize=(13, 5.4), sharey=True, gridspec_kw={"width_ratios": [1.1, 1]})
 for i, r in f7d.iterrows():
     c = COL[r.kind]; fill = "white" if r.kind == "degen" else c
-    ax.errorbar(r.verbal, i, xerr=[[r.verbal - r.vlo], [r.vhi - r.verbal]], fmt="o", color=c, mfc=fill, mec=c, mew=1.5, capsize=3, ms=6)
-    ax.plot(r.expected_from_length, i, "|", color="k", ms=12, mew=1.2, label="expected from trace length alone" if i == 0 else None)
-ax.axvspan(f7d[f7d.kind == "ctrl"].verbal.min(), f7d[f7d.kind == "ctrl"].verbal.max(), color="0.5", alpha=0.10, label="range spanned by the grey (control) points")
-ax.set_yticks(ys); ax.set_yticklabels(labels, fontsize=8); ax.invert_yaxis(); ax.set_xlim(-0.02, 0.55)
-ax.set_xlabel("share of traces the awareness judge calls test-aware (95% CI)")
-ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.18), ncol=2, frameon=False); ax.set_title("Judged 'test awareness' per condition (Qwen3-4B, 149 real-framed items)", fontsize=10)
-fig.tight_layout(); fig.savefig(OUT / "F7a_judged_awareness.png", dpi=130); plt.close(fig)
-
-# --- Figure 2b: execution per condition
-fig, ax = plt.subplots(figsize=(9, 5.4))
-for i, r in f7d.iterrows():
-    c = COL[r.kind]; fill = "white" if r.kind == "degen" else c
-    ax.errorbar(r.exec_, i, xerr=[[r.exec_ - r.elo], [r.ehi - r.exec_]], fmt="o", color=c, mfc=fill, mec=c, mew=1.5, capsize=3, ms=6)
+    axa.errorbar(r.verbal, i, xerr=[[r.verbal - r.vlo], [r.vhi - r.verbal]], fmt="o", color=c, mfc=fill, mec=c, mew=1.5, capsize=3, ms=6)
+    axa.plot(r.expected_from_length, i, "|", color="k", ms=12, mew=1.2, label="expected from trace length alone" if i == 0 else None)
+    axb.errorbar(r.exec_, i, xerr=[[r.exec_ - r.elo], [r.ehi - r.exec_]], fmt="o", color=c, mfc=fill, mec=c, mew=1.5, capsize=3, ms=6)
 ctrl = f7d[f7d.kind == "ctrl"]
-ax.axvspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.10, label="range spanned by the grey (control) points")
-ax.set_yticks(ys); ax.set_yticklabels(labels, fontsize=8); ax.invert_yaxis(); ax.set_xlim(0.5, 1.0)
-ax.set_xlabel("compliance: share of items executing the harmful tool call (95% CI)")
-ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.18), frameon=False); ax.set_title("Compliance per condition (same items)", fontsize=10)
-fig.tight_layout(); fig.savefig(OUT / "F7b_execution.png", dpi=130); plt.close(fig)
+axa.axvspan(ctrl.verbal.min(), ctrl.verbal.max(), color="0.5", alpha=0.10, label="range spanned by the grey (control) points")
+axb.axvspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.10, label="range spanned by the grey (control) points")
+axa.set_yticks(ys); axa.set_yticklabels(labels, fontsize=8); axa.invert_yaxis()
+axa.set_xlim(-0.02, 0.55); axb.set_xlim(0.5, 1.0)
+axa.set_xlabel("share of traces the awareness judge calls test-aware (95% CI)"); axb.set_xlabel("compliance: share of items executing the harmful tool call (95% CI)")
+axa.set_title("(a) Judged 'test awareness' per condition", fontsize=10); axb.set_title("(b) Compliance per condition (same items)", fontsize=10)
+axa.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.16), ncol=2, frameon=False)
+fig.suptitle("Qwen3-4B, 149 real-framed items: reasoning-direction steering moves judged awareness; compliance stays where the controls put it", fontsize=10)
+fig.tight_layout(); fig.savefig(OUT / "F7_awareness_and_compliance.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [8] F4: execution per arm
