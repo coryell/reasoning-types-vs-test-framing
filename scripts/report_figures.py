@@ -589,7 +589,7 @@ for i, r in f7d.iterrows():
     c = COL[r.kind]; fill = "white" if r.kind == "degen" else c
     ax.errorbar(r.verbal, i, xerr=[[r.verbal - r.vlo], [r.vhi - r.verbal]], fmt="o", color=c, mfc=fill, mec=c, mew=1.5, capsize=3, ms=6)
     ax.plot(r.expected_from_length, i, "|", color="k", ms=12, mew=1.2, label="expected from trace length alone" if i == 0 else None)
-ax.axvspan(f7d[f7d.kind == "ctrl"].vlo.min(), f7d[f7d.kind == "ctrl"].vhi.max(), color="0.5", alpha=0.10, label="range of the controls' intervals")
+ax.axvspan(f7d[f7d.kind == "ctrl"].verbal.min(), f7d[f7d.kind == "ctrl"].verbal.max(), color="0.5", alpha=0.10, label="range spanned by the grey (control) points")
 ax.set_yticks(ys); ax.set_yticklabels(labels, fontsize=8); ax.invert_yaxis(); ax.set_xlim(-0.02, 0.55)
 ax.set_xlabel("share of traces the awareness judge calls test-aware (95% CI)")
 ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.18), ncol=2, frameon=False); ax.set_title("Judged 'test awareness' per condition (Qwen3-4B, 149 real-framed items)", fontsize=10)
@@ -603,7 +603,7 @@ for i, r in f7d.iterrows():
     if pd.notna(r.lost):
         ax.text(0.93, i, f"{int(r.lost)} lost / {int(r.gained)} gained", va="center", fontsize=7, color="0.3")
 ctrl = f7d[f7d.kind == "ctrl"]
-ax.axvspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.10, label="range spanned by no-intervention and random-direction points")
+ax.axvspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.10, label="range spanned by the grey (control) points")
 ax.set_yticks(ys); ax.set_yticklabels(labels, fontsize=8); ax.invert_yaxis(); ax.set_xlim(0.5, 1.0)
 ax.set_xlabel("share of items executing the harmful tool call (95% CI)")
 ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.18), frameon=False); ax.set_title("Execution per condition (same items)", fontsize=10)
