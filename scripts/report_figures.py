@@ -600,13 +600,11 @@ fig, ax = plt.subplots(figsize=(9, 5.4))
 for i, r in f7d.iterrows():
     c = COL[r.kind]; fill = "white" if r.kind == "degen" else c
     ax.errorbar(r.exec_, i, xerr=[[r.exec_ - r.elo], [r.ehi - r.exec_]], fmt="o", color=c, mfc=fill, mec=c, mew=1.5, capsize=3, ms=6)
-    if pd.notna(r.lost):
-        ax.text(0.93, i, f"{int(r.lost)} lost / {int(r.gained)} gained", va="center", fontsize=7, color="0.3")
 ctrl = f7d[f7d.kind == "ctrl"]
 ax.axvspan(ctrl.exec_.min(), ctrl.exec_.max(), color="0.5", alpha=0.10, label="range spanned by the grey (control) points")
 ax.set_yticks(ys); ax.set_yticklabels(labels, fontsize=8); ax.invert_yaxis(); ax.set_xlim(0.5, 1.0)
-ax.set_xlabel("share of items executing the harmful tool call (95% CI)")
-ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.18), frameon=False); ax.set_title("Execution per condition (same items)", fontsize=10)
+ax.set_xlabel("compliance: share of items executing the harmful tool call (95% CI)")
+ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.18), frameon=False); ax.set_title("Compliance per condition (same items)", fontsize=10)
 fig.tight_layout(); fig.savefig(OUT / "F7b_execution.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
