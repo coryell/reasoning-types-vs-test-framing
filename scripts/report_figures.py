@@ -51,13 +51,15 @@ def load_results(path: Path) -> dict:
     out = {}
     if not path.exists():
         return out
-    for line in path.read_text().split("\n"):
-        if line.strip():
-            try:
-                r = json.loads(line)
-            except json.JSONDecodeError:
-                continue
-            out[r["id"]] = r
+    lines = [l for l in path.read_text(encoding="utf-8").split("\n") if l.strip()]
+    for i, line in enumerate(lines):
+        try:
+            r = json.loads(line)
+        except json.JSONDecodeError:
+            if i == len(lines) - 1:
+                continue  # truncated final line from an interrupted run
+            raise
+        out[r["id"]] = r
     return out
 
 
@@ -100,7 +102,11 @@ def mcnemar(lost, gained):
 
 def save_table(df: pd.DataFrame, name: str, title: str, note: str = "") -> None:
     df.to_csv(OUT / f"{name}.csv", index=False)
-    (OUT / f"{name}.md").write_text(f"# {title}\n\n{note}\n\n" + df.to_markdown(index=False) + "\n")
+    try:
+        body = df.to_markdown(index=False)
+    except ImportError:  # tabulate missing
+        body = "```\n" + df.to_string(index=False) + "\n```"
+    (OUT / f"{name}.md").write_text(f"# {title}\n\n{note}\n\n" + body + "\n")
     print(f"\n## {title}\n{note}\n"); print(df.to_string(index=False))
 
 
@@ -205,13 +211,27 @@ t2 = pd.DataFrame(rows)
 save_table(t2, "T2_qwen3_32b_prompt_compliance", "[2] Qwen3-32B (OpenRouter): test cue vs baseline in two sampled decodes, paired by item",
            "Same items, cue and rule as [1]; 4,096-token budget; seeds 0 and 1. Floors are the same arm decoded twice.")
 
-fig, ax = plt.subplots(figsize=(8, 3.8))
-sub = t2[t2.framing == "fake"]
-ax.barh(sub.comparison, sub.gained.astype(int), color="C1", label="items gained execution")
-ax.barh(sub.comparison, -sub.lost.astype(int), color="C0", label="items lost execution")
-ax.axvline(0, color="k", lw=0.8); ax.set_xlabel("items with known execution in both arms (147–149), fake framing"); ax.legend(fontsize=8); ax.invert_yaxis()
-ax.set_title("[2] Qwen3-32B: the test cue moves fake-framing execution; decode-to-decode floors are balanced")
-fig.tight_layout(); fig.savefig(OUT / "F2_qwen3_32b_prompt_flips.png", dpi=130); plt.close(fig)
+def net_ci(lost, gained):
+    """Net items gained with a 95% CI from the exact binomial on the discordant pairs."""
+    n = lost + gained
+    if n == 0:
+        return 0, 0, 0
+    lo, hi = binomtest(gained, n, 0.5).proportion_ci(0.95)
+    return gained - lost, (2 * lo - 1) * n, (2 * hi - 1) * n
+
+
+t12 = pd.concat([pd.read_csv(OUT / "T1_qwen3_4b_prompt_compliance.csv").assign(model="Qwen3-4B (local)"), t2.assign(model="Qwen3-32B (OpenRouter)")], ignore_index=True)
+fig, axes = plt.subplots(1, 2, figsize=(12, 4.6), sharex=True)
+for ax, fr in zip(axes, ("real", "fake")):
+    sub = t12[t12.framing == fr].reset_index(drop=True)
+    for i, r in sub.iterrows():
+        m, lo, hi = net_ci(int(r.lost), int(r.gained)); c = "0.6" if str(r.comparison).startswith("floor") else ("C0" if r.model.startswith("Qwen3-4B") else "C1")
+        ax.errorbar(m, i, xerr=[[m - lo], [hi - m]], fmt="o", color=c, capsize=3)
+        ax.text(hi + 1.5, i, f"{int(r.lost)}↓ {int(r.gained)}↑, p {r.p_mcnemar}", va="center", fontsize=7)
+    ax.set_yticks(range(len(sub))); ax.set_yticklabels([f"{m}: {c}" for m, c in zip(sub.model, sub.comparison)], fontsize=8); ax.invert_yaxis()
+    ax.axvline(0, color="k", lw=0.8); ax.set_title(f"{fr} framing"); ax.set_xlabel("net items gaining execution (gained − lost), 95% CI")
+axes[0].set_xlim(-30, 45)
+fig.suptitle("[1]–[2] The test cue moves execution; grey = the same arm decoded twice (floor)"); fig.tight_layout(); fig.savefig(OUT / "F2_prompt_cue_net_flips.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [3] The authors' weight edit at 32B: paired flips per arm (their shipped outputs)
@@ -237,14 +257,21 @@ t3 = pd.DataFrame(rows)
 save_table(t3, "T3_shipped_32b_edit_compliance", "[3] Abdelnabi & Salem's weight edit on their three 32B models: paired execution flips vs α = 0 (their shipped outputs, greedy)",
            "Positive α = toward awareness. Our recount of the baselines matches their Table 4 to 0.1 pp.")
 
-fig, axes = plt.subplots(1, 3, figsize=(12, 3.6), sharey=True)
+USED = {"deepseek_qwen": 0.07, "qwen3": -0.32, "qwq": 0.05}
+fig, axes = plt.subplots(1, 3, figsize=(13, 4), sharey=True)
+floor = t3[t3.arm.str.startswith("floor")]
 for ax, model in zip(axes, ("deepseek_qwen", "qwen3", "qwq")):
     for fr, c in (("real", "C0"), ("fake", "C1")):
-        s = t3[(t3.model == model) & (t3.framing == fr) & (~t3.arm.str.startswith("floor"))].sort_values("signed_alpha")
-        ax.plot(s.signed_alpha, s.gained.astype(int) - s.lost.astype(int), "o-", color=c, label=fr)
-    ax.axhline(0, color="k", lw=0.8); ax.axvline(0, color="k", lw=0.4, ls=":"); ax.set_title(model); ax.set_xlabel("signed α"); ax.legend(fontsize=8)
+        s_ = t3[(t3.model == model) & (t3.framing == fr) & (~t3.arm.str.startswith("floor"))].sort_values("signed_alpha")
+        xs = [0.0] + s_.signed_alpha.tolist(); ys = [0] + (s_.gained.astype(int) - s_.lost.astype(int)).tolist()
+        order = np.argsort(xs); ax.plot(np.array(xs)[order], np.array(ys)[order], "o-", color=c, label=f"{fr} framing")
+        fl = floor[floor.framing == fr]
+        if len(fl):
+            band = abs(int(fl.gained.iloc[0]) - int(fl.lost.iloc[0])); ax.axhspan(-band, band, color=c, alpha=0.08)
+    u = USED[model]; ax.axvline(u, color="k", lw=0.6, ls="--"); ax.text(u, ax.get_ylim()[1] * 0.9 if ax.get_ylim()[1] > 0 else 5, " arm used\n in [4]–[6]", fontsize=7)
+    ax.axhline(0, color="k", lw=0.8); ax.set_title({"deepseek_qwen": "DeepSeek-R1-Distill-Qwen-32B", "qwen3": "Qwen3-32B", "qwq": "QwQ-32B"}[model]); ax.set_xlabel("α (+ toward awareness, − away); 0 = unsteered"); ax.legend(fontsize=8)
 axes[0].set_ylabel("net items gaining execution (137–149 paired items)")
-fig.suptitle("[3] Their edit moves the decision, with a model-dependent sign"); fig.tight_layout(); fig.savefig(OUT / "F3_shipped_32b_edit_net_flips.png", dpi=130); plt.close(fig)
+fig.suptitle("[3] Their edit moves the decision with a model-dependent sign; shaded = Distill's decode-to-decode floor (|net|), same on each panel"); fig.tight_layout(); fig.savefig(OUT / "F3_shipped_32b_edit_net_flips.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [4] Aggregate morphology rises are the flipped items (compliance-class split)
@@ -283,18 +310,32 @@ t4 = pd.DataFrame(rows)
 save_table(t4, "T4_morphology_by_compliance_class", "[4] Per-trace counts of non-test spans by compliance class: the aggregate rises live in the items that switched to complying",
            "Counts per trace (Venhoff annotation, gpt-4o-2024-08-06; spans matching the test-talk pattern excluded). Classes: refuse_both / comply_both hold the decision fixed; gained = refused at baseline, executed in the arm.")
 
-fig, axes = plt.subplots(1, 3, figsize=(12, 3.8), sharey=False)
-for ax, (label, metric) in zip(axes, (("words", "words"), ("backtracking", "backtracking"), ("example-testing", "example_testing"))):
-    sub = t4[(t4.framing == "real") & (t4.flip_class.isin(["refuse_both", "gained"])) & (t4.cell.isin(["Distill-Qwen-32B, aware +0.07", "QwQ-32B, aware +0.05", "Qwen3-32B, test cue (seed 0)"]))]
-    for i, cell in enumerate(sub.cell.unique()):
-        for cls, c in (("refuse_both", "C0"), ("gained", "C3")):
-            s = sub[(sub.cell == cell) & (sub.flip_class == cls)]
-            if len(s) == 0:
+rows = []
+for label, df, ba, ar, key in CELLS:
+    for fr in ("real", "fake"):
+        b = df[(df[key] == ba) & (df.framing == fr)].set_index("index"); x = df[(df[key] == ar) & (df.framing == fr)].set_index("index")
+        idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]
+        for cls, ii in class_index(b, x).items():
+            if cls == "all" or len(ii) < MIN_N_CI:
                 continue
-            a, bb = [float(v) for v in s[metric].iloc[0].replace("→", " ").split()]
-            ax.plot([i - 0.15 + (0.3 if cls == "gained" else 0)] * 2, [a, bb], "-", color=c, lw=2); ax.plot(i - 0.15 + (0.3 if cls == "gained" else 0), bb, "o", color=c, label=cls if i == 0 else None)
-    ax.set_xticks(range(len(sub.cell.unique()))); ax.set_xticklabels([c.split(",")[0] + "\n" + c.split(",")[1] for c in sub.cell.unique()], fontsize=8); ax.set_title(f"{label}: baseline → arm (real framing)"); ax.legend(fontsize=8)
-fig.suptitle("[4] Stable refusers vs items that switched to complying"); fig.tight_layout(); fig.savefig(OUT / "F4_flipped_items_carry_the_rise.png", dpi=130); plt.close(fig)
+            for beh in ("backtracking", "example-testing", "uncertainty-estimation"):
+                m, lo, hi = boot(nontest_count(x.loc[ii], beh) - nontest_count(b.loc[ii], beh))
+                md, dlo, dhi = boot(x.loc[ii][f"density_{beh}_nontest"] - b.loc[ii][f"density_{beh}_nontest"])
+                rows.append(dict(cell=label, framing=fr, flip_class=cls, n=len(ii), behaviour=beh, d_count=m, lo=lo, hi=hi, d_density=md, dlo=dlo, dhi=dhi))
+f4d = pd.DataFrame(rows)
+fig, axes = plt.subplots(2, 3, figsize=(14, 8), sharey="row")
+for col, beh in enumerate(("backtracking", "example-testing", "uncertainty-estimation")):
+    for row, (metric, lo_c, hi_c, unit) in enumerate((("d_count", "lo", "hi", "Δ spans per trace"), ("d_density", "dlo", "dhi", "Δ spans per 100 words"))):
+        ax = axes[row, col]; sub = f4d[f4d.behaviour == beh]
+        labels = [f"{c} [{fr}]" for c, fr in zip(sub.cell, sub.framing)]; uniq = list(dict.fromkeys(labels)); ypos = {l: i for i, l in enumerate(uniq)}
+        for cls, c, off in (("refuse_both", "C0", -0.2), ("comply_both", "C2", 0.0), ("gained", "C3", 0.2)):
+            ss = sub[sub.flip_class == cls]
+            ys = [ypos[f"{c_} [{fr}]"] + off for c_, fr in zip(ss.cell, ss.framing)]
+            ax.errorbar(ss[metric], ys, xerr=[ss[metric] - ss[lo_c], ss[hi_c] - ss[metric]], fmt="o", color=c, capsize=2, ms=4, label=cls if (row == 0 and col == 0) else None)
+        ax.axvline(0, color="k", lw=0.8); ax.set_yticks(range(len(uniq))); ax.set_yticklabels(uniq, fontsize=7); ax.tick_params(labelleft=(col == 0)); ax.invert_yaxis()
+        ax.set_title(f"{beh} (non-test spans)", fontsize=10); ax.set_xlabel(unit, fontsize=9)
+axes[0, 0].legend(fontsize=8, loc="lower right")
+fig.suptitle("[4] Change vs baseline by compliance class (95% bootstrap CI; classes with < 20 items omitted): the rises sit in items that switched to complying"); fig.tight_layout(); fig.savefig(OUT / "F4_flipped_items_carry_the_rise.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [5] Task-directed reasoning at fixed decision: counts per trace with CIs, and the floor
@@ -323,15 +364,44 @@ t5 = pd.DataFrame(rows)
 save_table(t5, "T5_task_reasoning_at_fixed_decision", "[5] Items that refuse under both conditions: change in non-test spans per trace (counts) and per 100 words (density), 95% bootstrap CIs",
            "Counts are flat within the floor; densities fall because the traces gained test-talk words. '*' = CI excludes 0.")
 
-fig, ax = plt.subplots(figsize=(10, 4.5))
-sub = t5[t5.framing == "real"]
-ys = np.arange(len(sub))
-for j, (col, c) in enumerate((("deduction_delta", "C0"), ("knowledge_recall_delta", "C2"))):
-    vals = [[float(s) for s in v.replace("[", "").replace("]", "").replace(",", "").replace("*", "").split()] for v in sub[col]]
-    m = [v[0] for v in vals]; lo = [v[1] for v in vals]; hi = [v[2] for v in vals]
-    ax.errorbar(m, ys + (j - 0.5) * 0.25, xerr=[np.subtract(m, lo), np.subtract(hi, m)], fmt="o", color=c, capsize=3, label=col.replace("_delta", ""))
-ax.axvline(0, color="k", lw=0.8); ax.set_yticks(ys); ax.set_yticklabels(sub.cell, fontsize=8); ax.invert_yaxis(); ax.set_xlabel("Δ non-test spans per trace, stable refusers, real framing (95% CI)"); ax.legend(fontsize=8)
-ax.set_title("[5] Task-directed reasoning at a fixed decision"); fig.tight_layout(); fig.savefig(OUT / "F5_task_reasoning_fixed_decision.png", dpi=130); plt.close(fig)
+def parse_ci(v):
+    v = str(v)
+    if "no CI" in v:
+        return float(v.split()[0]), np.nan, np.nan
+    a = [float(x) for x in v.replace("[", "").replace("]", "").replace(",", "").replace("*", "").split()]
+    return a[0], a[1], a[2]
+
+
+# test-talk Δ per cell (same items), for the third marker
+tt = {}
+for label, df, ba, ar, key in CELLS5:
+    for fr in ("real", "fake"):
+        b = df[(df[key] == ba) & (df.framing == fr)].set_index("index"); x = df[(df[key] == ar) & (df.framing == fr)].set_index("index")
+        idx = b.index.intersection(x.index); b, x = b.loc[idx], x.loc[idx]; ii = stable_refusers(b, x)
+        if len(ii) >= 5:
+            tt[(label, fr)] = boot(testlex_total(x.loc[ii]) - testlex_total(b.loc[ii]))
+fig, axes = plt.subplots(1, 2, figsize=(16, 6.5))
+for ax, fr in zip(axes, ("real", "fake")):
+    sub = t5[t5.framing == fr].copy(); sub["is_floor"] = sub.cell.str.startswith("floor")
+    sub = pd.concat([sub[~sub.is_floor], sub[sub.is_floor]]).reset_index(drop=True)
+    for j, (col, c, name) in enumerate((("deduction_delta", "C0", "task deduction"), ("knowledge_recall_delta", "C2", "task knowledge recall"))):
+        vals = [parse_ci(v) for v in sub[col]]
+        for i, (m, lo, hi) in enumerate(vals):
+            colr = "0.6" if sub.is_floor[i] else c
+            if np.isnan(lo):
+                ax.plot(m, i + (j - 1) * 0.22, "x", color=colr)
+            else:
+                ax.errorbar(m, i + (j - 1) * 0.22, xerr=[[m - lo], [hi - m]], fmt="o", color=colr, capsize=3, ms=4, label=name if i == 0 else None)
+    for i, r in sub.iterrows():
+        if (r.cell, fr) in tt:
+            m, lo, hi = tt[(r.cell, fr)]
+            if not np.isnan(lo):
+                ax.errorbar(m, i + 0.22, xerr=[[m - lo], [hi - m]], fmt="s", color="0.6" if r.is_floor else "C3", capsize=3, ms=4, label="test-talk (any label)" if i == 0 else None)
+    ax.axvspan(-0.7, 0.7, color="k", alpha=0.05)
+    ax.axvline(0, color="k", lw=0.8); ax.set_yticks(range(len(sub))); ax.set_yticklabels([f"{c} (n={n})" for c, n in zip(sub.cell, sub.n_refuse_both)], fontsize=8); ax.invert_yaxis()
+    ax.set_title(f"{fr} framing"); ax.set_xlabel("Δ spans per trace vs baseline (95% CI; × = n < 20, no CI)")
+axes[0].legend(fontsize=8, loc="lower left")
+fig.suptitle("[5]–[6] Items refusing in both arms: task-directed reasoning is flat, about one test-talk span is added (grey = decode-to-decode floors; band = ±0.7 spans)"); fig.tight_layout(); fig.savefig(OUT / "F5_task_reasoning_fixed_decision.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [6] Test-talk added per trace at fixed decision
@@ -372,12 +442,38 @@ for arm in ["baseline", "baseline_seed1", "bt_neg", "unc_neg", "unc_pos", "bt_po
                      hedged_test_talk_per_100w=f"{a['density_uncertainty-estimation_testlex'].mean():.3f}", deductive_test_talk_per_100w=f"{a.density_deduction_testlex.mean():.3f}"))
 t7 = pd.DataFrame(rows)
 save_table(t7, "T7_f4_verbalization", "[7] Qwen3-4B, residual-stream steering (±0.25) along the rebuilt backtracking (L23) and uncertainty (L18) directions, real framing: verbalized awareness per arm",
-           "Verbalization = Abdelnabi & Salem's judge (gpt-4o-2024-08-06) says awareness Yes/Maybe. 'expected_from_length' = a logistic fit of verbalization on log-length in the two baseline decodes, evaluated at the arm's lengths. random_bt / random_unc = Gaussian directions of matched norm at the same layers. bt_pos is degenerate (closure, repetition). Traces the judge failed on (5 of 1,192) count as not verbalizing. test_talk_per_100w is pooled (sum of spans / sum of words).")
+           f"Verbalization = Abdelnabi & Salem's judge (gpt-4o-2024-08-06) says awareness Yes/Maybe. 'expected_from_length' = a logistic fit of verbalization on log-length in the two baseline decodes, evaluated at the arm's lengths. random_bt / random_unc = Gaussian directions of matched norm at the same layers. bt_pos is degenerate (closure, repetition). Traces the judge failed on ({int(f4r.aware_judged.isna().sum())} of {len(f4r)}) count as not verbalizing. test_talk_per_100w is pooled (sum of spans / sum of words).")
 
-fig, ax = plt.subplots(figsize=(8, 4))
-xs = np.arange(len(t7)); ax.bar(xs - 0.2, t7.verbalization.astype(float), 0.4, label="observed"); ax.bar(xs + 0.2, t7.expected_from_length.astype(float), 0.4, label="expected from trace length alone")
-ax.set_xticks(xs); ax.set_xticklabels(t7.arm, rotation=20); ax.set_ylabel("share of traces judged test-aware"); ax.legend(fontsize=8)
-ax.set_title("[7] Judged 'test awareness' per F4 arm"); fig.tight_layout(); fig.savefig(OUT / "F7_f4_verbalization.png", dpi=130); plt.close(fig)
+def wilson(k, n):
+    ci = binomtest(int(k), int(n), 0.5).proportion_ci(0.95, method="wilson")
+    return ci.low, ci.high
+
+
+ARMS7 = ["baseline", "baseline_seed1", "random_bt", "random_unc", "bt_neg", "unc_neg", "unc_pos", "bt_pos"]
+NICE = {"baseline": "baseline", "baseline_seed1": "baseline, 2nd decode", "random_bt": "random dir. (L23)", "random_unc": "random dir. (L18)", "bt_neg": "backtracking −", "unc_neg": "uncertainty −", "unc_pos": "uncertainty +", "bt_pos": "backtracking + (degenerate)"}
+t7i = t7.set_index("arm").loc[ARMS7]
+fig, axes = plt.subplots(2, 1, figsize=(9, 7.5), sharex=True)
+xs = np.arange(len(ARMS7)); ax = axes[0]
+v = t7i.verbalization.astype(float); n = t7i.n.astype(int)
+cis = [wilson(round(vv * nn), nn) for vv, nn in zip(v, n)]; lo = np.array([c[0] for c in cis]); hi = np.array([c[1] for c in cis])
+ax.bar(xs - 0.2, v, 0.4, yerr=[v - lo, hi - v], capsize=3, label="observed (Wilson 95% CI)")
+ax.bar(xs + 0.2, t7i.expected_from_length.astype(float), 0.4, color="0.7", label="expected from trace length alone (logistic fit on the two baseline decodes)")
+ax.bar(xs[-1] - 0.2, v.iloc[-1], 0.4, color="none", edgecolor="r", hatch="//")
+ax.set_ylabel("share of traces the judge calls test-aware"); ax.legend(fontsize=8); ax.set_title("[7] Judged 'test awareness' per arm (Qwen3-4B, 149 real-framed items)")
+ax = axes[1]
+base_rate = (f4_all[(f4_all.arm == "baseline") & (f4_all.framing == "real")].executed.map(exec_str) == "True").sum() / (f4_all[(f4_all.arm == "baseline") & (f4_all.framing == "real")].executed.map(exec_str) != "unknown").sum()
+ex, flips = [base_rate], [""]
+for a in ARMS7[1:]:
+    b, x = paired_frames(f4_all, "baseline", a, "real"); _, _, rx, lost, gained = flip_counts(b, x); ex.append(rx); flips.append(f"{lost}↓ {gained}↑")
+ax.bar(xs, ex, 0.6, color=["0.4"] + ["0.6"] * 3 + ["C1"] * 4)
+rb = [ex[ARMS7.index("random_bt")], ex[ARMS7.index("random_unc")]]
+ax.axhspan(min(base_rate, min(rb)), max(rb), color="C0", alpha=0.12, label="range spanned by baseline and the two random directions")
+ax.axhline(base_rate, color="k", lw=0.8)
+for i in range(1, len(ARMS7)):
+    ax.text(i, ex[i] + 0.01, flips[i], ha="center", fontsize=7)
+ax.set_ylim(0.5, 0.9); ax.set_ylabel("execution rate (paired items)"); ax.set_xticks(xs); ax.set_xticklabels([NICE[a] for a in ARMS7], rotation=20, ha="right", fontsize=8); ax.legend(fontsize=8, loc="upper left")
+ax.set_title("[8] Execution in the same arms: inside the band that random directions of the same norm produce")
+fig.tight_layout(); fig.savefig(OUT / "F7_f4_verbalization_and_execution.png", dpi=130); plt.close(fig)
 
 # %% [markdown]
 # ## [8] F4: execution per arm

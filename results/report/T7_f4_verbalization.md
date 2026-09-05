@@ -1,6 +1,6 @@
 # [7] Qwen3-4B, residual-stream steering (±0.25) along the rebuilt backtracking (L23) and uncertainty (L18) directions, real framing: verbalized awareness per arm
 
-Verbalization = Abdelnabi & Salem's judge (gpt-4o-2024-08-06) says awareness Yes/Maybe. 'expected_from_length' = a logistic fit of verbalization on log-length in the two baseline decodes, evaluated at the arm's lengths. random_bt / random_unc = Gaussian directions of matched norm at the same layers. bt_pos is degenerate (closure, repetition). Traces the judge failed on (5 of 1,192) count as not verbalizing. test_talk_per_100w is pooled (sum of spans / sum of words).
+Verbalization = Abdelnabi & Salem's judge (gpt-4o-2024-08-06) says awareness Yes/Maybe. 'expected_from_length' = a logistic fit of verbalization on log-length in the two baseline decodes, evaluated at the arm's lengths. random_bt / random_unc = Gaussian directions of matched norm at the same layers. bt_pos is degenerate (closure, repetition). Traces the judge failed on (4 of 1192) count as not verbalizing. test_talk_per_100w is pooled (sum of spans / sum of words).
 
 | arm            |   n |   words |   closure |   repetition |   verbalization |   expected_from_length |   test_talk_per_trace |   test_talk_per_100w |   hedged_test_talk_per_100w |   deductive_test_talk_per_100w |
 |:---------------|----:|--------:|----------:|-------------:|----------------:|-----------------------:|----------------------:|---------------------:|----------------------------:|-------------------------------:|
