@@ -636,4 +636,53 @@ lines += ["## Awareness probe on Qwen3-4B (authors' recipe, span-mean pooling)",
           f"- shuffled-label control at the best layer: AUROC {pm['controls']['shuffled_auroc']:.3f} (multi-seed check in results/qwen3_4b/probe_robustness/)"]
 (OUT / "T9_instrument_facts.md").write_text("\n".join(lines) + "\n"); print("\n".join(lines))
 
+# %% [markdown]
+# ## [10] Ways the reasoning-direction result could be wrong, and what the data say
+
+# %%
+lines10 = ["# [10] Robustness checks behind the 'ways this could be wrong' table", ""]
+# (a) Yes vs Maybe among every 4B awareness verdict on disk (main run, cue, F4, F2)
+yes = maybe = no = 0
+for d in (REPO / "results/qwen3_4b/steering", REPO / "results/qwen3_4b/followups/f1_prompt", REPO / "results/qwen3_4b/followups/f4_reverse", REPO / "results/qwen3_4b/followups/f2_uncertainty"):
+    for pth in sorted(d.glob("*.json.awareness.jsonl")):
+        for rec in load_results(pth).values():
+            if not record_ok(rec):
+                continue
+            j = parse_judgment(rec["text"]); v = (j or {}).get("model_awareness", {}).get("conclusion")
+            yes += v == "Yes"; maybe += v == "Maybe"; no += v == "No"
+lines10 += [f"- Awareness verdicts over every Qwen3-4B trace judged in this project: Yes {yes}, Maybe {maybe}, No {no}. The positive class is Yes or Maybe.", ""]
+# (b) judge evidence is self-referential test language; (c) verbalization within a length bin; (d) closed vs unclosed
+rows10 = []
+for a in ["baseline", "baseline_seed1", "random_bt", "random_unc", "shuffled_bt", "shuffled_unc", "bt_neg", "unc_neg", "unc_pos", "bt_pos"]:
+    pth = (REPO / "results/qwen3_4b/steering" if a in ("baseline", "baseline_seed1") else REPO / "results/qwen3_4b/followups/f4_reverse") / f"{a}.json.awareness.jsonl"
+    ev_n = ev_test = 0
+    for rec in load_results(pth).values():
+        if not record_ok(rec):
+            continue
+        j = parse_judgment(rec["text"])
+        if is_positive(j) and rec["id"].endswith("/real"):
+            qs = [q for q in (j["model_awareness"].get("evidence") or []) if isinstance(q, str)]
+            ev_n += bool(qs); ev_test += any(is_test_span(q) for q in qs)
+    t = f4r[f4r.arm == a]
+    binned = t[(t.words >= 200) & (t.words <= 300)]
+    closed = f4_all[(f4_all.arm == a) & (f4_all.framing == "real")]
+    aw_closed = closed[closed.has_think_close == True].aware_judged.isin(["Yes", "Maybe"]).mean() if (closed.has_think_close == True).any() else np.nan  # noqa: E712
+    aw_open = closed[closed.has_think_close == False].aware_judged.isin(["Yes", "Maybe"]).mean() if (closed.has_think_close == False).any() else np.nan  # noqa: E712
+    rows10.append(dict(condition=a, positives=int(t.aw.sum()), evidence_is_test_language=f"{ev_test}/{ev_n}", verbalization_200_300_words=f"{binned.aw.mean():.2f} (n={len(binned)})" if len(binned) >= 10 else f"n={len(binned)}", verbalization_closed=f"{aw_closed:.2f}", verbalization_unclosed=f"{aw_open:.2f}" if not np.isnan(aw_open) else "—", n_unclosed=int((closed.has_think_close == False).sum())))  # noqa: E712
+t10 = pd.DataFrame(rows10); t10.to_csv(OUT / "T10_robustness.csv", index=False)
+lines10 += ["## Per condition (real framing): is the judge's evidence test language; verbalization among 200–300-word traces; closed vs unclosed traces", "", t10.to_markdown(index=False), ""]
+# (e) F2: held-out trigger prompts, uncertainty direction from all / non-test / test-language spans at 0.25
+f2 = pd.read_csv(REPO / "results/qwen3_4b/f2_uncertainty_steering_traces.csv", low_memory=False)
+f2r = f2.groupby(["arm", "framing"]).agg(n=("index", "size"), verbalization=("aware_judged", lambda v: v.isin(["Yes", "Maybe"]).mean()), closure=("has_think_close", "mean"), words=("words", "mean")).reset_index()
+f2r.to_csv(OUT / "T11_f2_heldout_triggers.csv", index=False)
+lines10 += ["## F2: uncertainty direction at ±0.25 on 60 held-out trigger prompts (real / hypothetical), vector built from all spans, non-test spans, or test-language spans", "", f2r.round(3).to_markdown(index=False), ""]
+# (f) last-prompt-token projection onto the awareness probe direction (before any generation)
+lp = []
+for f, arms_ in ((REPO / "results/qwen3_4b/f1_prompt_steering_projections.csv", ["prompt_test", "aware_strong"]), (REPO / "results/qwen3_4b/steering_projections.csv", ["unaware_strong", "aware", "random_aware"]), (REPO / "results/qwen3_4b/f4_reverse_steering_projections.csv", ["unc_pos", "unc_neg", "bt_neg"])):
+    d = pd.read_csv(f); d = d[(d.projection == "proj_lastprompt_probe") & (d.framing == "real") & d.arm.isin(arms_)]
+    lp.append(d[["arm", "n_pairs", "base_mean", "delta", "ci_lo", "ci_hi"]])
+lp = pd.concat(lp); lp.to_csv(OUT / "T12_last_prompt_token_probe.csv", index=False)
+lines10 += ["## Residual stream at the last prompt token, projected onto the awareness probe direction (unit norm), change vs no intervention, real framing", "", lp.round(4).to_markdown(index=False), ""]
+(OUT / "T10_robustness.md").write_text("\n".join(lines10) + "\n"); print("\n".join(lines10))
+
 print(f"\nwrote {OUT}")
