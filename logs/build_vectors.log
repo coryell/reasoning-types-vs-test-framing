@@ -147,3 +147,126 @@
 [2026-09-03 16:57:58]   243/243 done, 37 errors, 1,081,111 tokens, ~$8.78 this run
 [2026-09-03 16:57:58] {"path": "/home/cutter/d10/results/qwen3_4b/vectors/layer_annotations.jsonl", "jobs": 243, "cached": 0, "truncated_kept": 0, "run": 243, "errors": 37, "prompt_tokens": 271228, "completion_tokens": 809883, "est_cost_usd": 8.7769}
 [2026-09-03 16:57:58] chosen layers: {"backtracking": {"layer": 23, "pos_minus_neg": 0.39312480454923826, "original": 0.09487793838480676, "pos": 0.45734274119697055, "neg": 0.06421793664773227}, "uncertainty-estimation": {"layer": 18, "pos_minus_neg": 0.7246277163175558, "original": 0.25639246953557826, "pos": 0.7912943829842225, "neg": 0.06666666666666667}}
+[2026-09-04 13:22:25] loading Qwen/Qwen3-4B
+[2026-09-04 13:23:56]   gen 8/20  1.3 min  eta 1.9 min  unfinished so far 6
+[2026-09-04 13:25:04]   gen 16/20  2.4 min  eta 0.6 min  unfinished so far 13
+[2026-09-04 13:26:27]   gen 20/20  3.8 min  eta 0.0 min  unfinished so far 16
+[2026-09-04 13:27:42]   gen 8/20  1.2 min  eta 1.9 min  unfinished so far 8
+[2026-09-04 13:29:34]   gen 16/20  3.1 min  eta 0.8 min  unfinished so far 14
+[2026-09-04 13:31:00]   gen 20/20  4.6 min  eta 0.0 min  unfinished so far 17
+[2026-09-04 13:31:00] steered backtracking layer 13 pos (coefficient 0.25)
+[2026-09-04 13:32:35]   gen 8/20  1.6 min  eta 2.4 min  unfinished so far 5
+[2026-09-04 13:33:42]   gen 16/20  2.7 min  eta 0.7 min  unfinished so far 10
+[2026-09-04 13:34:49]   gen 20/20  3.8 min  eta 0.0 min  unfinished so far 13
+[2026-09-04 13:34:49] steered backtracking layer 13 neg (coefficient 0.25)
+[2026-09-04 13:35:55]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 8
+[2026-09-04 13:37:01]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 15
+[2026-09-04 13:38:07]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 18
+[2026-09-04 13:38:07] steered backtracking layer 18 pos (coefficient 0.25)
+[2026-09-04 13:39:13]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 5
+[2026-09-04 13:40:20]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 10
+[2026-09-04 13:41:26]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 12
+[2026-09-04 13:41:26] steered backtracking layer 18 neg (coefficient 0.25)
+[2026-09-04 13:42:33]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 8
+[2026-09-04 13:43:39]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 15
+[2026-09-04 13:44:45]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 18
+[2026-09-04 13:44:45] steered backtracking layer 23 pos (coefficient 0.25)
+[2026-09-04 13:45:51]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 5
+[2026-09-04 13:46:57]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 9
+[2026-09-04 13:48:03]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 11
+[2026-09-04 13:48:03] steered backtracking layer 23 neg (coefficient 0.25)
+[2026-09-04 13:49:10]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 8
+[2026-09-04 13:50:16]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 15
+[2026-09-04 13:51:22]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 17
+[2026-09-04 13:51:22] steered uncertainty-estimation layer 13 pos (coefficient 0.25)
+[2026-09-04 13:52:29]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 5
+[2026-09-04 13:53:35]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 10
+[2026-09-04 13:54:41]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 13
+[2026-09-04 13:54:41] steered uncertainty-estimation layer 13 neg (coefficient 0.25)
+[2026-09-04 13:55:48]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 6
+[2026-09-04 13:56:55]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 11
+[2026-09-04 13:58:02]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 14
+[2026-09-04 13:58:02] steered uncertainty-estimation layer 18 pos (coefficient 0.25)
+[2026-09-04 13:59:08]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 5
+[2026-09-04 14:00:15]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 10
+[2026-09-04 14:01:22]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 12
+[2026-09-04 14:01:22] steered uncertainty-estimation layer 18 neg (coefficient 0.25)
+[2026-09-04 14:02:28]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 8
+[2026-09-04 14:03:35]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 15
+[2026-09-04 14:04:42]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 18
+[2026-09-04 14:04:42] steered uncertainty-estimation layer 23 pos (coefficient 0.25)
+[2026-09-04 14:05:48]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 5
+[2026-09-04 14:06:54]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 11
+[2026-09-04 14:08:01]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 13
+[2026-09-04 14:08:01] steered uncertainty-estimation layer 23 neg (coefficient 0.25)
+[2026-09-04 14:08:01] /home/cutter/d10/results/qwen3_4b/vectors/layer_annotations_c0.25.jsonl: 260 jobs, 0 cached, 0 truncated (kept), 260 to run
+[2026-09-04 13:22:25] loading Qwen/Qwen3-4B
+[2026-09-04 13:23:56]   gen 8/20  1.3 min  eta 1.9 min  unfinished so far 6
+[2026-09-04 13:25:04]   gen 16/20  2.4 min  eta 0.6 min  unfinished so far 13
+[2026-09-04 13:26:27]   gen 20/20  3.8 min  eta 0.0 min  unfinished so far 16
+[2026-09-04 13:27:42]   gen 8/20  1.2 min  eta 1.9 min  unfinished so far 8
+[2026-09-04 13:29:34]   gen 16/20  3.1 min  eta 0.8 min  unfinished so far 14
+[2026-09-04 13:31:00]   gen 20/20  4.6 min  eta 0.0 min  unfinished so far 17
+[2026-09-04 13:31:00] steered backtracking layer 13 pos (coefficient 0.25)
+[2026-09-04 13:32:35]   gen 8/20  1.6 min  eta 2.4 min  unfinished so far 5
+[2026-09-04 13:33:42]   gen 16/20  2.7 min  eta 0.7 min  unfinished so far 10
+[2026-09-04 13:34:49]   gen 20/20  3.8 min  eta 0.0 min  unfinished so far 13
+[2026-09-04 13:34:49] steered backtracking layer 13 neg (coefficient 0.25)
+[2026-09-04 13:35:55]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 8
+[2026-09-04 13:37:01]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 15
+[2026-09-04 13:38:07]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 18
+[2026-09-04 13:38:07] steered backtracking layer 18 pos (coefficient 0.25)
+[2026-09-04 13:39:13]   gen 8/20  1.1 min  eta 1.6 min  unfinished so far 5
+[2026-09-04 13:40:20]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 10
+[2026-09-04 13:41:26]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 12
+[2026-09-04 13:41:26] steered backtracking layer 18 neg (coefficient 0.25)
+[2026-09-04 13:42:33]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 8
+[2026-09-04 13:43:39]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 15
+[2026-09-04 13:44:45]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 18
+[2026-09-04 13:44:45] steered backtracking layer 23 pos (coefficient 0.25)
+[2026-09-04 13:45:51]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 5
+[2026-09-04 13:46:57]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 9
+[2026-09-04 13:48:03]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 11
+[2026-09-04 13:48:03] steered backtracking layer 23 neg (coefficient 0.25)
+[2026-09-04 13:49:10]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 8
+[2026-09-04 13:50:16]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 15
+[2026-09-04 13:51:22]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 17
+[2026-09-04 13:51:22] steered uncertainty-estimation layer 13 pos (coefficient 0.25)
+[2026-09-04 13:52:29]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 5
+[2026-09-04 13:53:35]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 10
+[2026-09-04 13:54:41]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 13
+[2026-09-04 13:54:41] steered uncertainty-estimation layer 13 neg (coefficient 0.25)
+[2026-09-04 13:55:48]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 6
+[2026-09-04 13:56:55]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 11
+[2026-09-04 13:58:02]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 14
+[2026-09-04 13:58:02] steered uncertainty-estimation layer 18 pos (coefficient 0.25)
+[2026-09-04 13:59:08]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 5
+[2026-09-04 14:00:15]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 10
+[2026-09-04 14:01:22]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 12
+[2026-09-04 14:01:22] steered uncertainty-estimation layer 18 neg (coefficient 0.25)
+[2026-09-04 14:02:28]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 8
+[2026-09-04 14:03:35]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 15
+[2026-09-04 14:04:42]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 18
+[2026-09-04 14:04:42] steered uncertainty-estimation layer 23 pos (coefficient 0.25)
+[2026-09-04 14:05:48]   gen 8/20  1.1 min  eta 1.7 min  unfinished so far 5
+[2026-09-04 14:06:54]   gen 16/20  2.2 min  eta 0.6 min  unfinished so far 11
+[2026-09-04 14:08:01]   gen 20/20  3.3 min  eta 0.0 min  unfinished so far 13
+[2026-09-04 14:08:01] steered uncertainty-estimation layer 23 neg (coefficient 0.25)
+[2026-09-04 14:08:01] /home/cutter/d10/results/qwen3_4b/vectors/layer_annotat[2026-09-04 14:08:35]   50/260 done, 0 errors, 104,034 tokens, ~$0.68 this run
+[2026-09-04 14:08:56]   100/260 done, 0 errors, 214,534 tokens, ~$1.40 this run
+[2026-09-04 14:09:12]   150/260 done, 0 errors, 322,342 tokens, ~$2.10 this run
+[2026-09-04 14:09:29]   200/260 done, 0 errors, 424,031 tokens, ~$2.76 this run
+[2026-09-04 14:09:45]   250/260 done, 0 errors, 535,645 tokens, ~$3.49 this run
+[2026-09-04 14:09:51]   260/260 done, 0 errors, 561,321 tokens, ~$3.66 this run
+[2026-09-04 14:09:51] {"path": "/home/cutter/d10/results/qwen3_4b/vectors/layer_annotations_c0.25.jsonl", "jobs": 260, "cached": 0, "truncated_kept": 0, "run": 260, "errors": 0, "prompt_tokens": 260482, "completion_tokens": 300839, "est_cost_usd": 3.6596}
+[2026-09-04 14:09:51] chosen layers: {"backtracking": {"layer": 18, "pos_minus_neg": 0.0957295410248317, "original": 0.11055581643466397, "pos": 0.16823030852760618, "neg": 0.07250076750277448}, "uncertainty-estimation": {"layer": 23, "pos_minus_neg": 0.17044868968959076, "original": 0.2610070416375888, "pos": 0.3857150777916392, "neg": 0.21526638810204846}}
+ions_c0.25.jsonl: 260 jobs, 0 cached, 0 truncated (kept), 260 to run
+[2026-09-04 14:08:35]   50/260 done, 0 errors, 104,034 tokens, ~$0.68 this run
+[2026-09-04 14:08:56]   100/260 done, 0 errors, 214,534 tokens, ~$1.40 this run
+[2026-09-04 14:09:12]   150/260 done, 0 errors, 322,342 tokens, ~$2.10 this run
+[2026-09-04 14:09:29]   200/260 done, 0 errors, 424,031 tokens, ~$2.76 this run
+[2026-09-04 14:09:45]   250/260 done, 0 errors, 535,645 tokens, ~$3.49 this run
+[2026-09-04 14:09:51]   260/260 done, 0 errors, 561,321 tokens, ~$3.66 this run
+[2026-09-04 14:09:51] {"path": "/home/cutter/d10/results/qwen3_4b/vectors/layer_annotations_c0.25.jsonl", "jobs": 260, "cached": 0, "truncated_kept": 0, "run": 260, "errors": 0, "prompt_tokens": 260482, "completion_tokens": 300839, "est_cost_usd": 3.6596}
+[2026-09-04 14:09:51] chosen layers: {"backtracking": {"layer": 18, "pos_minus_neg": 0.0957295410248317, "original": 0.11055581643466397, "pos": 0.16823030852760618, "neg": 0.07250076750277448}, "uncertainty-estimation": {"layer": 23, "pos_minus_neg": 0.17044868968959076, "original": 0.2610070416375888, "pos": 0.3857150777916392, "neg": 0.21526638810204846}}
+LAYERS_DONE

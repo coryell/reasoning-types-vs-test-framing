@@ -1,0 +1,105 @@
+{
+ "coefficient": 0.25,
+ "candidates": [
+  13,
+  18,
+  23
+ ],
+ "n_eval": 20,
+ "fractions": {
+  "original": {
+   "backtracking": 0.11055581643466397,
+   "uncertainty-estimation": 0.2610070416375888,
+   "closure": 0.4,
+   "repetition": 0.09444981972508829
+  },
+  "backtracking/13/pos": {
+   "backtracking": 0.1306123885235148,
+   "uncertainty-estimation": 0.26105457406027716,
+   "closure": 0.25,
+   "repetition": 0.13353118267450914
+  },
+  "backtracking/13/neg": {
+   "backtracking": 0.060253159141386826,
+   "uncertainty-estimation": 0.30061332981492517,
+   "closure": 0.6,
+   "repetition": 0.08411141131039648
+  },
+  "backtracking/18/pos": {
+   "backtracking": 0.16823030852760618,
+   "uncertainty-estimation": 0.21449289563298116,
+   "closure": 0.3,
+   "repetition": 0.16589902094016712
+  },
+  "backtracking/18/neg": {
+   "backtracking": 0.07250076750277448,
+   "uncertainty-estimation": 0.34902399039252613,
+   "closure": 0.5,
+   "repetition": 0.07949436442840445
+  },
+  "backtracking/23/pos": {
+   "backtracking": 0.1628126542054235,
+   "uncertainty-estimation": 0.2779789162046712,
+   "closure": 0.2,
+   "repetition": 0.15367227077595844
+  },
+  "backtracking/23/neg": {
+   "backtracking": 0.07677098996428572,
+   "uncertainty-estimation": 0.300591649889242,
+   "closure": 0.85,
+   "repetition": 0.07834936258254858
+  },
+  "uncertainty-estimation/13/pos": {
+   "backtracking": 0.15190444532209862,
+   "uncertainty-estimation": 0.24188765524811884,
+   "closure": 0.55,
+   "repetition": 0.13070783437642014
+  },
+  "uncertainty-estimation/13/neg": {
+   "backtracking": 0.09923253737661555,
+   "uncertainty-estimation": 0.2596081756254545,
+   "closure": 0.65,
+   "repetition": 0.08382596916006106
+  },
+  "uncertainty-estimation/18/pos": {
+   "backtracking": 0.20261219834648814,
+   "uncertainty-estimation": 0.2371270479862504,
+   "closure": 0.5,
+   "repetition": 0.13052339423349743
+  },
+  "uncertainty-estimation/18/neg": {
+   "backtracking": 0.09707245703330818,
+   "uncertainty-estimation": 0.27816949219838677,
+   "closure": 0.45,
+   "repetition": 0.0963527852287478
+  },
+  "uncertainty-estimation/23/pos": {
+   "backtracking": 0.11508612864444608,
+   "uncertainty-estimation": 0.3857150777916392,
+   "closure": 0.25,
+   "repetition": 0.1356889871105799
+  },
+  "uncertainty-estimation/23/neg": {
+   "backtracking": 0.15777325285570795,
+   "uncertainty-estimation": 0.21526638810204846,
+   "closure": 0.6,
+   "repetition": 0.09198528284924881
+  }
+ },
+ "chosen": {
+  "backtracking": {
+   "layer": 18,
+   "pos_minus_neg": 0.0957295410248317,
+   "original": 0.11055581643466397,
+   "pos": 0.16823030852760618,
+   "neg": 0.07250076750277448
+  },
+  "uncertainty-estimation": {
+   "layer": 23,
+   "pos_minus_neg": 0.17044868968959076,
+   "original": 0.2610070416375888,
+   "pos": 0.3857150777916392,
+   "neg": 0.21526638810204846
+  }
+ }
+}

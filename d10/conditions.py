@@ -35,7 +35,8 @@ class Condition:
     alpha: float = 0.0
     aware: bool = True
     rows_from: str = "edit direction"
-    # residual_add: direction = behaviour; vectors = mean_vectors | mean_vectors_nontest | mean_vectors_testlex; layer (decoder index); coefficient (signed)
+    # residual_add: direction = behaviour; vectors = mean_vectors | mean_vectors_nontest | mean_vectors_testlex, or
+    # "random" (a seeded Gaussian with the norm of mean_vectors' direction at that layer: the norm-matched control); layer; coefficient
     vectors: str = "mean_vectors"
     layer: int | None = None
     coefficient: float = 0.0
@@ -105,6 +106,9 @@ def probe_vectors(probe: dict, seed: int) -> dict[str, torch.Tensor]:
 
 
 def residual_vector(cond: Condition, vectors_dir: Path) -> torch.Tensor:
+    if cond.vectors == "random":
+        ref = feature_vectors(torch.load(Path(vectors_dir) / "mean_vectors.pt"))[cond.direction][cond.layer]
+        return random_direction_like(ref, seed=cond.seed) * cond.coefficient
     mv = torch.load(Path(vectors_dir) / f"{cond.vectors}.pt")
     return feature_vectors(mv)[cond.direction][cond.layer] * cond.coefficient
 

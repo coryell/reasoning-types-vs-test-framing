@@ -91,6 +91,12 @@ def test_residual_vector_matches_venhoff_recipe(tmp_path):
     # (mean - overall) rescaled to ||overall|| at layer 1, times the coefficient
     expected = -torch.tensor([1.0, 0.0, 0.0]) * overall[1].norm()
     assert torch.allclose(v, expected)
+    # the norm-matched random control: same norm as the behaviour direction at that layer, seeded, scaled by the coefficient
+    r = C.Condition("random_bt", kind="residual_add", direction="backtracking", vectors="random", layer=1, coefficient=0.5, seed=3)
+    rv = C.residual_vector(r, tmp_path)
+    assert torch.isclose(rv.norm(), expected.norm() * 0.5) and torch.equal(rv, C.residual_vector(r, tmp_path))
+    r2 = C.Condition("random_bt", kind="residual_add", direction="backtracking", vectors="random", layer=1, coefficient=0.5, seed=4)
+    assert not torch.equal(rv, C.residual_vector(r2, tmp_path))
 
 
 def test_followup_experiment_specs():
@@ -101,7 +107,7 @@ def test_followup_experiment_specs():
     rf = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(rf)
     layers = {"uncertainty-estimation": 18, "backtracking": 23}
-    for name in ("f1_prompt", "f2_uncertainty", "f3_triggers", "f4_reverse"):
+    for name in ("f1_prompt", "f2_uncertainty", "f3_triggers", "f4_reverse", "f4_prompt"):
         e = rf.experiment(name, layers, 0.2)
         names = [c.name for c in e["conds"]]
         assert len(names) == len(set(names))
@@ -113,9 +119,14 @@ def test_followup_experiment_specs():
     assert f3["conds"][2].aware is False and f3["conds"][3].direction == "random" and f3["conds"][1].alpha == 0.2
     f4 = rf.experiment("f4_reverse", layers, 0.2)
     assert f4["framings"] == ["real"] and f4["conds"][0].layer == 23 and f4["conds"][2].direction == "uncertainty-estimation"
+    assert [c.name for c in f4["conds"][4:]] == ["random_bt", "random_unc", "shuffled_bt", "shuffled_unc"] and f4["conds"][4].vectors == "random" and f4["conds"][4].layer == 23
+    assert f4["conds"][6].vectors == "mean_vectors_shuffled" and f4["conds"][7].layer == 18
     half = rf.experiment("f2_uncertainty", layers, 0.2, coefficient=0.5)
     assert [c.coefficient for c in half["conds"][1:]] == [0.5, -0.5] * 3
     assert rf.experiment("f4_reverse", layers, 0.2, coefficient=-0.25)["conds"][1].coefficient == -0.25
+    fp = rf.experiment("f4_prompt", layers, 0.2)
+    assert [c.name for c in fp["conds"]] == ["ask_unc_pos", "ask_bt_pos", "ask_unc_neg", "ask_bt_neg"] and all(c.kind == "prompt" for c in fp["conds"])
+    assert fp["conds"][0].system_prompt("AGENT").endswith(rf.F4_PROMPTS["ask_unc_pos"]) and fp["task"] == "actions" and fp["framings"] == ["real"]
     with pytest.raises(SystemExit):
         rf.experiment("nope", layers, 0.2)
     # held-out trigger selection is disjoint from the gate + probe sets (offsets 0-600 under seed 0)
@@ -176,6 +187,10 @@ def test_api_prompt_serialisation():
     assert ra.serialise(alt)[1] == "reasoning_field"
     names = [c.name for c in ra.conditions()]
     assert names == ["baseline", "prompt_test"] and ra.conditions()[1].system_prompt("AGENT").endswith(ra.TEST_SCENARIO_SENTENCE)
+    f4 = ra.conditions("f4_prompt")
+    assert [c.name for c in f4] == ["baseline", "ask_unc_pos", "ask_bt_pos", "ask_unc_neg", "ask_bt_neg"] and f4[1].prompt_suffix == ra.F4_PROMPTS["ask_unc_pos"]
+    with pytest.raises(SystemExit):
+        ra.conditions("nope")
 
 
 def test_shipped_probe_geometry_stats():

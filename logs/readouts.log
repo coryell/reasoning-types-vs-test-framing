@@ -705,3 +705,203 @@
 [2026-09-04 13:19:41]   unaware_strong: 100 probe projections
 [2026-09-04 13:19:50]   unaware_strong: 200 probe projections
 [2026-09-04 13:19:59] unaware_strong: wrote 298 probe projections
+[2026-09-04 16:49:59] arms: ['bt_neg', 'bt_pos', 'unc_neg', 'unc_pos']
+[2026-09-04 16:49:59] results/qwen3_4b/followups/f4_reverse/bt_neg.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 16:50:08]   50/149 done, 0 errors, 34,669 tokens, ~$0.20 this run
+[2026-09-04 16:50:13]   100/149 done, 0 errors, 76,725 tokens, ~$0.45 this run
+[2026-09-04 16:50:19]   149/149 done, 0 errors, 118,356 tokens, ~$0.69 this run
+[2026-09-04 16:50:19] {"path": "results/qwen3_4b/followups/f4_reverse/bt_neg.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 65179, "completion_tokens": 53177, "est_cost_usd": 0.6947}
+[2026-09-04 16:50:19] results/qwen3_4b/followups/f4_reverse/bt_pos.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 16:50:35]   50/149 done, 0 errors, 89,988 tokens, ~$0.58 this run
+[2026-09-04 16:50:52]   100/149 done, 0 errors, 234,212 tokens, ~$1.54 this run
+[2026-09-04 16:51:14]   149/149 done, 0 errors, 388,273 tokens, ~$2.56 this run
+[2026-09-04 16:51:14] {"path": "results/qwen3_4b/followups/f4_reverse/bt_pos.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 175979, "completion_tokens": 212294, "est_cost_usd": 2.5629}
+[2026-09-04 16:51:14] results/qwen3_4b/followups/f4_reverse/unc_neg.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 16:51:22]   50/149 done, 0 errors, 45,339 tokens, ~$0.27 this run
+[2026-09-04 16:51:27]   100/149 done, 0 errors, 93,234 tokens, ~$0.56 this run
+[2026-09-04 16:51:40]   149/149 done, 0 errors, 156,021 tokens, ~$0.95 this run
+[2026-09-04 16:51:40] {"path": "results/qwen3_4b/followups/f4_reverse/unc_neg.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 81243, "completion_tokens": 74778, "est_cost_usd": 0.9509}
+[2026-09-04 16:51:40] results/qwen3_4b/followups/f4_reverse/unc_pos.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 16:51:50]   50/149 done, 0 errors, 60,448 tokens, ~$0.38 this run
+[2026-09-04 16:52:01]   100/149 done, 0 errors, 138,886 tokens, ~$0.88 this run
+[2026-09-04 16:52:19]   149/149 done, 0 errors, 260,904 tokens, ~$1.69 this run
+[2026-09-04 16:52:19] {"path": "results/qwen3_4b/followups/f4_reverse/unc_pos.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 122097, "completion_tokens": 138807, "est_cost_usd": 1.6933}
+[2026-09-04 16:52:25] arms: ['bt_neg', 'bt_pos', 'unc_neg', 'unc_pos']
+[2026-09-04 16:52:25] results/qwen3_4b/followups/f4_reverse/bt_neg.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 16:52:32]   50/149 done, 0 errors, 95,433 tokens, ~$0.38 this run
+[2026-09-04 16:52:38]   100/149 done, 0 errors, 196,391 tokens, ~$0.79 this run
+[2026-09-04 16:52:44]   149/149 done, 0 errors, 298,577 tokens, ~$1.21 this run
+[2026-09-04 16:52:44] {"path": "results/qwen3_4b/followups/f4_reverse/bt_neg.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 237019, "completion_tokens": 61558, "est_cost_usd": 1.2081}
+[2026-09-04 16:52:44] results/qwen3_4b/followups/f4_reverse/bt_pos.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 16:52:51]   50/149 done, 0 errors, 126,848 tokens, ~$0.45 this run
+[2026-09-04 16:52:56]   100/149 done, 0 errors, 261,159 tokens, ~$0.94 this run
+[2026-09-04 16:53:01]   149/149 done, 0 errors, 397,456 tokens, ~$1.41 this run
+[2026-09-04 16:53:01] {"path": "results/qwen3_4b/followups/f4_reverse/bt_pos.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 341521, "completion_tokens": 55935, "est_cost_usd": 1.4132}
+[2026-09-04 16:53:01] results/qwen3_4b/followups/f4_reverse/unc_neg.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 16:53:08]   50/149 done, 0 errors, 103,025 tokens, ~$0.41 this run
+[2026-09-04 16:53:13]   100/149 done, 0 errors, 210,365 tokens, ~$0.84 this run
+[2026-09-04 16:53:19]   149/149 done, 1 errors, 318,265 tokens, ~$1.27 this run
+[2026-09-04 16:53:19] {"path": "results/qwen3_4b/followups/f4_reverse/unc_neg.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 1, "prompt_tokens": 254415, "completion_tokens": 63850, "est_cost_usd": 1.2745}
+[2026-09-04 16:53:19] results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 16:53:26]   50/149 done, 0 errors, 110,490 tokens, ~$0.42 this run
+[2026-09-04 16:53:30]   100/149 done, 0 errors, 225,737 tokens, ~$0.85 this run
+[2026-09-04 16:53:36]   149/149 done, 0 errors, 347,583 tokens, ~$1.30 this run
+[2026-09-04 16:53:36] {"path": "results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 290517, "completion_tokens": 57066, "est_cost_usd": 1.297}
+[2026-09-04 16:53:42] arms: ['bt_neg', 'bt_pos', 'unc_neg', 'unc_pos']
+[2026-09-04 16:54:00] bt_neg: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 16:54:07]   bt_neg: 50 in-context projections
+[2026-09-04 16:54:11]   bt_neg: 100 in-context projections
+[2026-09-04 16:54:16] bt_neg: wrote 149 in-context projections
+[2026-09-04 16:54:16] bt_pos: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 16:54:24]   bt_pos: 50 in-context projections
+[2026-09-04 16:54:33]   bt_pos: 100 in-context projections
+[2026-09-04 16:54:43] bt_pos: wrote 149 in-context projections
+[2026-09-04 16:54:43] unc_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 16:54:48]   unc_neg: 50 in-context projections
+[2026-09-04 16:54:53]   unc_neg: 100 in-context projections
+[2026-09-04 16:54:58] unc_neg: wrote 149 in-context projections
+[2026-09-04 16:54:58] unc_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 16:55:03]   unc_pos: 50 in-context projections
+[2026-09-04 16:55:10]   unc_pos: 100 in-context projections
+[2026-09-04 16:55:17] unc_pos: wrote 149 in-context projections
+[2026-09-04 16:55:25] arms: ['bt_neg', 'bt_pos', 'unc_neg', 'unc_pos']
+[2026-09-04 16:55:43] bt_neg: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 16:55:53]   bt_neg: 100 prompt states
+[2026-09-04 16:55:56] bt_neg: wrote 149 prompt states
+[2026-09-04 16:55:56] bt_pos: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 16:56:02]   bt_pos: 100 prompt states
+[2026-09-04 16:56:05] bt_pos: wrote 149 prompt states
+[2026-09-04 16:56:05] unc_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 16:56:12]   unc_neg: 100 prompt states
+[2026-09-04 16:56:15] unc_neg: wrote 149 prompt states
+[2026-09-04 16:56:15] unc_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 16:56:21]   unc_pos: 100 prompt states
+[2026-09-04 16:56:24] unc_pos: wrote 149 prompt states
+[2026-09-04 16:56:35] arms: ['bt_neg', 'bt_pos', 'unc_neg', 'unc_pos']
+[2026-09-04 16:56:58]   bt_neg: 100 probe projections
+[2026-09-04 16:57:02] bt_neg: wrote 149 probe projections
+[2026-09-04 16:57:16]   bt_pos: 100 probe projections
+[2026-09-04 16:57:25] bt_pos: wrote 149 probe projections
+[2026-09-04 16:57:32]   unc_neg: 100 probe projections
+[2026-09-04 16:57:36] unc_neg: wrote 149 probe projections
+[2026-09-04 16:57:46]   unc_pos: 100 probe projections
+[2026-09-04 16:57:52] unc_pos: wrote 149 probe projections
+[2026-09-04 17:02:18] arms: ['baseline', 'unc_all_neg', 'unc_all_pos', 'unc_nontest_neg', 'unc_nontest_pos', 'unc_testlex_neg', 'unc_testlex_pos']
+[2026-09-04 17:02:30] baseline: condition none {}; system prompt none
+[2026-09-04 17:02:38]   baseline: 100 prompt states
+[2026-09-04 17:02:39] baseline: wrote 120 prompt states
+[2026-09-04 17:02:39] unc_all_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 17:02:45]   unc_all_neg: 100 prompt states
+[2026-09-04 17:02:46] unc_all_neg: wrote 120 prompt states
+[2026-09-04 17:02:46] unc_all_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 17:02:52]   unc_all_pos: 100 prompt states
+[2026-09-04 17:02:53] unc_all_pos: wrote 120 prompt states
+[2026-09-04 17:02:53] unc_nontest_neg: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 17:02:59]   unc_nontest_neg: 100 prompt states
+[2026-09-04 17:03:00] unc_nontest_neg: wrote 120 prompt states
+[2026-09-04 17:03:00] unc_nontest_pos: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 17:03:06]   unc_nontest_pos: 100 prompt states
+[2026-09-04 17:03:08] unc_nontest_pos: wrote 120 prompt states
+[2026-09-04 17:03:08] unc_testlex_neg: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 17:03:14]   unc_testlex_neg: 100 prompt states
+[2026-09-04 17:03:15] unc_testlex_neg: wrote 120 prompt states
+[2026-09-04 17:03:15] unc_testlex_pos: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 17:03:21]   unc_testlex_pos: 100 prompt states
+[2026-09-04 17:03:22] unc_testlex_pos: wrote 120 prompt states
+[2026-09-04 17:03:29] arms: ['baseline', 'unc_all_neg', 'unc_all_pos', 'unc_nontest_neg', 'unc_nontest_pos', 'unc_testlex_neg', 'unc_testlex_pos']
+[2026-09-04 17:03:42] baseline: condition none {}; system prompt none
+[2026-09-04 17:03:50]   baseline: 50 in-context projections
+[2026-09-04 17:03:55]   baseline: 100 in-context projections
+[2026-09-04 17:03:57] baseline: wrote 120 in-context projections
+[2026-09-04 17:03:57] unc_all_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 17:04:02]   unc_all_neg: 50 in-context projections
+[2026-09-04 17:04:06]   unc_all_neg: 100 in-context projections
+[2026-09-04 17:04:09] unc_all_neg: wrote 120 in-context projections
+[2026-09-04 17:04:09] unc_all_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 17:04:14]   unc_all_pos: 50 in-context projections
+[2026-09-04 17:04:20]   unc_all_pos: 100 in-context projections
+[2026-09-04 17:04:23] unc_all_pos: wrote 120 in-context projections
+[2026-09-04 17:04:23] unc_nontest_neg: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 17:04:27]   unc_nontest_neg: 50 in-context projections
+[2026-09-04 17:04:32]   unc_nontest_neg: 100 in-context projections
+[2026-09-04 17:04:34] unc_nontest_neg: wrote 120 in-context projections
+[2026-09-04 17:04:34] unc_nontest_pos: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 17:04:40]   unc_nontest_pos: 50 in-context projections
+[2026-09-04 17:04:46]   unc_nontest_pos: 100 in-context projections
+[2026-09-04 17:04:48] unc_nontest_pos: wrote 120 in-context projections
+[2026-09-04 17:04:48] unc_testlex_neg: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 17:04:52]   unc_testlex_neg: 50 in-context projections
+[2026-09-04 17:04:56]   unc_testlex_neg: 100 in-context projections
+[2026-09-04 17:04:58] unc_testlex_neg: wrote 120 in-context projections
+[2026-09-04 17:04:58] unc_testlex_pos: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 17:05:05]   unc_testlex_pos: 50 in-context projections
+[2026-09-04 17:05:12]   unc_testlex_pos: 100 in-context projections
+[2026-09-04 17:05:15] unc_testlex_pos: wrote 120 in-context projections
+[2026-09-04 17:05:26] arms: ['bt_neg', 'bt_pos', 'unc_neg', 'unc_pos']
+[2026-09-04 17:05:41] bt_neg: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 17:05:49]   bt_neg: 100 prompt states
+[2026-09-04 17:05:52] bt_neg: wrote 149 prompt states
+[2026-09-04 17:05:52] bt_pos: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 17:05:58]   bt_pos: 100 prompt states
+[2026-09-04 17:06:01] bt_pos: wrote 149 prompt states
+[2026-09-04 17:06:01] unc_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 17:06:08]   unc_neg: 100 prompt states
+[2026-09-04 17:06:11] unc_neg: wrote 149 prompt states
+[2026-09-04 17:06:11] unc_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 17:06:17]   unc_pos: 100 prompt states
+[2026-09-04 17:06:20] unc_pos: wrote 149 prompt states
+[2026-09-04 17:06:29] arms: ['bt_neg', 'bt_pos', 'unc_neg', 'unc_pos']
+[2026-09-04 17:06:42] bt_neg: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 17:06:49]   bt_neg: 50 in-context projections
+[2026-09-04 17:06:53]   bt_neg: 100 in-context projections
+[2026-09-04 17:06:57] bt_neg: wrote 149 in-context projections
+[2026-09-04 17:06:57] bt_pos: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 17:07:05]   bt_pos: 50 in-context projections
+[2026-09-04 17:07:15]   bt_pos: 100 in-context projections
+[2026-09-04 17:07:25] bt_pos: wrote 149 in-context projections
+[2026-09-04 17:07:25] unc_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 17:07:30]   unc_neg: 50 in-context projections
+[2026-09-04 17:07:35]   unc_neg: 100 in-context projections
+[2026-09-04 17:07:39] unc_neg: wrote 149 in-context projections
+[2026-09-04 17:07:39] unc_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 17:07:45]   unc_pos: 50 in-context projections
+[2026-09-04 17:07:52]   unc_pos: 100 in-context projections
+[2026-09-04 17:08:00] unc_pos: wrote 149 in-context projections
+[2026-09-04 18:27:01] arms: ['bt_neg', 'bt_pos', 'random_bt', 'random_unc', 'unc_neg', 'unc_pos']
+[2026-09-04 18:27:01] results/qwen3_4b/followups/f4_reverse/bt_neg.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:27:01] {"path": "results/qwen3_4b/followups/f4_reverse/bt_neg.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:27:01] results/qwen3_4b/followups/f4_reverse/bt_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:27:01] {"path": "results/qwen3_4b/followups/f4_reverse/bt_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:27:01] results/qwen3_4b/followups/f4_reverse/random_bt.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 18:27:13]   50/149 done, 0 errors, 47,542 tokens, ~$0.29 this run
+[2026-09-04 18:27:22]   100/149 done, 0 errors, 99,053 tokens, ~$0.60 this run
+[2026-09-04 18:27:36]   149/149 done, 0 errors, 186,110 tokens, ~$1.16 this run
+[2026-09-04 18:27:36] {"path": "results/qwen3_4b/followups/f4_reverse/random_bt.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 93502, "completion_tokens": 92608, "est_cost_usd": 1.1598}
+[2026-09-04 18:27:36] results/qwen3_4b/followups/f4_reverse/random_unc.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 18:27:45]   50/149 done, 0 errors, 51,414 tokens, ~$0.31 this run
+[2026-09-04 18:27:52]   100/149 done, 0 errors, 107,739 tokens, ~$0.66 this run
+[2026-09-04 18:28:14]   149/149 done, 0 errors, 184,712 tokens, ~$1.15 this run
+[2026-09-04 18:28:14] {"path": "results/qwen3_4b/followups/f4_reverse/random_unc.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 92576, "completion_tokens": 92136, "est_cost_usd": 1.1528}
+[2026-09-04 18:28:14] results/qwen3_4b/followups/f4_reverse/unc_neg.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:28:14] {"path": "results/qwen3_4b/followups/f4_reverse/unc_neg.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:28:14] results/qwen3_4b/followups/f4_reverse/unc_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:28:14] {"path": "results/qwen3_4b/followups/f4_reverse/unc_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:28:28] arms: ['bt_neg', 'bt_pos', 'random_bt', 'random_unc', 'unc_neg', 'unc_pos']
+[2026-09-04 18:28:28] results/qwen3_4b/followups/f4_reverse/bt_neg.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:28:28] {"path": "results/qwen3_4b/followups/f4_reverse/bt_neg.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:28:28] results/qwen3_4b/followups/f4_reverse/bt_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:28:28] {"path": "results/qwen3_4b/followups/f4_reverse/bt_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:28:28] results/qwen3_4b/followups/f4_reverse/random_bt.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 18:28:36]   50/149 done, 0 errors, 104,804 tokens, ~$0.42 this run
+[2026-09-04 18:28:42]   100/149 done, 0 errors, 218,400 tokens, ~$0.86 this run
+[2026-09-04 18:28:49]   149/149 done, 1 errors, 333,931 tokens, ~$1.33 this run
+[2026-09-04 18:28:49] {"path": "results/qwen3_4b/followups/f4_reverse/random_bt.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 1, "prompt_tokens": 268500, "completion_tokens": 65431, "est_cost_usd": 1.3256}
+[2026-09-04 18:28:49] results/qwen3_4b/followups/f4_reverse/random_unc.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 18:28:55]   50/149 done, 0 errors, 108,570 tokens, ~$0.42 this run
+[2026-09-04 18:29:01]   100/149 done, 0 errors, 220,044 tokens, ~$0.87 this run
+[2026-09-04 18:29:15]   149/149 done, 2 errors, 337,084 tokens, ~$1.35 this run
+[2026-09-04 18:29:15] {"path": "results/qwen3_4b/followups/f4_reverse/random_unc.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 2, "prompt_tokens": 269824, "completion_tokens": 67260, "est_cost_usd": 1.3472}
+[2026-09-04 18:29:15] results/qwen3_4b/followups/f4_reverse/unc_neg.json.awareness.jsonl: 149 jobs, 148 cached, 1 truncated (kept), 0 to run
+[2026-09-04 18:29:15] {"path": "results/qwen3_4b/followups/f4_reverse/unc_neg.json.awareness.jsonl", "jobs": 149, "cached": 148, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:29:15] results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:29:15] {"path": "results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}

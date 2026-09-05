@@ -1,0 +1,70 @@
+{
+ "config": {
+  "model_name": "Qwen/Qwen3-4B",
+  "dtype": "bfloat16",
+  "max_new_tokens": 1536,
+  "do_sample": true,
+  "temperature": 0.6,
+  "top_p": 0.95,
+  "top_k": 20,
+  "batch_size": 6,
+  "seed": 0,
+  "enable_thinking": true,
+  "system_prompt": "agentMetaPrompt.txt",
+  "notes": {
+   "arm": "unc_pos",
+   "condition": {
+    "name": "unc_pos",
+    "kind": "residual_add",
+    "direction": "uncertainty-estimation",
+    "alpha": 0.0,
+    "aware": true,
+    "rows_from": "edit direction",
+    "vectors": "mean_vectors",
+    "layer": 18,
+    "coefficient": 0.25,
+    "prompt_suffix": "",
+    "seed": 0,
+    "info": {
+     "vector_norm": 10.153962135314941,
+     "layer": 18
+    }
+   },
+   "task": "actions",
+   "family": "steer_actions"
+  }
+ },
+ "git_commit": "582acc3",
+ "torch": "2.14.0+cu130",
+ "transformers": "5.16.1",
+ "cuda_device": "NVIDIA GeForce RTX 4070 Ti",
+ "written": "2026-09-04 16:23:10",
+ "arm": "unc_pos",
+ "alpha": 0.25,
+ "aware": true,
+ "condition": {
+  "name": "unc_pos",
+  "kind": "residual_add",
+  "direction": "uncertainty-estimation",
+  "alpha": 0.0,
+  "aware": true,
+  "rows_from": "edit direction",
+  "vectors": "mean_vectors",
+  "layer": 18,
+  "coefficient": 0.25,
+  "prompt_suffix": "",
+  "seed": 0,
+  "info": {
+   "vector_norm": 10.153962135314941,
+   "layer": 18
+  }
+ },
+ "task": "actions",
+ "family": "steer_actions",
+ "n_items": 149,
+ "framings": [
+  "real"
+ ],
+ "offset": null,
+ "selection_seed": null
+}

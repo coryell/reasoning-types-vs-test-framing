@@ -36,6 +36,7 @@ from d10.generate import GenConfig, write_sidecar
 from d10.judge import OPENROUTER_BASE_URL
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from run_followup import F4_PROMPTS  # noqa: E402
 from run_steering import AGENT_PROMPT, action_prompt, load_actions  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[1]
@@ -55,8 +56,15 @@ def make_logger(path: Path):
     return log
 
 
-def conditions() -> list[Condition]:
-    return [Condition("baseline"), Condition("prompt_test", kind="prompt", prompt_suffix=TEST_SCENARIO_SENTENCE)]
+def conditions(which: str = "test_scenario") -> list[Condition]:
+    """``test_scenario``: baseline + their §4.5 sentence. ``f4_prompt``: baseline + the four
+    just-ask sentences of ``run_followup.f4_prompt`` (the baseline arm is shared through the cache)."""
+    base = [Condition("baseline")]
+    if which == "test_scenario":
+        return base + [Condition("prompt_test", kind="prompt", prompt_suffix=TEST_SCENARIO_SENTENCE)]
+    if which == "f4_prompt":
+        return base + [Condition(n, kind="prompt", prompt_suffix=t) for n, t in F4_PROMPTS.items()]
+    raise SystemExit(f"unknown condition set {which}")
 
 
 def serialise(message, finish_reason: str | None = "stop") -> tuple[str, str]:
@@ -155,6 +163,7 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--concurrency", type=int, default=8)
     ap.add_argument("--rpm", type=int, default=60)
+    ap.add_argument("--conditions", default="test_scenario", choices=["test_scenario", "f4_prompt"])
     ap.add_argument("--log", type=Path, default=REPO / "logs" / "run_api_prompt.log")
     args = ap.parse_args()
     log = make_logger(args.log)
@@ -178,10 +187,10 @@ def main() -> None:
                     continue  # partial last line from an interrupted run
                 if r.get("error") is None and r.get("text", "").strip():
                     cache[r["key"]] = r
-    log(f"{args.tag}: {len(items)} items × {framings} × {[c.name for c in conditions()]}; cached {len(cache)}")
+    log(f"{args.tag}: {len(items)} items × {framings} × {[c.name for c in conditions(args.conditions)]}; cached {len(cache)}")
 
     jobs = []
-    for cond in conditions():
+    for cond in conditions(args.conditions):
         system = cond.system_prompt(base_system)
         for i, item in enumerate(items):
             for fr in framings:
@@ -205,7 +214,7 @@ def main() -> None:
             if done % 25 == 0 or done == len(jobs):
                 log(f"  {done}/{len(jobs)} done in {(time.time() - t0) / 60:.1f} min; usable {len(cache)}; errors this run {errs}")
 
-    for cond in conditions():
+    for cond in conditions(args.conditions):
         data = [{"data_item": item} for item in items]
         missing = 0
         for i, item in enumerate(items):

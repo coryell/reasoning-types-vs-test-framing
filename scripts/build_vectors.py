@@ -82,6 +82,7 @@ def main() -> None:
     ap.add_argument("--concurrency", type=int, default=32)
     ap.add_argument("--seed", type=int, default=42, help="their seed")
     ap.add_argument("--stages", nargs="+", default=["generate", "annotate", "extract", "layers"])
+    ap.add_argument("--shuffle-labels", action="store_true", help="extract: write only mean_vectors_shuffled.pt — the same spans with behaviour labels permuted within each trace (seeded by --seed)")
     ap.add_argument("--coefficient", type=float, default=1.0, help="layers: |coefficient| of the residual add (their setting is 1; +1 saturates Qwen3-4B). Values other than 1 write layers_c<coef>.json etc. beside the originals")
     ap.add_argument("--log", type=Path, default=REPO / "logs" / "build_vectors.log")
     args = ap.parse_args()
@@ -132,7 +133,24 @@ def main() -> None:
         log(f"annotated {n}/{len(data)}")
 
     # ---- 3. extract (their train_vectors.py, plus a non-test-language variant)
-    if "extract" in args.stages:
+    if "extract" in args.stages and args.shuffle_labels:
+        import random
+
+        model, tok = ensure_model()
+        data = [d for d in json.loads(responses_path.read_text()) if d.get("annotated_thinking")]
+        mv_shuf, rng, n_spans = MeanVectors(), random.Random(args.seed), 0
+        for i, d in enumerate(data):
+            full = d["full_response"]
+
+            def pooled(windows, full=full):
+                return pooled_states(model, tok, full, windows, add_special_tokens=False)[:, 1:, :]
+
+            n_spans += accumulate_trace(mv_shuf, pooled, d["annotated_thinking"], full, tok, label_shuffle=rng)
+            if (i + 1) % 50 == 0:
+                log(f"  extracted (shuffled labels) {i + 1}/{len(data)} traces, {n_spans} spans")
+        torch.save(mv_shuf.as_dict(), args.out_dir / "mean_vectors_shuffled.pt")
+        log(f"shuffled-label mean vectors: {({k: v['count'] for k, v in mv_shuf.as_dict().items()})}")
+    elif "extract" in args.stages:
         model, tok = ensure_model()
         data = [d for d in json.loads(responses_path.read_text()) if d.get("annotated_thinking")]
         mv_all, mv_nontest, mv_test = MeanVectors(), MeanVectors(), MeanVectors()
