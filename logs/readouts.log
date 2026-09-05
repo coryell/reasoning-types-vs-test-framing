@@ -786,3 +786,84 @@
 [2026-09-04 16:57:36] unc_neg: wrote 149 probe projections
 [2026-09-04 16:57:46]   unc_pos: 100 probe projections
 [2026-09-04 16:57:52] unc_pos: wrote 149 probe projections
+[2026-09-04 17:02:18] arms: ['baseline', 'unc_all_neg', 'unc_all_pos', 'unc_nontest_neg', 'unc_nontest_pos', 'unc_testlex_neg', 'unc_testlex_pos']
+[2026-09-04 17:02:30] baseline: condition none {}; system prompt none
+[2026-09-04 17:02:38]   baseline: 100 prompt states
+[2026-09-04 17:02:39] baseline: wrote 120 prompt states
+[2026-09-04 17:02:39] unc_all_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 17:02:45]   unc_all_neg: 100 prompt states
+[2026-09-04 17:02:46] unc_all_neg: wrote 120 prompt states
+[2026-09-04 17:02:46] unc_all_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 17:02:52]   unc_all_pos: 100 prompt states
+[2026-09-04 17:02:53] unc_all_pos: wrote 120 prompt states
+[2026-09-04 17:02:53] unc_nontest_neg: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 17:02:59]   unc_nontest_neg: 100 prompt states
+[2026-09-04 17:03:00] unc_nontest_neg: wrote 120 prompt states
+[2026-09-04 17:03:00] unc_nontest_pos: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 17:03:06]   unc_nontest_pos: 100 prompt states
+[2026-09-04 17:03:08] unc_nontest_pos: wrote 120 prompt states
+[2026-09-04 17:03:08] unc_testlex_neg: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 17:03:14]   unc_testlex_neg: 100 prompt states
+[2026-09-04 17:03:15] unc_testlex_neg: wrote 120 prompt states
+[2026-09-04 17:03:15] unc_testlex_pos: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 17:03:21]   unc_testlex_pos: 100 prompt states
+[2026-09-04 17:03:22] unc_testlex_pos: wrote 120 prompt states
+[2026-09-04 17:03:29] arms: ['baseline', 'unc_all_neg', 'unc_all_pos', 'unc_nontest_neg', 'unc_nontest_pos', 'unc_testlex_neg', 'unc_testlex_pos']
+[2026-09-04 17:03:42] baseline: condition none {}; system prompt none
+[2026-09-04 17:03:50]   baseline: 50 in-context projections
+[2026-09-04 17:03:55]   baseline: 100 in-context projections
+[2026-09-04 17:03:57] baseline: wrote 120 in-context projections
+[2026-09-04 17:03:57] unc_all_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 17:04:02]   unc_all_neg: 50 in-context projections
+[2026-09-04 17:04:06]   unc_all_neg: 100 in-context projections
+[2026-09-04 17:04:09] unc_all_neg: wrote 120 in-context projections
+[2026-09-04 17:04:09] unc_all_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt none
+[2026-09-04 17:04:14]   unc_all_pos: 50 in-context projections
+[2026-09-04 17:04:20]   unc_all_pos: 100 in-context projections
+[2026-09-04 17:04:23] unc_all_pos: wrote 120 in-context projections
+[2026-09-04 17:04:23] unc_nontest_neg: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 17:04:27]   unc_nontest_neg: 50 in-context projections
+[2026-09-04 17:04:32]   unc_nontest_neg: 100 in-context projections
+[2026-09-04 17:04:34] unc_nontest_neg: wrote 120 in-context projections
+[2026-09-04 17:04:34] unc_nontest_pos: condition residual_add {"vector_norm": 10.154252052307129, "layer": 18}; system prompt none
+[2026-09-04 17:04:40]   unc_nontest_pos: 50 in-context projections
+[2026-09-04 17:04:46]   unc_nontest_pos: 100 in-context projections
+[2026-09-04 17:04:48] unc_nontest_pos: wrote 120 in-context projections
+[2026-09-04 17:04:48] unc_testlex_neg: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 17:04:52]   unc_testlex_neg: 50 in-context projections
+[2026-09-04 17:04:56]   unc_testlex_neg: 100 in-context projections
+[2026-09-04 17:04:58] unc_testlex_neg: wrote 120 in-context projections
+[2026-09-04 17:04:58] unc_testlex_pos: condition residual_add {"vector_norm": 10.225200653076172, "layer": 18}; system prompt none
+[2026-09-04 17:05:05]   unc_testlex_pos: 50 in-context projections
+[2026-09-04 17:05:12]   unc_testlex_pos: 100 in-context projections
+[2026-09-04 17:05:15] unc_testlex_pos: wrote 120 in-context projections
+[2026-09-04 17:05:26] arms: ['bt_neg', 'bt_pos', 'unc_neg', 'unc_pos']
+[2026-09-04 17:05:41] bt_neg: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 17:05:49]   bt_neg: 100 prompt states
+[2026-09-04 17:05:52] bt_neg: wrote 149 prompt states
+[2026-09-04 17:05:52] bt_pos: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 17:05:58]   bt_pos: 100 prompt states
+[2026-09-04 17:06:01] bt_pos: wrote 149 prompt states
+[2026-09-04 17:06:01] unc_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 17:06:08]   unc_neg: 100 prompt states
+[2026-09-04 17:06:11] unc_neg: wrote 149 prompt states
+[2026-09-04 17:06:11] unc_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 17:06:17]   unc_pos: 100 prompt states
+[2026-09-04 17:06:20] unc_pos: wrote 149 prompt states
+[2026-09-04 17:06:29] arms: ['bt_neg', 'bt_pos', 'unc_neg', 'unc_pos']
+[2026-09-04 17:06:42] bt_neg: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 17:06:49]   bt_neg: 50 in-context projections
+[2026-09-04 17:06:53]   bt_neg: 100 in-context projections
+[2026-09-04 17:06:57] bt_neg: wrote 149 in-context projections
+[2026-09-04 17:06:57] bt_pos: condition residual_add {"vector_norm": 18.28502655029297, "layer": 23}; system prompt present
+[2026-09-04 17:07:05]   bt_pos: 50 in-context projections
+[2026-09-04 17:07:15]   bt_pos: 100 in-context projections
+[2026-09-04 17:07:25] bt_pos: wrote 149 in-context projections
+[2026-09-04 17:07:25] unc_neg: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 17:07:30]   unc_neg: 50 in-context projections
+[2026-09-04 17:07:35]   unc_neg: 100 in-context projections
+[2026-09-04 17:07:39] unc_neg: wrote 149 in-context projections
+[2026-09-04 17:07:39] unc_pos: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 17:07:45]   unc_pos: 50 in-context projections
+[2026-09-04 17:07:52]   unc_pos: 100 in-context projections
+[2026-09-04 17:08:00] unc_pos: wrote 149 in-context projections
