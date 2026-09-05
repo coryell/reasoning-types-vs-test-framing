@@ -270,3 +270,15 @@ ions_c0.25.jsonl: 260 jobs, 0 cached, 0 truncated (kept), 260 to run
 [2026-09-04 14:09:51] {"path": "/home/cutter/d10/results/qwen3_4b/vectors/layer_annotations_c0.25.jsonl", "jobs": 260, "cached": 0, "truncated_kept": 0, "run": 260, "errors": 0, "prompt_tokens": 260482, "completion_tokens": 300839, "est_cost_usd": 3.6596}
 [2026-09-04 14:09:51] chosen layers: {"backtracking": {"layer": 18, "pos_minus_neg": 0.0957295410248317, "original": 0.11055581643466397, "pos": 0.16823030852760618, "neg": 0.07250076750277448}, "uncertainty-estimation": {"layer": 23, "pos_minus_neg": 0.17044868968959076, "original": 0.2610070416375888, "pos": 0.3857150777916392, "neg": 0.21526638810204846}}
 LAYERS_DONE
+[2026-09-04 18:25:35] loading Qwen/Qwen3-4B
+[2026-09-04 18:25:59]   extracted (shuffled labels) 50/500 traces, 2285 spans
+[2026-09-04 18:26:06]   extracted (shuffled labels) 100/500 traces, 4293 spans
+[2026-09-04 18:26:13]   extracted (shuffled labels) 150/500 traces, 6207 spans
+[2026-09-04 18:26:21]   extracted (shuffled labels) 200/500 traces, 8368 spans
+[2026-09-04 18:26:28]   extracted (shuffled labels) 250/500 traces, 10653 spans
+[2026-09-04 18:26:35]   extracted (shuffled labels) 300/500 traces, 12800 spans
+[2026-09-04 18:26:43]   extracted (shuffled labels) 350/500 traces, 14918 spans
+[2026-09-04 18:26:50]   extracted (shuffled labels) 400/500 traces, 16858 spans
+[2026-09-04 18:26:57]   extracted (shuffled labels) 450/500 traces, 19018 spans
+[2026-09-04 18:27:05]   extracted (shuffled labels) 500/500 traces, 21308 spans
+[2026-09-04 18:27:05] shuffled-label mean vectors: {'deduction': 10478, 'backtracking': 1376, 'example-testing': 2340, 'uncertainty-estimation': 3081, 'adding-knowledge': 3048, 'initializing': 985, 'overall': 499}
