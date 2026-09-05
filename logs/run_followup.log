@@ -640,3 +640,130 @@ a 3.8 min  unfinished so far 0
 [2026-09-04 16:48:25]   gen 149/149  25.2 min  eta 0.0 min  unfinished so far 4
 [2026-09-04 16:48:25] unc_neg: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/unc_neg.json; closed </think> 146/149
 F4_DONE
+[2026-09-04 17:22:09] f4_reverse: task actions, 149 items × ['real'], arms ['random_bt', 'random_unc']
+[2026-09-04 17:22:24] random_bt: kind=residual_add {"vector_norm": 18.2850284576416, "layer": 23}
+[2026-09-04 17:23:48]   gen 6/149  1.4 min  eta 33.3 min  unfinished so far 0
+[2026-09-04 17:25:45]   gen 12/149  3.3 min  eta 38.1 min  unfinished so far 0
+[2026-09-04 17:28:11]   gen 18/149  5.8 min  eta 42.1 min  unfinished so far 1
+[2026-09-04 17:28:56]   gen 24/149  6.5 min  eta 33.9 min  unfinished so far 1
+[2026-09-04 17:30:24]   gen 30/149  8.0 min  eta 31.7 min  unfinished so far 1
+[2026-09-04 17:32:41]   gen 36/149  10.3 min  eta 32.3 min  unfinished so far 2
+[2026-09-04 17:34:36]   gen 42/149  12.2 min  eta 31.1 min  unfinished so far 2
+[2026-09-04 17:35:30]   gen 48/149  13.1 min  eta 27.5 min  unfinished so far 2
+[2026-09-04 17:36:25]   gen 54/149  14.0 min  eta 24.6 min  unfinished so far 2
+[2026-09-04 17:38:43]   gen 60/149  16.3 min  eta 24.2 min  unfinished so far 3
+[2026-09-04 17:40:02]   gen 66/149  17.6 min  eta 22.2 min  unfinished so far 3
+[2026-09-04 17:42:19]   gen 72/149  19.9 min  eta 21.3 min  unfinished so far 4
+[2026-09-04 17:43:36]   gen 78/149  21.2 min  eta 19.3 min  unfinished so far 4
+[2026-09-04 17:44:44]   gen 84/149  22.3 min  eta 17.3 min  unfinished so far 4
+[2026-09-04 17:47:04]   gen 90/149  24.7 min  eta 16.2 min  unfinished so far 6
+[2026-09-04 17:47:56]   gen 96/149  25.5 min  eta 14.1 min  unfinished so far 6
+[2026-09-04 17:48:41]   gen 102/149  26.3 min  eta 12.1 min  unfinished so far 6
+[2026-09-04 17:49:25]   gen 108/149  27.0 min  eta 10.3 min  unfinished so far 6
+[2026-09-04 17:50:06]   gen 114/149  27.7 min  eta 8.5 min  unfinished so far 6
+[2026-09-04 17:50:48]   gen 120/149  28.4 min  eta 6.9 min  unfinished so far 6
+[2026-09-04 17:51:26]   gen 126/149  29.0 min  eta 5.3 min  unfinished so far 6
+[2026-09-04 17:52:27]   gen 132/149  30.0 min  eta 3.9 min  unfinished so far 6
+[2026-09-04 17:53:47]   gen 138/149  31.4 min  eta 2.5 min  unfinished so far 6
+[2026-09-04 17:54:35]   gen 144/149  32.2 min  eta 1.1 min  unfinished so far 6
+[2026-09-04 17:55:10]   gen 149/149  32.8 min  eta 0.0 min  unfinished so far 6
+[2026-09-04 17:55:10] random_bt: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/random_bt.json; closed </think> 147/149
+[2026-09-04 17:55:10] random_unc: kind=residual_add {"vector_norm": 10.153962135314941, "layer": 18}
+[2026-09-04 17:57:34]   gen 6/149  2.4 min  eta 57.2 min  unfinished so far 2
+[2026-09-04 17:58:12]   gen 12/149  3.0 min  eta 34.5 min  unfinished so far 2
+[2026-09-04 17:59:27]   gen 18/149  4.3 min  eta 31.2 min  unfinished so far 2
+[2026-09-04 18:00:45]   gen 24/149  5.6 min  eta 29.0 min  unfinished so far 2
+[2026-09-04 18:02:27]   gen 30/149  7.3 min  eta 28.8 min  unfinished so far 2
+[2026-09-04 18:03:08]   gen 36/149  8.0 min  eta 25.0 min  unfinished so far 2
+[2026-09-04 18:03:59]   gen 42/149  8.8 min  eta 22.4 min  unfinished so far 2
+[2026-09-04 18:05:24]   gen 48/149  10.2 min  eta 21.5 min  unfinished so far 2
+[2026-09-04 18:06:44]   gen 54/149  11.6 min  eta 20.3 min  unfinished so far 2
+[2026-09-04 18:07:26]   gen 60/149  12.3 min  eta 18.2 min  unfinished so far 2
+[2026-09-04 18:08:23]   gen 66/149  13.2 min  eta 16.6 min  unfinished so far 2
+[2026-09-04 18:09:31]   gen 72/149  14.3 min  eta 15.3 min  unfinished so far 2
+[2026-09-04 18:11:44]   gen 78/149  16.6 min  eta 15.1 min  unfinished so far 3
+[2026-09-04 18:13:10]   gen 84/149  18.0 min  eta 13.9 min  unfinished so far 3
+[2026-09-04 18:14:12]   gen 90/149  19.0 min  eta 12.5 min  unfinished so far 3
+[2026-09-04 18:15:07]   gen 96/149  19.9 min  eta 11.0 min  unfinished so far 3
+[2026-09-04 18:15:58]   gen 102/149  20.8 min  eta 9.6 min  unfinished so far 3
+[2026-09-04 18:16:35]   gen 108/149  21.4 min  eta 8.1 min  unfinished so far 3
+[2026-09-04 18:17:14]   gen 114/149  22.1 min  eta 6.8 min  unfinished so far 3
+[2026-09-04 18:17:47]   gen 120/149  22.6 min  eta 5.5 min  unfinished so far 3
+[2026-09-04 17:22:09] f4_reverse: task actions, 149 items × ['real'], arms ['random_bt', 'random_unc']
+[2026-09-04 17:22:24] random_bt: kind=residual_add {"vector_norm": 18.2850284576416, "layer": 23}
+[2026-09-04 17:23:48]   gen 6/149  1.4 min  eta 33.3 min  unfinished so far 0
+[2026-09-04 17:25:45]   gen 12/149  3.3 min  eta 38.1 min  unfinished so far 0
+[2026-09-04 17:28:11]   gen 18/149  5.8 min  eta 42.1 min  unfinished so far 1
+[2026-09-04 17:28:56]   gen 24/149  6.5 min  eta 33.9 min  unfinished so far 1
+[2026-09-04 17:30:24]   gen 30/149  8.0 min  eta 31.7 min  unfinished so far 1
+[2026-09-04 17:32:41]   gen 36/149  10.3 min  eta 32.3 min  unfinished so far 2
+[2026-09-04 17:34:36]   gen 42/149  12.2 min  eta 31.1 min  unfinished so far 2
+[2026-09-04 17:35:30]   gen 48/149  13.1 min  eta 27.5 min  unfinished so far 2
+[2026-09-04 17:36:25]   gen 54/149  14.0 min  eta 24.6 min  unfinished so far 2
+[2026-09-04 17:38:43]   gen 60/149  16.3 min  eta 24.2 min  unfinished so far 3
+[2026-09-04 17:40:02]   gen 66/149  17.6 min  eta 22.2 min  unfinished so far 3
+[2026-09-04 17:42:19]   gen 72/149  19.9 min  eta 21.3 min  unfinished so far 4
+[2026-09-04 17:43:36]   gen 78/149  21.2 min  eta 19.3 min  unfinished so far 4
+[2026-09-04 17:44:44]   gen 84/149  22.3 min  eta 17.3 min  unfinished so far 4
+[2026-09-04 17:47:04]   gen 90/149  24.7 min  eta 16.2 min  unfinished so far 6
+[2026-09-04 17:47:56]   gen 96/149  25.5 min  eta 14.1 min  unfinished so far 6
+[2026-09-04 17:48:41]   gen 102/149  26.3 min  eta 12.1 min  unfinished so far 6
+[2026-09-04 17:49:25]   gen 108/149  27.0 min  eta 10.3 min  unfinished so far 6
+[2026-09-04 17:50:06]   gen 114/149  27.7 min  eta 8.5 min  unfinished so far 6
+[2026-09-04 17:50:48]   gen 120/149  28.4 min  eta 6.9 min  unfinished so far 6
+[2026-09-04 17:51:26]   gen 126/149  29.0 min  eta 5.3 min  unfinished so far 6
+[2026-09-04 17:52:27]   gen 132/149  30.0 min  eta 3.9 min  unfinished so far 6
+[2026-09-04 17:53:47]   gen 138/149  31.4 min  eta 2.5 min  unfinished so far 6
+[2026-09-04 17:54:35]   gen 144/149  32.2 min  eta 1.1 min  unfinished so far 6
+[2026-09-04 17:55:10]   gen 149/149  32.8 min  eta 0.0 min  unfinished so far 6
+[2026-09-04 17:55:10] random_bt: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/random_bt.json; closed </think> 147/149
+[2026-09-04 17:55:10] random_unc: kind=residual_add {"vector_norm": 10.153962135314941, "layer": 18}
+[2026-09-04 17:57:34]   gen 6/149  2.4 min  eta 57.2 min  unfinished so far 2
+[2026-09-04 17:58:12]   gen 12/149  3.0 min  eta 34.5 min  unfinished so far 2
+[2026-09-04 17:59:27]   gen 18/149  4.3 min  eta 31.2 min  unfinished so far 2
+[2026-09-04 18:00:45]   gen 24/149  5.6 min  eta 29.0 min  unfinished so far 2
+[2026-09-04 18:02:27]   gen 30/149  7.3 min  eta 28.8 min  unfinished so far 2
+[2026-09-04 18:03:08]   gen 36/149  8.0 min  eta 25.0 min  unfinished so far 2
+[2026-09-04 18:03:59]   gen 42/149  8.8 min  eta 22.4 min  unfinished so far 2
+[2026-09-04 18:05:24]   gen 48/149  10.2 min  eta 21.5 min  unfinished so far 2
+[2026-09-04 18:06:44]   gen 54/149  11.6 min  eta 20.3 min  unfinished so far 2
+[2026-09-04 18:07:26]   gen 60/149  12.3 min  eta 18.2 min  unfinished so far 2
+[2026-09-04 18:08:23]   gen 66/149  13.2 min  eta 16.6 min  unfinished so far 2
+[2026-09-04 18:09:31]   gen 72/149  14.3 min  eta 15.3 min  unfinished so far 2
+[2026-09-04 18:11:44]   gen 78/149  16.6 min  eta 15.1 min  unfinished so far 3
+[2026-09-04 18:13:10]   gen 84/149  18.0 min  eta 13.9 min  unfinished so far 3
+[2026-09-04 18:14:12]   gen 90/149  19.0 min  eta 12.5 min  unfinished so far 3
+[2026-09-04 18:15:07]   gen 96/149  19.9 min  eta 11.0 min  unfinished so far 3
+[2026-09-04 18:15:58]   gen 102/149  20.8 min  eta 9.6 min  unfinished so far 3
+[2026-09-04 18:16:35]   gen 108/149  21.4 min  eta 8.1 min  unfinished so far 3
+[2026-09-04 18:17:14]   gen 114/149  22.1 min  eta 6.8 min  unfinished so far 3
+[2026-09-04 18:17:47]   gen 120/149  22.6 min  eta 5.5 min  unfinished so far 3
+[2026-09-04 18:20:01]   gen 126/149  24.8 min  eta 4.5 min  unfinished [2026-09-04 18:20:01]   gen 126/149  24.8 min  eta 4.5 min  unfinished so far 4
+[2026-09-04 18:22:20]   gen 132/149  27.2 min  eta 3.5 min  unfinished so far 5
+[2026-09-04 18:23:10]   gen 138/149  28.0 min  eta 2.2 min  unfinished so far 5
+[2026-09-04 18:24:17]   gen 144/149  29.1 min  eta 1.0 min  unfinished so far 5
+[2026-09-04 18:25:06]   gen 149/149  29.9 min  eta 0.0 min  unfinished so far 5
+[2026-09-04 18:25:06] random_unc: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/random_unc.json; closed </think> 147/149
+so far 4
+[2026-09-04 18:22:20]   gen 132/149  27.2 min  eta 3.5 min  unfinished so far 5
+[2026-09-04 18:23:10]   gen 138/149  28.0 min  eta 2.2 min  unfinished so far 5
+[2026-09-04 18:24:17]   gen 144/149  29.1 min  eta 1.0 min  unfinished so far 5
+[2026-09-04 18:25:06]   gen 149/149  29.9 min  eta 0.0 min  unfinished so far 5
+[2026-09-04 18:25:06] random_unc: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/random_unc.json; closed </think> 147/149
+F4C_DONE
+[2026-09-04 18:25:29] ==> shuffled-label vectors
+[2026-09-04 18:25:35] loading Qwen/Qwen3-4B
+[2026-09-04 18:25:59]   extracted (shuffled labels) 50/500 traces, 2285 spans
+[2026-09-04 18:26:06]   extracted (shuffled labels) 100/500 traces, 4293 spans
+[2026-09-04 18:26:13]   extracted (shuffled labels) 150/500 traces, 6207 spans
+[2026-09-04 18:26:21]   extracted (shuffled labels) 200/500 traces, 8368 spans
+[2026-09-04 18:26:28]   extracted (shuffled labels) 250/500 traces, 10653 spans
+[2026-09-04 18:26:35]   extracted (shuffled labels) 300/500 traces, 12800 spans
+[2026-09-04 18:26:43]   extracted (shuffled labels) 350/500 traces, 14918 spans
+[2026-09-04 18:26:50]   extracted (shuffled labels) 400/500 traces, 16858 spans
+[2026-09-04 18:26:57]   extracted (shuffled labels) 450/500 traces, 19018 spans
+[2026-09-04 18:27:05]   extracted (shuffled labels) 500/500 traces, 21308 spans
+[2026-09-04 18:27:05] shuffled-label mean vectors: {'deduction': 10478, 'backtracking': 1376, 'example-testing': 2340, 'uncertainty-estimation': 3081, 'adding-knowledge': 3048, 'initializing': 985, 'overall': 499}
+[2026-09-04 18:27:06] ==> F4 shuffled-label arms
+[2026-09-04 18:27:11] f4_reverse: task actions, 149 items × ['real'], arms ['shuffled_bt', 'shuffled_unc']
+[2026-09-04 18:27:28] shuffled_bt: kind=residual_add {"vector_norm": 18.285024642944336, "layer": 23}

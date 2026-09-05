@@ -867,3 +867,41 @@
 [2026-09-04 17:07:45]   unc_pos: 50 in-context projections
 [2026-09-04 17:07:52]   unc_pos: 100 in-context projections
 [2026-09-04 17:08:00] unc_pos: wrote 149 in-context projections
+[2026-09-04 18:27:01] arms: ['bt_neg', 'bt_pos', 'random_bt', 'random_unc', 'unc_neg', 'unc_pos']
+[2026-09-04 18:27:01] results/qwen3_4b/followups/f4_reverse/bt_neg.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:27:01] {"path": "results/qwen3_4b/followups/f4_reverse/bt_neg.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:27:01] results/qwen3_4b/followups/f4_reverse/bt_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:27:01] {"path": "results/qwen3_4b/followups/f4_reverse/bt_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:27:01] results/qwen3_4b/followups/f4_reverse/random_bt.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 18:27:13]   50/149 done, 0 errors, 47,542 tokens, ~$0.29 this run
+[2026-09-04 18:27:22]   100/149 done, 0 errors, 99,053 tokens, ~$0.60 this run
+[2026-09-04 18:27:36]   149/149 done, 0 errors, 186,110 tokens, ~$1.16 this run
+[2026-09-04 18:27:36] {"path": "results/qwen3_4b/followups/f4_reverse/random_bt.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 93502, "completion_tokens": 92608, "est_cost_usd": 1.1598}
+[2026-09-04 18:27:36] results/qwen3_4b/followups/f4_reverse/random_unc.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 18:27:45]   50/149 done, 0 errors, 51,414 tokens, ~$0.31 this run
+[2026-09-04 18:27:52]   100/149 done, 0 errors, 107,739 tokens, ~$0.66 this run
+[2026-09-04 18:28:14]   149/149 done, 0 errors, 184,712 tokens, ~$1.15 this run
+[2026-09-04 18:28:14] {"path": "results/qwen3_4b/followups/f4_reverse/random_unc.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 92576, "completion_tokens": 92136, "est_cost_usd": 1.1528}
+[2026-09-04 18:28:14] results/qwen3_4b/followups/f4_reverse/unc_neg.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:28:14] {"path": "results/qwen3_4b/followups/f4_reverse/unc_neg.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:28:14] results/qwen3_4b/followups/f4_reverse/unc_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:28:14] {"path": "results/qwen3_4b/followups/f4_reverse/unc_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:28:28] arms: ['bt_neg', 'bt_pos', 'random_bt', 'random_unc', 'unc_neg', 'unc_pos']
+[2026-09-04 18:28:28] results/qwen3_4b/followups/f4_reverse/bt_neg.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:28:28] {"path": "results/qwen3_4b/followups/f4_reverse/bt_neg.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:28:28] results/qwen3_4b/followups/f4_reverse/bt_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:28:28] {"path": "results/qwen3_4b/followups/f4_reverse/bt_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:28:28] results/qwen3_4b/followups/f4_reverse/random_bt.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 18:28:36]   50/149 done, 0 errors, 104,804 tokens, ~$0.42 this run
+[2026-09-04 18:28:42]   100/149 done, 0 errors, 218,400 tokens, ~$0.86 this run
+[2026-09-04 18:28:49]   149/149 done, 1 errors, 333,931 tokens, ~$1.33 this run
+[2026-09-04 18:28:49] {"path": "results/qwen3_4b/followups/f4_reverse/random_bt.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 1, "prompt_tokens": 268500, "completion_tokens": 65431, "est_cost_usd": 1.3256}
+[2026-09-04 18:28:49] results/qwen3_4b/followups/f4_reverse/random_unc.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 18:28:55]   50/149 done, 0 errors, 108,570 tokens, ~$0.42 this run
+[2026-09-04 18:29:01]   100/149 done, 0 errors, 220,044 tokens, ~$0.87 this run
+[2026-09-04 18:29:15]   149/149 done, 2 errors, 337,084 tokens, ~$1.35 this run
+[2026-09-04 18:29:15] {"path": "results/qwen3_4b/followups/f4_reverse/random_unc.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 2, "prompt_tokens": 269824, "completion_tokens": 67260, "est_cost_usd": 1.3472}
+[2026-09-04 18:29:15] results/qwen3_4b/followups/f4_reverse/unc_neg.json.awareness.jsonl: 149 jobs, 148 cached, 1 truncated (kept), 0 to run
+[2026-09-04 18:29:15] {"path": "results/qwen3_4b/followups/f4_reverse/unc_neg.json.awareness.jsonl", "jobs": 149, "cached": 148, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 18:29:15] results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 18:29:15] {"path": "results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}

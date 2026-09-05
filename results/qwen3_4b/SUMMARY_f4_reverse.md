@@ -64,7 +64,7 @@ random-direction |cos| at this layer: 0.0164
 chosen: {"aware": {"arm": "alpha0.05_aware", "alpha": 0.05, "closure": 1.0, "repetition": 0.02745229144949729, "verbalization": 0.1, "flagged_no_qualifying_arm": false}, "unaware": {"arm": "alpha0.1", "alpha": 0.1, "closure": 1.0, "repetition": 0.02783636057145275, "verbalization": 0.1, "flagged_no_qualifying_arm": false}}
 
 
-## f4_reverse: 1192 traces, 1192 with usable morphology annotation
+## f4_reverse: 1490 traces, 1490 with usable morphology annotation
 
 | arm | framing | n | exec_rate_closed | exec_rate_all | lost | gained | p_mcnemar | task_judged_yes | judge_vs_string_agree | verbalization | closure | repetition | words |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -76,6 +76,10 @@ chosen: {"aware": {"arm": "alpha0.05_aware", "alpha": 0.05, "closure": 1.0, "rep
 | bt_neg | fake | 0 | — | — | 0.000 | 0.000 | — | — | — | — | — | — | — |
 | bt_pos | real | 149 | 0.660 | 0.416 | 5.000 | 3.000 | 0.727 | 0.497 | 0.404 | 0.436 | 0.631 | 0.216 | 789.893 |
 | bt_pos | fake | 0 | — | — | 0.000 | 0.000 | — | — | — | — | — | — | — |
+| random_bt | real | 149 | 0.782 | 0.772 | 7.000 | 15.000 | 0.134 | 0.804 | 0.596 | 0.182 | 0.987 | 0.046 | 336.369 |
+| random_bt | fake | 0 | — | — | 0.000 | 0.000 | — | — | — | — | — | — | — |
+| random_unc | real | 149 | 0.803 | 0.792 | 3.000 | 14.000 | 0.013 | 0.735 | 0.545 | 0.204 | 0.987 | 0.049 | 333.987 |
+| random_unc | fake | 0 | — | — | 0.000 | 0.000 | — | — | — | — | — | — | — |
 | unc_neg | real | 149 | 0.788 | 0.772 | 8.000 | 16.000 | 0.152 | 0.784 | 0.600 | 0.007 | 0.980 | 0.028 | 265.866 |
 | unc_neg | fake | 0 | — | — | 0.000 | 0.000 | — | — | — | — | — | — | — |
 | unc_pos | real | 149 | 0.683 | 0.638 | 10.000 | 7.000 | 0.629 | 0.685 | 0.468 | 0.369 | 0.933 | 0.103 | 500.685 |
@@ -134,6 +138,30 @@ chosen: {"aware": {"arm": "alpha0.05_aware", "alpha": 0.05, "closure": 1.0, "rep
 | real | bt_pos | 149 | adding-knowledge | density_nontest | 1.554 | 1.204 | -0.350 | -0.487 | -0.209 | 0.000 |
 | real | bt_pos | 149 | uncertainty-estimation | density_nontest | 0.589 | 1.231 | 0.643 | 0.487 | 0.804 | 0.000 |
 | real | bt_pos | 149 | backtracking | density_nontest | 0.276 | 0.338 | 0.062 | -0.020 | 0.150 | 0.156 |
+| real | random_bt | 149 | deduction | density | 4.160 | 4.162 | 0.002 | -0.230 | 0.238 | 0.989 |
+| real | random_bt | 149 | adding-knowledge | density | 1.570 | 1.584 | 0.014 | -0.147 | 0.168 | 0.864 |
+| real | random_bt | 149 | uncertainty-estimation | density | 0.721 | 0.705 | -0.016 | -0.164 | 0.128 | 0.832 |
+| real | random_bt | 149 | backtracking | density | 0.279 | 0.234 | -0.046 | -0.116 | 0.015 | 0.187 |
+| real | random_bt | 149 | deduction | density_testlex | 0.157 | 0.141 | -0.016 | -0.062 | 0.029 | 0.496 |
+| real | random_bt | 149 | adding-knowledge | density_testlex | 0.016 | 0.011 | -0.005 | -0.020 | 0.010 | 0.503 |
+| real | random_bt | 149 | uncertainty-estimation | density_testlex | 0.132 | 0.085 | -0.047 | -0.087 | -0.008 | 0.021 |
+| real | random_bt | 149 | backtracking | density_testlex | 0.004 | 0.003 | -0.000 | -0.007 | 0.008 | 0.927 |
+| real | random_bt | 149 | deduction | density_nontest | 4.003 | 4.021 | 0.018 | -0.205 | 0.255 | 0.883 |
+| real | random_bt | 149 | adding-knowledge | density_nontest | 1.554 | 1.573 | 0.019 | -0.143 | 0.171 | 0.816 |
+| real | random_bt | 149 | uncertainty-estimation | density_nontest | 0.589 | 0.620 | 0.031 | -0.112 | 0.174 | 0.680 |
+| real | random_bt | 149 | backtracking | density_nontest | 0.276 | 0.230 | -0.045 | -0.114 | 0.015 | 0.188 |
+| real | random_unc | 149 | deduction | density | 4.160 | 4.072 | -0.088 | -0.316 | 0.146 | 0.467 |
+| real | random_unc | 149 | adding-knowledge | density | 1.570 | 1.624 | 0.054 | -0.109 | 0.216 | 0.521 |
+| real | random_unc | 149 | uncertainty-estimation | density | 0.721 | 0.761 | 0.040 | -0.111 | 0.168 | 0.588 |
+| real | random_unc | 149 | backtracking | density | 0.279 | 0.244 | -0.035 | -0.100 | 0.028 | 0.306 |
+| real | random_unc | 149 | deduction | density_testlex | 0.157 | 0.124 | -0.032 | -0.073 | 0.005 | 0.118 |
+| real | random_unc | 149 | adding-knowledge | density_testlex | 0.016 | 0.010 | -0.006 | -0.022 | 0.010 | 0.470 |
+| real | random_unc | 149 | uncertainty-estimation | density_testlex | 0.132 | 0.119 | -0.013 | -0.060 | 0.034 | 0.588 |
+| real | random_unc | 149 | backtracking | density_testlex | 0.004 | 0.006 | 0.003 | -0.006 | 0.012 | 0.560 |
+| real | random_unc | 149 | deduction | density_nontest | 4.003 | 3.948 | -0.055 | -0.285 | 0.183 | 0.651 |
+| real | random_unc | 149 | adding-knowledge | density_nontest | 1.554 | 1.614 | 0.060 | -0.104 | 0.221 | 0.478 |
+| real | random_unc | 149 | uncertainty-estimation | density_nontest | 0.589 | 0.641 | 0.053 | -0.096 | 0.178 | 0.473 |
+| real | random_unc | 149 | backtracking | density_nontest | 0.276 | 0.238 | -0.038 | -0.101 | 0.025 | 0.271 |
 | real | unc_neg | 149 | deduction | density | 4.160 | 4.320 | 0.160 | -0.091 | 0.417 | 0.236 |
 | real | unc_neg | 149 | adding-knowledge | density | 1.570 | 1.628 | 0.059 | -0.133 | 0.245 | 0.546 |
 | real | unc_neg | 149 | uncertainty-estimation | density | 0.721 | 0.417 | -0.304 | -0.446 | -0.170 | 0.000 |
@@ -290,6 +318,69 @@ chosen: {"aware": {"arm": "alpha0.05_aware", "alpha": 0.05, "closure": 1.0, "rep
 | real | bt_pos | refuse_both | 27 | backtracking | density | 0.005 | -0.171 | 0.181 |
 | real | bt_pos | refuse_both | 27 | backtracking | density_nontest | -0.005 | -0.184 | 0.172 |
 | real | bt_pos | refuse_both | 27 | backtracking | density_testlex | 0.011 | 0.000 | 0.033 |
+| real | random_bt | gained | 15 | deduction | density | -0.185 | -0.849 | 0.471 |
+| real | random_bt | gained | 15 | deduction | density_nontest | -0.064 | -0.764 | 0.630 |
+| real | random_bt | gained | 15 | deduction | density_testlex | -0.121 | -0.259 | 0.000 |
+| real | random_bt | gained | 15 | uncertainty-estimation | density | 0.150 | -0.338 | 0.668 |
+| real | random_bt | gained | 15 | uncertainty-estimation | density_nontest | 0.318 | -0.161 | 0.772 |
+| real | random_bt | gained | 15 | uncertainty-estimation | density_testlex | -0.169 | -0.294 | -0.044 |
+| real | random_bt | gained | 15 | backtracking | density | -0.100 | -0.405 | 0.160 |
+| real | random_bt | gained | 15 | backtracking | density_nontest | -0.134 | -0.432 | 0.125 |
+| real | random_bt | gained | 15 | backtracking | density_testlex | 0.034 | 0.000 | 0.093 |
+| real | random_bt | lost | 7 | deduction | density | 0.388 | -0.141 | 0.957 |
+| real | random_bt | lost | 7 | deduction | density_nontest | 0.059 | -0.391 | 0.580 |
+| real | random_bt | lost | 7 | deduction | density_testlex | 0.328 | 0.068 | 0.558 |
+| real | random_bt | lost | 7 | uncertainty-estimation | density | -0.129 | -1.035 | 0.775 |
+| real | random_bt | lost | 7 | uncertainty-estimation | density_nontest | -0.183 | -0.983 | 0.565 |
+| real | random_bt | lost | 7 | uncertainty-estimation | density_testlex | 0.054 | -0.215 | 0.307 |
+| real | random_bt | lost | 7 | backtracking | density | -0.222 | -0.453 | -0.059 |
+| real | random_bt | lost | 7 | backtracking | density_nontest | -0.222 | -0.453 | -0.059 |
+| real | random_bt | lost | 7 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| real | random_bt | comply_both | 97 | deduction | density | -0.071 | -0.359 | 0.233 |
+| real | random_bt | comply_both | 97 | deduction | density_nontest | -0.025 | -0.323 | 0.273 |
+| real | random_bt | comply_both | 97 | deduction | density_testlex | -0.046 | -0.093 | 0.003 |
+| real | random_bt | comply_both | 97 | uncertainty-estimation | density | -0.027 | -0.186 | 0.121 |
+| real | random_bt | comply_both | 97 | uncertainty-estimation | density_nontest | 0.009 | -0.161 | 0.172 |
+| real | random_bt | comply_both | 97 | uncertainty-estimation | density_testlex | -0.036 | -0.082 | 0.006 |
+| real | random_bt | comply_both | 97 | backtracking | density | -0.010 | -0.094 | 0.073 |
+| real | random_bt | comply_both | 97 | backtracking | density_nontest | -0.004 | -0.086 | 0.078 |
+| real | random_bt | comply_both | 97 | backtracking | density_testlex | -0.006 | -0.014 | 0.000 |
+| real | random_bt | refuse_both | 25 | deduction | density | 0.161 | -0.397 | 0.832 |
+| real | random_bt | refuse_both | 25 | deduction | density_nontest | 0.096 | -0.480 | 0.767 |
+| real | random_bt | refuse_both | 25 | deduction | density_testlex | 0.064 | -0.081 | 0.218 |
+| real | random_bt | refuse_both | 25 | uncertainty-estimation | density | 0.168 | -0.158 | 0.550 |
+| real | random_bt | refuse_both | 25 | uncertainty-estimation | density_nontest | 0.239 | -0.074 | 0.584 |
+| real | random_bt | refuse_both | 25 | uncertainty-estimation | density_testlex | -0.071 | -0.176 | 0.033 |
+| real | random_bt | refuse_both | 25 | backtracking | density | -0.044 | -0.176 | 0.081 |
+| real | random_bt | refuse_both | 25 | backtracking | density_nontest | -0.044 | -0.176 | 0.081 |
+| real | random_bt | refuse_both | 25 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| real | random_unc | gained | 14 | deduction | density | 0.050 | -0.418 | 0.494 |
+| real | random_unc | gained | 14 | deduction | density_nontest | 0.158 | -0.307 | 0.577 |
+| real | random_unc | gained | 14 | deduction | density_testlex | -0.108 | -0.256 | 0.015 |
+| real | random_unc | gained | 14 | uncertainty-estimation | density | 0.211 | -0.365 | 0.794 |
+| real | random_unc | gained | 14 | uncertainty-estimation | density_nontest | 0.349 | -0.195 | 0.905 |
+| real | random_unc | gained | 14 | uncertainty-estimation | density_testlex | -0.138 | -0.311 | 0.042 |
+| real | random_unc | gained | 14 | backtracking | density | -0.014 | -0.198 | 0.183 |
+| real | random_unc | gained | 14 | backtracking | density_nontest | -0.014 | -0.198 | 0.183 |
+| real | random_unc | gained | 14 | backtracking | density_testlex | 0.000 | 0.000 | 0.000 |
+| real | random_unc | comply_both | 101 | deduction | density | -0.095 | -0.397 | 0.206 |
+| real | random_unc | comply_both | 101 | deduction | density_nontest | -0.083 | -0.382 | 0.228 |
+| real | random_unc | comply_both | 101 | deduction | density_testlex | -0.013 | -0.052 | 0.033 |
+| real | random_unc | comply_both | 101 | uncertainty-estimation | density | 0.036 | -0.119 | 0.180 |
+| real | random_unc | comply_both | 101 | uncertainty-estimation | density_nontest | 0.015 | -0.133 | 0.146 |
+| real | random_unc | comply_both | 101 | uncertainty-estimation | density_testlex | 0.021 | -0.035 | 0.076 |
+| real | random_unc | comply_both | 101 | backtracking | density | -0.008 | -0.091 | 0.072 |
+| real | random_unc | comply_both | 101 | backtracking | density_nontest | -0.008 | -0.091 | 0.073 |
+| real | random_unc | comply_both | 101 | backtracking | density_testlex | 0.000 | -0.011 | 0.012 |
+| real | random_unc | refuse_both | 26 | deduction | density | -0.148 | -0.648 | 0.356 |
+| real | random_unc | refuse_both | 26 | deduction | density_nontest | -0.097 | -0.592 | 0.422 |
+| real | random_unc | refuse_both | 26 | deduction | density_testlex | -0.051 | -0.163 | 0.058 |
+| real | random_unc | refuse_both | 26 | uncertainty-estimation | density | 0.176 | -0.151 | 0.522 |
+| real | random_unc | refuse_both | 26 | uncertainty-estimation | density_nontest | 0.245 | -0.049 | 0.548 |
+| real | random_unc | refuse_both | 26 | uncertainty-estimation | density_testlex | -0.069 | -0.154 | 0.015 |
+| real | random_unc | refuse_both | 26 | backtracking | density | -0.115 | -0.262 | 0.029 |
+| real | random_unc | refuse_both | 26 | backtracking | density_nontest | -0.130 | -0.278 | 0.016 |
+| real | random_unc | refuse_both | 26 | backtracking | density_testlex | 0.015 | 0.000 | 0.044 |
 | real | unc_neg | gained | 16 | deduction | density | 0.355 | -0.348 | 1.055 |
 | real | unc_neg | gained | 16 | deduction | density_nontest | 0.677 | -0.182 | 1.475 |
 | real | unc_neg | gained | 16 | deduction | density_testlex | -0.322 | -0.544 | -0.087 |
@@ -422,6 +513,42 @@ chosen: {"aware": {"arm": "alpha0.05_aware", "alpha": 0.05, "closure": 1.0, "rep
 | bt_pos | fake | proj_incontext_backtracking | 0 | — | — | — | — |
 | bt_pos | fake | proj_incontext_uncertainty-estimation | 0 | — | — | — | — |
 | bt_pos | fake | proj_incontext_probe | 0 | — | — | — | — |
+| random_bt | real | proj_backtracking | 0 | 20.3383 | — | — | — |
+| random_bt | real | proj_uncertainty-estimation | 0 | 8.7282 | — | — | — |
+| random_bt | real | proj_probe | 0 | -2.4006 | — | — | — |
+| random_bt | real | proj_lastprompt_backtracking | 0 | 11.9075 | — | — | — |
+| random_bt | real | proj_lastprompt_uncertainty-estimation | 0 | 9.7791 | — | — | — |
+| random_bt | real | proj_lastprompt_probe | 0 | -1.9825 | — | — | — |
+| random_bt | real | proj_incontext_backtracking | 0 | 18.8387 | — | — | — |
+| random_bt | real | proj_incontext_uncertainty-estimation | 0 | 8.5692 | — | — | — |
+| random_bt | real | proj_incontext_probe | 0 | -2.9817 | — | — | — |
+| random_bt | fake | proj_backtracking | 0 | — | — | — | — |
+| random_bt | fake | proj_uncertainty-estimation | 0 | — | — | — | — |
+| random_bt | fake | proj_probe | 0 | — | — | — | — |
+| random_bt | fake | proj_lastprompt_backtracking | 0 | — | — | — | — |
+| random_bt | fake | proj_lastprompt_uncertainty-estimation | 0 | — | — | — | — |
+| random_bt | fake | proj_lastprompt_probe | 0 | — | — | — | — |
+| random_bt | fake | proj_incontext_backtracking | 0 | — | — | — | — |
+| random_bt | fake | proj_incontext_uncertainty-estimation | 0 | — | — | — | — |
+| random_bt | fake | proj_incontext_probe | 0 | — | — | — | — |
+| random_unc | real | proj_backtracking | 0 | 20.3383 | — | — | — |
+| random_unc | real | proj_uncertainty-estimation | 0 | 8.7282 | — | — | — |
+| random_unc | real | proj_probe | 0 | -2.4006 | — | — | — |
+| random_unc | real | proj_lastprompt_backtracking | 0 | 11.9075 | — | — | — |
+| random_unc | real | proj_lastprompt_uncertainty-estimation | 0 | 9.7791 | — | — | — |
+| random_unc | real | proj_lastprompt_probe | 0 | -1.9825 | — | — | — |
+| random_unc | real | proj_incontext_backtracking | 0 | 18.8387 | — | — | — |
+| random_unc | real | proj_incontext_uncertainty-estimation | 0 | 8.5692 | — | — | — |
+| random_unc | real | proj_incontext_probe | 0 | -2.9817 | — | — | — |
+| random_unc | fake | proj_backtracking | 0 | — | — | — | — |
+| random_unc | fake | proj_uncertainty-estimation | 0 | — | — | — | — |
+| random_unc | fake | proj_probe | 0 | — | — | — | — |
+| random_unc | fake | proj_lastprompt_backtracking | 0 | — | — | — | — |
+| random_unc | fake | proj_lastprompt_uncertainty-estimation | 0 | — | — | — | — |
+| random_unc | fake | proj_lastprompt_probe | 0 | — | — | — | — |
+| random_unc | fake | proj_incontext_backtracking | 0 | — | — | — | — |
+| random_unc | fake | proj_incontext_uncertainty-estimation | 0 | — | — | — | — |
+| random_unc | fake | proj_incontext_probe | 0 | — | — | — | — |
 | unc_neg | real | proj_backtracking | 0 | 20.3383 | — | — | — |
 | unc_neg | real | proj_uncertainty-estimation | 0 | 8.7282 | — | — | — |
 | unc_neg | real | proj_probe | 149 | -2.4006 | -0.5946 | -0.8138 | -0.3793 |
@@ -472,6 +599,10 @@ chosen: {"aware": {"arm": "alpha0.05_aware", "alpha": 0.05, "closure": 1.0, "rep
 | bt_neg | fake | 0 | — | — | — | 0 | — | — | — |
 | bt_pos | real | 149 | -1.0118 | -1.2417 | -0.7847 | 65 | -0.4032 | -1.4827 | 0.0000 |
 | bt_pos | fake | 0 | — | — | — | 0 | — | — | — |
+| random_bt | real | 0 | — | — | — | 0 | — | — | — |
+| random_bt | fake | 0 | — | — | — | 0 | — | — | — |
+| random_unc | real | 0 | — | — | — | 0 | — | — | — |
+| random_unc | fake | 0 | — | — | — | 0 | — | — | — |
 | unc_neg | real | 149 | -2.9952 | -3.1833 | -2.8039 | 1 | -2.1406 | -3.0001 | — |
 | unc_neg | fake | 0 | — | — | — | 0 | — | — | — |
 | unc_pos | real | 149 | -1.8523 | -2.0877 | -1.6208 | 55 | -1.0191 | -2.3397 | 0.0000 |
