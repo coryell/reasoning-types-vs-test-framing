@@ -767,3 +767,233 @@ F4C_DONE
 [2026-09-04 18:27:06] ==> F4 shuffled-label arms
 [2026-09-04 18:27:11] f4_reverse: task actions, 149 items × ['real'], arms ['shuffled_bt', 'shuffled_unc']
 [2026-09-04 18:27:28] shuffled_bt: kind=residual_add {"vector_norm": 18.285024642944336, "layer": 23}
+[2026-09-04 18:29:58]   gen 6/149  2.5 min  eta 59.5 min  unfinished so far 3
+[2026-09-04 18:31:09]   gen 12/149  3.7 min  eta 42.1 min  unfinished so far 3
+[2026-09-04 18:33:28]   gen 18/149  6.0 min  eta 43.6 min  unfinished so far 6
+[2026-09-04 18:35:46]   gen 24/149  8.3 min  eta 43.2 min  unfinished so far 7
+[2026-09-04 18:38:05]   gen 30/149  10.6 min  eta 42.1 min  unfinished so far 10
+[2026-09-04 18:40:23]   gen 36/149  12.9 min  eta 40.6 min  unfinished so far 12
+[2026-09-04 18:42:42]   gen 42/149  15.2 min  eta 38.8 min  unfinished so far 15
+[2026-09-04 18:45:02]   gen 48/149  17.6 min  eta 36.9 min  unfinished so far 19
+[2026-09-04 18:47:20]   gen 54/149  19.9 min  eta 35.0 min  unfinished so far 21
+[2026-09-04 18:49:39]   gen 60/149  22.2 min  eta 32.9 min  unfinished so far 23
+[2026-09-04 18:51:59]   gen 66/149  24.5 min  eta 30.8 min  unfinished so far 26
+[2026-09-04 18:54:19]   gen 72/149  26.8 min  eta 28.7 min  unfinished so far 27
+[2026-09-04 18:56:35]   gen 78/149  29.1 min  eta 26.5 min  unfinished so far 30
+[2026-09-04 18:57:52]   gen 84/149  30.4 min  eta 23.5 min  unfinished so far 30
+[2026-09-04 19:00:14]   gen 90/149  32.8 min  eta 21.5 min  unfinished so far 31
+[2026-09-04 19:01:49]   gen 96/149  34.3 min  eta 19.0 min  unfinished so far 31
+[2026-09-04 19:03:03]   gen 102/149  35.6 min  eta 16.4 min  unfinished so far 31
+[2026-09-04 19:04:12]   gen 108/149  36.7 min  eta 13.9 min  unfinished so far 31
+[2026-09-04 19:06:29]   gen 114/149  39.0 min  eta 12.0 min  unfinished so far 32
+[2026-09-04 19:08:44]   gen 120/149  41.3 min  eta 10.0 min  unfinished so far 35
+[2026-09-04 19:11:02]   gen 126/149  43.6 min  eta 8.0 min  unfinished so far 36
+[2026-09-04 19:13:18]   gen 132/149  45.8 min  eta 5.9 min  unfinished so far 37
+[2026-09-04 19:15:34]   gen 138/149  48.1 min  eta 3.8 min  unfinished so far 39
+[2026-09-04 19:17:08]   gen 144/149  49.7 min  eta 1.7 min  unfinished so far 39
+[2026-09-04 19:18:52]   gen 149/149  51.4 min  eta 0.0 min  unfinished so far 40
+[2026-09-04 19:18:52] shuffled_bt: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/shuffled_bt.json; closed </think> 112/149
+[2026-09-04 19:18:52] shuffled_unc: kind=residual_add {"vector_norm": 10.15396499633789, "layer": 18}
+[2026-09-04 19:21:20]   gen 6/149  2.5 min  eta 58.7 min  unfinished so far 3
+[2026-09-04 19:23:43]   gen 12/149  4.9 min  eta 55.4 min  unfinished so far 4
+[2026-09-04 19:26:16]   gen 18/149  7.4 min  eta 53.9 min  unfinished so far 7
+[2026-09-04 19:28:37]   gen 24/149  9.7 min  eta 50.8 min  unfinished so far 8
+[2026-09-04 19:31:03]   gen 30/149  12.2 min  eta 48.3 min  unfinished so far 9
+[2026-09-04 19:33:28]   gen 36/149  14.6 min  eta 45.8 min  unfinished so far 12
+[2026-09-04 19:35:48]   gen 42/149  16.9 min  eta 43.2 min  unfinished so far 13
+[2026-09-04 19:38:08]   gen 48/149  19.3 min  eta 40.5 min  unfinished so far 14
+[2026-09-04 19:40:27]   gen 54/149  21.6 min  eta 38.0 min  unfinished so far 15
+[2026-09-04 19:41:51]   gen 60/149  23.0 min  eta 34.1 min  unfinished so far 15
+[2026-09-04 19:44:10]   gen 66/149  25.3 min  eta 31.8 min  unfinished so far 17
+[2026-09-04 19:46:33]   gen 72/149  27.7 min  eta 29.6 min  unfinished so far 18
+[2026-09-04 19:48:49]   gen 78/149  30.0 min  eta 27.3 min  unfinished so far 21
+[2026-09-04 19:51:09]   gen 84/149  32.3 min  eta 25.0 min  unfinished so far 22
+[2026-09-04 19:52:05]   gen 90/149  33.2 min  eta 21.8 min  unfinished so far 22
+[2026-09-04 19:53:09]   gen 96/149  34.3 min  eta 18.9 min  unfinished so far 22
+[2026-09-04 19:55:27]   gen 102/149  36.6 min  eta 16.9 min  unfinished so far 23
+[2026-09-04 19:56:53]   gen 108/149  38.0 min  eta 14.4 min  unfinished so far 23
+[2026-09-04 19:58:21]   gen 114/149  39.5 min  eta 12.1 min  unfinished so far 23
+[2026-09-04 20:00:38]   gen 120/149  41.8 min  eta 10.1 min  unfinished so far 24
+[2026-09-04 20:01:54]   gen 126/149  43.0 min  eta 7.9 min  unfinished so far 24
+[2026-09-04 18:27:11] f4_reverse: task actions, 149 items × ['real'], arms ['shuffled_bt', 'shuffled_unc']
+[2026-09-04 18:27:28] shuffled_bt: kind=residual_add {"vector_norm": 18.285024642944336, "layer": 23}
+[2026-09-04 18:29:58]   gen 6/149  2.5 min  eta 59.5 min  unfinished so far 3
+[2026-09-04 18:31:09]   gen 12/149  3.7 min  eta 42.1 min  unfinished so far 3
+[2026-09-04 18:33:28]   gen 18/149  6.0 min  eta 43.6 min  unfinished so far 6
+[2026-09-04 18:35:46]   gen 24/149  8.3 min  eta 43.2 min  unfinished so far 7
+[2026-09-04 18:38:05]   gen 30/149  10.6 min  eta 42.1 min  unfinished so far 10
+[2026-09-04 18:40:23]   gen 36/149  12.9 min  eta 40.6 min  unfinished so far 12
+[2026-09-04 18:42:42]   gen 42/149  15.2 min  eta 38.8 min  unfinished so far 15
+[2026-09-04 18:45:02]   gen 48/149  17.6 min  eta 36.9 min  unfinished so far 19
+[2026-09-04 18:47:20]   gen 54/149  19.9 min  eta 35.0 min  unfinished so far 21
+[2026-09-04 18:49:39]   gen 60/149  22.2 min  eta 32.9 min  unfinished so far 23
+[2026-09-04 18:51:59]   gen 66/149  24.5 min  eta 30.8 min  unfinished so far 26
+[2026-09-04 18:54:19]   gen 72/149  26.8 min  eta 28.7 min  unfinished so far 27
+[2026-09-04 18:56:35]   gen 78/149  29.1 min  eta 26.5 min  unfinished so far 30
+[2026-09-04 18:57:52]   gen 84/149  30.4 min  eta 23.5 min  unfinished so far 30
+[2026-09-04 19:00:14]   gen 90/149  32.8 min  eta 21.5 min  unfinished so far 31
+[2026-09-04 19:01:49]   gen 96/149  34.3 min  eta 19.0 min  unfinished so far 31
+[2026-09-04 19:03:03]   gen 102/149  35.6 min  eta 16.4 min  unfinished so far 31
+[2026-09-04 19:04:12]   gen 108/149  36.7 min  eta 13.9 min  unfinished so far 31
+[2026-09-04 19:06:29]   gen 114/149  39.0 min  eta 12.0 min  unfinished so far 32
+[2026-09-04 19:08:44]   gen 120/149  41.3 min  eta 10.0 min  unfinished so far 35
+[2026-09-04 19:11:02]   gen 126/149  43.6 min  eta 8.0 min  unfinished so far 36
+[2026-09-04 19:13:18]   gen 132/149  45.8 min  eta 5.9 min  unfinished so far 37
+[2026-09-04 19:15:34]   gen 138/149  48.1 min  eta 3.8 min  unfinished so far 39
+[2026-09-04 19:17:08]   gen 144/149  49.7 min  eta 1.7 min  unfinished so far 39
+[2026-09-04 19:18:52]   gen 149/149  51.4 min  eta 0.0 min  unfinished so far 40
+[2026-09-04 19:18:52] shuffled_bt: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/shuffled_bt.json; closed </think> 112/149
+[2026-09-04 19:18:52] shuffled_unc: kind=residual_add {"vector_norm": 10.15396499633789, "layer": 18}
+[2026-09-04 19:21:20]   gen 6/149  2.5 min  eta 58.7 min  unfinished so far 3
+[2026-09-04 19:23:43]   gen 12/149  4.9 min  eta 55.4 min  unfinished so far 4
+[2026-09-04 19:26:16]   gen 18/149  7.4 min  eta 53.9 min  unfinished so far 7
+[2026-09-04 19:28:37]   gen 24/149  9.7 min  eta 50.8 min  unfinished so far 8
+[2026-09-04 19:31:03]   gen 30/149  12.2 min  eta 48.3 min  unfinished so far 9
+[2026-09-04 19:33:28]   gen 36/149  14.6 min  eta 45.8 min  unfinished so far 12
+[2026-09-04 19:35:48]   gen 42/149  16.9 min  eta 43.2 min  unfinished so far 13
+[2026-09-04 19:38:08]   gen 48/149  19.3 min  eta 40.5 min  unfinished so far 14
+[2026-09-04 19:40:27]   gen 54/149  21.6 min  eta 38.0 min  unfinished so far 15
+[2026-09-04 19:41:51]   gen 60/149  23.0 min  eta 34.1 min  unfinished so far 15
+[2026-09-04 19:44:10]   gen 66/149  25.3 min  eta 31.8 min  unfinished so far 17
+[2026-09-04 19:46:33]   gen 72/149  27.7 min  eta 29.6 min  unfinished so far 18
+[2026-09-04 19:48:49]   gen 78/149  30.0 min  eta 27.3 min  unfinished so far 21
+[2026-09-04 19:51:09]   gen 84/149  32.3 min  eta 25.0 min  unfinished so far 22
+[2026-09-04 19:52:05]   gen 90/149  33.2 min  eta 21.8 min  unfinished so far 22
+[2026-09-04 19:53:09]   gen 96/149  34.3 min  eta 18.9 min  unfinished so far 22
+[2026-09-04 19:55:27]   gen 102/149  36.6 min  eta 16.9 min  unfinished so far 23
+[2026-09-04 19:56:53]   gen 108/149  38.0 min  eta 14.4 min  unfinished so far 23
+[2026-09-04 19:58:21]   gen 114/149  39.5 min  eta 12.1 min  unfinished so far 23
+[2026-09-04 20:00:38]   gen 120/149  41.8 min  eta 10.1 min  unfinished so far 24
+[2026-09-04 [2026-09-04 20:03:06]   gen 132/149  44.2 min  eta 5.7 min  unfinished so far 24
+[2026-09-04 20:04:31]   gen 138/149  45.7 min  eta 3.6 min  unfinished so far 24
+[2026-09-04 20:05:49]   gen 144/149  46.9 min  eta 1.6 min  unfinished so far 24
+[2026-09-04 20:06:56]   gen 149/149  48.1 min  eta 0.0 min  unfinished so far 24
+[2026-09-04 20:06:56] shuffled_unc: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/shuffled_unc.json; closed </think> 128/149
+20:01:54]   gen 126/149  43.0 min  eta 7.9 min  unfinished so far 24
+[2026-09-04 20:03:06]   gen 132/149  44.2 min  eta 5.7 min  unfinished so far 24
+[2026-09-04 20:04:31]   gen 138/149  45.7 min  eta 3.6 min  unfinished so far 24
+[2026-09-04 20:05:49]   gen 144/149  46.9 min  eta 1.6 min  unfinished so far 24
+[2026-09-04 20:06:56]   gen 149/149  48.1 min  eta 0.0 min  unfinished so far 24
+[2026-09-04 20:06:56] shuffled_unc: wrote /home/cutter/d10/results/qwen3_4b/followups/f4_reverse/shuffled_unc.json; closed </think> 128/149
+[2026-09-04 20:06:58] ==> F4 readouts
+[2026-09-04 20:07:03] arms: ['bt_neg', 'bt_pos', 'random_bt', 'random_unc', 'shuffled_bt', 'shuffled_unc', 'unc_neg', 'unc_pos']
+[2026-09-04 20:07:03] results/qwen3_4b/followups/f4_reverse/bt_neg.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 20:07:03] {"path": "results/qwen3_4b/followups/f4_reverse/bt_neg.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:07:03] results/qwen3_4b/followups/f4_reverse/bt_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 20:07:03] {"path": "results/qwen3_4b/followups/f4_reverse/bt_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:07:03] results/qwen3_4b/followups/f4_reverse/random_bt.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 20:07:03] {"path": "results/qwen3_4b/followups/f4_reverse/random_bt.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:07:03] results/qwen3_4b/followups/f4_reverse/random_unc.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 20:07:03] {"path": "results/qwen3_4b/followups/f4_reverse/random_unc.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:07:03] results/qwen3_4b/followups/f4_reverse/shuffled_bt.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 20:07:21]   50/149 done, 0 errors, 79,226 tokens, ~$0.51 this run
+[2026-09-04 20:07:35]   100/149 done, 0 errors, 194,460 tokens, ~$1.26 this run
+[2026-09-04 20:07:57]   149/149 done, 0 errors, 340,229 tokens, ~$2.22 this run
+[2026-09-04 20:07:57] {"path": "results/qwen3_4b/followups/f4_reverse/shuffled_bt.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 157846, "completion_tokens": 182383, "est_cost_usd": 2.2184}
+[2026-09-04 20:07:57] results/qwen3_4b/followups/f4_reverse/shuffled_unc.json.annotations.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 20:08:08]   50/149 done, 0 errors, 62,978 tokens, ~$0.39 this run
+[2026-09-04 20:08:20]   100/149 done, 0 errors, 158,340 tokens, ~$1.00 this run
+[2026-09-04 20:08:36]   149/149 done, 0 errors, 284,259 tokens, ~$1.81 this run
+[2026-09-04 20:08:36] {"path": "results/qwen3_4b/followups/f4_reverse/shuffled_unc.json.annotations.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 137250, "completion_tokens": 147009, "est_cost_usd": 1.8132}
+[2026-09-04 20:08:36] results/qwen3_4b/followups/f4_reverse/unc_neg.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 20:08:36] {"path": "results/qwen3_4b/followups/f4_reverse/unc_neg.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:08:36] results/qwen3_4b/followups/f4_reverse/unc_pos.json.annotations.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 20:08:36] {"path": "results/qwen3_4b/followups/f4_reverse/unc_pos.json.annotations.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:08:42] arms: ['bt_neg', 'bt_pos', 'random_bt', 'random_unc', 'shuffled_bt', 'shuffled_unc', 'unc_neg', 'unc_pos']
+[2026-09-04 20:08:42] results/qwen3_4b/followups/f4_reverse/bt_neg.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 20:08:42] {"path": "results/qwen3_4b/followups/f4_reverse/bt_neg.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:08:42] results/qwen3_4b/followups/f4_reverse/bt_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 20:08:42] {"path": "results/qwen3_4b/followups/f4_reverse/bt_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:08:42] results/qwen3_4b/followups/f4_reverse/random_bt.json.awareness.jsonl: 149 jobs, 148 cached, 1 truncated (kept), 0 to run
+[2026-09-04 20:08:42] {"path": "results/qwen3_4b/followups/f4_reverse/random_bt.json.awareness.jsonl", "jobs": 149, "cached": 148, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:08:42] results/qwen3_4b/followups/f4_reverse/random_unc.json.awareness.jsonl: 149 jobs, 147 cached, 2 truncated (kept), 0 to run
+[2026-09-04 20:08:42] {"path": "results/qwen3_4b/followups/f4_reverse/random_unc.json.awareness.jsonl", "jobs": 149, "cached": 147, "truncated_kept": 2, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:08:42] results/qwen3_4b/followups/f4_reverse/shuffled_bt.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 20:08:48]   50/149 done, 0 errors, 120,362 tokens, ~$0.44 this run
+[2026-09-04 20:08:53]   100/149 done, 0 errors, 247,820 tokens, ~$0.91 this run
+[2026-09-04 20:08:57]   149/149 done, 0 errors, 382,991 tokens, ~$1.39 this run
+[2026-09-04 20:08:57] {"path": "results/qwen3_4b/followups/f4_reverse/shuffled_bt.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 325848, "completion_tokens": 57143, "est_cost_usd": 1.3861}
+[2026-09-04 20:08:57] results/qwen3_4b/followups/f4_reverse/shuffled_unc.json.awareness.jsonl: 149 jobs, 0 cached, 0 truncated (kept), 149 to run
+[2026-09-04 20:09:03]   50/149 done, 0 errors, 115,216 tokens, ~$0.43 this run
+[2026-09-04 20:09:08]   100/149 done, 0 errors, 240,377 tokens, ~$0.90 this run
+[2026-09-04 20:09:15]   149/149 done, 0 errors, 369,857 tokens, ~$1.38 this run
+[2026-09-04 20:09:15] {"path": "results/qwen3_4b/followups/f4_reverse/shuffled_unc.json.awareness.jsonl", "jobs": 149, "cached": 0, "truncated_kept": 0, "run": 149, "errors": 0, "prompt_tokens": 308882, "completion_tokens": 60975, "est_cost_usd": 1.382}
+[2026-09-04 20:09:15] results/qwen3_4b/followups/f4_reverse/unc_neg.json.awareness.jsonl: 149 jobs, 148 cached, 1 truncated (kept), 0 to run
+[2026-09-04 20:09:15] {"path": "results/qwen3_4b/followups/f4_reverse/unc_neg.json.awareness.jsonl", "jobs": 149, "cached": 148, "truncated_kept": 1, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:09:15] results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl: 149 jobs, 149 cached, 0 truncated (kept), 0 to run
+[2026-09-04 20:09:15] {"path": "results/qwen3_4b/followups/f4_reverse/unc_pos.json.awareness.jsonl", "jobs": 149, "cached": 149, "truncated_kept": 0, "run": 0, "errors": 0, "prompt_tokens": 0, "completion_tokens": 0, "est_cost_usd": 0.0}
+[2026-09-04 20:09:21] arms: ['bt_neg', 'bt_pos', 'random_bt', 'random_unc', 'shuffled_bt', 'shuffled_unc', 'unc_neg', 'unc_pos']
+[2026-09-04 20:09:40] bt_neg: prompt states exist, skipping
+[2026-09-04 20:09:40] bt_pos: prompt states exist, skipping
+[2026-09-04 20:09:40] random_bt: condition residual_add {"vector_norm": 18.2850284576416, "layer": 23}; system prompt present
+[2026-09-04 20:09:49]   random_bt: 100 prompt states
+[2026-09-04 20:09:52] random_bt: wrote 149 prompt states
+[2026-09-04 20:09:52] random_unc: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 20:09:59]   random_unc: 100 prompt states
+[2026-09-04 20:10:02] random_unc: wrote 149 prompt states
+[2026-09-04 20:10:02] shuffled_bt: condition residual_add {"vector_norm": 18.285024642944336, "layer": 23}; system prompt present
+[2026-09-04 20:10:08]   shuffled_bt: 100 prompt states
+[2026-09-04 20:10:11] shuffled_bt: wrote 149 prompt states
+[2026-09-04 20:10:11] shuffled_unc: condition residual_add {"vector_norm": 10.15396499633789, "layer": 18}; system prompt present
+[2026-09-04 20:10:17]   shuffled_unc: 100 prompt states
+[2026-09-04 20:10:20] shuffled_unc: wrote 149 prompt states
+[2026-09-04 20:10:20] unc_neg: prompt states exist, skipping
+[2026-09-04 20:10:20] unc_pos: prompt states exist, skipping
+[2026-09-04 20:10:28] arms: ['bt_neg', 'bt_pos', 'random_bt', 'random_unc', 'shuffled_bt', 'shuffled_unc', 'unc_neg', 'unc_pos']
+[2026-09-04 20:10:47] bt_neg: in-context projections exist, skipping
+[2026-09-04 20:10:47] bt_pos: in-context projections exist, skipping
+[2026-09-04 20:10:47] random_bt: condition residual_add {"vector_norm": 18.2850284576416, "layer": 23}; system prompt present
+[2026-09-04 20:10:55]   random_bt: 50 in-context projections
+[2026-09-04 20:11:00]   random_bt: 100 in-context projections
+[2026-09-04 20:11:06] random_bt: wrote 149 in-context projections
+[2026-09-04 20:11:06] random_unc: condition residual_add {"vector_norm": 10.153962135314941, "layer": 18}; system prompt present
+[2026-09-04 20:11:11]   random_unc: 50 in-context projections
+[2026-09-04 20:11:17]   random_unc: 100 in-context projections
+[2026-09-04 20:11:22] random_unc: wrote 149 in-context projections
+[2026-09-04 20:11:22] shuffled_bt: condition residual_add {"vector_norm": 18.285024642944336, "layer": 23}; system prompt present
+[2026-09-04 20:11:30]   shuffled_bt: 50 in-context projections
+[2026-09-04 20:11:38]   shuffled_bt: 100 in-context projections
+[2026-09-04 20:11:47] shuffled_bt: wrote 149 in-context projections
+[2026-09-04 20:11:47] shuffled_unc: condition residual_add {"vector_norm": 10.15396499633789, "layer": 18}; system prompt present
+[2026-09-04 20:11:54]   shuffled_unc: 50 in-context projections
+[2026-09-04 20:12:01]   shuffled_unc: 100 in-context projections
+[2026-09-04 20:12:09] shuffled_unc: wrote 149 in-context projections
+[2026-09-04 20:12:09] unc_neg: in-context projections exist, skipping
+[2026-09-04 20:12:09] unc_pos: in-context projections exist, skipping
+[2026-09-04 20:12:19] arms: ['bt_neg', 'bt_pos', 'random_bt', 'random_unc', 'shuffled_bt', 'shuffled_unc', 'unc_neg', 'unc_pos']
+[2026-09-04 20:12:35] bt_neg: probe projections exist, skipping
+[2026-09-04 20:12:35] bt_pos: probe projections exist, skipping
+[2026-09-04 20:12:45]   random_bt: 100 probe projections
+[2026-09-04 20:12:50] random_bt: wrote 149 probe projections
+[2026-09-04 20:12:58]   random_unc: 100 probe projections
+[2026-09-04 20:13:02] random_unc: wrote 149 probe projections
+[2026-09-04 20:13:15]   shuffled_bt: 100 probe projections
+[2026-09-04 20:13:23] shuffled_bt: wrote 149 probe projections
+[2026-09-04 20:13:34]   shuffled_unc: 100 probe projections
+[2026-09-04 20:13:41] shuffled_unc: wrote 149 probe projections
+[2026-09-04 20:13:41] unc_neg: probe projections exist, skipping
+[2026-09-04 20:13:41] unc_pos: probe projections exist, skipping
+[2026-09-04 20:13:44] ==> F4 analysis
+/home/cutter/d10/scripts/analyze_tier_m.py:202: RuntimeWarning: Mean of empty slice
+  rows.append({"arm": arm, "framing": fr, "projection": pc, "n_pairs": len(d), "base_mean": float(np.nanmean(b.loc[idx, pc])), "delta": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi})
+/home/cutter/d10/scripts/analyze_tier_m.py:202: RuntimeWarning: Mean of empty slice
+  rows.append({"arm": arm, "framing": fr, "projection": pc, "n_pairs": len(d), "base_mean": float(np.nanmean(b.loc[idx, pc])), "delta": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi})
+/home/cutter/d10/scripts/analyze_tier_m.py:202: RuntimeWarning: Mean of empty slice
+  rows.append({"arm": arm, "framing": fr, "projection": pc, "n_pairs": len(d), "base_mean": float(np.nanmean(b.loc[idx, pc])), "delta": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi})
+/home/cutter/d10/scripts/analyze_tier_m.py:202: RuntimeWarning: Mean of empty slice
+  rows.append({"arm": arm, "framing": fr, "projection": pc, "n_pairs": len(d), "base_mean": float(np.nanmean(b.loc[idx, pc])), "delta": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi})
+/home/cutter/d10/scripts/analyze_tier_m.py:202: RuntimeWarning: Mean of empty slice
+  rows.append({"arm": arm, "framing": fr, "projection": pc, "n_pairs": len(d), "base_mean": float(np.nanmean(b.loc[idx, pc])), "delta": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi})
+/home/cutter/d10/scripts/analyze_tier_m.py:202: RuntimeWarning: Mean of empty slice
+  rows.append({"arm": arm, "framing": fr, "projection": pc, "n_pairs": len(d), "base_mean": float(np.nanmean(b.loc[idx, pc])), "delta": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi})
+/home/cutter/d10/scripts/analyze_tier_m.py:202: RuntimeWarning: Mean of empty slice
+  rows.append({"arm": arm, "framing": fr, "projection": pc, "n_pairs": len(d), "base_mean": float(np.nanmean(b.loc[idx, pc])), "delta": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi})
+/home/cutter/d10/scripts/analyze_tier_m.py:202: RuntimeWarning: Mean of empty slice
+  rows.append({"arm": arm, "framing": fr, "projection": pc, "n_pairs": len(d), "base_mean": float(np.nanmean(b.loc[idx, pc])), "delta": float(d.mean()) if len(d) else math.nan, "ci_lo": lo, "ci_hi": hi})
+wrote /home/cutter/d10/results/qwen3_4b/SUMMARY_f4_reverse.md
+F4S_DONE
+[2026-09-04 20:14:30] ==> f4_prompt arms
+[2026-09-04 20:14:35] f4_prompt: task actions, 149 items × ['real'], arms ['ask_unc_pos', 'ask_bt_pos', 'ask_unc_neg', 'ask_bt_neg']
+[2026-09-04 20:14:47] ask_unc_pos: kind=prompt {}
+[2026-09-04 20:15:59]   gen 6/149  1.2 min  eta 28.3 min  unfinished so far 0
+[2026-09-04 20:16:40]   gen 12/149  1.9 min  eta 21.5 min  unfinished so far 0
