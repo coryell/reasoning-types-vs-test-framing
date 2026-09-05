@@ -1,0 +1,10 @@
+label,n,is_floor,largest_share_change_pts,which_type,d_deduction_pts,d_knowledge recall_pts,d_hedging_pts,d_backtracking_pts,d_example-testing_pts,d_initializing_pts
+"Distill-32B: Abdelnabi & Salem's weight edit, toward awareness",104,False,-1.9,deduction,-1.9,-0.1,0.9,1.1,-0.3,0.3
+"QwQ-32B: Abdelnabi & Salem's weight edit, toward awareness",62,False,-2.8,deduction,-2.8,1.4,1.1,-0.1,0.0,0.4
+"Qwen3-32B: Abdelnabi & Salem's weight edit, toward awareness",106,False,1.0,initializing,-0.7,-0.7,0.2,0.4,-0.2,1.0
+"Qwen3-32B: Abdelnabi & Salem's weight edit, away from awareness",65,False,2.0,deduction,2.0,-0.4,-0.4,0.6,-0.2,-1.6
+"Qwen3-32B: test cue, decode 0",90,False,2.1,knowledge recall,-0.3,2.1,-1.1,-1.0,-0.1,0.5
+"Qwen3-32B: test cue, decode 1",94,False,-1.9,deduction,-1.9,0.9,0.6,-1.0,0.2,1.1
+Qwen3-4B: test cue,20,False,2.3,knowledge recall,0.7,2.3,-2.1,-1.2,0.0,0.3
+"floor: Distill-32B, two decodes of the unchanged model",118,True,-2.5,deduction,-2.5,1.1,-0.1,0.3,-0.1,1.2
+"floor: Qwen3-32B, two decodes of the unchanged model",104,True,1.1,deduction,1.1,1.0,-0.7,-0.8,-0.4,-0.2

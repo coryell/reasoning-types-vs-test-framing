@@ -418,8 +418,19 @@ for label, df, ba, ar, key in CELLS5:
     for which, fr_ in (("without", b.loc[ii]), ("with", x.loc[ii])):
         counts = {beh: float(nontest_count(fr_, beh).sum()) for beh in BEH}; counts["test-talk"] = float(testlex_total(fr_).sum())
         total = sum(counts.values())
-        comp_rows.append(dict(label=nice, which=which, n=len(ii), is_floor=label.startswith("floor"), total_per_trace=total / len(ii), **{k: v / total for k, v in counts.items()}))
+        task_total = sum(counts[beh] for beh in BEH)
+        comp_rows.append(dict(label=nice, which=which, n=len(ii), is_floor=label.startswith("floor"), total_per_trace=total / len(ii), **{k: v / total for k, v in counts.items()},
+                              **{f"taskonly_{beh}": counts[beh] / task_total for beh in BEH}))
 comp = pd.DataFrame(comp_rows); comp.to_csv(OUT / "F5b_composition.csv", index=False)
+# largest change in any task-directed type's share of task-directed sentences (test-talk set aside), per condition
+shift_rows = []
+for lab, g in comp.groupby("label", sort=False):
+    w = g[g.which == "without"].iloc[0]; x = g[g.which == "with"].iloc[0]
+    d = {beh: 100 * (x[f"taskonly_{beh}"] - w[f"taskonly_{beh}"]) for beh in BEH}; m = max(d, key=lambda k: abs(d[k]))
+    shift_rows.append(dict(label=lab, n=int(w.n), is_floor=bool(w.is_floor), largest_share_change_pts=round(d[m], 1), which_type=BEH_NICE[m], **{f"d_{BEH_NICE[b]}_pts": round(v, 1) for b, v in d.items()}))
+shift = pd.DataFrame(shift_rows); shift.to_csv(OUT / "F5b_taskonly_share_changes.csv", index=False)
+max_int = shift[~shift.is_floor].largest_share_change_pts.abs().max(); max_floor = shift[shift.is_floor].largest_share_change_pts.abs().max()
+print(f"task-only share changes: largest under any intervention {max_int:.1f} pts, largest between two unchanged decodes {max_floor:.1f} pts")
 order = [n for _, n in SHOW5 if n in set(comp.label)]
 fig, ax = plt.subplots(figsize=(11, 0.62 * len(order) + 1.6))
 y = 0; yticks, ylabels = [], []
