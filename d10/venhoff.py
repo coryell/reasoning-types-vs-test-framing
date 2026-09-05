@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from typing import Callable
 
+import random
 import torch
 
 from .parse import LABELS, SPAN_RE
@@ -84,10 +85,13 @@ class MeanVectors:
         return {k: {"mean": v["mean"].clone(), "count": v["count"]} for k, v in self.d.items()}
 
 
-def accumulate_trace(mv: MeanVectors, pooled_layers: Callable[[list[tuple[int, int]]], torch.Tensor], annotated: str, full_response: str, tok, span_filter: Callable[[str, str], bool] | None = None) -> int:
+def accumulate_trace(mv: MeanVectors, pooled_layers: Callable[[list[tuple[int, int]]], torch.Tensor], annotated: str, full_response: str, tok, span_filter: Callable[[str, str], bool] | None = None, label_shuffle: "random.Random | None" = None) -> int:
     """Add one trace to ``mv``. ``pooled_layers(windows)`` must return ``[n_windows, n_layers, d]``
     for decoder-layer outputs (HF hidden_states[1:]). ``span_filter(label, text)`` keeps a span when
-    True. Returns the number of spans used."""
+    True. ``label_shuffle`` (a ``random.Random``) permutes the labels across this trace's spans
+    before accumulation — the shuffled-label control: the same spans, windows and recipe, with the
+    behaviour assignment randomised, so each "behaviour" vector is a mean over a random subset of
+    reasoning spans. Returns the number of spans used."""
     lp = label_positions(annotated, full_response, tok)
     if span_filter is not None:
         enc_text = full_response
@@ -109,6 +113,10 @@ def accumulate_trace(mv: MeanVectors, pooled_layers: Callable[[list[tuple[int, i
     if not wins:
         return 0
     windows = [(a, b) for _, a, b in wins] + ([overall] if overall else [])
+    if label_shuffle is not None:
+        labels = [label for label, _, _ in wins]
+        label_shuffle.shuffle(labels)
+        wins = [(lab, a, b) for lab, (_, a, b) in zip(labels, wins)]
     pooled = pooled_layers(windows)  # [n, L, d]
     for (label, _, _), vec in zip(wins, pooled[: len(wins)]):
         if torch.isnan(vec).any():

@@ -375,3 +375,29 @@ def test_residual_add_runs_before_earlier_hooks():
     assert torch.allclose(steered - plain, torch.tensor([[1.0, 2.0, 3.0]]))
     assert torch.allclose(seen["out"], steered), "earlier hook saw the pre-addition output"
     assert torch.allclose(layer(x).detach(), plain)  # hook removed
+
+
+def test_accumulate_trace_label_shuffle_permutes_labels_only():
+    """The shuffled-label control keeps every window and the overall mean; only the label
+    attached to each span is permuted (seeded), so the total span count and 'overall' are unchanged."""
+    import random
+
+    class Tok:
+        def __call__(self, text, return_offsets_mapping=False, add_special_tokens=False):
+            return {"offset_mapping": [(i, i + 1) for i in range(len(text))]}
+
+    full = "abcdefghijklmnopqrstuvwxyz0123456789"
+    ann = '["deduction"]cdefg["end-section"]["backtracking"]lmno["end-section"]'
+    L, d = 2, 3
+    hs = torch.arange(len(full), dtype=torch.float32).view(-1, 1, 1).expand(len(full), L, d).clone()
+    pooled = lambda windows: torch.stack([hs[a:b].mean(0) for a, b in windows])
+    # over seeds 0..19 at least one permutation swaps the two labels; the windows stay [1,6) and [10,14)
+    swapped = None
+    for seed in range(20):
+        mv = venhoff.MeanVectors()
+        n = venhoff.accumulate_trace(mv, pooled, ann, full, Tok(), label_shuffle=random.Random(seed))
+        assert n == 2 and torch.allclose(mv.d["overall"]["mean"], torch.full((L, d), 8.0))
+        assert {mv.d["deduction"]["mean"][0, 0].item(), mv.d["backtracking"]["mean"][0, 0].item()} == {3.0, 11.5}
+        if mv.d["deduction"]["mean"][0, 0].item() == 11.5:
+            swapped = seed
+    assert swapped is not None, "no seed in 0..19 permuted the two labels"

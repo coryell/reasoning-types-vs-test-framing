@@ -12,7 +12,8 @@ condition kind in :mod:`d10.conditions`, on either task set.
                  strong coefficient, both signs, plus the random-direction control.
   f4_reverse     actions × real; residual-add of the backtracking and uncertainty directions, both
                  signs — does steering a reasoning behaviour move test-awareness or compliance?
-                 Plus the norm-matched controls: a seeded Gaussian at each direction's norm and layer.
+                 Plus the controls: a seeded Gaussian at each direction's norm and layer, and the
+                 shuffled-label vectors (build_vectors.py --stages extract --shuffle-labels).
 
 Outputs ``<out-dir>/<arm>.json`` in the layouts ``d10.shipped.load_generations`` reads (actions:
 ``data_item`` + ``steered_result_{real,fake}``; triggers: ``real``/``hypothetical`` +
@@ -92,6 +93,8 @@ def experiment(name: str, layers: dict[str, int], strong_alpha: float, coefficie
                 conds.append(Condition(f"{tag}_{sign}", kind="residual_add", direction=b, vectors="mean_vectors", layer=layer, coefficient=coef))
         for b, layer, tag in (("backtracking", bt, "bt"), ("uncertainty-estimation", unc, "unc")):
             conds.append(Condition(f"random_{tag}", kind="residual_add", direction=b, vectors="random", layer=layer, coefficient=c))
+        for b, layer, tag in (("backtracking", bt, "bt"), ("uncertainty-estimation", unc, "unc")):  # shuffled-label control (needs mean_vectors_shuffled.pt)
+            conds.append(Condition(f"shuffled_{tag}", kind="residual_add", direction=b, vectors="mean_vectors_shuffled", layer=layer, coefficient=c))
         return {"task": "actions", "framings": ["real"], "conds": conds}
     raise SystemExit(f"unknown experiment {name}")
 
@@ -150,6 +153,9 @@ def main() -> None:
         if unknown:
             raise SystemExit(f"unknown arms {unknown}; known: {list(by_name)}")
         conds = [by_name[a] for a in args.arms]
+    for c in conds:  # fail fast: a residual-add arm needs its vectors file before any generation is spent
+        if c.kind == "residual_add" and c.vectors != "random" and not (args.vectors_dir / f"{c.vectors}.pt").exists():
+            raise SystemExit(f"{c.name}: {args.vectors_dir / (c.vectors + '.pt')} is missing (for mean_vectors_shuffled.pt run build_vectors.py --stages extract --shuffle-labels)")
     task, framings = spec["task"], spec["framings"]
     if task == "actions":
         items = load_actions()[: args.n_items] if args.n_items else load_actions()
