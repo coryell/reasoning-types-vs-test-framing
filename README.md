@@ -1,4 +1,4 @@
-# d10
+# reasoning-types-vs-test-framing
 
 Which parts of a reasoning model's chain-of-thought does steering its **test-awareness** direction
 actually move?
@@ -10,13 +10,44 @@ Venhoff et al. ([2506.18167](https://arxiv.org/abs/2506.18167)) released steerab
 such behaviours. This project puts the two together and measures which behaviours move, which stay
 flat, and whether any of them mediate the compliance effect.
 
-Work in progress. See `CLAUDE.md` for layout, environment, and the working rules.
+See `CLAUDE.md` for layout, environment, and the working rules.
+
+## Setup
+
+The code reads the two papers' released artifacts from `assets/`, which is gitignored: clone them
+at the commits this work used. Nothing under `assets/` is modified.
 
 ```bash
 uv sync
 git clone https://github.com/microsoft/Test_Awareness_Steering assets/test_awareness_steering
+git -C assets/test_awareness_steering checkout eb78ea5
 git clone https://github.com/cvenhoff/steering-thinking-llms assets/steering_thinking_llms
+git -C assets/steering_thinking_llms checkout 93259bc
 ```
+
+What each provides, and which code reads it:
+
+| Path under `assets/` | Used for | Read by |
+|---|---|---|
+| `test_awareness_steering/data/actions/test_actions_examples.json` | the 149 harmful tool-use tasks with real and fake values | `d10/shipped.py`, `scripts/run_steering.py`, `scripts/run_followup.py`, `scripts/run_api_prompt.py` |
+| `test_awareness_steering/data/triggers/triggers.json` | the real / hypothetical trigger prompt pairs | `scripts/gen_triggers.py`, `scripts/run_followup.py` |
+| `test_awareness_steering/data/triggers_annotated_answers/*.json` | their judge-labelled 32B traces with evidence quotes | `scripts/audit_evidence.py` |
+| `test_awareness_steering/prompts/agentMetaPrompt.txt` | the agent system prompt for the actions set | `scripts/run_steering.py` (and everything that imports it) |
+| `test_awareness_steering/prompts/judgePromptEvidenceBoth.txt` | the awareness judge prompt | `d10/prompts.py` |
+| `test_awareness_steering/scripts/output_models/<model>_from_evidence_*/` | their per-layer probes (`model_<layer>.pth`) and shipped steered outputs | `d10/shipped.py`, `d10/steer.py`, `scripts/annotate_shipped.py`, `scripts/probe_geometry_shipped.py` |
+| `steering_thinking_llms/` | Venhoff et al.'s task prompts, imported as a module when rebuilding the behaviour directions | `scripts/build_vectors.py` |
+
+The Venhoff annotation prompt is reproduced verbatim in `d10/prompts.py` and needs no asset.
+Model weights (`Qwen/Qwen3-4B`) download from the Hugging Face hub on first use; the judge and the
+API generations need keys in `~/.config/d10/env`:
+
+```
+OPENAI_API_KEY=...        # judge (gpt-4o-2024-08-06)
+OPENROUTER_API_KEY=...    # judge fallback; the Qwen3-32B API arms
+HF_TOKEN=...              # gated model access
+```
+
+`uv run pytest` runs the unit tests; none of them needs the assets, the GPU or a key.
 
 ## What is here, in the order it was run
 
