@@ -1,3 +1,5 @@
+**Disclaimer:** This is a personal project. The views, code, and opinion expressed here are my own and do not represent those of my current or past employers.
+
 # reasoning-types-vs-test-framing
 
 Which parts of a reasoning model's chain-of-thought does steering its **test-awareness** direction
