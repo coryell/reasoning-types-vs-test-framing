@@ -394,10 +394,10 @@ for ax, (m_c, lo_c, hi_c, title) in zip(axes, (("d_task", "t_lo", "t_hi", "task-
             ax.plot(r[m_c], i, "x", color=c)
         else:
             ax.errorbar(r[m_c], i, xerr=[[r[m_c] - r[lo_c]], [r[hi_c] - r[m_c]]], fmt="o", color=c, capsize=3, ms=5)
-    ax.axvline(0, color="k", lw=0.8); ax.set_title(f"change in {title}", fontsize=11); ax.set_xlabel("change vs. the same items with no intervention (95% CI)", fontsize=9)
+    ax.axvline(0, color="k", lw=0.8); ax.set_title(f"{title}", fontsize=10); ax.set_xlabel("change vs. the same items with no intervention (95% CI)", fontsize=9)
 axes[0].set_yticks(ys); axes[0].set_yticklabels([f"{l}  (n={int(n)})" for l, n in zip(f5d.label, f5d.n)], fontsize=8); axes[0].invert_yaxis()
 axes[0].set_xlim(-4, 4); axes[1].set_xlim(-1, 2.5)
-axes[0].set_title(f"change in task-directed sentences per trace (baseline ≈ {f5d.task_base.mean():.0f})", fontsize=11)
+axes[0].set_title(f"task-directed sentences per trace (baseline ≈ {f5d.task_base.mean():.0f})", fontsize=10)
 fig.suptitle("Items the model refuses both with and without the intervention: task reasoning stays put, about one test-talk sentence is added", fontsize=11)
 fig.tight_layout(); fig.savefig(OUT / "F5_task_reasoning_fixed_decision.png", dpi=130); plt.close(fig)
 
